@@ -10,11 +10,14 @@ Orchestrates:
 """
 
 import json
+import sys
 import time
 from pathlib import Path
 from typing import List, Dict, Optional
 from datetime import datetime
 
+sys.path.insert(0, str(Path(__file__).parent.parent))
+from config import ASR_MODEL
 from src.metrics import compute_wer, compute_cer, aggregate_wer, aggregate_cer
 from src.gnani_client import GnaniClient, GnaniAPIError
 from src.audio_utils import get_audio_duration
@@ -156,7 +159,7 @@ def run_asr_evaluation(
         print(f"{'='*60}")
         print(f"  PRISMA ASR EVALUATION")
         print(f"  Test clips: {len(manifest)}")
-        print(f"  Model: {client._session.headers.get('model', 'prisma-v3.0')}")
+        print(f"  Model: {ASR_MODEL}")
         print(f"{'='*60}\n")
 
     # ── Run evaluation on each clip ────────────────────────────────
@@ -232,7 +235,7 @@ def run_asr_evaluation(
     evaluation = {
         "metadata": {
             "timestamp": datetime.now().isoformat(),
-            "model": "prisma-v3.0",
+            "model": ASR_MODEL,
             "total_clips": len(manifest),
             "successful_clips": len(successful),
             "failed_clips": len(manifest) - len(successful),
@@ -262,11 +265,15 @@ def run_asr_evaluation(
 
     # ── Save results ───────────────────────────────────────────────
     if output_path:
-        out = Path(output_path)
-        out.parent.mkdir(parents=True, exist_ok=True)
-        with open(out, "w", encoding="utf-8") as f:
-            json.dump(evaluation, f, indent=2, ensure_ascii=False)
-        if verbose:
-            print(f"  Results saved to: {output_path}")
+        if len(successful) == 0:
+            if verbose:
+                print(f"  Skipping save to {output_path} because 0 clips succeeded.")
+        else:
+            out = Path(output_path)
+            out.parent.mkdir(parents=True, exist_ok=True)
+            with open(out, "w", encoding="utf-8") as f:
+                json.dump(evaluation, f, indent=2, ensure_ascii=False)
+            if verbose:
+                print(f"  Results saved to: {output_path}")
 
     return evaluation

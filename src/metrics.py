@@ -23,17 +23,19 @@ def normalise_text(text: str, language: str = "en") -> str:
     Steps:
         1. Unicode NFC normalisation (important for Devanagari / Indic scripts)
         2. Lower-case (for Latin script; Indic scripts are case-less)
-        3. Remove punctuation but keep letters (incl. Indic + combining marks),
-           digits, and whitespace
+        3. Remove punctuation & symbols (including Devanagari danda ।/॥)
+           while keeping letters, combining marks (matras), digits, and spaces
         4. Collapse multiple spaces to one
     """
     text = unicodedata.normalize("NFC", text)
     text = text.lower()
-    # Keep: letters (\p{L}), combining marks (\p{M}), digits (\p{N}), whitespace
-    # Remove everything else (punctuation, symbols, etc.)
-    text = re.sub(r"[^\w\s\u0900-\u097F\u0980-\u09FF\u0A00-\u0A7F\u0A80-\u0AFF"
-                  r"\u0B00-\u0B7F\u0B80-\u0BFF\u0C00-\u0C7F\u0C80-\u0CFF"
-                  r"\u0D00-\u0D7F\u0D80-\u0DFF]", "", text, flags=re.UNICODE)
+    # Keep Unicode letters (L*), combining marks/matras (M*), numbers (N*), and whitespace.
+    # This cleanly strips Latin and Indic punctuation (e.g., '.', ',', '।', '॥', '_').
+    cleaned = [
+        ch if (ch.isspace() or unicodedata.category(ch)[0] in ("L", "M", "N")) else ""
+        for ch in text
+    ]
+    text = "".join(cleaned)
     text = re.sub(r"\s+", " ", text).strip()
     return text
 

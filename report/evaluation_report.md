@@ -15,8 +15,8 @@ As an AI Solutions Engineer evaluating Gnani's speech infrastructure for prospec
 - **Timbre v2.5 (TTS)** across 28 test sentences covering 9 operational categories measuring synthesis latency, Real-Time Factor (RTF), speaking rate, silence ratios, and acoustic fidelity.
 
 ### Headline Metrics
-* **Prisma ASR**: Micro-averaged Word Error Rate (**WER**) of **24.67%** and Character Error Rate (**CER**) of **20.47%** across the full evaluation suite, with an average inference response time of **369 ms**.
-* **Timbre TTS**: Average automated Quality Score of **84.8 / 100**, with an average Real-Time Factor (**RTF**) of **0.1747** (over 5.7x faster than real-time playback) and a mean latency of **901 ms**.
+* **Prisma ASR**: Micro-averaged Word Error Rate (**WER**) of **20.67%** and Character Error Rate (**CER**) of **18.99%** across the full evaluation suite, with an average inference response time of **446.6 ms**.
+* **Timbre TTS**: Average automated Quality Score of **88.0 / 100** (27/28 synthesized; 1 expected edge-case failure on `"..."`), with an average Real-Time Factor (**RTF**) of **0.3257** (dropping to **0.1000** / 10x real-time on long-form content) and a mean latency of **1501.8 ms**.
 
 Behind these aggregate figures lies a crucial finding that directly impacts enterprise solutioning: **Prisma's highest apparent WER occurs not from misrecognition, but from active Inverse Text Normalisation (ITN)**—automatically converting spelled-out numbers and spoken currency into digit-formatted entities (`"1,23,456"`, `"5,000"`, `"9876543210"`). When evaluated from an enterprise integration perspective, this behavior is a production asset rather than an accuracy failure.
 
@@ -57,19 +57,19 @@ Micro-averaging was used across aggregate categories so that longer, multi-word 
 +--------------------------+---------+---------+-------------+-------+
 | Category                 | WER (%) | CER (%) | Avg Lat (ms)| Clips |
 +--------------------------+---------+---------+-------------+-------+
-| Clean English            |   9.68% |  12.16% |    496.4 ms |     3 |
-| Clean Hindi              |  18.18% |  11.49% |    301.3 ms |     3 |
-| Noisy Audio (10dB SNR)   |  21.88% |  16.80% |    407.4 ms |     3 |
-| Telephony (8 kHz Band)   |  12.50% |   6.25% |    314.9 ms |     2 |
-| Numbers & Entities       |  69.23% |  68.71% |    372.2 ms |     3 |
-| Code-Switching (Hinglish)|  53.85% |  43.80% |    379.6 ms |     3 |
-| Accented English         |   0.00% |   0.00% |    328.6 ms |     2 |
-| Domain-Specific          |  24.24% |  13.37% |    337.1 ms |     3 |
-| Long Utterance           |  11.48% |  11.51% |    605.6 ms |     2 |
-| Short Utterance          |   0.00% |   0.00% |    196.9 ms |     3 |
-| Regional Languages       |  12.50% |   5.15% |    310.2 ms |     3 |
+| Clean English            |   9.68% |  12.16% |    592.3 ms |     3 |
+| Clean Hindi              |   4.55% |   8.05% |   1084.6 ms |     3 |
+| Noisy Audio (10dB SNR)   |  18.75% |  16.00% |    380.5 ms |     3 |
+| Telephony (8 kHz Band)   |   6.25% |   5.00% |    269.3 ms |     2 |
+| Numbers & Entities       |  66.67% |  68.10% |    421.5 ms |     3 |
+| Code-Switching (Hinglish)|  38.46% |  33.88% |    354.3 ms |     3 |
+| Accented English         |   0.00% |   0.00% |    291.1 ms |     2 |
+| Domain-Specific          |  24.24% |  13.37% |    342.0 ms |     3 |
+| Long Utterance           |   9.84% |  11.11% |    796.8 ms |     2 |
+| Short Utterance          |   0.00% |   0.00% |    127.6 ms |     3 |
+| Regional Languages       |   6.25% |   4.12% |    258.1 ms |     3 |
 +--------------------------+---------+---------+-------------+-------+
-| OVERALL BENCHMARK        |  24.67% |  20.47% |    369.8 ms |    30 |
+| OVERALL BENCHMARK        |  20.67% |  18.99% |    446.6 ms |    30 |
 +--------------------------+---------+---------+-------------+-------+
 ```
 
@@ -80,21 +80,22 @@ Micro-averaging was used across aggregate categories so that longer, multi-word 
    - **Prisma Output**: *"The total amount is 1,23,456 rupees."*
    - **Ground Truth**: *"my mobile number is nine eight seven six five four three two one zero"*
    - **Prisma Output**: *"My mobile number is 9876543210."*
-   - *Analysis*: Standard verbatim WER penalizes every numeric token as a substitution or deletion, causing a nominal 69.23% WER. However, for any downstream conversational banking platform or CRM integration, having raw phone numbers formatted as a continuous 10-digit string and currency rendered with Indian grouping commas eliminates custom regex parsing. When pre-normalized for ITN, Prisma's numeric recognition was 100% accurate.
+   - *Analysis*: Standard verbatim WER penalizes every numeric token as a substitution or deletion, causing a nominal 66.67% WER. However, for any downstream conversational banking platform or CRM integration, having raw phone numbers formatted as a continuous 10-digit string and currency rendered with Indian grouping commas eliminates custom regex parsing. When pre-normalized for ITN, Prisma's numeric recognition was 100% accurate.
 
 2. **Code-Switching & Dual-Script Rendering**:
    - In Hinglish scenarios, Prisma demonstrated intelligent bilingual script separation:
      - Reference: *"please mera last transaction ka detail bhejo"*
      - Hypothesis: *"Please मेरा last transaction का detail भेजो।"*
-   - For English words spoken in a Hindi sentence, Prisma dynamically selected Latin script for loanwords (*"transaction"*, *"detail"*, *"balance"*) while using Devanagari for functional grammar (*"मेरा"*, *"का"*, *"भेजो"*). This is ideal for human readability in agent assist desks, though it requires bilingual token mapping in naive evaluation harnesses.
+   - For English words spoken in a Hindi sentence, Prisma dynamically selected Latin script for loanwords (*"transaction"*, *"detail"*, *"balance"*) while using Devanagari for functional grammar (*"मेरा"*, *"का"*, *"भेजो"*). Normalising Unicode punctuation including Devanagari *danda* (`।`) eliminated false trailing-token errors (`codemix_002` scored 0.00% WER when evaluated with bilingual normalization/script mapping, though cross-script differences remain for fully transliterated words).
 
 3. **Telephony & Acoustic Degradation**:
-   - Telephony performance was exceptionally strong at **12.50% WER** and **6.25% CER**, with response latency staying under 320 ms.
-   - When background noise was introduced at 10 dB SNR, WER rose moderately to 21.88%, but CER remained resilient at 16.80%, indicating phonetic intelligibility was preserved even when word boundaries softened.
+   - Telephony performance under genuine 8 kHz narrowband 300–3400 Hz bandpass filtering was exceptionally strong at **6.25% WER** and **5.00% CER**, with response latency averaging 269.3 ms.
+   - When background noise was introduced at 10 dB SNR, WER rose moderately to 18.75% (CER 16.00%), indicating phonetic intelligibility was preserved even when word boundaries softened.
 
-4. **Accents and Edge Utterances**:
-   - Accented English (both South Indian and North Indian inflections) recorded **0.00% WER**.
-   - Short one-word commands (*"yes"*, *"no cancel it"*, *"हाँ"*) recorded **0.00% WER** with immediate sub-200 ms turnaround.
+4. **Accents, Regional Languages, and Test-Set Caveat**:
+   - Short commands (*"yes"*, *"no cancel it"*, *"हाँ"*) recorded **0.00% WER** with 127.6 ms mean turnaround.
+   - Regional languages (`te-IN`, `ta-IN`, `bn-IN`) recorded **6.25% WER** (`te_001` and `ta_001` at 0.00%, `bn_001` at 20.00% due to a spelling variant `একাউন্ট` vs `অ্যাকাউন্ট`).
+   - *Methodology Note*: The 30 ASR test clips in `data/asr/audio/` were synthesized via Timbre TTS (with synthetic noise and 8 kHz bandpass post-processing), meaning `accented_english` reflects Timbre's default `en-IN` voice (`Kaveri`) rather than distinct human regional speakers. Next-stage client POCs should supplement this manifest with customer call recordings or Common Voice / OpenSLR human clips.
 
 ---
 
@@ -127,37 +128,37 @@ I developed an automated 5-pillar objective scoring rubric (0–100 scale) to gr
 +--------------------------+-------------+--------+-------------+-----------+
 | Category                 | Score (/100)|  RTF   | Avg Lat (ms)| Rate (WPM)|
 +--------------------------+-------------+--------+-------------+-----------+
-| Numbers                  |        78.5 | 0.1709 |    751.3 ms |  90.2 WPM |
-| Abbreviations            |        91.5 | 0.1680 |    839.6 ms | 132.8 WPM |
-| Code-Switching           |        80.0 | 0.2018 |    801.9 ms | 178.0 WPM |
-| Long-Form                |        93.0 | 0.0742 |   1476.9 ms | 146.4 WPM |
-| Tricky Pronunciation     |        90.0 | 0.1609 |    640.5 ms | 174.4 WPM |
-| Punctuation & Prosody    |        85.0 | 0.1866 |   1026.4 ms | 146.2 WPM |
-| Special Formats          |        83.7 | 0.1927 |   1344.8 ms | 112.3 WPM |
-| Regional Languages       |        82.0 | 0.1923 |    762.9 ms | 120.8 WPM |
-| Edge Cases               |        79.7 | 0.2093 |    814.0 ms | 211.2 WPM |
+| Numbers                  |        78.8 | 0.6547 |   2556.5 ms |  90.3 WPM |
+| Abbreviations            |        91.8 | 0.2399 |   1243.6 ms | 133.4 WPM |
+| Code-Switching           |        82.7 | 0.2595 |   1010.0 ms | 179.7 WPM |
+| Long-Form                |        96.5 | 0.1000 |   2005.5 ms | 149.1 WPM |
+| Tricky Pronunciation     |        92.5 | 0.5231 |   1852.3 ms | 170.4 WPM |
+| Punctuation & Prosody    |        96.0 | 0.1611 |    876.7 ms | 150.6 WPM |
+| Special Formats          |        88.7 | 0.2653 |   1675.5 ms | 110.0 WPM |
+| Regional Languages       |        93.0 | 0.1926 |    737.5 ms | 125.2 WPM |
+| Edge Cases               |        79.3 | 0.2134 |    881.4 ms | 206.8 WPM |
 +--------------------------+-------------+--------+-------------+-----------+
-| OVERALL BENCHMARK        |        84.8 | 0.1747 |    901.5 ms | 145.8 WPM |
+| OVERALL BENCHMARK        |        88.0 | 0.3257 |   1501.8 ms | 145.4 WPM |
 +--------------------------+-------------+--------+-------------+-----------+
 ```
 
 ### 3.4 Key Observations & Engineering Insights
 
-1. **Synthesis Efficiency & Scaling**:
-   - The overall average RTF of **0.1747** indicates Timbre synthesizes speech roughly 5.7 times faster than playback duration.
-   - Most notably, on long-form paragraph content (such as complete banking disclaimers), the RTF dropped to **0.0742** (over 13x faster than real-time), demonstrating that Timbre's batch inference scales efficiently with input token length.
+1. **Synthesis Efficiency, Scaling & Tail Latency**:
+   - Overall mean RTF was **0.3257** (~3.1x faster than real-time), with typical requests synthesizing in **525–1200 ms** (RTF `0.14–0.24`), and long-form paragraph scripts achieving **0.1000 RTF** (10x real-time).
+   - Two tail-latency outliers (`num_hi_001` at 7541 ms / RTF `2.0492` and `pron_en_001` at 4699 ms / RTF `1.4686`) plus intermittent transient HTTP 500s (`"We are facing technical difficulties"`) highlighted the need for exponential-backoff retries in client SDKs (implemented in `GnaniClient`).
    
 2. **Abbreviation Expansion & Pronunciation Strengths**:
-   - Financial and administrative acronyms (*"HDFC Ltd."*, *"YoY"*, *"Q3 FY26"*, *"AIIMS"*) scored an outstanding **91.5 / 100**. Timbre correctly expanded fiscal designations rather than attempting awkward phonetic pronunciations.
-   - Multi-syllable Indic proper nouns (*"Venkatasubramaniam"*, *"Thiruvananthapuram"*) achieved perfect **100 / 100** round-trip fidelity scores, proving the underlying acoustic models are natively grounded in Indic phonology.
+   - Financial and administrative acronyms (*"HDFC Ltd."*, *"YoY"*, *"Q3 FY26"*, *"AIIMS"*) scored **91.8 / 100**. Timbre expanded fiscal designations naturally rather than spelling them awkwardly.
+   - Multi-syllable Indic proper nouns (*"Venkatasubramaniam"*, *"Thiruvananthapuram"*, *"विश्वनाथन अय्यर"*) achieved **100 / 100** scores, while rare foreign loanwords (*"Worcestershire"*) and domain URLs (`"gnani.ai"`) remain areas where custom phonetic hints/lexicons improve fidelity.
 
 3. **Critical Edge-Case Finding (API Hardening)**:
-   - When presented with `edge_empty_001` (input: `"..."` containing punctuation without alphanumeric characters), the Timbre API failed with:  
+   - When presented with `edge_empty_001` (input: `"..."` containing punctuation without alphanumeric characters), the Timbre API failed deterministically with:  
      `HTTP 500 Internal Server Error: {"success":false,"message":"No audio generated during synthesis"}`.
    - *Solutions Engineering Recommendation*: In enterprise voicebots, empty or non-vocal prompts can occur due to upstream LLM guardrails or empty tool payloads. The API layer should catch this with an HTTP 400 Bad Request error or return a neutral 200 ms comfort pause, avoiding unhandled 500 exceptions in production monitoring.
 
 4. **Prosody on Numeric Pacing**:
-   - In numeric test cases, speaking rate dropped to ~90 WPM because reading complex currency amounts (*"One Lakh Twenty Three Thousand..."*) naturally requires deliberate syllabic cadence. This is desirable behavior for callers noting down verification numbers.
+   - In numeric test cases, speaking rate dropped to ~90.3 WPM because reading complex currency amounts (*"One Lakh Twenty Three Thousand..."*) naturally requires deliberate syllabic cadence. This is desirable behavior for callers noting down verification numbers.
 
 ---
 
@@ -166,14 +167,14 @@ I developed an automated 5-pillar objective scoring rubric (0–100 scale) to gr
 Based on these findings, here is how I would position and architect Gnani's speech stack for prospective enterprise clients:
 
 ### 1. Ingestion & Pre-Processing
-* **Narrowband Telephony Ready**: Gnani's models demonstrate natural resilience on 8 kHz sampled streams. Clients do not need compute-heavy upsampling pipelines before calling Prisma.
+* **Narrowband Telephony Ready**: Gnani's models demonstrate strong resilience on 8 kHz bandpass-filtered (300–3400 Hz) streams (**6.25% WER**). Clients do not need compute-heavy upsampling pipelines before calling Prisma.
 * **Unified API Formatting**: Timbre returns clean 16-bit PCM streams (`x-audio-container: raw`). For web and mobile clients requiring direct media element playback, an edge proxy or lightweight wrapper should encapsulate headers into standard RIFF WAV or Opus/Ogg containers.
 
 ### 2. Conversational Voicebot Latency Budget
 For interactive telephony voice agents, human conversation tolerates a maximum turn-taking budget of ~1500–1800 ms.
-* **Prisma ASR**: 370 ms mean turnaround.
+* **Prisma ASR**: ~447 ms mean turnaround (sub-300 ms on short commands and telephony).
 * **LLM Reasoning & Orchestration**: ~500–700 ms budget.
-* **Timbre TTS (Streaming/SSE)**: With an overall RTF of 0.17, time-to-first-audio chunk can comfortably land under 300 ms via Server-Sent Events (`/api/v1/tts/sse`), keeping the complete conversational loop well within human conversational tolerance.
+* **Timbre TTS (Streaming/SSE + Client Retries)**: With typical non-outlier RTF around `0.15–0.24` (and `0.10` on long-form), time-to-first-audio chunk via Server-Sent Events (`/api/v1/tts/sse`) stays responsive, while client-side exponential backoff protects against transient 500s.
 
 ### 3. Continuous Quality Assurance Framework
 Enterprises should not treat speech quality as static. I recommend setting up an automated weekly regression harness using the test manifest developed here:

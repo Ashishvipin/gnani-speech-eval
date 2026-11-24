@@ -5,6 +5,7 @@ Handles authentication, request formatting, response parsing,
 retry logic, and latency measurement.
 """
 
+import random
 import time
 import requests
 from pathlib import Path
@@ -35,15 +36,69 @@ class GnaniClient:
         audio  = client.synthesize("Hello world", language="en-IN")
     """
 
-    def __init__(self, api_key: Optional[str] = None, timeout: int = 60):
+    TRANSIENT_STATUS_CODES = {429, 500, 502, 503, 504}
+
+    def __init__(
+        self,
+        api_key: Optional[str] = None,
+        timeout: int = 60,
+        max_retries: int = 6,
+        backoff_sec: float = 1.0,
+    ):
         self.api_key = api_key or GNANI_API_KEY
         if not self.api_key:
             raise ValueError(
                 "GNANI_API_KEY not set. Export it or add it to .env"
             )
         self.timeout = timeout
+        self.max_retries = max_retries
+        self.backoff_sec = backoff_sec
         self._session = requests.Session()
         self._session.headers.update({"X-API-Key-ID": self.api_key})
+
+    def _is_retryable_response(self, response: requests.Response) -> bool:
+        """Return True for transient server/rate-limit errors worth retrying."""
+        if response.status_code not in self.TRANSIENT_STATUS_CODES:
+            return False
+        # Deterministic input error on empty/punctuation-only TTS text should fail fast
+        if response.status_code == 500 and "No audio generated" in response.text:
+            return False
+        return True
+
+    def _post_with_retry(self, url: str, request_factory) -> tuple:
+        """
+        Execute a POST request with exponential backoff on transient failures.
+        Latency is measured strictly on the final attempt (excluding backoff sleeps).
+        """
+        last_exc = None
+        for attempt in range(self.max_retries + 1):
+            kwargs = request_factory()
+            start_time = time.time()
+            try:
+                response = self._session.post(url, timeout=self.timeout, **kwargs)
+                latency_ms = (time.time() - start_time) * 1000
+            except requests.RequestException as exc:
+                last_exc = exc
+                # Fail fast on DNS resolution errors instead of sleeping through retries
+                if "NameResolutionError" in str(exc) or "Failed to resolve" in str(exc):
+                    raise
+                if attempt < self.max_retries:
+                    delay = min(5.0, self.backoff_sec * (2 ** attempt)) * random.uniform(0.8, 1.2)
+                    time.sleep(delay)
+                    continue
+                raise
+
+            if response.status_code == 200:
+                return response, latency_ms
+
+            if self._is_retryable_response(response) and attempt < self.max_retries:
+                delay = min(5.0, self.backoff_sec * (2 ** attempt)) * random.uniform(0.8, 1.2)
+                time.sleep(delay)
+                continue
+
+            raise GnaniAPIError(response.status_code, response.text)
+
+        raise last_exc  # pragma: no cover
 
     # ── ASR (Prisma) ───────────────────────────────────────────────
 
@@ -68,24 +123,19 @@ class GnaniClient:
         if not audio_path.exists():
             raise FileNotFoundError(f"Audio file not found: {audio_path}")
 
-        with open(audio_path, "rb") as audio_file:
-            files = {"audio_file": (audio_path.name, audio_file)}
-            data = {
-                "model": model,
-                "language_code": language,
-            }
+        audio_bytes = audio_path.read_bytes()
+        data = {
+            "model": model,
+            "language_code": language,
+        }
 
-            start_time = time.time()
-            response = self._session.post(
-                ASR_ENDPOINT,
-                files=files,
-                data=data,
-                timeout=self.timeout,
-            )
-            latency_ms = (time.time() - start_time) * 1000
-
-        if response.status_code != 200:
-            raise GnaniAPIError(response.status_code, response.text)
+        response, latency_ms = self._post_with_retry(
+            ASR_ENDPOINT,
+            lambda: {
+                "files": {"audio_file": (audio_path.name, audio_bytes)},
+                "data": data,
+            },
+        )
 
         resp_json = response.json()
 
@@ -137,16 +187,10 @@ class GnaniClient:
             "speed": speed,
         }
 
-        start_time = time.time()
-        response = self._session.post(
+        response, latency_ms = self._post_with_retry(
             TTS_ENDPOINT,
-            json=payload,
-            timeout=self.timeout,
+            lambda: {"json": payload},
         )
-        latency_ms = (time.time() - start_time) * 1000
-
-        if response.status_code != 200:
-            raise GnaniAPIError(response.status_code, response.text)
 
         audio_bytes = response.content
 

@@ -152,17 +152,24 @@ def resample_audio(
     target_rate: int,
 ) -> np.ndarray:
     """
-    Simple resampling using linear interpolation.
-    For production, scipy.signal.resample would be better,
-    but this avoids the hard dependency.
+    Resample audio with an FFT low-pass anti-aliasing filter when downsampling.
+    Uses pure NumPy so no extra runtime dependencies are required.
     """
-    if orig_rate == target_rate:
+    if orig_rate == target_rate or len(samples) == 0:
         return samples
 
-    duration = len(samples) / orig_rate
-    target_len = int(duration * target_rate)
-    indices = np.linspace(0, len(samples) - 1, target_len)
-    return np.interp(indices, np.arange(len(samples)), samples)
+    working = samples
+    if target_rate < orig_rate:
+        # Apply brick-wall low-pass filter below the target Nyquist frequency
+        fft = np.fft.rfft(working)
+        freqs = np.fft.rfftfreq(len(working), d=1.0 / orig_rate)
+        fft[freqs > (target_rate / 2.0)] = 0
+        working = np.fft.irfft(fft, n=len(working))
+
+    duration = len(working) / orig_rate
+    target_len = max(1, int(round(duration * target_rate)))
+    indices = np.linspace(0, len(working) - 1, target_len)
+    return np.interp(indices, np.arange(len(working)), working)
 
 
 def simulate_telephony(samples: np.ndarray, sample_rate: int) -> np.ndarray:

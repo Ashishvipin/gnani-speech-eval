@@ -1,83 +1,83 @@
 {
   "metadata": {
-    "timestamp": "2026-11-24T16:26:08.675964",
+    "timestamp": "2026-11-25T01:00:32.017598",
     "model": "prisma-v3.0",
     "total_clips": 30,
     "successful_clips": 30,
     "failed_clips": 0
   },
   "overall": {
-    "wer": 0.2467,
-    "cer": 0.2047,
+    "wer": 0.2067,
+    "cer": 0.1899,
     "total_ref_words": 300,
-    "total_errors": 74
+    "total_errors": 62
   },
   "by_category": {
     "clean_english": {
       "num_clips": 3,
       "aggregate_wer": 0.0968,
       "aggregate_cer": 0.1216,
-      "avg_latency_ms": 496.42
+      "avg_latency_ms": 592.33
     },
     "clean_hindi": {
       "num_clips": 3,
-      "aggregate_wer": 0.1818,
-      "aggregate_cer": 0.1149,
-      "avg_latency_ms": 301.32
+      "aggregate_wer": 0.0455,
+      "aggregate_cer": 0.0805,
+      "avg_latency_ms": 1084.64
     },
     "noisy_audio": {
       "num_clips": 3,
-      "aggregate_wer": 0.2188,
-      "aggregate_cer": 0.168,
-      "avg_latency_ms": 407.41
+      "aggregate_wer": 0.1875,
+      "aggregate_cer": 0.16,
+      "avg_latency_ms": 380.49
     },
     "telephony": {
       "num_clips": 2,
-      "aggregate_wer": 0.125,
-      "aggregate_cer": 0.0625,
-      "avg_latency_ms": 314.9
+      "aggregate_wer": 0.0625,
+      "aggregate_cer": 0.05,
+      "avg_latency_ms": 269.25
     },
     "numbers_and_entities": {
       "num_clips": 3,
-      "aggregate_wer": 0.6923,
-      "aggregate_cer": 0.6871,
-      "avg_latency_ms": 372.18
+      "aggregate_wer": 0.6667,
+      "aggregate_cer": 0.681,
+      "avg_latency_ms": 421.54
     },
     "code_switching": {
       "num_clips": 3,
-      "aggregate_wer": 0.5385,
-      "aggregate_cer": 0.438,
-      "avg_latency_ms": 379.63
+      "aggregate_wer": 0.3846,
+      "aggregate_cer": 0.3388,
+      "avg_latency_ms": 354.33
     },
     "accented_english": {
       "num_clips": 2,
       "aggregate_wer": 0.0,
       "aggregate_cer": 0.0,
-      "avg_latency_ms": 328.64
+      "avg_latency_ms": 291.06
     },
     "domain_specific": {
       "num_clips": 3,
       "aggregate_wer": 0.2424,
       "aggregate_cer": 0.1337,
-      "avg_latency_ms": 337.06
+      "avg_latency_ms": 342.0
     },
     "long_utterance": {
       "num_clips": 2,
-      "aggregate_wer": 0.1148,
-      "aggregate_cer": 0.1151,
-      "avg_latency_ms": 605.57
+      "aggregate_wer": 0.0984,
+      "aggregate_cer": 0.1111,
+      "avg_latency_ms": 796.76
     },
     "short_utterance": {
       "num_clips": 3,
       "aggregate_wer": 0.0,
       "aggregate_cer": 0.0,
-      "avg_latency_ms": 196.88
+      "avg_latency_ms": 127.63
     },
     "regional_languages": {
       "num_clips": 3,
-      "aggregate_wer": 0.125,
-      "aggregate_cer": 0.0515,
-      "avg_latency_ms": 310.17
+      "aggregate_wer": 0.0625,
+      "aggregate_cer": 0.0412,
+      "avg_latency_ms": 258.11
     }
   },
   "per_clip_results": [
@@ -112,7 +112,7 @@
         "hits": 35,
         "ref_chars": 35
       },
-      "api_latency_ms": 494.73,
+      "api_latency_ms": 575.82,
       "status": "success",
       "error": null
     },
@@ -147,7 +147,7 @@
         "hits": 32,
         "ref_chars": 50
       },
-      "api_latency_ms": 552.32,
+      "api_latency_ms": 459.18,
       "status": "success",
       "error": null
     },
@@ -182,7 +182,7 @@
         "hits": 63,
         "ref_chars": 63
       },
-      "api_latency_ms": 442.21,
+      "api_latency_ms": 741.99,
       "status": "success",
       "error": null
     },
@@ -200,23 +200,23 @@
       "audio_duration_sec": 2.72,
       "reference": "नमस्ते मैं अपना बैलेंस जानना चाहता हूँ",
       "hypothesis": "नमस्ते, मैं अपना balance जानना चाहता हूँ।",
-      "wer": 0.2857,
-      "cer": 0.25,
+      "wer": 0.1429,
+      "cer": 0.2188,
       "wer_detail": {
-        "substitutions": 2,
+        "substitutions": 1,
         "deletions": 0,
         "insertions": 0,
-        "hits": 5,
+        "hits": 6,
         "ref_words": 7
       },
       "cer_detail": {
         "substitutions": 6,
         "deletions": 0,
-        "insertions": 2,
+        "insertions": 1,
         "hits": 26,
         "ref_chars": 32
       },
-      "api_latency_ms": 378.42,
+      "api_latency_ms": 2755.22,
       "status": "success",
       "error": null
     },
@@ -234,23 +234,23 @@
       "audio_duration_sec": 2.24,
       "reference": "कृपया मेरा आधार नंबर से लिंक करें",
       "hypothesis": "कृपया मेरा आधार नंबर से लिंक करें।",
-      "wer": 0.1429,
-      "cer": 0.037,
+      "wer": 0.0,
+      "cer": 0.0,
       "wer_detail": {
-        "substitutions": 1,
+        "substitutions": 0,
         "deletions": 0,
         "insertions": 0,
-        "hits": 6,
+        "hits": 7,
         "ref_words": 7
       },
       "cer_detail": {
         "substitutions": 0,
         "deletions": 0,
-        "insertions": 1,
+        "insertions": 0,
         "hits": 27,
         "ref_chars": 27
       },
-      "api_latency_ms": 308.32,
+      "api_latency_ms": 186.65,
       "status": "success",
       "error": null
     },
@@ -269,23 +269,23 @@
       "audio_duration_sec": 2.4,
       "reference": "मुझे कल सुबह दस बजे की फ्लाइट चाहिए",
       "hypothesis": "मुझे कल सुबह दस बजे की फ्लाइट चाहिए।",
-      "wer": 0.125,
-      "cer": 0.0357,
+      "wer": 0.0,
+      "cer": 0.0,
       "wer_detail": {
-        "substitutions": 1,
+        "substitutions": 0,
         "deletions": 0,
         "insertions": 0,
-        "hits": 7,
+        "hits": 8,
         "ref_words": 8
       },
       "cer_detail": {
         "substitutions": 0,
         "deletions": 0,
-        "insertions": 1,
+        "insertions": 0,
         "hits": 28,
         "ref_chars": 28
       },
-      "api_latency_ms": 217.22,
+      "api_latency_ms": 312.06,
       "status": "success",
       "error": null
     },
@@ -303,7 +303,7 @@
       "audio_path": "/Users/mac/Documents/Gnani/gnani-speech-eval/data/asr/audio/noisy_en_001.wav",
       "audio_duration_sec": 4.32,
       "reference": "my policy number is alpha bravo charlie one two three four five",
-      "hypothesis": "My policy number is alpha bravo charlie 12345.",
+      "hypothesis": "My policy number is Alpha Bravo Charlie 12345.",
       "wer": 0.4167,
       "cer": 0.3654,
       "wer_detail": {
@@ -320,7 +320,7 @@
         "hits": 33,
         "ref_chars": 52
       },
-      "api_latency_ms": 402.17,
+      "api_latency_ms": 279.69,
       "status": "success",
       "error": null
     },
@@ -355,7 +355,7 @@
         "hits": 43,
         "ref_chars": 44
       },
-      "api_latency_ms": 392.52,
+      "api_latency_ms": 319.35,
       "status": "success",
       "error": null
     },
@@ -373,23 +373,23 @@
       "audio_duration_sec": 2.72,
       "reference": "हाँ मैं सड़क पर हूँ सुनाई नहीं दे रहा",
       "hypothesis": "हाँ, मैं सड़क पर हूँ, सुनाई नहीं दे रहा।",
-      "wer": 0.1111,
-      "cer": 0.0345,
+      "wer": 0.0,
+      "cer": 0.0,
       "wer_detail": {
-        "substitutions": 1,
+        "substitutions": 0,
         "deletions": 0,
         "insertions": 0,
-        "hits": 8,
+        "hits": 9,
         "ref_words": 9
       },
       "cer_detail": {
         "substitutions": 0,
         "deletions": 0,
-        "insertions": 1,
+        "insertions": 0,
         "hits": 29,
         "ref_chars": 29
       },
-      "api_latency_ms": 427.53,
+      "api_latency_ms": 542.44,
       "status": "success",
       "error": null
     },
@@ -424,7 +424,7 @@
         "hits": 35,
         "ref_chars": 35
       },
-      "api_latency_ms": 350.84,
+      "api_latency_ms": 298.65,
       "status": "success",
       "error": null
     },
@@ -440,26 +440,26 @@
       "language": "hi-IN",
       "detected_language": "hi-IN",
       "audio_path": "/Users/mac/Documents/Gnani/gnani-speech-eval/data/asr/audio/telephony_hi_001.wav",
-      "audio_duration_sec": 3.04,
+      "audio_duration_sec": 3.2,
       "reference": "आपका कॉल हमारे लिए महत्वपूर्ण है कृपया प्रतीक्षा करें",
       "hypothesis": "आपका call हमारे लिए महत्वपूर्ण है, कृपया प्रतीक्षा करें।",
-      "wer": 0.2222,
-      "cer": 0.1111,
+      "wer": 0.1111,
+      "cer": 0.0889,
       "wer_detail": {
-        "substitutions": 2,
+        "substitutions": 1,
         "deletions": 0,
         "insertions": 0,
-        "hits": 7,
+        "hits": 8,
         "ref_words": 9
       },
       "cer_detail": {
         "substitutions": 3,
         "deletions": 0,
-        "insertions": 2,
+        "insertions": 1,
         "hits": 42,
         "ref_chars": 45
       },
-      "api_latency_ms": 278.97,
+      "api_latency_ms": 239.84,
       "status": "success",
       "error": null
     },
@@ -494,7 +494,7 @@
         "hits": 22,
         "ref_chars": 70
       },
-      "api_latency_ms": 418.02,
+      "api_latency_ms": 332.17,
       "status": "success",
       "error": null
     },
@@ -528,7 +528,7 @@
         "hits": 16,
         "ref_chars": 56
       },
-      "api_latency_ms": 391.69,
+      "api_latency_ms": 519.41,
       "status": "success",
       "error": null
     },
@@ -546,23 +546,23 @@
       "audio_duration_sec": 3.04,
       "reference": "कुल राशि पाँच लाख बहत्तर हज़ार तीन सौ रुपये है",
       "hypothesis": "कुल राशि 5,72,300 रुपये है।",
-      "wer": 0.7,
-      "cer": 0.6486,
+      "wer": 0.6,
+      "cer": 0.6216,
       "wer_detail": {
-        "substitutions": 2,
+        "substitutions": 1,
         "deletions": 5,
         "insertions": 0,
-        "hits": 3,
+        "hits": 4,
         "ref_words": 10
       },
       "cer_detail": {
         "substitutions": 6,
         "deletions": 17,
-        "insertions": 1,
+        "insertions": 0,
         "hits": 14,
         "ref_chars": 37
       },
-      "api_latency_ms": 306.82,
+      "api_latency_ms": 413.05,
       "status": "success",
       "error": null
     },
@@ -580,23 +580,23 @@
       "audio_duration_sec": 2.24,
       "reference": "मुझे अपना account balance check करना है",
       "hypothesis": "मुझे अपना अकाउंट बैलेंस चेक करना है।",
-      "wer": 0.5714,
-      "cer": 0.6061,
+      "wer": 0.4286,
+      "cer": 0.5758,
       "wer_detail": {
-        "substitutions": 4,
+        "substitutions": 3,
         "deletions": 0,
         "insertions": 0,
-        "hits": 3,
+        "hits": 4,
         "ref_words": 7
       },
       "cer_detail": {
         "substitutions": 15,
         "deletions": 4,
-        "insertions": 1,
+        "insertions": 0,
         "hits": 14,
         "ref_chars": 33
       },
-      "api_latency_ms": 319.9,
+      "api_latency_ms": 243.32,
       "status": "success",
       "error": null
     },
@@ -613,24 +613,24 @@
       "audio_path": "/Users/mac/Documents/Gnani/gnani-speech-eval/data/asr/audio/codemix_002.wav",
       "audio_duration_sec": 2.56,
       "reference": "please mera last transaction ka detail bhejo",
-      "hypothesis": "Please मेरा last transaction का detail भेजो।",
-      "wer": 0.4286,
-      "cer": 0.2895,
+      "hypothesis": "Please mera last transaction ka detail bhejo.",
+      "wer": 0.0,
+      "cer": 0.0,
       "wer_detail": {
-        "substitutions": 3,
+        "substitutions": 0,
         "deletions": 0,
         "insertions": 0,
-        "hits": 4,
+        "hits": 7,
         "ref_words": 7
       },
       "cer_detail": {
-        "substitutions": 11,
+        "substitutions": 0,
         "deletions": 0,
         "insertions": 0,
-        "hits": 27,
+        "hits": 38,
         "ref_chars": 38
       },
-      "api_latency_ms": 434.37,
+      "api_latency_ms": 521.88,
       "status": "success",
       "error": null
     },
@@ -658,13 +658,13 @@
         "ref_words": 12
       },
       "cer_detail": {
-        "substitutions": 18,
-        "deletions": 4,
+        "substitutions": 17,
+        "deletions": 5,
         "insertions": 0,
         "hits": 28,
         "ref_chars": 50
       },
-      "api_latency_ms": 384.61,
+      "api_latency_ms": 297.79,
       "status": "success",
       "error": null
     },
@@ -699,7 +699,7 @@
         "hits": 47,
         "ref_chars": 47
       },
-      "api_latency_ms": 439.06,
+      "api_latency_ms": 347.91,
       "status": "success",
       "error": null
     },
@@ -734,7 +734,7 @@
         "hits": 40,
         "ref_chars": 40
       },
-      "api_latency_ms": 218.23,
+      "api_latency_ms": 234.2,
       "status": "success",
       "error": null
     },
@@ -769,7 +769,7 @@
         "hits": 46,
         "ref_chars": 65
       },
-      "api_latency_ms": 353.16,
+      "api_latency_ms": 349.9,
       "status": "success",
       "error": null
     },
@@ -803,7 +803,7 @@
         "hits": 57,
         "ref_chars": 58
       },
-      "api_latency_ms": 336.2,
+      "api_latency_ms": 381.9,
       "status": "success",
       "error": null
     },
@@ -838,7 +838,7 @@
         "hits": 46,
         "ref_chars": 49
       },
-      "api_latency_ms": 321.81,
+      "api_latency_ms": 294.21,
       "status": "success",
       "error": null
     },
@@ -873,7 +873,7 @@
         "hits": 153,
         "ref_chars": 154
       },
-      "api_latency_ms": 690.77,
+      "api_latency_ms": 1182.7,
       "status": "success",
       "error": null
     },
@@ -891,24 +891,24 @@
       "audio_path": "/Users/mac/Documents/Gnani/gnani-speech-eval/data/asr/audio/long_hi_001.wav",
       "audio_duration_sec": 7.04,
       "reference": "नमस्ते मैं पिछले महीने जो होम लोन के लिए अप्लाई किया था उसका स्टेटस जानना चाहता हूँ कृपया मुझे बताएं कि कब तक प्रोसेस होगा",
-      "hypothesis": "नमस्ते, मैं पिछले महीने जो home loan के लिए apply किया था उसका status जानना चाहता हूँ, कृपया मुझे बताएं कि कब तक process होगा।",
-      "wer": 0.24,
-      "cer": 0.2857,
+      "hypothesis": "नमस्ते, मैं पिछले महीने जो home loan के लिए apply किया था, उसका status जानना चाहता हूँ, कृपया मुझे बताएं कि कब तक process होगा।",
+      "wer": 0.2,
+      "cer": 0.2755,
       "wer_detail": {
-        "substitutions": 6,
+        "substitutions": 5,
         "deletions": 0,
         "insertions": 0,
-        "hits": 19,
+        "hits": 20,
         "ref_words": 25
       },
       "cer_detail": {
         "substitutions": 24,
         "deletions": 1,
-        "insertions": 3,
+        "insertions": 2,
         "hits": 73,
         "ref_chars": 98
       },
-      "api_latency_ms": 520.36,
+      "api_latency_ms": 410.83,
       "status": "success",
       "error": null
     },
@@ -942,7 +942,7 @@
         "hits": 3,
         "ref_chars": 3
       },
-      "api_latency_ms": 152.5,
+      "api_latency_ms": 149.4,
       "status": "success",
       "error": null
     },
@@ -976,7 +976,7 @@
         "hits": 10,
         "ref_chars": 10
       },
-      "api_latency_ms": 206.69,
+      "api_latency_ms": 100.84,
       "status": "success",
       "error": null
     },
@@ -1010,7 +1010,7 @@
         "hits": 3,
         "ref_chars": 3
       },
-      "api_latency_ms": 231.44,
+      "api_latency_ms": 132.65,
       "status": "success",
       "error": null
     },
@@ -1043,7 +1043,7 @@
         "hits": 31,
         "ref_chars": 31
       },
-      "api_latency_ms": 413.13,
+      "api_latency_ms": 369.25,
       "status": "success",
       "error": null
     },
@@ -1059,7 +1059,7 @@
       "audio_path": "/Users/mac/Documents/Gnani/gnani-speech-eval/data/asr/audio/ta_001.wav",
       "audio_duration_sec": 2.08,
       "reference": "வணக்கம் எனது கணக்கு விவரங்களை அனுப்புங்கள்",
-      "hypothesis": "வணக்கம் எனது கணக்கு விவரங்களை அனுப்புங்கள்",
+      "hypothesis": "வணக்கம் எனது கணக்கு விவரங்களை அனுப்புங்கள்.",
       "wer": 0.0,
       "cer": 0.0,
       "wer_detail": {
@@ -1076,7 +1076,7 @@
         "hits": 38,
         "ref_chars": 38
       },
-      "api_latency_ms": 215.39,
+      "api_latency_ms": 271.61,
       "status": "success",
       "error": null
     },
@@ -1093,23 +1093,23 @@
       "audio_duration_sec": 1.76,
       "reference": "আমার একাউন্ট ব্যালেন্স জানতে চাই",
       "hypothesis": "আমার অ্যাকাউন্ট ব্যালেন্স জানতে চাই।",
-      "wer": 0.4,
-      "cer": 0.1786,
+      "wer": 0.2,
+      "cer": 0.1429,
       "wer_detail": {
-        "substitutions": 2,
+        "substitutions": 1,
         "deletions": 0,
         "insertions": 0,
-        "hits": 3,
+        "hits": 4,
         "ref_words": 5
       },
       "cer_detail": {
         "substitutions": 1,
         "deletions": 0,
-        "insertions": 4,
+        "insertions": 3,
         "hits": 27,
         "ref_chars": 28
       },
-      "api_latency_ms": 301.99,
+      "api_latency_ms": 133.46,
       "status": "success",
       "error": null
     }

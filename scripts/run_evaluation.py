@@ -71,12 +71,14 @@ def main():
 
         test_set_path = str(project_root / "data" / "tts" / "test_sentences.json")
         output_dir = str(project_root / "data" / "tts" / "output")
+        tts_results_path = str(project_root / "results" / "tts_results.json")
 
         print("▶ Starting TTS (Timbre) evaluation...\n")
         tts_results = run_tts_evaluation(
             test_set_path=test_set_path,
             api_key=args.api_key,
             output_dir=output_dir,
+            output_path=tts_results_path,
             run_roundtrip_asr=not args.no_roundtrip,
             verbose=True,
         )
@@ -92,6 +94,14 @@ def main():
     if run_tts:
         print(f"    - tts_results.json")
     print()
+
+
+    if run_asr and asr_results["metadata"]["successful_clips"] == 0:
+        print("  ERROR: All ASR requests failed — check network/API key.")
+        sys.exit(1)
+    if run_tts and tts_results["metadata"]["successful"] == 0:
+        print("  ERROR: All TTS requests failed — check network/API key.")
+        sys.exit(1)
 
 
 if __name__ == "__main__":

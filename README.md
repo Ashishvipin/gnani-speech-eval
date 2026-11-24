@@ -16,26 +16,28 @@ Designed and implemented as an AI Solutions Engineer take-home assignment by **A
 Tested directly against Gnani's live production platform (`api.vachana.ai`):
 
 ### 1. Prisma ASR (`prisma-v3.0`)
-* **Overall Micro-averaged WER**: **24.67%** (300 reference words, 30 clips across 11 categories)
-* **Overall Micro-averaged CER**: **20.47%**
-* **Average Inference Latency**: **369.8 ms**
+* **Overall Micro-averaged WER**: **20.67%** (300 reference words, 30 clips across 11 categories)
+* **Overall Micro-averaged CER**: **18.99%**
+* **Average Inference Latency**: **446.6 ms**
 * **Key Category Highlights**:
-  - **Accented English**: **0.00% WER** / **0.00% CER** (328.6 ms)
-  - **Short Commands**: **0.00% WER** / **0.00% CER** (196.9 ms)
-  - **Clean English**: **9.68% WER** / **12.16% CER** (496.4 ms)
-  - **Telephony (8 kHz Bandpass)**: **12.50% WER** / **6.25% CER** (314.9 ms)
-  - **Regional Languages (Telugu, Tamil, Bengali)**: **12.50% WER** / **5.15% CER** (310.2 ms)
-  - **Numbers & Entities (ITN)**: **69.23% WER** nominal, driven by active Inverse Text Normalisation (rendering spelled-out words as standard numeric entities like `"1,23,456"`, `"5,000"`, `"9876543210"`).
+  - **Accented English**: **0.00% WER** / **0.00% CER** (291.1 ms)
+  - **Short Commands**: **0.00% WER** / **0.00% CER** (127.6 ms)
+  - **Clean Hindi**: **4.55% WER** / **8.05% CER** (1084.6 ms)
+  - **Telephony (8 kHz, 300–3400 Hz Bandpass)**: **6.25% WER** / **5.00% CER** (269.3 ms)
+  - **Regional Languages (Telugu, Tamil, Bengali)**: **6.25% WER** / **4.12% CER** (258.1 ms)
+  - **Clean English**: **9.68% WER** / **12.16% CER** (592.3 ms)
+  - **Numbers & Entities (ITN)**: **66.67% WER** nominal, driven by active Inverse Text Normalisation (rendering spelled-out words as standard numeric entities like `"1,23,456"`, `"5,000"`, `"9876543210"`).
 
 ### 2. Timbre TTS (`timbre-v2.5`)
-* **Average Quality Score**: **84.8 / 100** (28 test sentences across 9 categories)
-* **Average Real-Time Factor (RTF)**: **0.1747** (>5.7x faster than real-time playback)
-* **Long-Form Telephony Scaling**: RTF drops to **0.0742** (>13x faster than real-time) on long paragraph content
-* **Average Latency**: **901.5 ms**
+* **Average Quality Score**: **88.0 / 100** (27/28 sentences synthesized; 1 expected edge-case failure on `"..."`)
+* **Average Real-Time Factor (RTF)**: **0.3257** (~3.1x faster than real-time overall; **0.1000** / 10x real-time on long-form content)
+* **Average Latency**: **1501.8 ms** (range: 525.2 ms – 7541.0 ms under tail load spikes)
 * **High Scoring Categories**:
-  - **Abbreviations & Acronyms**: **91.5 / 100** (RTF: 0.1680)
-  - **Tricky Indian Pronunciation**: **90.0 / 100** (RTF: 0.1609)
-  - **Long-Form Content**: **93.0 / 100** (RTF: 0.0742)
+  - **Long-Form Content**: **96.5 / 100** (RTF: 0.1000)
+  - **Punctuation & Prosody**: **96.0 / 100** (RTF: 0.1611)
+  - **Regional Languages (Telugu, Tamil)**: **93.0 / 100** (RTF: 0.1926)
+  - **Tricky Indian Pronunciation**: **92.5 / 100** (RTF: 0.5231)
+  - **Abbreviations & Acronyms**: **91.8 / 100** (RTF: 0.2399)
 
 ---
 
@@ -84,7 +86,7 @@ gnani-speech-eval/
 │   └── run_evaluation.py           # Main CLI runner for full evaluation
 │
 ├── tests/
-│   └── test_metrics.py             # 14 unit tests validating metric correctness
+│   └── test_metrics.py             # 19 unit tests validating metrics, audio & client retries
 │
 ├── results/
 │   ├── asr_results.json            # Full per-clip and categorical ASR benchmark data
@@ -142,7 +144,13 @@ python3 tests/test_metrics.py
   ✓ test_rtf_calculation
   ✓ test_speaking_rate
 
-  14 passed, 0 failed out of 14 tests
+  ✓ test_hindi_danda_punctuation
+  ✓ test_bengali_danda_punctuation
+  ✓ test_telephony_audio_simulation
+  ✓ test_tts_quality_rubric
+  ✓ test_gnani_client_retry_behavior
+
+  19 passed, 0 failed out of 19 tests
 ```
 
 ### 4. Run the Evaluation Suite

@@ -136,6 +136,77 @@ def test_speaking_rate():
     assert compute_speaking_rate(150, 60.0) == 150.0
 
 
+def test_hindi_danda_punctuation():
+    """Devanagari danda (।) and double danda (॥) should be stripped as punctuation."""
+    ref = "कृपया मेरा आधार नंबर से लिंक करें"
+    hyp = "कृपया मेरा आधार नंबर से लिंक करें।"
+    result = compute_wer(ref, hyp, language="hi")
+    assert result["wer"] == 0.0, f"Expected 0.0, got {result}"
+    assert compute_wer("नमस्ते", "नमस्ते॥", language="hi")["wer"] == 0.0
+
+
+def test_bengali_danda_punctuation():
+    """Bengali sentences ending with danda (।) should normalize cleanly."""
+    ref = "আমার একাউন্ট ব্যালেন্স জানতে চাই"
+    hyp = "আমার একাউন্ট ব্যালেন্স জানতে চাই।"
+    result = compute_wer(ref, hyp, language="bn")
+    assert result["wer"] == 0.0, f"Expected 0.0, got {result}"
+
+
+def test_telephony_audio_simulation():
+    """Telephony downsampling should produce finite 8 kHz audio of matching duration."""
+    import numpy as np
+    from src.audio_utils import simulate_telephony
+
+    sr = 48000
+    t = np.linspace(0, 1.0, sr, endpoint=False)
+    signal = 0.4 * np.sin(2 * np.pi * 1000 * t)
+    telephony = simulate_telephony(signal, sr)
+    assert len(telephony) == 8000
+    assert np.all(np.isfinite(telephony))
+
+
+def test_tts_quality_rubric():
+    """Automated TTS quality scoring should award 100/100 for ideal metrics."""
+    from src.tts_evaluator import _compute_quality_score
+
+    score = _compute_quality_score(
+        {
+            "rtf": 0.2,
+            "speaking_rate_wpm": 145.0,
+            "silence_ratio": 0.25,
+            "clipping_ratio": 0.0,
+        },
+        {"word_overlap": 0.95},
+    )
+    assert score == 100.0
+
+
+def test_gnani_client_retry_behavior():
+    """GnaniClient should retry transient 500s but fail fast on empty-audio 500."""
+    from unittest.mock import MagicMock, patch
+    from src.gnani_client import GnaniClient, GnaniAPIError
+
+    client = GnaniClient(api_key="test-key", max_retries=2, backoff_sec=0.0)
+
+    transient_resp = MagicMock(status_code=500, text='{"message":"We are facing technical difficulties"}')
+    ok_resp = MagicMock(status_code=200, content=b"RIFFdata", headers={})
+    empty_resp = MagicMock(status_code=500, text='{"message":"No audio generated during synthesis"}')
+
+    with patch.object(client._session, "post", side_effect=[transient_resp, ok_resp]) as mock_post:
+        res = client.synthesize("Hello", language="en-IN")
+        assert res["audio_bytes"] == b"RIFFdata"
+        assert mock_post.call_count == 2
+
+    with patch.object(client._session, "post", return_value=empty_resp) as mock_post:
+        try:
+            client.synthesize("...", language="en-IN")
+            assert False, "Expected GnaniAPIError"
+        except GnaniAPIError as exc:
+            assert exc.status_code == 500
+            assert mock_post.call_count == 1
+
+
 if __name__ == "__main__":
     # Run all test functions
     test_functions = [v for k, v in globals().items() if k.startswith("test_")]

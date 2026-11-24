@@ -14,14 +14,17 @@ rubric is provided for optional manual scoring.
 """
 
 import json
+import sys
 import time
-import io
+from collections import Counter
 from pathlib import Path
 from typing import List, Dict, Optional
 from datetime import datetime
 
+sys.path.insert(0, str(Path(__file__).parent.parent))
+from config import TTS_MODEL, RESULTS_DIR
 from src.gnani_client import GnaniClient, GnaniAPIError
-from src.metrics import compute_rtf, compute_speaking_rate, compute_silence_ratio
+from src.metrics import compute_rtf, compute_speaking_rate, compute_silence_ratio, normalise_text
 from src.audio_utils import (
     get_audio_duration, load_wav, compute_spectral_features,
 )
@@ -139,11 +142,14 @@ def evaluate_single_tts(
             )
             roundtrip_transcript = asr_result["transcript"]
 
-            # Simple word overlap metric
-            ref_words = set(text.lower().split())
-            hyp_words = set(roundtrip_transcript.lower().split())
-            if len(ref_words) > 0:
-                overlap = len(ref_words & hyp_words) / len(ref_words)
+            # Normalised multiset word overlap (strips punctuation, preserves repeats)
+            ref_tokens = normalise_text(text, language=language[:2]).split()
+            hyp_tokens = normalise_text(roundtrip_transcript, language=language[:2]).split()
+            if len(ref_tokens) > 0:
+                ref_counts = Counter(ref_tokens)
+                hyp_counts = Counter(hyp_tokens)
+                matched = sum(min(ref_counts[w], hyp_counts[w]) for w in ref_counts)
+                overlap = matched / len(ref_tokens)
             else:
                 overlap = 1.0
 
@@ -252,6 +258,7 @@ def run_tts_evaluation(
     test_set_path: str,
     api_key: Optional[str] = None,
     output_dir: Optional[str] = None,
+    output_path: Optional[str] = None,
     run_roundtrip_asr: bool = True,
     verbose: bool = True,
 ) -> Dict:
@@ -262,6 +269,7 @@ def run_tts_evaluation(
         test_set_path:      Path to JSON test sentence file
         api_key:            Gnani API key
         output_dir:         Directory for synthesized audio files
+        output_path:        Path to save results JSON (defaults to results/tts_results.json)
         run_roundtrip_asr:  Whether to run ASR on TTS output for validation
         verbose:            Print progress
 
@@ -305,7 +313,7 @@ def run_tts_evaluation(
             else:
                 print(f"ERROR: {result.get('error', 'unknown')}")
 
-        time.sleep(0.3)
+        time.sleep(0.6)
 
     # ── Aggregate by category ──────────────────────────────────────
     successful = [r for r in results if r["status"] == "success"]
@@ -348,7 +356,7 @@ def run_tts_evaluation(
     evaluation = {
         "metadata": {
             "timestamp": datetime.now().isoformat(),
-            "model": "timbre-v2.5",
+            "model": TTS_MODEL,
             "total_sentences": len(test_set),
             "successful": len(successful),
             "failed": len(test_set) - len(successful),
@@ -390,13 +398,17 @@ def run_tts_evaluation(
         print(f"{'='*60}\n")
 
     # ── Save results ───────────────────────────────────────────────
-    results_path = str(Path(output_dir).parent.parent.parent / "results" / "tts_results.json")
-    Path(results_path).parent.mkdir(parents=True, exist_ok=True)
-    # Remove audio_bytes from saved results
-    save_results = json.loads(json.dumps(evaluation, default=str))
-    with open(results_path, "w", encoding="utf-8") as f:
-        json.dump(save_results, f, indent=2, ensure_ascii=False)
-    if verbose:
-        print(f"  Results saved to: {results_path}")
+    results_path = output_path or str(RESULTS_DIR / "tts_results.json")
+    if len(successful) == 0:
+        if verbose:
+            print(f"  Skipping save to {results_path} because 0 sentences succeeded.")
+    else:
+        Path(results_path).parent.mkdir(parents=True, exist_ok=True)
+        # Remove audio_bytes from saved results
+        save_results = json.loads(json.dumps(evaluation, default=str))
+        with open(results_path, "w", encoding="utf-8") as f:
+            json.dump(save_results, f, indent=2, ensure_ascii=False)
+        if verbose:
+            print(f"  Results saved to: {results_path}")
 
     return evaluation

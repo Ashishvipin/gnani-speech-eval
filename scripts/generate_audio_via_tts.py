@@ -13,14 +13,13 @@ Usage:
 import sys
 import json
 import time
-import os
+import argparse
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
 from src.gnani_client import GnaniClient
 from src.audio_utils import add_noise, simulate_telephony, load_wav, save_wav
-import numpy as np
 
 
 PROJECT_ROOT = Path(__file__).parent.parent
@@ -29,6 +28,15 @@ MANIFEST_PATH = PROJECT_ROOT / "data" / "asr" / "test_manifest.json"
 
 
 def main():
+    parser = argparse.ArgumentParser(description="Generate ASR test audio via Timbre TTS")
+    parser.add_argument(
+        "--tags",
+        nargs="+",
+        default=None,
+        help="Optional tag filter (e.g., --tags telephony) to regenerate only matching clips",
+    )
+    args = parser.parse_args()
+
     print("=" * 60)
     print("  GENERATING ASR TEST AUDIO VIA TIMBRE TTS")
     print("=" * 60)
@@ -38,6 +46,9 @@ def main():
 
     with open(MANIFEST_PATH, "r", encoding="utf-8") as f:
         manifest = json.load(f)
+
+    if args.tags:
+        manifest = [e for e in manifest if any(t in e.get("tags", []) for t in args.tags)]
 
     print(f"\n  Generating {len(manifest)} audio clips via Timbre...\n")
 
@@ -77,12 +88,9 @@ def main():
 
             elif "telephony" in tags:
                 samples, sr = load_wav(str(audio_path))
-                # Resample to 8kHz and add slight noise
-                from src.audio_utils import resample_audio
-                resampled = resample_audio(samples, sr, 8000)
-                noisy = add_noise(resampled, snr_db=25.0, noise_type="white")
-                save_wav(noisy, 8000, str(audio_path))
-                print(" → +telephony(8kHz)", end="")
+                telephony = simulate_telephony(samples, sr)
+                save_wav(telephony, 8000, str(audio_path))
+                print(" → +telephony(8kHz, 300-3400Hz)", end="")
         except Exception as e:
             print(f" → post-process warning: {e}", end="")
 
