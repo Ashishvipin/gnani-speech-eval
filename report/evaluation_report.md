@@ -186,13 +186,13 @@ Enterprises should not treat speech quality as static. I recommend setting up an
 ## 5. Repository & Reproducibility Guide
 
 The complete benchmarking suite, test audio, JSON manifests, and unit tests are hosted at:  
-**GitHub Repository:** [https://github.com/Ashishvipin/speech-eval](https://github.com/Ashishvipin/speech-eval)
+**GitHub Repository:** [https://github.com/Ashishvipin/gnani-speech-eval](https://github.com/Ashishvipin/gnani-speech-eval)
 
 ### Running the Suite Locally
 ```bash
 # Clone repository and install dependencies
-git clone https://github.com/Ashishvipin/speech-eval.git
-cd speech-eval
+git clone https://github.com/Ashishvipin/gnani-speech-eval.git
+cd gnani-speech-eval
 pip install -r requirements.txt
 
 # Run metric verification unit tests

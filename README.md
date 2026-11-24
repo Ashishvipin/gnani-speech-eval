@@ -101,8 +101,8 @@ gnani-speech-eval/
 ### 1. Installation
 
 ```bash
-git clone https://github.com/Ashishvipin/speech-eval.git
-cd speech-eval
+git clone https://github.com/Ashishvipin/gnani-speech-eval.git
+cd gnani-speech-eval
 python3 -m venv venv && source venv/bin/activate
 pip install -r requirements.txt
 ```
