@@ -2,27 +2,27 @@
 """
 Main Evaluation Runner
 
-Runs both ASR (Prisma) and TTS (Timbre) evaluations end-to-end.
+Runs both ASR (Prisma) — across the real-human speech suite and synthetic
+smoke suite — and TTS (Timbre) evaluations end-to-end.
 
 Usage:
-    # Run everything
+    # Run everything (default: 3 TTS repeats per sentence)
     python scripts/run_evaluation.py
 
     # ASR only
     python scripts/run_evaluation.py --asr-only
 
-    # TTS only
-    python scripts/run_evaluation.py --tts-only
+    # TTS only (with custom repeat count)
+    python scripts/run_evaluation.py --tts-only --tts-repeats 3
 
-    # Skip round-trip ASR for TTS (faster)
-    python scripts/run_evaluation.py --tts-only --no-roundtrip
+    # Include optional independent faster-whisper cross-check (if installed)
+    python scripts/run_evaluation.py --tts-only --independent-asr
 """
 
 import argparse
 import sys
 from pathlib import Path
 
-# Add project root to path
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
 
@@ -34,6 +34,10 @@ def main():
     parser.add_argument("--tts-only", action="store_true", help="Run TTS evaluation only")
     parser.add_argument("--no-roundtrip", action="store_true",
                         help="Skip round-trip ASR check in TTS evaluation")
+    parser.add_argument("--tts-repeats", type=int, default=3,
+                        help="Number of synthesis repeats per TTS sentence (default: 3)")
+    parser.add_argument("--independent-asr", action="store_true",
+                        help="Cross-check TTS output with faster-whisper if installed")
     parser.add_argument("--api-key", type=str, default=None,
                         help="Gnani API key (or set GNANI_API_KEY env var)")
     args = parser.parse_args()
@@ -49,23 +53,27 @@ def main():
     print("╚══════════════════════════════════════════════════════════╝")
     print()
 
-    # ── ASR Evaluation ─────────────────────────────────────────────
-    if run_asr:
-        from src.asr_evaluator import run_asr_evaluation
+    asr_results = None
+    tts_results = None
 
-        manifest_path = str(project_root / "data" / "asr" / "test_manifest.json")
+    if run_asr:
+        from src.asr_evaluator import run_asr_suites
+
+        suites = {
+            "real_human": str(project_root / "data" / "asr" / "real_manifest.json"),
+            "synthetic_smoke": str(project_root / "data" / "asr" / "test_manifest.json"),
+        }
         output_path = str(project_root / "results" / "asr_results.json")
 
-        print("▶ Starting ASR (Prisma) evaluation...\n")
-        asr_results = run_asr_evaluation(
-            manifest_path=manifest_path,
+        print("▶ Starting ASR (Prisma) evaluation (real human + synthetic smoke)...\n")
+        asr_results = run_asr_suites(
+            suites=suites,
             api_key=args.api_key,
             output_path=output_path,
             verbose=True,
         )
         print()
 
-    # ── TTS Evaluation ─────────────────────────────────────────────
     if run_tts:
         from src.tts_evaluator import run_tts_evaluation
 
@@ -80,6 +88,8 @@ def main():
             output_dir=output_dir,
             output_path=tts_results_path,
             run_roundtrip_asr=not args.no_roundtrip,
+            repeats=args.tts_repeats,
+            use_independent_asr=args.independent_asr,
             verbose=True,
         )
         print()
@@ -90,16 +100,15 @@ def main():
     print()
     print(f"  Results saved in: {project_root / 'results'}/")
     if run_asr:
-        print(f"    - asr_results.json")
+        print("    - asr_results.json")
     if run_tts:
-        print(f"    - tts_results.json")
+        print("    - tts_results.json")
     print()
 
-
-    if run_asr and asr_results["metadata"]["successful_clips"] == 0:
+    if run_asr and asr_results and asr_results["metadata"]["successful_clips"] == 0:
         print("  ERROR: All ASR requests failed — check network/API key.")
         sys.exit(1)
-    if run_tts and tts_results["metadata"]["successful"] == 0:
+    if run_tts and tts_results and tts_results["metadata"]["successful"] == 0:
         print("  ERROR: All TTS requests failed — check network/API key.")
         sys.exit(1)
 

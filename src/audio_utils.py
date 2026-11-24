@@ -8,7 +8,6 @@ duration measurement, and signal analysis.
 import io
 import wave
 import struct
-import random
 from pathlib import Path
 from typing import Optional, Tuple
 
@@ -18,18 +17,21 @@ import numpy as np
 def get_audio_duration(audio_path: str) -> float:
     """
     Get duration of an audio file in seconds.
-    Supports WAV files directly; for others, tries via scipy or falls back
-    to file-size estimation.
+    Supports PCM WAV via stdlib `wave`, IEEE-float WAV via `scipy.io.wavfile`,
+    and falls back to file-size estimation.
     """
     path = Path(audio_path)
 
     if path.suffix.lower() == ".wav":
-        with wave.open(str(path), "r") as wf:
-            frames = wf.getnframes()
-            rate = wf.getframerate()
-            return frames / rate
+        try:
+            with wave.open(str(path), "r") as wf:
+                frames = wf.getnframes()
+                rate = wf.getframerate()
+                return frames / rate
+        except wave.Error:
+            pass
 
-    # Try scipy for other formats
+    # Try scipy for IEEE-float WAV or other PCM variants
     try:
         from scipy.io import wavfile
         rate, data = wavfile.read(str(path))
@@ -45,33 +47,46 @@ def get_audio_duration(audio_path: str) -> float:
 def load_wav(audio_path: str) -> Tuple[np.ndarray, int]:
     """
     Load a WAV file and return (samples, sample_rate).
-    Samples are normalised to [-1.0, 1.0] float range.
+    Supports standard PCM and IEEE float32 WAVs; samples normalised to [-1.0, 1.0].
     """
-    with wave.open(str(audio_path), "r") as wf:
-        n_channels = wf.getnchannels()
-        sampwidth = wf.getsampwidth()
-        framerate = wf.getframerate()
-        n_frames = wf.getnframes()
-        raw = wf.readframes(n_frames)
+    try:
+        with wave.open(str(audio_path), "r") as wf:
+            n_channels = wf.getnchannels()
+            sampwidth = wf.getsampwidth()
+            framerate = wf.getframerate()
+            n_frames = wf.getnframes()
+            raw = wf.readframes(n_frames)
 
-    # Parse raw bytes to numpy array
-    if sampwidth == 2:
-        dtype = np.int16
-        max_val = 32768.0
-    elif sampwidth == 4:
-        dtype = np.int32
-        max_val = 2147483648.0
-    else:
-        dtype = np.int16
-        max_val = 32768.0
+        if sampwidth == 2:
+            dtype = np.int16
+            max_val = 32768.0
+        elif sampwidth == 4:
+            dtype = np.int32
+            max_val = 2147483648.0
+        else:
+            dtype = np.int16
+            max_val = 32768.0
 
-    samples = np.frombuffer(raw, dtype=dtype).astype(np.float64) / max_val
-
-    # Convert stereo to mono by averaging channels
-    if n_channels == 2:
-        samples = samples.reshape(-1, 2).mean(axis=1)
-
-    return samples, framerate
+        samples = np.frombuffer(raw, dtype=dtype).astype(np.float64) / max_val
+        if n_channels == 2:
+            samples = samples.reshape(-1, 2).mean(axis=1)
+        return samples, framerate
+    except wave.Error:
+        from scipy.io import wavfile
+        framerate, data = wavfile.read(str(audio_path))
+        if np.issubdtype(data.dtype, np.floating):
+            samples = data.astype(np.float64)
+        elif data.dtype == np.int16:
+            samples = data.astype(np.float64) / 32768.0
+        elif data.dtype == np.int32:
+            samples = data.astype(np.float64) / 2147483648.0
+        elif data.dtype == np.uint8:
+            samples = (data.astype(np.float64) - 128.0) / 128.0
+        else:
+            samples = data.astype(np.float64)
+        if samples.ndim == 2:
+            samples = samples.mean(axis=1)
+        return samples, int(framerate)
 
 
 def save_wav(
@@ -101,45 +116,60 @@ def add_noise(
     samples: np.ndarray,
     snr_db: float = 10.0,
     noise_type: str = "white",
+    seed: Optional[int] = 42,
+    sample_rate: int = 16000,
 ) -> np.ndarray:
     """
     Add noise to audio samples at a specified SNR (dB).
 
     Args:
-        samples:    Clean audio samples
-        snr_db:     Signal-to-noise ratio in dB (lower = noisier)
-        noise_type: 'white' (Gaussian), 'babble' (simulated), or 'pink'
+        samples:     Clean audio samples
+        snr_db:      Signal-to-noise ratio in dB (lower = noisier)
+        noise_type:  'white' (Gaussian), 'babble' (speech-modulated multi-talker), or 'pink'
+        seed:        RNG seed for reproducible noise generation (None for random)
+        sample_rate: Audio sample rate in Hz (used for speech-band shaping)
 
     Returns:
         Noisy audio samples
     """
+    rng = np.random.default_rng(seed)
     signal_power = np.mean(samples ** 2)
+    n = len(samples)
 
     if noise_type == "white":
-        noise = np.random.randn(len(samples))
+        noise = rng.standard_normal(n)
     elif noise_type == "pink":
-        # Simple pink noise approximation using 1/f filtering
-        white = np.random.randn(len(samples))
+        # Pink noise approximation using 1/sqrt(f) spectral shaping
+        white = rng.standard_normal(n)
         fft = np.fft.rfft(white)
-        freqs = np.fft.rfftfreq(len(samples))
-        freqs[0] = 1  # avoid division by zero
+        freqs = np.fft.rfftfreq(n)
+        freqs[0] = 1.0  # avoid division by zero
         fft = fft / np.sqrt(freqs)
-        noise = np.fft.irfft(fft, n=len(samples))
+        noise = np.fft.irfft(fft, n=n)
     elif noise_type == "babble":
-        # Simulate babble: sum of time-shifted random speech-like signals
-        noise = np.zeros(len(samples))
-        for _ in range(5):
-            shifted = np.roll(np.random.randn(len(samples)), random.randint(0, len(samples)))
-            noise += shifted * 0.2
+        # Multi-talker babble proxy: sum speech-band (300-3400 Hz) noise streams
+        # modulated by distinct low-frequency syllabic amplitude envelopes
+        noise = np.zeros(n)
+        freqs = np.fft.rfftfreq(n, d=1.0 / sample_rate)
+        for _ in range(6):
+            raw = rng.standard_normal(n)
+            fft = np.fft.rfft(raw)
+            fft[(freqs < 250) | (freqs > 3400)] = 0
+            band = np.fft.irfft(fft, n=n)
+            # Slow syllabic envelope modulation (3-6 Hz)
+            t_grid = np.linspace(0, max(1.0 / sample_rate, n / float(sample_rate)), n, endpoint=False)
+            mod_freq = rng.uniform(3.0, 6.0)
+            phase = rng.uniform(0, 2 * np.pi)
+            envelope = 0.5 * (1.0 + np.sin(2 * np.pi * mod_freq * t_grid + phase))
+            noise += band * envelope
     else:
-        noise = np.random.randn(len(samples))
+        noise = rng.standard_normal(n)
 
     noise_power = np.mean(noise ** 2)
-    if noise_power == 0:
+    if noise_power == 0 or signal_power == 0:
         return samples
 
-    # Scale noise to achieve desired SNR
-    # SNR = 10 * log10(signal_power / noise_power)
+    # Scale noise to achieve desired SNR: SNR = 10 * log10(signal_power / noise_power)
     target_noise_power = signal_power / (10 ** (snr_db / 10))
     noise = noise * np.sqrt(target_noise_power / noise_power)
 
@@ -172,32 +202,44 @@ def resample_audio(
     return np.interp(indices, np.arange(len(working)), working)
 
 
-def simulate_telephony(samples: np.ndarray, sample_rate: int) -> np.ndarray:
+def apply_mulaw_codec(samples: np.ndarray, mu: int = 255) -> np.ndarray:
     """
-    Simulate telephony-quality audio (8kHz, bandpass 300-3400 Hz).
+    Simulate ITU-T G.711 mu-law 8-bit PSTN companding and quantization.
+    """
+    x = np.clip(samples, -1.0, 1.0)
+    compressed = np.sign(x) * np.log1p(mu * np.abs(x)) / np.log1p(mu)
+    quantized = np.round(((compressed + 1.0) * 0.5) * 255.0) / 255.0 * 2.0 - 1.0
+    expanded = np.sign(quantized) * ((1.0 / mu) * ((1.0 + mu) ** np.abs(quantized) - 1.0))
+    return expanded
 
-    This is relevant for Gnani's contact-centre use case — many
-    customers send narrowband telephony audio.
+
+def simulate_telephony(
+    samples: np.ndarray,
+    sample_rate: int,
+    seed: Optional[int] = 42,
+    use_mulaw: bool = True,
+) -> np.ndarray:
     """
-    # Resample to 8kHz
+    Simulate narrowband PSTN telephony audio:
+      1. Anti-aliased resample to 8 kHz
+      2. Bandpass filter 300-3400 Hz
+      3. Optional G.711 mu-law 8-bit companding
+      4. Seeded 25 dB SNR channel noise
+    """
     if sample_rate != 8000:
         samples = resample_audio(samples, sample_rate, 8000)
 
-    # Simple bandpass filter simulation using FFT
     n = len(samples)
     fft = np.fft.rfft(samples)
     freqs = np.fft.rfftfreq(n, d=1.0 / 8000)
-
-    # Zero out frequencies below 300 Hz and above 3400 Hz
     fft[freqs < 300] = 0
     fft[freqs > 3400] = 0
-
     filtered = np.fft.irfft(fft, n=n)
 
-    # Add slight noise to simulate phone line
-    filtered = add_noise(filtered, snr_db=25.0, noise_type="white")
+    if use_mulaw:
+        filtered = apply_mulaw_codec(filtered)
 
-    return filtered
+    return add_noise(filtered, snr_db=25.0, noise_type="white", seed=seed, sample_rate=8000)
 
 
 def compute_spectral_features(samples: np.ndarray, sample_rate: int) -> dict:

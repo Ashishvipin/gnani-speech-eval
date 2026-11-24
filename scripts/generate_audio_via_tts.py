@@ -82,15 +82,15 @@ def main():
         try:
             if "noisy" in tags:
                 samples, sr = load_wav(str(audio_path))
-                noisy = add_noise(samples, snr_db=10.0, noise_type="white")
+                noisy = add_noise(samples, snr_db=10.0, noise_type="babble", seed=42 + i, sample_rate=sr)
                 save_wav(noisy, sr, str(audio_path))
-                print(" → +noise(10dB)", end="")
+                print(" → +noise(10dB babble)", end="")
 
             elif "telephony" in tags:
                 samples, sr = load_wav(str(audio_path))
-                telephony = simulate_telephony(samples, sr)
+                telephony = simulate_telephony(samples, sr, seed=42 + i, use_mulaw=True)
                 save_wav(telephony, 8000, str(audio_path))
-                print(" → +telephony(8kHz, 300-3400Hz)", end="")
+                print(" → +telephony(8kHz, 300-3400Hz, mu-law)", end="")
         except Exception as e:
             print(f" → post-process warning: {e}", end="")
 

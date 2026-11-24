@@ -38,11 +38,19 @@ TTS_ENDPOINT = f"{GNANI_BASE_URL}/api/v1/tts/inference"
 TTS_STREAMING_ENDPOINT = f"{GNANI_BASE_URL}/api/v1/tts/sse"
 TTS_MODEL = "timbre-v2.5"
 
-# Available voices per language
+# Available native voices per language for timbre-v2.5 (from docs.gnani.ai)
 TTS_VOICES = {
-    "hi-IN": {"female": "Nalini", "male": "Deepak"},
     "en-IN": {"female": "Kaveri", "male": "Pranav"},
+    "hi-IN": {"female": "Nalini", "male": "Deepak"},
     "hi-en": {"female": "Poorvi"},  # Hinglish / code-mixed
+    "ta-IN": {"female": "Asmita"},
+    "te-IN": {"female": "Suhana"},
+    "bn-IN": {"female": "Kirra", "male": "Dhruva"},
+    "kn-IN": {"female": "Saanvi", "male": "Kavin"},
+    "ml-IN": {"female": "Reshma", "male": "Riyaan"},
+    "mr-IN": {"female": "Zahira", "male": "Ishaan"},
+    "gu-IN": {"female": "Falak"},
+    "pa-IN": {"female": "Mehuli", "male": "Zayan"},
 }
 
 # ── Paths ───────────────────────────────────────────────────────────
@@ -50,6 +58,7 @@ PROJECT_ROOT = Path(__file__).parent
 DATA_DIR = PROJECT_ROOT / "data"
 ASR_DATA_DIR = DATA_DIR / "asr"
 ASR_AUDIO_DIR = ASR_DATA_DIR / "audio"
+ASR_REAL_AUDIO_DIR = ASR_DATA_DIR / "real_audio"
 TTS_DATA_DIR = DATA_DIR / "tts"
 TTS_OUTPUT_DIR = TTS_DATA_DIR / "output"
 RESULTS_DIR = PROJECT_ROOT / "results"

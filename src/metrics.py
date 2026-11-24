@@ -277,19 +277,49 @@ def compute_speaking_rate(num_words: int, audio_duration_sec: float) -> float:
     return (num_words / audio_duration_sec) * 60
 
 
+def compute_percentile(values: List[float], p: float) -> float:
+    """Compute linear-interpolated p-th percentile (0-100) without external deps."""
+    if not values:
+        return 0.0
+    sorted_vals = sorted(values)
+    if len(sorted_vals) == 1:
+        return float(sorted_vals[0])
+    idx = (p / 100.0) * (len(sorted_vals) - 1)
+    lo = int(idx)
+    hi = min(lo + 1, len(sorted_vals) - 1)
+    frac = idx - lo
+    return float(sorted_vals[lo] * (1.0 - frac) + sorted_vals[hi] * frac)
+
+
 def compute_silence_ratio(
-    audio_samples, sample_rate: int, silence_threshold: float = 0.01
+    audio_samples,
+    sample_rate: int,
+    silence_threshold: float = 0.015,
+    frame_ms: float = 25.0,
+    hop_ms: float = 10.0,
 ) -> float:
     """
-    Fraction of the audio that is silence.
+    Fraction of 25 ms overlapping frames whose RMS energy falls below threshold.
 
-    A very high silence ratio may indicate the TTS inserted long
-    unnatural pauses; a very low ratio may indicate clipped output.
+    Frame-level RMS avoids miscounting voiced-speech zero crossings or quiet
+    waveform troughs as silence (unlike raw sample-amplitude thresholding).
     """
     import numpy as np
-    samples = np.abs(audio_samples)
-    silent_frames = np.sum(samples < silence_threshold)
-    return float(silent_frames / len(samples)) if len(samples) > 0 else 0.0
+
+    samples = np.asarray(audio_samples, dtype=np.float64)
+    if len(samples) == 0 or sample_rate <= 0:
+        return 0.0
+
+    frame_len = max(1, int(round(sample_rate * frame_ms / 1000.0)))
+    hop_len = max(1, int(round(sample_rate * hop_ms / 1000.0)))
+
+    if len(samples) < frame_len:
+        rms = float(np.sqrt(np.mean(samples ** 2)))
+        return 1.0 if rms < silence_threshold else 0.0
+
+    frames = np.lib.stride_tricks.sliding_window_view(samples, frame_len)[::hop_len]
+    frame_rms = np.sqrt(np.mean(frames ** 2, axis=1))
+    return float(np.mean(frame_rms < silence_threshold))
 
 
 # ════════════════════════════════════════════════════════════════════

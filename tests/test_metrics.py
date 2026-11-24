@@ -154,36 +154,43 @@ def test_bengali_danda_punctuation():
 
 
 def test_telephony_audio_simulation():
-    """Telephony downsampling should produce finite 8 kHz audio of matching duration."""
+    """Telephony downsampling + mu-law codec should produce finite 8 kHz audio."""
     import numpy as np
-    from src.audio_utils import simulate_telephony
+    from src.audio_utils import simulate_telephony, apply_mulaw_codec
 
     sr = 48000
     t = np.linspace(0, 1.0, sr, endpoint=False)
     signal = 0.4 * np.sin(2 * np.pi * 1000 * t)
-    telephony = simulate_telephony(signal, sr)
+    telephony = simulate_telephony(signal, sr, seed=42, use_mulaw=True)
+    telephony_repeat = simulate_telephony(signal, sr, seed=42, use_mulaw=True)
     assert len(telephony) == 8000
     assert np.all(np.isfinite(telephony))
+    assert np.allclose(telephony, telephony_repeat)  # deterministic with seed
+    companded = apply_mulaw_codec(signal)
+    assert np.max(np.abs(companded - signal)) < 0.02
 
 
-def test_tts_quality_rubric():
-    """Automated TTS quality scoring should award 100/100 for ideal metrics."""
-    from src.tts_evaluator import _compute_quality_score
+def test_frame_silence_ratio_and_percentiles():
+    """25 ms frame-level RMS silence ratio should ignore voiced zero-crossings."""
+    import numpy as np
+    from src.metrics import compute_silence_ratio, compute_percentile
 
-    score = _compute_quality_score(
-        {
-            "rtf": 0.2,
-            "speaking_rate_wpm": 145.0,
-            "silence_ratio": 0.25,
-            "clipping_ratio": 0.0,
-        },
-        {"word_overlap": 0.95},
-    )
-    assert score == 100.0
+    sr = 16000
+    t = np.linspace(0, 1.0, sr, endpoint=False)
+    voiced = 0.5 * np.sin(2 * np.pi * 220 * t)
+    assert compute_silence_ratio(voiced, sr) == 0.0
+
+    half_silent = np.concatenate([np.zeros(sr), voiced])
+    sil_ratio = compute_silence_ratio(half_silent, sr)
+    assert 0.45 <= sil_ratio <= 0.55, f"Expected ~0.50, got {sil_ratio}"
+
+    vals = [100.0, 200.0, 300.0, 400.0, 1000.0]
+    assert compute_percentile(vals, 50) == 300.0
+    assert compute_percentile(vals, 95) > 800.0
 
 
 def test_gnani_client_retry_behavior():
-    """GnaniClient should retry transient 500s but fail fast on empty-audio 500."""
+    """GnaniClient should retry transient 500s, track retries, and fail fast on empty-audio 500."""
     from unittest.mock import MagicMock, patch
     from src.gnani_client import GnaniClient, GnaniAPIError
 
@@ -196,6 +203,8 @@ def test_gnani_client_retry_behavior():
     with patch.object(client._session, "post", side_effect=[transient_resp, ok_resp]) as mock_post:
         res = client.synthesize("Hello", language="en-IN")
         assert res["audio_bytes"] == b"RIFFdata"
+        assert res["retries"] == 1
+        assert "total_elapsed_ms" in res
         assert mock_post.call_count == 2
 
     with patch.object(client._session, "post", return_value=empty_resp) as mock_post:
@@ -205,6 +214,55 @@ def test_gnani_client_retry_behavior():
         except GnaniAPIError as exc:
             assert exc.status_code == 500
             assert mock_post.call_count == 1
+
+
+def test_format_insensitive_wer_best_of_reference():
+    """Format-insensitive WER should accept either verbatim or formatted reference."""
+    from unittest.mock import MagicMock
+    from src.asr_evaluator import evaluate_single_clip
+
+    mock_client = MagicMock()
+
+    # Case 1: Model outputs spoken word "दस" while reference_formatted uses "10"
+    mock_client.transcribe.return_value = {
+        "transcript": "मुझे कल सुबह दस बजे की फ्लाइट चाहिए।",
+        "latency_ms": 100.0,
+        "total_elapsed_ms": 100.0,
+        "retries": 0,
+        "detected_language": "hi-IN",
+    }
+    res1 = evaluate_single_clip(
+        mock_client,
+        {
+            "id": "hi_num_word",
+            "audio_path": "nonexistent.wav",
+            "reference": "मुझे कल सुबह दस बजे की फ्लाइट चाहिए",
+            "reference_formatted": "मुझे कल सुबह 10 बजे की फ्लाइट चाहिए",
+            "language": "hi-IN",
+        },
+    )
+    assert res1["wer"] == 0.0 and res1["formatted_wer"] == 0.0
+
+    # Case 2: Model outputs ITN digits "5,000" while reference uses words "five thousand"
+    mock_client.transcribe.return_value = {
+        "transcript": "Please transfer 5,000 rupees.",
+        "latency_ms": 100.0,
+        "total_elapsed_ms": 100.0,
+        "retries": 0,
+        "detected_language": "en-IN",
+    }
+    res2 = evaluate_single_clip(
+        mock_client,
+        {
+            "id": "en_num_digits",
+            "audio_path": "nonexistent.wav",
+            "reference": "please transfer five thousand rupees",
+            "reference_formatted": "please transfer 5,000 rupees",
+            "language": "en-IN",
+        },
+    )
+    assert res2["wer"] > 0.0
+    assert res2["formatted_wer"] == 0.0
 
 
 if __name__ == "__main__":

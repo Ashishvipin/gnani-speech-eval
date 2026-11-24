@@ -1,1117 +1,3148 @@
 {
   "metadata": {
-    "timestamp": "2026-11-25T01:00:32.017598",
+    "timestamp": "2026-11-25T05:16:30.052618",
     "model": "prisma-v3.0",
-    "total_clips": 30,
-    "successful_clips": 30,
+    "primary_suite": "real_human",
+    "suites_evaluated": [
+      "real_human",
+      "synthetic_smoke"
+    ],
+    "total_clips": 52,
+    "successful_clips": 52,
     "failed_clips": 0
   },
   "overall": {
-    "wer": 0.2067,
-    "cer": 0.1899,
-    "total_ref_words": 300,
-    "total_errors": 62
+    "wer": 0.1107,
+    "cer": 0.0995,
+    "formatted_wer": 0.104,
+    "formatted_cer": 0.0902,
+    "total_ref_words": 298,
+    "total_errors": 33,
+    "formatted_ref_words": 298,
+    "formatted_errors": 31,
+    "p50_latency_ms": 387.96,
+    "p95_latency_ms": 633.57,
+    "avg_latency_ms": 393.93,
+    "p95_total_elapsed_ms": 633.58,
+    "total_retries": 0
   },
   "by_category": {
-    "clean_english": {
-      "num_clips": 3,
-      "aggregate_wer": 0.0968,
-      "aggregate_cer": 0.1216,
-      "avg_latency_ms": 592.33
-    },
-    "clean_hindi": {
-      "num_clips": 3,
-      "aggregate_wer": 0.0455,
-      "aggregate_cer": 0.0805,
-      "avg_latency_ms": 1084.64
-    },
-    "noisy_audio": {
-      "num_clips": 3,
-      "aggregate_wer": 0.1875,
-      "aggregate_cer": 0.16,
-      "avg_latency_ms": 380.49
-    },
-    "telephony": {
-      "num_clips": 2,
+    "real_indian_english": {
+      "num_clips": 5,
       "aggregate_wer": 0.0625,
-      "aggregate_cer": 0.05,
-      "avg_latency_ms": 269.25
+      "aggregate_cer": 0.0685,
+      "formatted_wer": 0.0208,
+      "formatted_cer": 0.0048,
+      "p50_latency_ms": 295.86,
+      "p95_latency_ms": 595.06,
+      "avg_latency_ms": 329.91,
+      "retries": 0
     },
-    "numbers_and_entities": {
-      "num_clips": 3,
-      "aggregate_wer": 0.6667,
-      "aggregate_cer": 0.681,
-      "avg_latency_ms": 421.54
+    "real_hindi": {
+      "num_clips": 5,
+      "aggregate_wer": 0.1463,
+      "aggregate_cer": 0.2035,
+      "formatted_wer": 0.1463,
+      "formatted_cer": 0.2035,
+      "p50_latency_ms": 515.93,
+      "p95_latency_ms": 621.37,
+      "avg_latency_ms": 495.7,
+      "retries": 0
     },
-    "code_switching": {
-      "num_clips": 3,
-      "aggregate_wer": 0.3846,
-      "aggregate_cer": 0.3388,
-      "avg_latency_ms": 354.33
+    "real_regional_indic": {
+      "num_clips": 8,
+      "aggregate_wer": 0.1455,
+      "aggregate_cer": 0.0317,
+      "formatted_wer": 0.1455,
+      "formatted_cer": 0.0317,
+      "p50_latency_ms": 406.38,
+      "p95_latency_ms": 533.93,
+      "avg_latency_ms": 411.88,
+      "retries": 0
     },
-    "accented_english": {
+    "real_noisy_audio": {
       "num_clips": 2,
-      "aggregate_wer": 0.0,
-      "aggregate_cer": 0.0,
-      "avg_latency_ms": 291.06
+      "aggregate_wer": 0.0278,
+      "aggregate_cer": 0.0136,
+      "formatted_wer": 0.0278,
+      "formatted_cer": 0.0136,
+      "p50_latency_ms": 305.3,
+      "p95_latency_ms": 371.83,
+      "avg_latency_ms": 305.3,
+      "retries": 0
     },
-    "domain_specific": {
-      "num_clips": 3,
-      "aggregate_wer": 0.2424,
-      "aggregate_cer": 0.1337,
-      "avg_latency_ms": 342.0
-    },
-    "long_utterance": {
+    "real_telephony": {
       "num_clips": 2,
-      "aggregate_wer": 0.0984,
-      "aggregate_cer": 0.1111,
-      "avg_latency_ms": 796.76
-    },
-    "short_utterance": {
-      "num_clips": 3,
-      "aggregate_wer": 0.0,
-      "aggregate_cer": 0.0,
-      "avg_latency_ms": 127.63
-    },
-    "regional_languages": {
-      "num_clips": 3,
-      "aggregate_wer": 0.0625,
-      "aggregate_cer": 0.0412,
-      "avg_latency_ms": 258.11
+      "aggregate_wer": 0.0833,
+      "aggregate_cer": 0.0408,
+      "formatted_wer": 0.0833,
+      "formatted_cer": 0.0408,
+      "p50_latency_ms": 316.34,
+      "p95_latency_ms": 424.02,
+      "avg_latency_ms": 316.34,
+      "retries": 0
     }
   },
-  "per_clip_results": [
-    {
-      "id": "clean_en_001",
-      "category": "clean_english",
-      "tags": [
-        "clean",
-        "short",
-        "english",
-        "pangram"
-      ],
-      "language": "en-IN",
-      "detected_language": "en-IN",
-      "audio_path": "/Users/mac/Documents/Gnani/gnani-speech-eval/data/asr/audio/clean_en_001.wav",
-      "audio_duration_sec": 2.4,
-      "reference": "the quick brown fox jumps over the lazy dog",
-      "hypothesis": "The quick brown fox jumps over the lazy dog.",
-      "wer": 0.0,
-      "cer": 0.0,
-      "wer_detail": {
-        "substitutions": 0,
-        "deletions": 0,
-        "insertions": 0,
-        "hits": 9,
-        "ref_words": 9
+  "suites": {
+    "real_human": {
+      "metadata": {
+        "timestamp": "2026-11-25T05:16:10.472461",
+        "suite": "real_human",
+        "model": "prisma-v3.0",
+        "total_clips": 22,
+        "successful_clips": 22,
+        "failed_clips": 0
       },
-      "cer_detail": {
-        "substitutions": 0,
-        "deletions": 0,
-        "insertions": 0,
-        "hits": 35,
-        "ref_chars": 35
+      "overall": {
+        "wer": 0.1107,
+        "cer": 0.0995,
+        "formatted_wer": 0.104,
+        "formatted_cer": 0.0902,
+        "total_ref_words": 298,
+        "total_errors": 33,
+        "formatted_ref_words": 298,
+        "formatted_errors": 31,
+        "p50_latency_ms": 387.96,
+        "p95_latency_ms": 633.57,
+        "avg_latency_ms": 393.93,
+        "p95_total_elapsed_ms": 633.58,
+        "total_retries": 0
       },
-      "api_latency_ms": 575.82,
-      "status": "success",
-      "error": null
+      "by_category": {
+        "real_indian_english": {
+          "num_clips": 5,
+          "aggregate_wer": 0.0625,
+          "aggregate_cer": 0.0685,
+          "formatted_wer": 0.0208,
+          "formatted_cer": 0.0048,
+          "p50_latency_ms": 295.86,
+          "p95_latency_ms": 595.06,
+          "avg_latency_ms": 329.91,
+          "retries": 0
+        },
+        "real_hindi": {
+          "num_clips": 5,
+          "aggregate_wer": 0.1463,
+          "aggregate_cer": 0.2035,
+          "formatted_wer": 0.1463,
+          "formatted_cer": 0.2035,
+          "p50_latency_ms": 515.93,
+          "p95_latency_ms": 621.37,
+          "avg_latency_ms": 495.7,
+          "retries": 0
+        },
+        "real_regional_indic": {
+          "num_clips": 8,
+          "aggregate_wer": 0.1455,
+          "aggregate_cer": 0.0317,
+          "formatted_wer": 0.1455,
+          "formatted_cer": 0.0317,
+          "p50_latency_ms": 406.38,
+          "p95_latency_ms": 533.93,
+          "avg_latency_ms": 411.88,
+          "retries": 0
+        },
+        "real_noisy_audio": {
+          "num_clips": 2,
+          "aggregate_wer": 0.0278,
+          "aggregate_cer": 0.0136,
+          "formatted_wer": 0.0278,
+          "formatted_cer": 0.0136,
+          "p50_latency_ms": 305.3,
+          "p95_latency_ms": 371.83,
+          "avg_latency_ms": 305.3,
+          "retries": 0
+        },
+        "real_telephony": {
+          "num_clips": 2,
+          "aggregate_wer": 0.0833,
+          "aggregate_cer": 0.0408,
+          "formatted_wer": 0.0833,
+          "formatted_cer": 0.0408,
+          "p50_latency_ms": 316.34,
+          "p95_latency_ms": 424.02,
+          "avg_latency_ms": 316.34,
+          "retries": 0
+        }
+      },
+      "per_clip_results": [
+        {
+          "id": "real_svarah_en_001",
+          "category": "real_indian_english",
+          "source": "AI4Bharat Svarah (human)",
+          "tags": [
+            "real_human",
+            "indian_english",
+            "svarah"
+          ],
+          "language": "en-IN",
+          "detected_language": "en-IN",
+          "audio_path": "/Users/mac/Documents/Gnani/gnani-speech-eval/data/asr/real_audio/real_svarah_en_001.wav",
+          "audio_duration_sec": 8.76,
+          "reference": "our district hasana was the land of the great hoysala dynasty who ruled over this region from eleventh to fourteenth century CE",
+          "reference_formatted": "our district hasana was the land of the great hoysala dynasty who ruled over this region from 11th to 14th century CE",
+          "hypothesis": "Our district Hasana was the land of the great Hoysala dynasty, who ruled over this region from 11th to... 14th century CE.",
+          "wer": 0.0909,
+          "cer": 0.1321,
+          "formatted_wer": 0.0,
+          "formatted_cer": 0.0,
+          "wer_detail": {
+            "substitutions": 2,
+            "deletions": 0,
+            "insertions": 0,
+            "hits": 20,
+            "ref_words": 22
+          },
+          "formatted_wer_detail": {
+            "substitutions": 0,
+            "deletions": 0,
+            "insertions": 0,
+            "hits": 22,
+            "ref_words": 22
+          },
+          "cer_detail": {
+            "substitutions": 4,
+            "deletions": 10,
+            "insertions": 0,
+            "hits": 92,
+            "ref_chars": 106
+          },
+          "formatted_cer_detail": {
+            "substitutions": 0,
+            "deletions": 0,
+            "insertions": 0,
+            "hits": 96,
+            "ref_chars": 96
+          },
+          "api_latency_ms": 666.94,
+          "total_elapsed_ms": 666.95,
+          "retries": 0,
+          "status": "success",
+          "error": null
+        },
+        {
+          "id": "real_svarah_en_002",
+          "category": "real_indian_english",
+          "source": "AI4Bharat Svarah (human)",
+          "tags": [
+            "real_human",
+            "indian_english",
+            "svarah"
+          ],
+          "language": "en-IN",
+          "detected_language": "en-IN",
+          "audio_path": "/Users/mac/Documents/Gnani/gnani-speech-eval/data/asr/real_audio/real_svarah_en_002.wav",
+          "audio_duration_sec": 3.1,
+          "reference": "there is a gradual shift in the mentality",
+          "reference_formatted": "there is a gradual shift in the mentality",
+          "hypothesis": "There is a gradual shift in the mentality.",
+          "wer": 0.0,
+          "cer": 0.0,
+          "formatted_wer": 0.0,
+          "formatted_cer": 0.0,
+          "wer_detail": {
+            "substitutions": 0,
+            "deletions": 0,
+            "insertions": 0,
+            "hits": 8,
+            "ref_words": 8
+          },
+          "formatted_wer_detail": {
+            "substitutions": 0,
+            "deletions": 0,
+            "insertions": 0,
+            "hits": 8,
+            "ref_words": 8
+          },
+          "cer_detail": {
+            "substitutions": 0,
+            "deletions": 0,
+            "insertions": 0,
+            "hits": 34,
+            "ref_chars": 34
+          },
+          "formatted_cer_detail": {
+            "substitutions": 0,
+            "deletions": 0,
+            "insertions": 0,
+            "hits": 34,
+            "ref_chars": 34
+          },
+          "api_latency_ms": 295.86,
+          "total_elapsed_ms": 295.87,
+          "retries": 0,
+          "status": "success",
+          "error": null
+        },
+        {
+          "id": "real_svarah_en_003",
+          "category": "real_indian_english",
+          "source": "AI4Bharat Svarah (human)",
+          "tags": [
+            "real_human",
+            "indian_english",
+            "svarah"
+          ],
+          "language": "en-IN",
+          "detected_language": "en-IN",
+          "audio_path": "/Users/mac/Documents/Gnani/gnani-speech-eval/data/asr/real_audio/real_svarah_en_003.wav",
+          "audio_duration_sec": 3.69,
+          "reference": "how much money is left in my arunachal pradesh rural bank account",
+          "reference_formatted": "how much money is left in my arunachal pradesh rural bank account",
+          "hypothesis": "How much money is left in my Arunachal Pradesh Rural Bank account?",
+          "wer": 0.0,
+          "cer": 0.0,
+          "formatted_wer": 0.0,
+          "formatted_cer": 0.0,
+          "wer_detail": {
+            "substitutions": 0,
+            "deletions": 0,
+            "insertions": 0,
+            "hits": 12,
+            "ref_words": 12
+          },
+          "formatted_wer_detail": {
+            "substitutions": 0,
+            "deletions": 0,
+            "insertions": 0,
+            "hits": 12,
+            "ref_words": 12
+          },
+          "cer_detail": {
+            "substitutions": 0,
+            "deletions": 0,
+            "insertions": 0,
+            "hits": 54,
+            "ref_chars": 54
+          },
+          "formatted_cer_detail": {
+            "substitutions": 0,
+            "deletions": 0,
+            "insertions": 0,
+            "hits": 54,
+            "ref_chars": 54
+          },
+          "api_latency_ms": 307.54,
+          "total_elapsed_ms": 307.55,
+          "retries": 0,
+          "status": "success",
+          "error": null
+        },
+        {
+          "id": "real_svarah_en_004",
+          "category": "real_indian_english",
+          "source": "AI4Bharat Svarah (human)",
+          "tags": [
+            "real_human",
+            "indian_english",
+            "svarah"
+          ],
+          "language": "en-IN",
+          "detected_language": "en-IN",
+          "audio_path": "/Users/mac/Documents/Gnani/gnani-speech-eval/data/asr/real_audio/real_svarah_en_004.wav",
+          "audio_duration_sec": 2.72,
+          "reference": "nipah virus belongs to the",
+          "reference_formatted": "nipah virus belongs to the",
+          "hypothesis": "Nipa virus belongs to the.",
+          "wer": 0.2,
+          "cer": 0.0455,
+          "formatted_wer": 0.2,
+          "formatted_cer": 0.0455,
+          "wer_detail": {
+            "substitutions": 1,
+            "deletions": 0,
+            "insertions": 0,
+            "hits": 4,
+            "ref_words": 5
+          },
+          "formatted_wer_detail": {
+            "substitutions": 1,
+            "deletions": 0,
+            "insertions": 0,
+            "hits": 4,
+            "ref_words": 5
+          },
+          "cer_detail": {
+            "substitutions": 0,
+            "deletions": 1,
+            "insertions": 0,
+            "hits": 21,
+            "ref_chars": 22
+          },
+          "formatted_cer_detail": {
+            "substitutions": 0,
+            "deletions": 1,
+            "insertions": 0,
+            "hits": 21,
+            "ref_chars": 22
+          },
+          "api_latency_ms": 269.64,
+          "total_elapsed_ms": 269.65,
+          "retries": 0,
+          "status": "success",
+          "error": null
+        },
+        {
+          "id": "real_svarah_en_005",
+          "category": "real_indian_english",
+          "source": "AI4Bharat Svarah (human)",
+          "tags": [
+            "real_human",
+            "indian_english",
+            "svarah"
+          ],
+          "language": "en-IN",
+          "detected_language": "en-IN",
+          "audio_path": "/Users/mac/Documents/Gnani/gnani-speech-eval/data/asr/real_audio/real_svarah_en_005.wav",
+          "audio_duration_sec": 0.45,
+          "reference": "wow",
+          "reference_formatted": "wow",
+          "hypothesis": "Wow!",
+          "wer": 0.0,
+          "cer": 0.0,
+          "formatted_wer": 0.0,
+          "formatted_cer": 0.0,
+          "wer_detail": {
+            "substitutions": 0,
+            "deletions": 0,
+            "insertions": 0,
+            "hits": 1,
+            "ref_words": 1
+          },
+          "formatted_wer_detail": {
+            "substitutions": 0,
+            "deletions": 0,
+            "insertions": 0,
+            "hits": 1,
+            "ref_words": 1
+          },
+          "cer_detail": {
+            "substitutions": 0,
+            "deletions": 0,
+            "insertions": 0,
+            "hits": 3,
+            "ref_chars": 3
+          },
+          "formatted_cer_detail": {
+            "substitutions": 0,
+            "deletions": 0,
+            "insertions": 0,
+            "hits": 3,
+            "ref_chars": 3
+          },
+          "api_latency_ms": 109.58,
+          "total_elapsed_ms": 109.59,
+          "retries": 0,
+          "status": "success",
+          "error": null
+        },
+        {
+          "id": "real_fleurs_hi_001",
+          "category": "real_hindi",
+          "source": "Google FLEURS hi_in (male)",
+          "tags": [
+            "real_human",
+            "hindi",
+            "fleurs"
+          ],
+          "language": "hi-IN",
+          "detected_language": "hi-IN",
+          "audio_path": "/Users/mac/Documents/Gnani/gnani-speech-eval/data/asr/real_audio/real_fleurs_hi_001.wav",
+          "audio_duration_sec": 9.12,
+          "reference": "कुछ अणुओं में अस्थिर केंद्रक होता है, जिसका मतलब यह है कि उनमें थोड़े या बिना किसी झटके से टूटने की प्रवृत्ति होती है,",
+          "reference_formatted": "कुछ अणुओं में अस्थिर केंद्रक होता है, जिसका मतलब यह है कि उनमें थोड़े या बिना किसी झटके से टूटने की प्रवृत्ति होती है,",
+          "hypothesis": "कुछ अणुओं में अस्थिर केंद्रक होता है, जिसका मतलब यह कि उनमें थोड़े या बिना किसी झटके से टूटने की प्रवृत्ति होती है।",
+          "wer": 0.0417,
+          "cer": 0.0215,
+          "formatted_wer": 0.0417,
+          "formatted_cer": 0.0215,
+          "wer_detail": {
+            "substitutions": 0,
+            "deletions": 1,
+            "insertions": 0,
+            "hits": 23,
+            "ref_words": 24
+          },
+          "formatted_wer_detail": {
+            "substitutions": 0,
+            "deletions": 1,
+            "insertions": 0,
+            "hits": 23,
+            "ref_words": 24
+          },
+          "cer_detail": {
+            "substitutions": 0,
+            "deletions": 2,
+            "insertions": 0,
+            "hits": 91,
+            "ref_chars": 93
+          },
+          "formatted_cer_detail": {
+            "substitutions": 0,
+            "deletions": 2,
+            "insertions": 0,
+            "hits": 91,
+            "ref_chars": 93
+          },
+          "api_latency_ms": 515.93,
+          "total_elapsed_ms": 515.94,
+          "retries": 0,
+          "status": "success",
+          "error": null
+        },
+        {
+          "id": "real_fleurs_hi_002",
+          "category": "real_hindi",
+          "source": "Google FLEURS hi_in (male)",
+          "tags": [
+            "real_human",
+            "hindi",
+            "fleurs"
+          ],
+          "language": "hi-IN",
+          "detected_language": "hi-IN",
+          "audio_path": "/Users/mac/Documents/Gnani/gnani-speech-eval/data/asr/real_audio/real_fleurs_hi_002.wav",
+          "audio_duration_sec": 13.8,
+          "reference": "ग्रीनलैंड को बहुत कम जगह बसाया गया था. नॉर्स सगास में वे कहते हैं कि एरिक रेड हत्या के लिए आइसलैंड से निर्वासित किया गया था, और आगे पश्चिम की यात्रा करते समय, ग्रीनलैंड मिला जिसे ग्रीनलैंड नाम दिया गया.",
+          "reference_formatted": "ग्रीनलैंड को बहुत कम जगह बसाया गया था. नॉर्स सगास में वे कहते हैं कि एरिक रेड हत्या के लिए आइसलैंड से निर्वासित किया गया था, और आगे पश्चिम की यात्रा करते समय, ग्रीनलैंड मिला जिसे ग्रीनलैंड नाम दिया गया.",
+          "hypothesis": "Greenland को बहुत कम जगह बसाया गया था। North Sagass में वे कहते हैं। कि Eric Reed हत्या के लिए Iceland से निर्वासित किया गया था और आगे पश्चिम की यात्रा करते समय Greenland मिला, जिसे Greenland नाम दिया गया।",
+          "wer": 0.2,
+          "cer": 0.3333,
+          "formatted_wer": 0.2,
+          "formatted_cer": 0.3333,
+          "wer_detail": {
+            "substitutions": 8,
+            "deletions": 0,
+            "insertions": 0,
+            "hits": 32,
+            "ref_words": 40
+          },
+          "formatted_wer_detail": {
+            "substitutions": 8,
+            "deletions": 0,
+            "insertions": 0,
+            "hits": 32,
+            "ref_words": 40
+          },
+          "cer_detail": {
+            "substitutions": 50,
+            "deletions": 0,
+            "insertions": 3,
+            "hits": 109,
+            "ref_chars": 159
+          },
+          "formatted_cer_detail": {
+            "substitutions": 50,
+            "deletions": 0,
+            "insertions": 3,
+            "hits": 109,
+            "ref_chars": 159
+          },
+          "api_latency_ms": 637.63,
+          "total_elapsed_ms": 637.64,
+          "retries": 0,
+          "status": "success",
+          "error": null
+        },
+        {
+          "id": "real_fleurs_hi_003",
+          "category": "real_hindi",
+          "source": "Google FLEURS hi_in (male)",
+          "tags": [
+            "real_human",
+            "hindi",
+            "fleurs"
+          ],
+          "language": "hi-IN",
+          "detected_language": "hi-IN",
+          "audio_path": "/Users/mac/Documents/Gnani/gnani-speech-eval/data/asr/real_audio/real_fleurs_hi_003.wav",
+          "audio_duration_sec": 15.0,
+          "reference": "ऐसी कोई वैश्विक परिभाषा नहीं है जिसके लिए निर्मित सामान एंटीक होते हैं. कुछ कर एजेंसियाँ 100 साल से पुराने सामान को एंटीक के तौर पर परिभाषित करती हैं.",
+          "reference_formatted": "ऐसी कोई वैश्विक परिभाषा नहीं है जिसके लिए निर्मित सामान एंटीक होते हैं. कुछ कर एजेंसियाँ 100 साल से पुराने सामान को एंटीक के तौर पर परिभाषित करती हैं.",
+          "hypothesis": "ऐसी कोई वैश्विक परिभाषा नहीं है, जिसके लिए निर्मित समान antique होते हैं। कुछ कर agencies 100 साल से पुराने सामान को antique के तौर पर परिभाषित करती हैं।",
+          "wer": 0.1379,
+          "cer": 0.2,
+          "formatted_wer": 0.1379,
+          "formatted_cer": 0.2,
+          "wer_detail": {
+            "substitutions": 4,
+            "deletions": 0,
+            "insertions": 0,
+            "hits": 25,
+            "ref_words": 29
+          },
+          "formatted_wer_detail": {
+            "substitutions": 4,
+            "deletions": 0,
+            "insertions": 0,
+            "hits": 25,
+            "ref_words": 29
+          },
+          "cer_detail": {
+            "substitutions": 18,
+            "deletions": 2,
+            "insertions": 4,
+            "hits": 100,
+            "ref_chars": 120
+          },
+          "formatted_cer_detail": {
+            "substitutions": 18,
+            "deletions": 2,
+            "insertions": 4,
+            "hits": 100,
+            "ref_chars": 120
+          },
+          "api_latency_ms": 492.23,
+          "total_elapsed_ms": 492.24,
+          "retries": 0,
+          "status": "success",
+          "error": null
+        },
+        {
+          "id": "real_fleurs_hi_004",
+          "category": "real_hindi",
+          "source": "Google FLEURS hi_in (female)",
+          "tags": [
+            "real_human",
+            "hindi",
+            "fleurs"
+          ],
+          "language": "hi-IN",
+          "detected_language": "hi-IN",
+          "audio_path": "/Users/mac/Documents/Gnani/gnani-speech-eval/data/asr/real_audio/real_fleurs_hi_004.wav",
+          "audio_duration_sec": 5.1,
+          "reference": "टेलीविजन रिपोर्टों में प्लांट से निकलने वाला सफेद धुआँ दिखाया गया है।",
+          "reference_formatted": "टेलीविजन रिपोर्टों में प्लांट से निकलने वाला सफेद धुआँ दिखाया गया है।",
+          "hypothesis": "television रिपोर्टों में plant से निकलने वाला सफेद धुआं दिखाया गया है।",
+          "wer": 0.25,
+          "cer": 0.2982,
+          "formatted_wer": 0.25,
+          "formatted_cer": 0.2982,
+          "wer_detail": {
+            "substitutions": 3,
+            "deletions": 0,
+            "insertions": 0,
+            "hits": 9,
+            "ref_words": 12
+          },
+          "formatted_wer_detail": {
+            "substitutions": 3,
+            "deletions": 0,
+            "insertions": 0,
+            "hits": 9,
+            "ref_words": 12
+          },
+          "cer_detail": {
+            "substitutions": 14,
+            "deletions": 1,
+            "insertions": 2,
+            "hits": 42,
+            "ref_chars": 57
+          },
+          "formatted_cer_detail": {
+            "substitutions": 14,
+            "deletions": 1,
+            "insertions": 2,
+            "hits": 42,
+            "ref_chars": 57
+          },
+          "api_latency_ms": 276.35,
+          "total_elapsed_ms": 276.36,
+          "retries": 0,
+          "status": "success",
+          "error": null
+        },
+        {
+          "id": "real_fleurs_hi_005",
+          "category": "real_hindi",
+          "source": "Google FLEURS hi_in (male)",
+          "tags": [
+            "real_human",
+            "hindi",
+            "fleurs"
+          ],
+          "language": "hi-IN",
+          "detected_language": "hi-IN",
+          "audio_path": "/Users/mac/Documents/Gnani/gnani-speech-eval/data/asr/real_audio/real_fleurs_hi_005.wav",
+          "audio_duration_sec": 13.2,
+          "reference": "इंटरनेट पर यह खोज 'शत्रुतापूर्ण पर्यावरण पाठ्यक्रम' के लिए अक्सर आपको एक स्थानीय कंपनी का पता प्रदान करेगी।",
+          "reference_formatted": "इंटरनेट पर यह खोज 'शत्रुतापूर्ण पर्यावरण पाठ्यक्रम' के लिए अक्सर आपको एक स्थानीय कंपनी का पता प्रदान करेगी।",
+          "hypothesis": "internet पर ये खोज शत्रुतापूर्ण पर्यावरण पाठ्यक्रम के लिए अक्सर आपको। एक स्थानीय कंपनी का पता प्रदान करेगी।",
+          "wer": 0.1111,
+          "cer": 0.1034,
+          "formatted_wer": 0.1111,
+          "formatted_cer": 0.1034,
+          "wer_detail": {
+            "substitutions": 2,
+            "deletions": 0,
+            "insertions": 0,
+            "hits": 16,
+            "ref_words": 18
+          },
+          "formatted_wer_detail": {
+            "substitutions": 2,
+            "deletions": 0,
+            "insertions": 0,
+            "hits": 16,
+            "ref_words": 18
+          },
+          "cer_detail": {
+            "substitutions": 8,
+            "deletions": 0,
+            "insertions": 1,
+            "hits": 79,
+            "ref_chars": 87
+          },
+          "formatted_cer_detail": {
+            "substitutions": 8,
+            "deletions": 0,
+            "insertions": 1,
+            "hits": 79,
+            "ref_chars": 87
+          },
+          "api_latency_ms": 556.34,
+          "total_elapsed_ms": 556.35,
+          "retries": 0,
+          "status": "success",
+          "error": null
+        },
+        {
+          "id": "real_openslr_te_f_001",
+          "category": "real_regional_indic",
+          "source": "OpenSLR 66 Telugu Female (human)",
+          "tags": [
+            "real_human",
+            "te",
+            "openslr"
+          ],
+          "language": "te-IN",
+          "detected_language": "te-IN",
+          "audio_path": "/Users/mac/Documents/Gnani/gnani-speech-eval/data/asr/real_audio/real_openslr_te_f_001.wav",
+          "audio_duration_sec": 4.69,
+          "reference": "ఈ వివాదం సెప్టెంబర్ రెండు వేల తొమ్మిదిన పరిష్కారమైనది",
+          "reference_formatted": "ఈ వివాదం సెప్టెంబర్ రెండు వేల తొమ్మిదిన పరిష్కారమైనది",
+          "hypothesis": "ఈ వివాదం సెప్టెంబర్ రెండు వేల తొమ్మిదిన పరిష్కారమైనది.",
+          "wer": 0.0,
+          "cer": 0.0,
+          "formatted_wer": 0.0,
+          "formatted_cer": 0.0,
+          "wer_detail": {
+            "substitutions": 0,
+            "deletions": 0,
+            "insertions": 0,
+            "hits": 7,
+            "ref_words": 7
+          },
+          "formatted_wer_detail": {
+            "substitutions": 0,
+            "deletions": 0,
+            "insertions": 0,
+            "hits": 7,
+            "ref_words": 7
+          },
+          "cer_detail": {
+            "substitutions": 0,
+            "deletions": 0,
+            "insertions": 0,
+            "hits": 47,
+            "ref_chars": 47
+          },
+          "formatted_cer_detail": {
+            "substitutions": 0,
+            "deletions": 0,
+            "insertions": 0,
+            "hits": 47,
+            "ref_chars": 47
+          },
+          "api_latency_ms": 416.07,
+          "total_elapsed_ms": 416.08,
+          "retries": 0,
+          "status": "success",
+          "error": null
+        },
+        {
+          "id": "real_openslr_te_f_002",
+          "category": "real_regional_indic",
+          "source": "OpenSLR 66 Telugu Female (human)",
+          "tags": [
+            "real_human",
+            "te",
+            "openslr"
+          ],
+          "language": "te-IN",
+          "detected_language": "te-IN",
+          "audio_path": "/Users/mac/Documents/Gnani/gnani-speech-eval/data/asr/real_audio/real_openslr_te_f_002.wav",
+          "audio_duration_sec": 4.18,
+          "reference": "ఒక బ్యాంకు ఒక ప్రాథమిక పాఠశాల ఉన్నాయి",
+          "reference_formatted": "ఒక బ్యాంకు ఒక ప్రాథమిక పాఠశాల ఉన్నాయి",
+          "hypothesis": "ఒక బ్యాంకు, ఒక ప్రాథమిక పాఠశాల ఉన్నాయి.",
+          "wer": 0.0,
+          "cer": 0.0,
+          "formatted_wer": 0.0,
+          "formatted_cer": 0.0,
+          "wer_detail": {
+            "substitutions": 0,
+            "deletions": 0,
+            "insertions": 0,
+            "hits": 6,
+            "ref_words": 6
+          },
+          "formatted_wer_detail": {
+            "substitutions": 0,
+            "deletions": 0,
+            "insertions": 0,
+            "hits": 6,
+            "ref_words": 6
+          },
+          "cer_detail": {
+            "substitutions": 0,
+            "deletions": 0,
+            "insertions": 0,
+            "hits": 32,
+            "ref_chars": 32
+          },
+          "formatted_cer_detail": {
+            "substitutions": 0,
+            "deletions": 0,
+            "insertions": 0,
+            "hits": 32,
+            "ref_chars": 32
+          },
+          "api_latency_ms": 474.29,
+          "total_elapsed_ms": 474.3,
+          "retries": 0,
+          "status": "success",
+          "error": null
+        },
+        {
+          "id": "real_openslr_te_m_001",
+          "category": "real_regional_indic",
+          "source": "OpenSLR 66 Telugu Male (human)",
+          "tags": [
+            "real_human",
+            "te",
+            "openslr"
+          ],
+          "language": "te-IN",
+          "detected_language": "te-IN",
+          "audio_path": "/Users/mac/Documents/Gnani/gnani-speech-eval/data/asr/real_audio/real_openslr_te_m_001.wav",
+          "audio_duration_sec": 3.41,
+          "reference": "దీనిని తటస్థీకరణము అందురు",
+          "reference_formatted": "దీనిని తటస్థీకరణము అందురు",
+          "hypothesis": "దీనిని తటస్థీకరణం అందురు.",
+          "wer": 0.3333,
+          "cer": 0.087,
+          "formatted_wer": 0.3333,
+          "formatted_cer": 0.087,
+          "wer_detail": {
+            "substitutions": 1,
+            "deletions": 0,
+            "insertions": 0,
+            "hits": 2,
+            "ref_words": 3
+          },
+          "formatted_wer_detail": {
+            "substitutions": 1,
+            "deletions": 0,
+            "insertions": 0,
+            "hits": 2,
+            "ref_words": 3
+          },
+          "cer_detail": {
+            "substitutions": 1,
+            "deletions": 1,
+            "insertions": 0,
+            "hits": 21,
+            "ref_chars": 23
+          },
+          "formatted_cer_detail": {
+            "substitutions": 1,
+            "deletions": 1,
+            "insertions": 0,
+            "hits": 21,
+            "ref_chars": 23
+          },
+          "api_latency_ms": 308.54,
+          "total_elapsed_ms": 308.55,
+          "retries": 0,
+          "status": "success",
+          "error": null
+        },
+        {
+          "id": "real_openslr_ta_f_001",
+          "category": "real_regional_indic",
+          "source": "OpenSLR 65 Tamil Female (human)",
+          "tags": [
+            "real_human",
+            "ta",
+            "openslr"
+          ],
+          "language": "ta-IN",
+          "detected_language": "ta-IN",
+          "audio_path": "/Users/mac/Documents/Gnani/gnani-speech-eval/data/asr/real_audio/real_openslr_ta_f_001.wav",
+          "audio_duration_sec": 6.49,
+          "reference": "ஆஸ்த்ரேலியப் பெண்ணுக்கு முப்பத்தி மூன்று ஆண்டுகளுக்குப் பின்னர் இந்தியா இழப்பீடு வழங்கியது",
+          "reference_formatted": "ஆஸ்த்ரேலியப் பெண்ணுக்கு முப்பத்தி மூன்று ஆண்டுகளுக்குப் பின்னர் இந்தியா இழப்பீடு வழங்கியது",
+          "hypothesis": "ஆஸ்திரேலிய பெண்ணுக்கு முப்பத்தி மூன்று ஆண்டுகளுக்கு பின்னர் இந்தியா இழப்பீடு வழங்கியது.",
+          "wer": 0.2222,
+          "cer": 0.061,
+          "formatted_wer": 0.2222,
+          "formatted_cer": 0.061,
+          "wer_detail": {
+            "substitutions": 2,
+            "deletions": 0,
+            "insertions": 0,
+            "hits": 7,
+            "ref_words": 9
+          },
+          "formatted_wer_detail": {
+            "substitutions": 2,
+            "deletions": 0,
+            "insertions": 0,
+            "hits": 7,
+            "ref_words": 9
+          },
+          "cer_detail": {
+            "substitutions": 1,
+            "deletions": 4,
+            "insertions": 0,
+            "hits": 77,
+            "ref_chars": 82
+          },
+          "formatted_cer_detail": {
+            "substitutions": 1,
+            "deletions": 4,
+            "insertions": 0,
+            "hits": 77,
+            "ref_chars": 82
+          },
+          "api_latency_ms": 513.61,
+          "total_elapsed_ms": 513.62,
+          "retries": 0,
+          "status": "success",
+          "error": null
+        },
+        {
+          "id": "real_openslr_ta_f_002",
+          "category": "real_regional_indic",
+          "source": "OpenSLR 65 Tamil Female (human)",
+          "tags": [
+            "real_human",
+            "ta",
+            "openslr"
+          ],
+          "language": "ta-IN",
+          "detected_language": "ta-IN",
+          "audio_path": "/Users/mac/Documents/Gnani/gnani-speech-eval/data/asr/real_audio/real_openslr_ta_f_002.wav",
+          "audio_duration_sec": 4.01,
+          "reference": "ஸ்ரீரங்கம் கோவிலில் வெடிகுண்டு மிரட்டல்",
+          "reference_formatted": "ஸ்ரீரங்கம் கோவிலில் வெடிகுண்டு மிரட்டல்",
+          "hypothesis": "ஸ்ரீரங்கம் கோவிலில் வெடிகுண்டு மிரட்டல்.",
+          "wer": 0.0,
+          "cer": 0.0,
+          "formatted_wer": 0.0,
+          "formatted_cer": 0.0,
+          "wer_detail": {
+            "substitutions": 0,
+            "deletions": 0,
+            "insertions": 0,
+            "hits": 4,
+            "ref_words": 4
+          },
+          "formatted_wer_detail": {
+            "substitutions": 0,
+            "deletions": 0,
+            "insertions": 0,
+            "hits": 4,
+            "ref_words": 4
+          },
+          "cer_detail": {
+            "substitutions": 0,
+            "deletions": 0,
+            "insertions": 0,
+            "hits": 36,
+            "ref_chars": 36
+          },
+          "formatted_cer_detail": {
+            "substitutions": 0,
+            "deletions": 0,
+            "insertions": 0,
+            "hits": 36,
+            "ref_chars": 36
+          },
+          "api_latency_ms": 378.27,
+          "total_elapsed_ms": 378.28,
+          "retries": 0,
+          "status": "success",
+          "error": null
+        },
+        {
+          "id": "real_openslr_ta_m_001",
+          "category": "real_regional_indic",
+          "source": "OpenSLR 65 Tamil Male (human)",
+          "tags": [
+            "real_human",
+            "ta",
+            "openslr"
+          ],
+          "language": "ta-IN",
+          "detected_language": "ta-IN",
+          "audio_path": "/Users/mac/Documents/Gnani/gnani-speech-eval/data/asr/real_audio/real_openslr_ta_m_001.wav",
+          "audio_duration_sec": 5.12,
+          "reference": "அவர்களின் படங்களின் டீஸருக்கு கிடைக்கும் வரவேற்பு அபிரிதமாக உள்ளது",
+          "reference_formatted": "அவர்களின் படங்களின் டீஸருக்கு கிடைக்கும் வரவேற்பு அபிரிதமாக உள்ளது",
+          "hypothesis": "அவர்களின் படங்களின் டீசருக்கு கிடைக்கும் வரவேற்பு அபரிதமாக உள்ளது.",
+          "wer": 0.2857,
+          "cer": 0.0333,
+          "formatted_wer": 0.2857,
+          "formatted_cer": 0.0333,
+          "wer_detail": {
+            "substitutions": 2,
+            "deletions": 0,
+            "insertions": 0,
+            "hits": 5,
+            "ref_words": 7
+          },
+          "formatted_wer_detail": {
+            "substitutions": 2,
+            "deletions": 0,
+            "insertions": 0,
+            "hits": 5,
+            "ref_words": 7
+          },
+          "cer_detail": {
+            "substitutions": 1,
+            "deletions": 1,
+            "insertions": 0,
+            "hits": 58,
+            "ref_chars": 60
+          },
+          "formatted_cer_detail": {
+            "substitutions": 1,
+            "deletions": 1,
+            "insertions": 0,
+            "hits": 58,
+            "ref_chars": 60
+          },
+          "api_latency_ms": 396.69,
+          "total_elapsed_ms": 396.7,
+          "retries": 0,
+          "status": "success",
+          "error": null
+        },
+        {
+          "id": "real_openslr_bn_001",
+          "category": "real_regional_indic",
+          "source": "OpenSLR 37 Bengali (human)",
+          "tags": [
+            "real_human",
+            "bn",
+            "openslr"
+          ],
+          "language": "bn-IN",
+          "detected_language": "bn-IN",
+          "audio_path": "/Users/mac/Documents/Gnani/gnani-speech-eval/data/asr/real_audio/real_openslr_bn_001.wav",
+          "audio_duration_sec": 9.39,
+          "reference": "শেষ হয়েছিল দুই দশমিক তিন শতাংশ মূল্যে আজ এটা সাতশো পঞ্চাশ টাকা",
+          "reference_formatted": "শেষ হয়েছিল দুই দশমিক তিন শতাংশ মূল্যে আজ এটা সাতশো পঞ্চাশ টাকা",
+          "hypothesis": "শেষ হয়েছিল দুই দশমিক তিন শতাংশ মূল্যে আজ এটা সাতশো পঞ্চাশ টাকা।",
+          "wer": 0.0,
+          "cer": 0.0,
+          "formatted_wer": 0.0,
+          "formatted_cer": 0.0,
+          "wer_detail": {
+            "substitutions": 0,
+            "deletions": 0,
+            "insertions": 0,
+            "hits": 12,
+            "ref_words": 12
+          },
+          "formatted_wer_detail": {
+            "substitutions": 0,
+            "deletions": 0,
+            "insertions": 0,
+            "hits": 12,
+            "ref_words": 12
+          },
+          "cer_detail": {
+            "substitutions": 0,
+            "deletions": 0,
+            "insertions": 0,
+            "hits": 52,
+            "ref_chars": 52
+          },
+          "formatted_cer_detail": {
+            "substitutions": 0,
+            "deletions": 0,
+            "insertions": 0,
+            "hits": 52,
+            "ref_chars": 52
+          },
+          "api_latency_ms": 544.87,
+          "total_elapsed_ms": 544.88,
+          "retries": 0,
+          "status": "success",
+          "error": null
+        },
+        {
+          "id": "real_openslr_bn_002",
+          "category": "real_regional_indic",
+          "source": "OpenSLR 37 Bengali (human)",
+          "tags": [
+            "real_human",
+            "bn",
+            "openslr"
+          ],
+          "language": "bn-IN",
+          "detected_language": "bn-IN",
+          "audio_path": "/Users/mac/Documents/Gnani/gnani-speech-eval/data/asr/real_audio/real_openslr_bn_002.wav",
+          "audio_duration_sec": 6.49,
+          "reference": "জিয়াংসু শাগাং গ্রুপ চীনের বৃহত্তম বেসরকারি কোম্পানি",
+          "reference_formatted": "জিয়াংসু শাগাং গ্রুপ চীনের বৃহত্তম বেসরকারি কোম্পানি",
+          "hypothesis": "জিয়াং শু সাজাং গ্রুপ চীনের বৃহত্তম বেসরকারি কোম্পানি।",
+          "wer": 0.4286,
+          "cer": 0.0652,
+          "formatted_wer": 0.4286,
+          "formatted_cer": 0.0652,
+          "wer_detail": {
+            "substitutions": 2,
+            "deletions": 0,
+            "insertions": 1,
+            "hits": 5,
+            "ref_words": 7
+          },
+          "formatted_wer_detail": {
+            "substitutions": 2,
+            "deletions": 0,
+            "insertions": 1,
+            "hits": 5,
+            "ref_words": 7
+          },
+          "cer_detail": {
+            "substitutions": 3,
+            "deletions": 0,
+            "insertions": 0,
+            "hits": 43,
+            "ref_chars": 46
+          },
+          "formatted_cer_detail": {
+            "substitutions": 3,
+            "deletions": 0,
+            "insertions": 0,
+            "hits": 43,
+            "ref_chars": 46
+          },
+          "api_latency_ms": 262.71,
+          "total_elapsed_ms": 262.72,
+          "retries": 0,
+          "status": "success",
+          "error": null
+        },
+        {
+          "id": "real_noisy_en_001",
+          "category": "real_noisy_audio",
+          "source": "real_svarah_en_003 + 10dB babble",
+          "tags": [
+            "real_human",
+            "noisy",
+            "babble"
+          ],
+          "language": "en-IN",
+          "detected_language": "en-IN",
+          "audio_path": "/Users/mac/Documents/Gnani/gnani-speech-eval/data/asr/real_audio/real_noisy_en_001.wav",
+          "audio_duration_sec": 3.69,
+          "reference": "how much money is left in my arunachal pradesh rural bank account",
+          "reference_formatted": "how much money is left in my arunachal pradesh rural bank account",
+          "hypothesis": "How much money is left in my Arunachal Pradesh Rural Bank account?",
+          "wer": 0.0,
+          "cer": 0.0,
+          "formatted_wer": 0.0,
+          "formatted_cer": 0.0,
+          "wer_detail": {
+            "substitutions": 0,
+            "deletions": 0,
+            "insertions": 0,
+            "hits": 12,
+            "ref_words": 12
+          },
+          "formatted_wer_detail": {
+            "substitutions": 0,
+            "deletions": 0,
+            "insertions": 0,
+            "hits": 12,
+            "ref_words": 12
+          },
+          "cer_detail": {
+            "substitutions": 0,
+            "deletions": 0,
+            "insertions": 0,
+            "hits": 54,
+            "ref_chars": 54
+          },
+          "formatted_cer_detail": {
+            "substitutions": 0,
+            "deletions": 0,
+            "insertions": 0,
+            "hits": 54,
+            "ref_chars": 54
+          },
+          "api_latency_ms": 231.38,
+          "total_elapsed_ms": 231.39,
+          "retries": 0,
+          "status": "success",
+          "error": null
+        },
+        {
+          "id": "real_telephony_en_001",
+          "category": "real_telephony",
+          "source": "real_svarah_en_003 -> 8kHz mu-law",
+          "tags": [
+            "real_human",
+            "telephony",
+            "8khz",
+            "mulaw"
+          ],
+          "language": "en-IN",
+          "detected_language": "en-IN",
+          "audio_path": "/Users/mac/Documents/Gnani/gnani-speech-eval/data/asr/real_audio/real_telephony_en_001.wav",
+          "audio_duration_sec": 3.69,
+          "reference": "how much money is left in my arunachal pradesh rural bank account",
+          "reference_formatted": "how much money is left in my arunachal pradesh rural bank account",
+          "hypothesis": "How much money is left in my Arunachal Pradesh Rural Bank account?",
+          "wer": 0.0,
+          "cer": 0.0,
+          "formatted_wer": 0.0,
+          "formatted_cer": 0.0,
+          "wer_detail": {
+            "substitutions": 0,
+            "deletions": 0,
+            "insertions": 0,
+            "hits": 12,
+            "ref_words": 12
+          },
+          "formatted_wer_detail": {
+            "substitutions": 0,
+            "deletions": 0,
+            "insertions": 0,
+            "hits": 12,
+            "ref_words": 12
+          },
+          "cer_detail": {
+            "substitutions": 0,
+            "deletions": 0,
+            "insertions": 0,
+            "hits": 54,
+            "ref_chars": 54
+          },
+          "formatted_cer_detail": {
+            "substitutions": 0,
+            "deletions": 0,
+            "insertions": 0,
+            "hits": 54,
+            "ref_chars": 54
+          },
+          "api_latency_ms": 196.69,
+          "total_elapsed_ms": 196.71,
+          "retries": 0,
+          "status": "success",
+          "error": null
+        },
+        {
+          "id": "real_noisy_hi_001",
+          "category": "real_noisy_audio",
+          "source": "real_fleurs_hi_001 + 10dB babble",
+          "tags": [
+            "real_human",
+            "noisy",
+            "hindi"
+          ],
+          "language": "hi-IN",
+          "detected_language": "hi-IN",
+          "audio_path": "/Users/mac/Documents/Gnani/gnani-speech-eval/data/asr/real_audio/real_noisy_hi_001.wav",
+          "audio_duration_sec": 9.12,
+          "reference": "कुछ अणुओं में अस्थिर केंद्रक होता है, जिसका मतलब यह है कि उनमें थोड़े या बिना किसी झटके से टूटने की प्रवृत्ति होती है,",
+          "reference_formatted": "कुछ अणुओं में अस्थिर केंद्रक होता है, जिसका मतलब यह है कि उनमें थोड़े या बिना किसी झटके से टूटने की प्रवृत्ति होती है,",
+          "hypothesis": "कुछ अणुओं में अस्थ केंद्रक होता है, जिसका मतलब यह है कि उनमें थोड़े या बिना किसी झटके से टूटने की प्रवृत्ति होती है।",
+          "wer": 0.0417,
+          "cer": 0.0215,
+          "formatted_wer": 0.0417,
+          "formatted_cer": 0.0215,
+          "wer_detail": {
+            "substitutions": 1,
+            "deletions": 0,
+            "insertions": 0,
+            "hits": 23,
+            "ref_words": 24
+          },
+          "formatted_wer_detail": {
+            "substitutions": 1,
+            "deletions": 0,
+            "insertions": 0,
+            "hits": 23,
+            "ref_words": 24
+          },
+          "cer_detail": {
+            "substitutions": 0,
+            "deletions": 2,
+            "insertions": 0,
+            "hits": 91,
+            "ref_chars": 93
+          },
+          "formatted_cer_detail": {
+            "substitutions": 0,
+            "deletions": 2,
+            "insertions": 0,
+            "hits": 91,
+            "ref_chars": 93
+          },
+          "api_latency_ms": 379.22,
+          "total_elapsed_ms": 379.23,
+          "retries": 0,
+          "status": "success",
+          "error": null
+        },
+        {
+          "id": "real_telephony_hi_001",
+          "category": "real_telephony",
+          "source": "real_fleurs_hi_001 -> 8kHz mu-law",
+          "tags": [
+            "real_human",
+            "telephony",
+            "8khz",
+            "mulaw",
+            "hindi"
+          ],
+          "language": "hi-IN",
+          "detected_language": "hi-IN",
+          "audio_path": "/Users/mac/Documents/Gnani/gnani-speech-eval/data/asr/real_audio/real_telephony_hi_001.wav",
+          "audio_duration_sec": 9.12,
+          "reference": "कुछ अणुओं में अस्थिर केंद्रक होता है, जिसका मतलब यह है कि उनमें थोड़े या बिना किसी झटके से टूटने की प्रवृत्ति होती है,",
+          "reference_formatted": "कुछ अणुओं में अस्थिर केंद्रक होता है, जिसका मतलब यह है कि उनमें थोड़े या बिना किसी झटके से टूटने की प्रवृत्ति होती है,",
+          "hypothesis": "कुछ अणुओं में अर्धकेंद्रक होता है, जिसका मतलब यह कि उनमें थोड़े या बिना किसी झटके से टूटने की प्रवृत्ति होती है।",
+          "wer": 0.125,
+          "cer": 0.0645,
+          "formatted_wer": 0.125,
+          "formatted_cer": 0.0645,
+          "wer_detail": {
+            "substitutions": 1,
+            "deletions": 2,
+            "insertions": 0,
+            "hits": 21,
+            "ref_words": 24
+          },
+          "formatted_wer_detail": {
+            "substitutions": 1,
+            "deletions": 2,
+            "insertions": 0,
+            "hits": 21,
+            "ref_words": 24
+          },
+          "cer_detail": {
+            "substitutions": 2,
+            "deletions": 4,
+            "insertions": 0,
+            "hits": 87,
+            "ref_chars": 93
+          },
+          "formatted_cer_detail": {
+            "substitutions": 2,
+            "deletions": 4,
+            "insertions": 0,
+            "hits": 87,
+            "ref_chars": 93
+          },
+          "api_latency_ms": 435.98,
+          "total_elapsed_ms": 435.99,
+          "retries": 0,
+          "status": "success",
+          "error": null
+        }
+      ]
     },
-    {
-      "id": "clean_en_002",
-      "category": "clean_english",
-      "tags": [
-        "clean",
-        "banking",
-        "english",
-        "numbers"
-      ],
-      "language": "en-IN",
-      "detected_language": "en-IN",
-      "audio_path": "/Users/mac/Documents/Gnani/gnani-speech-eval/data/asr/audio/clean_en_002.wav",
-      "audio_duration_sec": 2.88,
-      "reference": "please transfer five thousand rupees to my savings account",
-      "hypothesis": "Transfer 5,000 rupees to my savings account.",
-      "wer": 0.3333,
-      "cer": 0.36,
-      "wer_detail": {
-        "substitutions": 1,
-        "deletions": 2,
-        "insertions": 0,
-        "hits": 6,
-        "ref_words": 9
+    "synthetic_smoke": {
+      "metadata": {
+        "timestamp": "2026-11-25T05:16:30.050830",
+        "suite": "synthetic_smoke",
+        "model": "prisma-v3.0",
+        "total_clips": 30,
+        "successful_clips": 30,
+        "failed_clips": 0
       },
-      "cer_detail": {
-        "substitutions": 4,
-        "deletions": 14,
-        "insertions": 0,
-        "hits": 32,
-        "ref_chars": 50
+      "overall": {
+        "wer": 0.2,
+        "cer": 0.1862,
+        "formatted_wer": 0.0037,
+        "formatted_cer": 0.0049,
+        "total_ref_words": 300,
+        "total_errors": 60,
+        "formatted_ref_words": 268,
+        "formatted_errors": 1,
+        "p50_latency_ms": 339.85,
+        "p95_latency_ms": 490.28,
+        "avg_latency_ms": 343.71,
+        "p95_total_elapsed_ms": 490.29,
+        "total_retries": 0
       },
-      "api_latency_ms": 459.18,
-      "status": "success",
-      "error": null
-    },
-    {
-      "id": "clean_en_003",
-      "category": "clean_english",
-      "tags": [
-        "clean",
-        "healthcare",
-        "english",
-        "proper_noun"
-      ],
-      "language": "en-IN",
-      "detected_language": "en-IN",
-      "audio_path": "/Users/mac/Documents/Gnani/gnani-speech-eval/data/asr/audio/clean_en_003.wav",
-      "audio_duration_sec": 3.04,
-      "reference": "i would like to book an appointment with doctor sharma for tomorrow morning",
-      "hypothesis": "I would like to book an appointment with Doctor Sharma for tomorrow morning.",
-      "wer": 0.0,
-      "cer": 0.0,
-      "wer_detail": {
-        "substitutions": 0,
-        "deletions": 0,
-        "insertions": 0,
-        "hits": 13,
-        "ref_words": 13
+      "by_category": {
+        "clean_english": {
+          "num_clips": 3,
+          "aggregate_wer": 0.0968,
+          "aggregate_cer": 0.1216,
+          "formatted_wer": 0.0333,
+          "formatted_cer": 0.0429,
+          "p50_latency_ms": 325.8,
+          "p95_latency_ms": 372.74,
+          "avg_latency_ms": 312.35,
+          "retries": 0
+        },
+        "clean_hindi": {
+          "num_clips": 3,
+          "aggregate_wer": 0.0455,
+          "aggregate_cer": 0.0805,
+          "formatted_wer": 0.0,
+          "formatted_cer": 0.0,
+          "p50_latency_ms": 321.75,
+          "p95_latency_ms": 323.71,
+          "avg_latency_ms": 296.43,
+          "retries": 0
+        },
+        "noisy_audio": {
+          "num_clips": 3,
+          "aggregate_wer": 0.1562,
+          "aggregate_cer": 0.152,
+          "formatted_wer": 0.0,
+          "formatted_cer": 0.0,
+          "p50_latency_ms": 437.06,
+          "p95_latency_ms": 477.24,
+          "avg_latency_ms": 390.34,
+          "retries": 0
+        },
+        "telephony": {
+          "num_clips": 2,
+          "aggregate_wer": 0.0625,
+          "aggregate_cer": 0.05,
+          "formatted_wer": 0.0,
+          "formatted_cer": 0.0,
+          "p50_latency_ms": 314.39,
+          "p95_latency_ms": 400.33,
+          "avg_latency_ms": 314.39,
+          "retries": 0
+        },
+        "numbers_and_entities": {
+          "num_clips": 3,
+          "aggregate_wer": 0.6667,
+          "aggregate_cer": 0.681,
+          "formatted_wer": 0.0,
+          "formatted_cer": 0.0,
+          "p50_latency_ms": 324.01,
+          "p95_latency_ms": 450.68,
+          "avg_latency_ms": 354.9,
+          "retries": 0
+        },
+        "code_switching": {
+          "num_clips": 3,
+          "aggregate_wer": 0.3846,
+          "aggregate_cer": 0.3388,
+          "formatted_wer": 0.0,
+          "formatted_cer": 0.0,
+          "p50_latency_ms": 387.52,
+          "p95_latency_ms": 407.73,
+          "avg_latency_ms": 375.75,
+          "retries": 0
+        },
+        "accented_english": {
+          "num_clips": 2,
+          "aggregate_wer": 0.0,
+          "aggregate_cer": 0.0,
+          "formatted_wer": 0.0,
+          "formatted_cer": 0.0,
+          "p50_latency_ms": 325.96,
+          "p95_latency_ms": 370.01,
+          "avg_latency_ms": 325.96,
+          "retries": 0
+        },
+        "domain_specific": {
+          "num_clips": 3,
+          "aggregate_wer": 0.2424,
+          "aggregate_cer": 0.1337,
+          "formatted_wer": 0.0,
+          "formatted_cer": 0.0,
+          "p50_latency_ms": 377.63,
+          "p95_latency_ms": 485.33,
+          "avg_latency_ms": 372.06,
+          "retries": 0
+        },
+        "long_utterance": {
+          "num_clips": 2,
+          "aggregate_wer": 0.0984,
+          "aggregate_cer": 0.1111,
+          "formatted_wer": 0.0,
+          "formatted_cer": 0.0,
+          "p50_latency_ms": 482.21,
+          "p95_latency_ms": 540.09,
+          "avg_latency_ms": 482.21,
+          "retries": 0
+        },
+        "short_utterance": {
+          "num_clips": 3,
+          "aggregate_wer": 0.0,
+          "aggregate_cer": 0.0,
+          "formatted_wer": 0.0,
+          "formatted_cer": 0.0,
+          "p50_latency_ms": 187.4,
+          "p95_latency_ms": 237.84,
+          "avg_latency_ms": 205.0,
+          "retries": 0
+        },
+        "regional_languages": {
+          "num_clips": 3,
+          "aggregate_wer": 0.0,
+          "aggregate_cer": 0.0,
+          "formatted_wer": 0.0,
+          "formatted_cer": 0.0,
+          "p50_latency_ms": 375.15,
+          "p95_latency_ms": 415.97,
+          "avg_latency_ms": 381.86,
+          "retries": 0
+        }
       },
-      "cer_detail": {
-        "substitutions": 0,
-        "deletions": 0,
-        "insertions": 0,
-        "hits": 63,
-        "ref_chars": 63
-      },
-      "api_latency_ms": 741.99,
-      "status": "success",
-      "error": null
-    },
-    {
-      "id": "clean_hi_001",
-      "category": "clean_hindi",
-      "tags": [
-        "clean",
-        "hindi",
-        "banking"
-      ],
-      "language": "hi-IN",
-      "detected_language": "hi-IN",
-      "audio_path": "/Users/mac/Documents/Gnani/gnani-speech-eval/data/asr/audio/clean_hi_001.wav",
-      "audio_duration_sec": 2.72,
-      "reference": "नमस्ते मैं अपना बैलेंस जानना चाहता हूँ",
-      "hypothesis": "नमस्ते, मैं अपना balance जानना चाहता हूँ।",
-      "wer": 0.1429,
-      "cer": 0.2188,
-      "wer_detail": {
-        "substitutions": 1,
-        "deletions": 0,
-        "insertions": 0,
-        "hits": 6,
-        "ref_words": 7
-      },
-      "cer_detail": {
-        "substitutions": 6,
-        "deletions": 0,
-        "insertions": 1,
-        "hits": 26,
-        "ref_chars": 32
-      },
-      "api_latency_ms": 2755.22,
-      "status": "success",
-      "error": null
-    },
-    {
-      "id": "clean_hi_002",
-      "category": "clean_hindi",
-      "tags": [
-        "clean",
-        "hindi",
-        "government"
-      ],
-      "language": "hi-IN",
-      "detected_language": "hi-IN",
-      "audio_path": "/Users/mac/Documents/Gnani/gnani-speech-eval/data/asr/audio/clean_hi_002.wav",
-      "audio_duration_sec": 2.24,
-      "reference": "कृपया मेरा आधार नंबर से लिंक करें",
-      "hypothesis": "कृपया मेरा आधार नंबर से लिंक करें।",
-      "wer": 0.0,
-      "cer": 0.0,
-      "wer_detail": {
-        "substitutions": 0,
-        "deletions": 0,
-        "insertions": 0,
-        "hits": 7,
-        "ref_words": 7
-      },
-      "cer_detail": {
-        "substitutions": 0,
-        "deletions": 0,
-        "insertions": 0,
-        "hits": 27,
-        "ref_chars": 27
-      },
-      "api_latency_ms": 186.65,
-      "status": "success",
-      "error": null
-    },
-    {
-      "id": "clean_hi_003",
-      "category": "clean_hindi",
-      "tags": [
-        "clean",
-        "hindi",
-        "travel",
-        "numbers"
-      ],
-      "language": "hi-IN",
-      "detected_language": "hi-IN",
-      "audio_path": "/Users/mac/Documents/Gnani/gnani-speech-eval/data/asr/audio/clean_hi_003.wav",
-      "audio_duration_sec": 2.4,
-      "reference": "मुझे कल सुबह दस बजे की फ्लाइट चाहिए",
-      "hypothesis": "मुझे कल सुबह दस बजे की फ्लाइट चाहिए।",
-      "wer": 0.0,
-      "cer": 0.0,
-      "wer_detail": {
-        "substitutions": 0,
-        "deletions": 0,
-        "insertions": 0,
-        "hits": 8,
-        "ref_words": 8
-      },
-      "cer_detail": {
-        "substitutions": 0,
-        "deletions": 0,
-        "insertions": 0,
-        "hits": 28,
-        "ref_chars": 28
-      },
-      "api_latency_ms": 312.06,
-      "status": "success",
-      "error": null
-    },
-    {
-      "id": "noisy_en_001",
-      "category": "noisy_audio",
-      "tags": [
-        "noisy",
-        "english",
-        "alphanumeric",
-        "insurance"
-      ],
-      "language": "en-IN",
-      "detected_language": "en-IN",
-      "audio_path": "/Users/mac/Documents/Gnani/gnani-speech-eval/data/asr/audio/noisy_en_001.wav",
-      "audio_duration_sec": 4.32,
-      "reference": "my policy number is alpha bravo charlie one two three four five",
-      "hypothesis": "My policy number is Alpha Bravo Charlie 12345.",
-      "wer": 0.4167,
-      "cer": 0.3654,
-      "wer_detail": {
-        "substitutions": 1,
-        "deletions": 4,
-        "insertions": 0,
-        "hits": 7,
-        "ref_words": 12
-      },
-      "cer_detail": {
-        "substitutions": 5,
-        "deletions": 14,
-        "insertions": 0,
-        "hits": 33,
-        "ref_chars": 52
-      },
-      "api_latency_ms": 279.69,
-      "status": "success",
-      "error": null
-    },
-    {
-      "id": "noisy_en_002",
-      "category": "noisy_audio",
-      "tags": [
-        "noisy",
-        "english",
-        "ambient_noise",
-        "travel"
-      ],
-      "language": "en-IN",
-      "detected_language": "en-IN",
-      "audio_path": "/Users/mac/Documents/Gnani/gnani-speech-eval/data/asr/audio/noisy_en_002.wav",
-      "audio_duration_sec": 2.56,
-      "reference": "i am calling from the airport and my flight is delayed",
-      "hypothesis": "I am falling from the airport and my flight is delayed",
-      "wer": 0.0909,
-      "cer": 0.0227,
-      "wer_detail": {
-        "substitutions": 1,
-        "deletions": 0,
-        "insertions": 0,
-        "hits": 10,
-        "ref_words": 11
-      },
-      "cer_detail": {
-        "substitutions": 1,
-        "deletions": 0,
-        "insertions": 0,
-        "hits": 43,
-        "ref_chars": 44
-      },
-      "api_latency_ms": 319.35,
-      "status": "success",
-      "error": null
-    },
-    {
-      "id": "noisy_hi_001",
-      "category": "noisy_audio",
-      "tags": [
-        "noisy",
-        "hindi",
-        "street_noise"
-      ],
-      "language": "hi-IN",
-      "detected_language": "hi-IN",
-      "audio_path": "/Users/mac/Documents/Gnani/gnani-speech-eval/data/asr/audio/noisy_hi_001.wav",
-      "audio_duration_sec": 2.72,
-      "reference": "हाँ मैं सड़क पर हूँ सुनाई नहीं दे रहा",
-      "hypothesis": "हाँ, मैं सड़क पर हूँ, सुनाई नहीं दे रहा।",
-      "wer": 0.0,
-      "cer": 0.0,
-      "wer_detail": {
-        "substitutions": 0,
-        "deletions": 0,
-        "insertions": 0,
-        "hits": 9,
-        "ref_words": 9
-      },
-      "cer_detail": {
-        "substitutions": 0,
-        "deletions": 0,
-        "insertions": 0,
-        "hits": 29,
-        "ref_chars": 29
-      },
-      "api_latency_ms": 542.44,
-      "status": "success",
-      "error": null
-    },
-    {
-      "id": "telephony_en_001",
-      "category": "telephony",
-      "tags": [
-        "telephony",
-        "8khz",
-        "english",
-        "banking"
-      ],
-      "language": "en-IN",
-      "detected_language": "en-IN",
-      "audio_path": "/Users/mac/Documents/Gnani/gnani-speech-eval/data/asr/audio/telephony_en_001.wav",
-      "audio_duration_sec": 1.76,
-      "reference": "can you please repeat your account number",
-      "hypothesis": "Can you please repeat your account number?",
-      "wer": 0.0,
-      "cer": 0.0,
-      "wer_detail": {
-        "substitutions": 0,
-        "deletions": 0,
-        "insertions": 0,
-        "hits": 7,
-        "ref_words": 7
-      },
-      "cer_detail": {
-        "substitutions": 0,
-        "deletions": 0,
-        "insertions": 0,
-        "hits": 35,
-        "ref_chars": 35
-      },
-      "api_latency_ms": 298.65,
-      "status": "success",
-      "error": null
-    },
-    {
-      "id": "telephony_hi_001",
-      "category": "telephony",
-      "tags": [
-        "telephony",
-        "8khz",
-        "hindi",
-        "ivr"
-      ],
-      "language": "hi-IN",
-      "detected_language": "hi-IN",
-      "audio_path": "/Users/mac/Documents/Gnani/gnani-speech-eval/data/asr/audio/telephony_hi_001.wav",
-      "audio_duration_sec": 3.2,
-      "reference": "आपका कॉल हमारे लिए महत्वपूर्ण है कृपया प्रतीक्षा करें",
-      "hypothesis": "आपका call हमारे लिए महत्वपूर्ण है, कृपया प्रतीक्षा करें।",
-      "wer": 0.1111,
-      "cer": 0.0889,
-      "wer_detail": {
-        "substitutions": 1,
-        "deletions": 0,
-        "insertions": 0,
-        "hits": 8,
-        "ref_words": 9
-      },
-      "cer_detail": {
-        "substitutions": 3,
-        "deletions": 0,
-        "insertions": 1,
-        "hits": 42,
-        "ref_chars": 45
-      },
-      "api_latency_ms": 239.84,
-      "status": "success",
-      "error": null
-    },
-    {
-      "id": "numbers_en_001",
-      "category": "numbers_and_entities",
-      "tags": [
-        "numbers",
-        "currency",
-        "indian_format",
-        "english"
-      ],
-      "language": "en-IN",
-      "detected_language": "en-IN",
-      "audio_path": "/Users/mac/Documents/Gnani/gnani-speech-eval/data/asr/audio/numbers_en_001.wav",
-      "audio_duration_sec": 4.32,
-      "reference": "the total amount is one lakh twenty three thousand four hundred and fifty six rupees",
-      "hypothesis": "The total amount is 1,23,456 rupees.",
-      "wer": 0.6667,
-      "cer": 0.6857,
-      "wer_detail": {
-        "substitutions": 1,
-        "deletions": 9,
-        "insertions": 0,
-        "hits": 5,
-        "ref_words": 15
-      },
-      "cer_detail": {
-        "substitutions": 6,
-        "deletions": 42,
-        "insertions": 0,
-        "hits": 22,
-        "ref_chars": 70
-      },
-      "api_latency_ms": 332.17,
-      "status": "success",
-      "error": null
-    },
-    {
-      "id": "numbers_en_002",
-      "category": "numbers_and_entities",
-      "tags": [
-        "numbers",
-        "phone_number",
-        "english"
-      ],
-      "language": "en-IN",
-      "detected_language": "en-IN",
-      "audio_path": "/Users/mac/Documents/Gnani/gnani-speech-eval/data/asr/audio/numbers_en_002.wav",
-      "audio_duration_sec": 4.32,
-      "reference": "my mobile number is nine eight seven six five four three two one zero",
-      "hypothesis": "My mobile number is 9876543210.",
-      "wer": 0.7143,
-      "cer": 0.7143,
-      "wer_detail": {
-        "substitutions": 1,
-        "deletions": 9,
-        "insertions": 0,
-        "hits": 4,
-        "ref_words": 14
-      },
-      "cer_detail": {
-        "substitutions": 10,
-        "deletions": 30,
-        "insertions": 0,
-        "hits": 16,
-        "ref_chars": 56
-      },
-      "api_latency_ms": 519.41,
-      "status": "success",
-      "error": null
-    },
-    {
-      "id": "numbers_hi_001",
-      "category": "numbers_and_entities",
-      "tags": [
-        "numbers",
-        "currency",
-        "hindi"
-      ],
-      "language": "hi-IN",
-      "detected_language": "hi-IN",
-      "audio_path": "/Users/mac/Documents/Gnani/gnani-speech-eval/data/asr/audio/numbers_hi_001.wav",
-      "audio_duration_sec": 3.04,
-      "reference": "कुल राशि पाँच लाख बहत्तर हज़ार तीन सौ रुपये है",
-      "hypothesis": "कुल राशि 5,72,300 रुपये है।",
-      "wer": 0.6,
-      "cer": 0.6216,
-      "wer_detail": {
-        "substitutions": 1,
-        "deletions": 5,
-        "insertions": 0,
-        "hits": 4,
-        "ref_words": 10
-      },
-      "cer_detail": {
-        "substitutions": 6,
-        "deletions": 17,
-        "insertions": 0,
-        "hits": 14,
-        "ref_chars": 37
-      },
-      "api_latency_ms": 413.05,
-      "status": "success",
-      "error": null
-    },
-    {
-      "id": "codemix_001",
-      "category": "code_switching",
-      "tags": [
-        "code_switch",
-        "hinglish",
-        "banking"
-      ],
-      "language": "hi-IN",
-      "detected_language": "hi-IN",
-      "audio_path": "/Users/mac/Documents/Gnani/gnani-speech-eval/data/asr/audio/codemix_001.wav",
-      "audio_duration_sec": 2.24,
-      "reference": "मुझे अपना account balance check करना है",
-      "hypothesis": "मुझे अपना अकाउंट बैलेंस चेक करना है।",
-      "wer": 0.4286,
-      "cer": 0.5758,
-      "wer_detail": {
-        "substitutions": 3,
-        "deletions": 0,
-        "insertions": 0,
-        "hits": 4,
-        "ref_words": 7
-      },
-      "cer_detail": {
-        "substitutions": 15,
-        "deletions": 4,
-        "insertions": 0,
-        "hits": 14,
-        "ref_chars": 33
-      },
-      "api_latency_ms": 243.32,
-      "status": "success",
-      "error": null
-    },
-    {
-      "id": "codemix_002",
-      "category": "code_switching",
-      "tags": [
-        "code_switch",
-        "hinglish",
-        "banking"
-      ],
-      "language": "hi-IN",
-      "detected_language": "en-IN",
-      "audio_path": "/Users/mac/Documents/Gnani/gnani-speech-eval/data/asr/audio/codemix_002.wav",
-      "audio_duration_sec": 2.56,
-      "reference": "please mera last transaction ka detail bhejo",
-      "hypothesis": "Please mera last transaction ka detail bhejo.",
-      "wer": 0.0,
-      "cer": 0.0,
-      "wer_detail": {
-        "substitutions": 0,
-        "deletions": 0,
-        "insertions": 0,
-        "hits": 7,
-        "ref_words": 7
-      },
-      "cer_detail": {
-        "substitutions": 0,
-        "deletions": 0,
-        "insertions": 0,
-        "hits": 38,
-        "ref_chars": 38
-      },
-      "api_latency_ms": 521.88,
-      "status": "success",
-      "error": null
-    },
-    {
-      "id": "codemix_003",
-      "category": "code_switching",
-      "tags": [
-        "code_switch",
-        "hinglish",
-        "commerce"
-      ],
-      "language": "hi-IN",
-      "detected_language": "hi-IN",
-      "audio_path": "/Users/mac/Documents/Gnani/gnani-speech-eval/data/asr/audio/codemix_003.wav",
-      "audio_duration_sec": 3.36,
-      "reference": "yeh offer kab tak valid hai aur kya terms and conditions hain",
-      "hypothesis": "यह offer कब तक valid है और क्या terms and conditions हैं।",
-      "wer": 0.5833,
-      "cer": 0.44,
-      "wer_detail": {
-        "substitutions": 7,
-        "deletions": 0,
-        "insertions": 0,
-        "hits": 5,
-        "ref_words": 12
-      },
-      "cer_detail": {
-        "substitutions": 17,
-        "deletions": 5,
-        "insertions": 0,
-        "hits": 28,
-        "ref_chars": 50
-      },
-      "api_latency_ms": 297.79,
-      "status": "success",
-      "error": null
-    },
-    {
-      "id": "accent_south_001",
-      "category": "accented_english",
-      "tags": [
-        "accent",
-        "south_indian",
-        "english",
-        "banking"
-      ],
-      "language": "en-IN",
-      "detected_language": "en-IN",
-      "audio_path": "/Users/mac/Documents/Gnani/gnani-speech-eval/data/asr/audio/accent_south_001.wav",
-      "audio_duration_sec": 2.88,
-      "reference": "i am not able to access my internet banking since morning",
-      "hypothesis": "I am not able to access my internet banking since morning.",
-      "wer": 0.0,
-      "cer": 0.0,
-      "wer_detail": {
-        "substitutions": 0,
-        "deletions": 0,
-        "insertions": 0,
-        "hits": 11,
-        "ref_words": 11
-      },
-      "cer_detail": {
-        "substitutions": 0,
-        "deletions": 0,
-        "insertions": 0,
-        "hits": 47,
-        "ref_chars": 47
-      },
-      "api_latency_ms": 347.91,
-      "status": "success",
-      "error": null
-    },
-    {
-      "id": "accent_north_001",
-      "category": "accented_english",
-      "tags": [
-        "accent",
-        "north_indian",
-        "english",
-        "banking"
-      ],
-      "language": "en-IN",
-      "detected_language": "en-IN",
-      "audio_path": "/Users/mac/Documents/Gnani/gnani-speech-eval/data/asr/audio/accent_north_001.wav",
-      "audio_duration_sec": 2.24,
-      "reference": "what is the current fixed deposit interest rate",
-      "hypothesis": "What is the current fixed deposit interest rate?",
-      "wer": 0.0,
-      "cer": 0.0,
-      "wer_detail": {
-        "substitutions": 0,
-        "deletions": 0,
-        "insertions": 0,
-        "hits": 8,
-        "ref_words": 8
-      },
-      "cer_detail": {
-        "substitutions": 0,
-        "deletions": 0,
-        "insertions": 0,
-        "hits": 40,
-        "ref_chars": 40
-      },
-      "api_latency_ms": 234.2,
-      "status": "success",
-      "error": null
-    },
-    {
-      "id": "domain_medical_001",
-      "category": "domain_specific",
-      "tags": [
-        "domain",
-        "medical",
-        "english",
-        "drug_name"
-      ],
-      "language": "en-IN",
-      "detected_language": "en-IN",
-      "audio_path": "/Users/mac/Documents/Gnani/gnani-speech-eval/data/asr/audio/domain_medical_001.wav",
-      "audio_duration_sec": 4.0,
-      "reference": "the patient was prescribed paracetamol five hundred milligrams twice daily",
-      "hypothesis": "The patient was prescribed paracetamol 500mg twice daily.",
-      "wer": 0.3,
-      "cer": 0.2923,
-      "wer_detail": {
-        "substitutions": 1,
-        "deletions": 2,
-        "insertions": 0,
-        "hits": 7,
-        "ref_words": 10
-      },
-      "cer_detail": {
-        "substitutions": 3,
-        "deletions": 16,
-        "insertions": 0,
-        "hits": 46,
-        "ref_chars": 65
-      },
-      "api_latency_ms": 349.9,
-      "status": "success",
-      "error": null
-    },
-    {
-      "id": "domain_legal_001",
-      "category": "domain_specific",
-      "tags": [
-        "domain",
-        "legal",
-        "english"
-      ],
-      "language": "en-IN",
-      "detected_language": "en-IN",
-      "audio_path": "/Users/mac/Documents/Gnani/gnani-speech-eval/data/asr/audio/domain_legal_001.wav",
-      "audio_duration_sec": 3.2,
-      "reference": "the affidavit must be notarised before submission to the magistrate",
-      "hypothesis": "The affidavit must be notarized before submission to the magistrate.",
-      "wer": 0.1,
-      "cer": 0.0172,
-      "wer_detail": {
-        "substitutions": 1,
-        "deletions": 0,
-        "insertions": 0,
-        "hits": 9,
-        "ref_words": 10
-      },
-      "cer_detail": {
-        "substitutions": 1,
-        "deletions": 0,
-        "insertions": 0,
-        "hits": 57,
-        "ref_chars": 58
-      },
-      "api_latency_ms": 381.9,
-      "status": "success",
-      "error": null
-    },
-    {
-      "id": "domain_tech_001",
-      "category": "domain_specific",
-      "tags": [
-        "domain",
-        "tech",
-        "english",
-        "abbreviations"
-      ],
-      "language": "en-IN",
-      "detected_language": "en-IN",
-      "audio_path": "/Users/mac/Documents/Gnani/gnani-speech-eval/data/asr/audio/domain_tech_001.wav",
-      "audio_duration_sec": 3.68,
-      "reference": "deploy the kubernetes cluster on the g c p us east one region",
-      "hypothesis": "Deploy the Kubernetes cluster on the GCP US East 1 region.",
-      "wer": 0.3077,
-      "cer": 0.0612,
-      "wer_detail": {
-        "substitutions": 2,
-        "deletions": 2,
-        "insertions": 0,
-        "hits": 9,
-        "ref_words": 13
-      },
-      "cer_detail": {
-        "substitutions": 1,
-        "deletions": 2,
-        "insertions": 0,
-        "hits": 46,
-        "ref_chars": 49
-      },
-      "api_latency_ms": 294.21,
-      "status": "success",
-      "error": null
-    },
-    {
-      "id": "long_en_001",
-      "category": "long_utterance",
-      "tags": [
-        "long",
-        "english",
-        "banking",
-        "complex"
-      ],
-      "language": "en-IN",
-      "detected_language": "en-IN",
-      "audio_path": "/Users/mac/Documents/Gnani/gnani-speech-eval/data/asr/audio/long_en_001.wav",
-      "audio_duration_sec": 8.8,
-      "reference": "good afternoon i am calling to enquire about the home loan that i had applied for last month and i wanted to know the current status of my application and when i can expect the disbursement",
-      "hypothesis": "Good afternoon. I am calling to inquire about the home loan that I had applied for last month, and I wanted to know the current status of my application and when I can expect the disbursement.",
-      "wer": 0.0278,
-      "cer": 0.0065,
-      "wer_detail": {
-        "substitutions": 1,
-        "deletions": 0,
-        "insertions": 0,
-        "hits": 35,
-        "ref_words": 36
-      },
-      "cer_detail": {
-        "substitutions": 1,
-        "deletions": 0,
-        "insertions": 0,
-        "hits": 153,
-        "ref_chars": 154
-      },
-      "api_latency_ms": 1182.7,
-      "status": "success",
-      "error": null
-    },
-    {
-      "id": "long_hi_001",
-      "category": "long_utterance",
-      "tags": [
-        "long",
-        "hindi",
-        "banking",
-        "complex"
-      ],
-      "language": "hi-IN",
-      "detected_language": "hi-IN",
-      "audio_path": "/Users/mac/Documents/Gnani/gnani-speech-eval/data/asr/audio/long_hi_001.wav",
-      "audio_duration_sec": 7.04,
-      "reference": "नमस्ते मैं पिछले महीने जो होम लोन के लिए अप्लाई किया था उसका स्टेटस जानना चाहता हूँ कृपया मुझे बताएं कि कब तक प्रोसेस होगा",
-      "hypothesis": "नमस्ते, मैं पिछले महीने जो home loan के लिए apply किया था, उसका status जानना चाहता हूँ, कृपया मुझे बताएं कि कब तक process होगा।",
-      "wer": 0.2,
-      "cer": 0.2755,
-      "wer_detail": {
-        "substitutions": 5,
-        "deletions": 0,
-        "insertions": 0,
-        "hits": 20,
-        "ref_words": 25
-      },
-      "cer_detail": {
-        "substitutions": 24,
-        "deletions": 1,
-        "insertions": 2,
-        "hits": 73,
-        "ref_chars": 98
-      },
-      "api_latency_ms": 410.83,
-      "status": "success",
-      "error": null
-    },
-    {
-      "id": "short_en_001",
-      "category": "short_utterance",
-      "tags": [
-        "short",
-        "english",
-        "single_word"
-      ],
-      "language": "en-IN",
-      "detected_language": "en-IN",
-      "audio_path": "/Users/mac/Documents/Gnani/gnani-speech-eval/data/asr/audio/short_en_001.wav",
-      "audio_duration_sec": 0.48,
-      "reference": "yes",
-      "hypothesis": "Yes.",
-      "wer": 0.0,
-      "cer": 0.0,
-      "wer_detail": {
-        "substitutions": 0,
-        "deletions": 0,
-        "insertions": 0,
-        "hits": 1,
-        "ref_words": 1
-      },
-      "cer_detail": {
-        "substitutions": 0,
-        "deletions": 0,
-        "insertions": 0,
-        "hits": 3,
-        "ref_chars": 3
-      },
-      "api_latency_ms": 149.4,
-      "status": "success",
-      "error": null
-    },
-    {
-      "id": "short_en_002",
-      "category": "short_utterance",
-      "tags": [
-        "short",
-        "english",
-        "command"
-      ],
-      "language": "en-IN",
-      "detected_language": "en-IN",
-      "audio_path": "/Users/mac/Documents/Gnani/gnani-speech-eval/data/asr/audio/short_en_002.wav",
-      "audio_duration_sec": 0.96,
-      "reference": "no cancel it",
-      "hypothesis": "No cancel it",
-      "wer": 0.0,
-      "cer": 0.0,
-      "wer_detail": {
-        "substitutions": 0,
-        "deletions": 0,
-        "insertions": 0,
-        "hits": 3,
-        "ref_words": 3
-      },
-      "cer_detail": {
-        "substitutions": 0,
-        "deletions": 0,
-        "insertions": 0,
-        "hits": 10,
-        "ref_chars": 10
-      },
-      "api_latency_ms": 100.84,
-      "status": "success",
-      "error": null
-    },
-    {
-      "id": "short_hi_001",
-      "category": "short_utterance",
-      "tags": [
-        "short",
-        "hindi",
-        "single_word"
-      ],
-      "language": "hi-IN",
-      "detected_language": "hi-IN",
-      "audio_path": "/Users/mac/Documents/Gnani/gnani-speech-eval/data/asr/audio/short_hi_001.wav",
-      "audio_duration_sec": 0.64,
-      "reference": "हाँ",
-      "hypothesis": "हाँ",
-      "wer": 0.0,
-      "cer": 0.0,
-      "wer_detail": {
-        "substitutions": 0,
-        "deletions": 0,
-        "insertions": 0,
-        "hits": 1,
-        "ref_words": 1
-      },
-      "cer_detail": {
-        "substitutions": 0,
-        "deletions": 0,
-        "insertions": 0,
-        "hits": 3,
-        "ref_chars": 3
-      },
-      "api_latency_ms": 132.65,
-      "status": "success",
-      "error": null
-    },
-    {
-      "id": "te_001",
-      "category": "regional_languages",
-      "tags": [
-        "telugu",
-        "banking"
-      ],
-      "language": "te-IN",
-      "detected_language": "te-IN",
-      "audio_path": "/Users/mac/Documents/Gnani/gnani-speech-eval/data/asr/audio/te_001.wav",
-      "audio_duration_sec": 2.24,
-      "reference": "నమస్కారం నాకు నా ఖాతా వివరాలు కావాలి",
-      "hypothesis": "నమస్కారం, నాకు నా ఖాతా వివరాలు కావాలి.",
-      "wer": 0.0,
-      "cer": 0.0,
-      "wer_detail": {
-        "substitutions": 0,
-        "deletions": 0,
-        "insertions": 0,
-        "hits": 6,
-        "ref_words": 6
-      },
-      "cer_detail": {
-        "substitutions": 0,
-        "deletions": 0,
-        "insertions": 0,
-        "hits": 31,
-        "ref_chars": 31
-      },
-      "api_latency_ms": 369.25,
-      "status": "success",
-      "error": null
-    },
-    {
-      "id": "ta_001",
-      "category": "regional_languages",
-      "tags": [
-        "tamil",
-        "banking"
-      ],
-      "language": "ta-IN",
-      "detected_language": "ta-IN",
-      "audio_path": "/Users/mac/Documents/Gnani/gnani-speech-eval/data/asr/audio/ta_001.wav",
-      "audio_duration_sec": 2.08,
-      "reference": "வணக்கம் எனது கணக்கு விவரங்களை அனுப்புங்கள்",
-      "hypothesis": "வணக்கம் எனது கணக்கு விவரங்களை அனுப்புங்கள்.",
-      "wer": 0.0,
-      "cer": 0.0,
-      "wer_detail": {
-        "substitutions": 0,
-        "deletions": 0,
-        "insertions": 0,
-        "hits": 5,
-        "ref_words": 5
-      },
-      "cer_detail": {
-        "substitutions": 0,
-        "deletions": 0,
-        "insertions": 0,
-        "hits": 38,
-        "ref_chars": 38
-      },
-      "api_latency_ms": 271.61,
-      "status": "success",
-      "error": null
-    },
-    {
-      "id": "bn_001",
-      "category": "regional_languages",
-      "tags": [
-        "bengali",
-        "banking"
-      ],
-      "language": "bn-IN",
-      "detected_language": "bn-IN",
-      "audio_path": "/Users/mac/Documents/Gnani/gnani-speech-eval/data/asr/audio/bn_001.wav",
-      "audio_duration_sec": 1.76,
-      "reference": "আমার একাউন্ট ব্যালেন্স জানতে চাই",
-      "hypothesis": "আমার অ্যাকাউন্ট ব্যালেন্স জানতে চাই।",
-      "wer": 0.2,
-      "cer": 0.1429,
-      "wer_detail": {
-        "substitutions": 1,
-        "deletions": 0,
-        "insertions": 0,
-        "hits": 4,
-        "ref_words": 5
-      },
-      "cer_detail": {
-        "substitutions": 1,
-        "deletions": 0,
-        "insertions": 3,
-        "hits": 27,
-        "ref_chars": 28
-      },
-      "api_latency_ms": 133.46,
-      "status": "success",
-      "error": null
+      "per_clip_results": [
+        {
+          "id": "clean_en_001",
+          "category": "clean_english",
+          "source": "",
+          "tags": [
+            "clean",
+            "short",
+            "english",
+            "pangram"
+          ],
+          "language": "en-IN",
+          "detected_language": "en-IN",
+          "audio_path": "/Users/mac/Documents/Gnani/gnani-speech-eval/data/asr/audio/clean_en_001.wav",
+          "audio_duration_sec": 2.4,
+          "reference": "the quick brown fox jumps over the lazy dog",
+          "reference_formatted": "the quick brown fox jumps over the lazy dog",
+          "hypothesis": "The quick brown fox jumps over the lazy dog.",
+          "wer": 0.0,
+          "cer": 0.0,
+          "formatted_wer": 0.0,
+          "formatted_cer": 0.0,
+          "wer_detail": {
+            "substitutions": 0,
+            "deletions": 0,
+            "insertions": 0,
+            "hits": 9,
+            "ref_words": 9
+          },
+          "formatted_wer_detail": {
+            "substitutions": 0,
+            "deletions": 0,
+            "insertions": 0,
+            "hits": 9,
+            "ref_words": 9
+          },
+          "cer_detail": {
+            "substitutions": 0,
+            "deletions": 0,
+            "insertions": 0,
+            "hits": 35,
+            "ref_chars": 35
+          },
+          "formatted_cer_detail": {
+            "substitutions": 0,
+            "deletions": 0,
+            "insertions": 0,
+            "hits": 35,
+            "ref_chars": 35
+          },
+          "api_latency_ms": 377.96,
+          "total_elapsed_ms": 377.97,
+          "retries": 0,
+          "status": "success",
+          "error": null
+        },
+        {
+          "id": "clean_en_002",
+          "category": "clean_english",
+          "source": "",
+          "tags": [
+            "clean",
+            "banking",
+            "english",
+            "numbers"
+          ],
+          "language": "en-IN",
+          "detected_language": "en-IN",
+          "audio_path": "/Users/mac/Documents/Gnani/gnani-speech-eval/data/asr/audio/clean_en_002.wav",
+          "audio_duration_sec": 2.88,
+          "reference": "please transfer five thousand rupees to my savings account",
+          "reference_formatted": "please transfer 5,000 rupees to my savings account",
+          "hypothesis": "Transfer 5,000 rupees to my savings account.",
+          "wer": 0.3333,
+          "cer": 0.36,
+          "formatted_wer": 0.125,
+          "formatted_cer": 0.1429,
+          "wer_detail": {
+            "substitutions": 1,
+            "deletions": 2,
+            "insertions": 0,
+            "hits": 6,
+            "ref_words": 9
+          },
+          "formatted_wer_detail": {
+            "substitutions": 0,
+            "deletions": 1,
+            "insertions": 0,
+            "hits": 7,
+            "ref_words": 8
+          },
+          "cer_detail": {
+            "substitutions": 4,
+            "deletions": 14,
+            "insertions": 0,
+            "hits": 32,
+            "ref_chars": 50
+          },
+          "formatted_cer_detail": {
+            "substitutions": 0,
+            "deletions": 6,
+            "insertions": 0,
+            "hits": 36,
+            "ref_chars": 42
+          },
+          "api_latency_ms": 233.3,
+          "total_elapsed_ms": 233.31,
+          "retries": 0,
+          "status": "success",
+          "error": null
+        },
+        {
+          "id": "clean_en_003",
+          "category": "clean_english",
+          "source": "",
+          "tags": [
+            "clean",
+            "healthcare",
+            "english",
+            "proper_noun"
+          ],
+          "language": "en-IN",
+          "detected_language": "en-IN",
+          "audio_path": "/Users/mac/Documents/Gnani/gnani-speech-eval/data/asr/audio/clean_en_003.wav",
+          "audio_duration_sec": 3.04,
+          "reference": "i would like to book an appointment with doctor sharma for tomorrow morning",
+          "reference_formatted": "i would like to book an appointment with doctor sharma for tomorrow morning",
+          "hypothesis": "I would like to book an appointment with Doctor Sharma for tomorrow morning.",
+          "wer": 0.0,
+          "cer": 0.0,
+          "formatted_wer": 0.0,
+          "formatted_cer": 0.0,
+          "wer_detail": {
+            "substitutions": 0,
+            "deletions": 0,
+            "insertions": 0,
+            "hits": 13,
+            "ref_words": 13
+          },
+          "formatted_wer_detail": {
+            "substitutions": 0,
+            "deletions": 0,
+            "insertions": 0,
+            "hits": 13,
+            "ref_words": 13
+          },
+          "cer_detail": {
+            "substitutions": 0,
+            "deletions": 0,
+            "insertions": 0,
+            "hits": 63,
+            "ref_chars": 63
+          },
+          "formatted_cer_detail": {
+            "substitutions": 0,
+            "deletions": 0,
+            "insertions": 0,
+            "hits": 63,
+            "ref_chars": 63
+          },
+          "api_latency_ms": 325.8,
+          "total_elapsed_ms": 325.81,
+          "retries": 0,
+          "status": "success",
+          "error": null
+        },
+        {
+          "id": "clean_hi_001",
+          "category": "clean_hindi",
+          "source": "",
+          "tags": [
+            "clean",
+            "hindi",
+            "banking"
+          ],
+          "language": "hi-IN",
+          "detected_language": "hi-IN",
+          "audio_path": "/Users/mac/Documents/Gnani/gnani-speech-eval/data/asr/audio/clean_hi_001.wav",
+          "audio_duration_sec": 2.72,
+          "reference": "नमस्ते मैं अपना बैलेंस जानना चाहता हूँ",
+          "reference_formatted": "नमस्ते मैं अपना balance जानना चाहता हूँ",
+          "hypothesis": "नमस्ते, मैं अपना balance जानना चाहता हूँ।",
+          "wer": 0.1429,
+          "cer": 0.2188,
+          "formatted_wer": 0.0,
+          "formatted_cer": 0.0,
+          "wer_detail": {
+            "substitutions": 1,
+            "deletions": 0,
+            "insertions": 0,
+            "hits": 6,
+            "ref_words": 7
+          },
+          "formatted_wer_detail": {
+            "substitutions": 0,
+            "deletions": 0,
+            "insertions": 0,
+            "hits": 7,
+            "ref_words": 7
+          },
+          "cer_detail": {
+            "substitutions": 6,
+            "deletions": 0,
+            "insertions": 1,
+            "hits": 26,
+            "ref_chars": 32
+          },
+          "formatted_cer_detail": {
+            "substitutions": 0,
+            "deletions": 0,
+            "insertions": 0,
+            "hits": 33,
+            "ref_chars": 33
+          },
+          "api_latency_ms": 323.93,
+          "total_elapsed_ms": 323.94,
+          "retries": 0,
+          "status": "success",
+          "error": null
+        },
+        {
+          "id": "clean_hi_002",
+          "category": "clean_hindi",
+          "source": "",
+          "tags": [
+            "clean",
+            "hindi",
+            "government"
+          ],
+          "language": "hi-IN",
+          "detected_language": "hi-IN",
+          "audio_path": "/Users/mac/Documents/Gnani/gnani-speech-eval/data/asr/audio/clean_hi_002.wav",
+          "audio_duration_sec": 2.24,
+          "reference": "कृपया मेरा आधार नंबर से लिंक करें",
+          "reference_formatted": "कृपया मेरा आधार नंबर से लिंक करें",
+          "hypothesis": "कृपया मेरा आधार नंबर से लिंक करें।",
+          "wer": 0.0,
+          "cer": 0.0,
+          "formatted_wer": 0.0,
+          "formatted_cer": 0.0,
+          "wer_detail": {
+            "substitutions": 0,
+            "deletions": 0,
+            "insertions": 0,
+            "hits": 7,
+            "ref_words": 7
+          },
+          "formatted_wer_detail": {
+            "substitutions": 0,
+            "deletions": 0,
+            "insertions": 0,
+            "hits": 7,
+            "ref_words": 7
+          },
+          "cer_detail": {
+            "substitutions": 0,
+            "deletions": 0,
+            "insertions": 0,
+            "hits": 27,
+            "ref_chars": 27
+          },
+          "formatted_cer_detail": {
+            "substitutions": 0,
+            "deletions": 0,
+            "insertions": 0,
+            "hits": 27,
+            "ref_chars": 27
+          },
+          "api_latency_ms": 243.61,
+          "total_elapsed_ms": 243.62,
+          "retries": 0,
+          "status": "success",
+          "error": null
+        },
+        {
+          "id": "clean_hi_003",
+          "category": "clean_hindi",
+          "source": "",
+          "tags": [
+            "clean",
+            "hindi",
+            "travel",
+            "numbers"
+          ],
+          "language": "hi-IN",
+          "detected_language": "hi-IN",
+          "audio_path": "/Users/mac/Documents/Gnani/gnani-speech-eval/data/asr/audio/clean_hi_003.wav",
+          "audio_duration_sec": 2.4,
+          "reference": "मुझे कल सुबह दस बजे की फ्लाइट चाहिए",
+          "reference_formatted": "मुझे कल सुबह 10 बजे की फ्लाइट चाहिए",
+          "hypothesis": "मुझे कल सुबह दस बजे की फ्लाइट चाहिए।",
+          "wer": 0.0,
+          "cer": 0.0,
+          "formatted_wer": 0.0,
+          "formatted_cer": 0.0,
+          "wer_detail": {
+            "substitutions": 0,
+            "deletions": 0,
+            "insertions": 0,
+            "hits": 8,
+            "ref_words": 8
+          },
+          "formatted_wer_detail": {
+            "substitutions": 0,
+            "deletions": 0,
+            "insertions": 0,
+            "hits": 8,
+            "ref_words": 8
+          },
+          "cer_detail": {
+            "substitutions": 0,
+            "deletions": 0,
+            "insertions": 0,
+            "hits": 28,
+            "ref_chars": 28
+          },
+          "formatted_cer_detail": {
+            "substitutions": 0,
+            "deletions": 0,
+            "insertions": 0,
+            "hits": 28,
+            "ref_chars": 28
+          },
+          "api_latency_ms": 321.75,
+          "total_elapsed_ms": 321.76,
+          "retries": 0,
+          "status": "success",
+          "error": null
+        },
+        {
+          "id": "noisy_en_001",
+          "category": "noisy_audio",
+          "source": "",
+          "tags": [
+            "noisy",
+            "english",
+            "alphanumeric",
+            "insurance"
+          ],
+          "language": "en-IN",
+          "detected_language": "en-IN",
+          "audio_path": "/Users/mac/Documents/Gnani/gnani-speech-eval/data/asr/audio/noisy_en_001.wav",
+          "audio_duration_sec": 3.84,
+          "reference": "my policy number is alpha bravo charlie one two three four five",
+          "reference_formatted": "my policy number is alpha bravo charlie 12345",
+          "hypothesis": "My policy number is Alpha Bravo Charlie 12345.",
+          "wer": 0.4167,
+          "cer": 0.3654,
+          "formatted_wer": 0.0,
+          "formatted_cer": 0.0,
+          "wer_detail": {
+            "substitutions": 1,
+            "deletions": 4,
+            "insertions": 0,
+            "hits": 7,
+            "ref_words": 12
+          },
+          "formatted_wer_detail": {
+            "substitutions": 0,
+            "deletions": 0,
+            "insertions": 0,
+            "hits": 8,
+            "ref_words": 8
+          },
+          "cer_detail": {
+            "substitutions": 5,
+            "deletions": 14,
+            "insertions": 0,
+            "hits": 33,
+            "ref_chars": 52
+          },
+          "formatted_cer_detail": {
+            "substitutions": 0,
+            "deletions": 0,
+            "insertions": 0,
+            "hits": 38,
+            "ref_chars": 38
+          },
+          "api_latency_ms": 252.27,
+          "total_elapsed_ms": 252.29,
+          "retries": 0,
+          "status": "success",
+          "error": null
+        },
+        {
+          "id": "noisy_en_002",
+          "category": "noisy_audio",
+          "source": "",
+          "tags": [
+            "noisy",
+            "english",
+            "ambient_noise",
+            "travel"
+          ],
+          "language": "en-IN",
+          "detected_language": "en-IN",
+          "audio_path": "/Users/mac/Documents/Gnani/gnani-speech-eval/data/asr/audio/noisy_en_002.wav",
+          "audio_duration_sec": 2.72,
+          "reference": "i am calling from the airport and my flight is delayed",
+          "reference_formatted": "i am calling from the airport and my flight is delayed",
+          "hypothesis": "I am calling from the airport and my flight is delayed.",
+          "wer": 0.0,
+          "cer": 0.0,
+          "formatted_wer": 0.0,
+          "formatted_cer": 0.0,
+          "wer_detail": {
+            "substitutions": 0,
+            "deletions": 0,
+            "insertions": 0,
+            "hits": 11,
+            "ref_words": 11
+          },
+          "formatted_wer_detail": {
+            "substitutions": 0,
+            "deletions": 0,
+            "insertions": 0,
+            "hits": 11,
+            "ref_words": 11
+          },
+          "cer_detail": {
+            "substitutions": 0,
+            "deletions": 0,
+            "insertions": 0,
+            "hits": 44,
+            "ref_chars": 44
+          },
+          "formatted_cer_detail": {
+            "substitutions": 0,
+            "deletions": 0,
+            "insertions": 0,
+            "hits": 44,
+            "ref_chars": 44
+          },
+          "api_latency_ms": 437.06,
+          "total_elapsed_ms": 437.07,
+          "retries": 0,
+          "status": "success",
+          "error": null
+        },
+        {
+          "id": "noisy_hi_001",
+          "category": "noisy_audio",
+          "source": "",
+          "tags": [
+            "noisy",
+            "hindi",
+            "street_noise"
+          ],
+          "language": "hi-IN",
+          "detected_language": "hi-IN",
+          "audio_path": "/Users/mac/Documents/Gnani/gnani-speech-eval/data/asr/audio/noisy_hi_001.wav",
+          "audio_duration_sec": 2.56,
+          "reference": "हाँ मैं सड़क पर हूँ सुनाई नहीं दे रहा",
+          "reference_formatted": "हाँ मैं सड़क पर हूँ सुनाई नहीं दे रहा",
+          "hypothesis": "हाँ, मैं सड़क पर हूँ, सुनाई नहीं दे रहा।",
+          "wer": 0.0,
+          "cer": 0.0,
+          "formatted_wer": 0.0,
+          "formatted_cer": 0.0,
+          "wer_detail": {
+            "substitutions": 0,
+            "deletions": 0,
+            "insertions": 0,
+            "hits": 9,
+            "ref_words": 9
+          },
+          "formatted_wer_detail": {
+            "substitutions": 0,
+            "deletions": 0,
+            "insertions": 0,
+            "hits": 9,
+            "ref_words": 9
+          },
+          "cer_detail": {
+            "substitutions": 0,
+            "deletions": 0,
+            "insertions": 0,
+            "hits": 29,
+            "ref_chars": 29
+          },
+          "formatted_cer_detail": {
+            "substitutions": 0,
+            "deletions": 0,
+            "insertions": 0,
+            "hits": 29,
+            "ref_chars": 29
+          },
+          "api_latency_ms": 481.7,
+          "total_elapsed_ms": 481.71,
+          "retries": 0,
+          "status": "success",
+          "error": null
+        },
+        {
+          "id": "telephony_en_001",
+          "category": "telephony",
+          "source": "",
+          "tags": [
+            "telephony",
+            "8khz",
+            "english",
+            "banking"
+          ],
+          "language": "en-IN",
+          "detected_language": "en-IN",
+          "audio_path": "/Users/mac/Documents/Gnani/gnani-speech-eval/data/asr/audio/telephony_en_001.wav",
+          "audio_duration_sec": 1.76,
+          "reference": "can you please repeat your account number",
+          "reference_formatted": "can you please repeat your account number",
+          "hypothesis": "Can you please repeat your account number?",
+          "wer": 0.0,
+          "cer": 0.0,
+          "formatted_wer": 0.0,
+          "formatted_cer": 0.0,
+          "wer_detail": {
+            "substitutions": 0,
+            "deletions": 0,
+            "insertions": 0,
+            "hits": 7,
+            "ref_words": 7
+          },
+          "formatted_wer_detail": {
+            "substitutions": 0,
+            "deletions": 0,
+            "insertions": 0,
+            "hits": 7,
+            "ref_words": 7
+          },
+          "cer_detail": {
+            "substitutions": 0,
+            "deletions": 0,
+            "insertions": 0,
+            "hits": 35,
+            "ref_chars": 35
+          },
+          "formatted_cer_detail": {
+            "substitutions": 0,
+            "deletions": 0,
+            "insertions": 0,
+            "hits": 35,
+            "ref_chars": 35
+          },
+          "api_latency_ms": 218.9,
+          "total_elapsed_ms": 218.91,
+          "retries": 0,
+          "status": "success",
+          "error": null
+        },
+        {
+          "id": "telephony_hi_001",
+          "category": "telephony",
+          "source": "",
+          "tags": [
+            "telephony",
+            "8khz",
+            "hindi",
+            "ivr"
+          ],
+          "language": "hi-IN",
+          "detected_language": "hi-IN",
+          "audio_path": "/Users/mac/Documents/Gnani/gnani-speech-eval/data/asr/audio/telephony_hi_001.wav",
+          "audio_duration_sec": 3.2,
+          "reference": "आपका कॉल हमारे लिए महत्वपूर्ण है कृपया प्रतीक्षा करें",
+          "reference_formatted": "आपका call हमारे लिए महत्वपूर्ण है कृपया प्रतीक्षा करें",
+          "hypothesis": "आपका call हमारे लिए महत्वपूर्ण है, कृपया प्रतीक्षा करें।",
+          "wer": 0.1111,
+          "cer": 0.0889,
+          "formatted_wer": 0.0,
+          "formatted_cer": 0.0,
+          "wer_detail": {
+            "substitutions": 1,
+            "deletions": 0,
+            "insertions": 0,
+            "hits": 8,
+            "ref_words": 9
+          },
+          "formatted_wer_detail": {
+            "substitutions": 0,
+            "deletions": 0,
+            "insertions": 0,
+            "hits": 9,
+            "ref_words": 9
+          },
+          "cer_detail": {
+            "substitutions": 3,
+            "deletions": 0,
+            "insertions": 1,
+            "hits": 42,
+            "ref_chars": 45
+          },
+          "formatted_cer_detail": {
+            "substitutions": 0,
+            "deletions": 0,
+            "insertions": 0,
+            "hits": 46,
+            "ref_chars": 46
+          },
+          "api_latency_ms": 409.88,
+          "total_elapsed_ms": 409.88,
+          "retries": 0,
+          "status": "success",
+          "error": null
+        },
+        {
+          "id": "numbers_en_001",
+          "category": "numbers_and_entities",
+          "source": "",
+          "tags": [
+            "numbers",
+            "currency",
+            "indian_format",
+            "english"
+          ],
+          "language": "en-IN",
+          "detected_language": "en-IN",
+          "audio_path": "/Users/mac/Documents/Gnani/gnani-speech-eval/data/asr/audio/numbers_en_001.wav",
+          "audio_duration_sec": 4.32,
+          "reference": "the total amount is one lakh twenty three thousand four hundred and fifty six rupees",
+          "reference_formatted": "the total amount is 1,23,456 rupees",
+          "hypothesis": "The total amount is 1,23,456 rupees.",
+          "wer": 0.6667,
+          "cer": 0.6857,
+          "formatted_wer": 0.0,
+          "formatted_cer": 0.0,
+          "wer_detail": {
+            "substitutions": 1,
+            "deletions": 9,
+            "insertions": 0,
+            "hits": 5,
+            "ref_words": 15
+          },
+          "formatted_wer_detail": {
+            "substitutions": 0,
+            "deletions": 0,
+            "insertions": 0,
+            "hits": 6,
+            "ref_words": 6
+          },
+          "cer_detail": {
+            "substitutions": 6,
+            "deletions": 42,
+            "insertions": 0,
+            "hits": 22,
+            "ref_chars": 70
+          },
+          "formatted_cer_detail": {
+            "substitutions": 0,
+            "deletions": 0,
+            "insertions": 0,
+            "hits": 28,
+            "ref_chars": 28
+          },
+          "api_latency_ms": 275.93,
+          "total_elapsed_ms": 275.94,
+          "retries": 0,
+          "status": "success",
+          "error": null
+        },
+        {
+          "id": "numbers_en_002",
+          "category": "numbers_and_entities",
+          "source": "",
+          "tags": [
+            "numbers",
+            "phone_number",
+            "english"
+          ],
+          "language": "en-IN",
+          "detected_language": "en-IN",
+          "audio_path": "/Users/mac/Documents/Gnani/gnani-speech-eval/data/asr/audio/numbers_en_002.wav",
+          "audio_duration_sec": 4.32,
+          "reference": "my mobile number is nine eight seven six five four three two one zero",
+          "reference_formatted": "my mobile number is 9876543210",
+          "hypothesis": "My mobile number is 9876543210.",
+          "wer": 0.7143,
+          "cer": 0.7143,
+          "formatted_wer": 0.0,
+          "formatted_cer": 0.0,
+          "wer_detail": {
+            "substitutions": 1,
+            "deletions": 9,
+            "insertions": 0,
+            "hits": 4,
+            "ref_words": 14
+          },
+          "formatted_wer_detail": {
+            "substitutions": 0,
+            "deletions": 0,
+            "insertions": 0,
+            "hits": 5,
+            "ref_words": 5
+          },
+          "cer_detail": {
+            "substitutions": 10,
+            "deletions": 30,
+            "insertions": 0,
+            "hits": 16,
+            "ref_chars": 56
+          },
+          "formatted_cer_detail": {
+            "substitutions": 0,
+            "deletions": 0,
+            "insertions": 0,
+            "hits": 26,
+            "ref_chars": 26
+          },
+          "api_latency_ms": 324.01,
+          "total_elapsed_ms": 324.02,
+          "retries": 0,
+          "status": "success",
+          "error": null
+        },
+        {
+          "id": "numbers_hi_001",
+          "category": "numbers_and_entities",
+          "source": "",
+          "tags": [
+            "numbers",
+            "currency",
+            "hindi"
+          ],
+          "language": "hi-IN",
+          "detected_language": "hi-IN",
+          "audio_path": "/Users/mac/Documents/Gnani/gnani-speech-eval/data/asr/audio/numbers_hi_001.wav",
+          "audio_duration_sec": 3.04,
+          "reference": "कुल राशि पाँच लाख बहत्तर हज़ार तीन सौ रुपये है",
+          "reference_formatted": "कुल राशि 5,72,300 रुपये है",
+          "hypothesis": "कुल राशि 5,72,300 रुपये है।",
+          "wer": 0.6,
+          "cer": 0.6216,
+          "formatted_wer": 0.0,
+          "formatted_cer": 0.0,
+          "wer_detail": {
+            "substitutions": 1,
+            "deletions": 5,
+            "insertions": 0,
+            "hits": 4,
+            "ref_words": 10
+          },
+          "formatted_wer_detail": {
+            "substitutions": 0,
+            "deletions": 0,
+            "insertions": 0,
+            "hits": 5,
+            "ref_words": 5
+          },
+          "cer_detail": {
+            "substitutions": 6,
+            "deletions": 17,
+            "insertions": 0,
+            "hits": 14,
+            "ref_chars": 37
+          },
+          "formatted_cer_detail": {
+            "substitutions": 0,
+            "deletions": 0,
+            "insertions": 0,
+            "hits": 20,
+            "ref_chars": 20
+          },
+          "api_latency_ms": 464.76,
+          "total_elapsed_ms": 464.77,
+          "retries": 0,
+          "status": "success",
+          "error": null
+        },
+        {
+          "id": "codemix_001",
+          "category": "code_switching",
+          "source": "",
+          "tags": [
+            "code_switch",
+            "hinglish",
+            "banking"
+          ],
+          "language": "hi-IN",
+          "detected_language": "hi-IN",
+          "audio_path": "/Users/mac/Documents/Gnani/gnani-speech-eval/data/asr/audio/codemix_001.wav",
+          "audio_duration_sec": 2.24,
+          "reference": "मुझे अपना account balance check करना है",
+          "reference_formatted": "मुझे अपना अकाउंट बैलेंस चेक करना है",
+          "hypothesis": "मुझे अपना अकाउंट बैलेंस चेक करना है।",
+          "wer": 0.4286,
+          "cer": 0.5758,
+          "formatted_wer": 0.0,
+          "formatted_cer": 0.0,
+          "wer_detail": {
+            "substitutions": 3,
+            "deletions": 0,
+            "insertions": 0,
+            "hits": 4,
+            "ref_words": 7
+          },
+          "formatted_wer_detail": {
+            "substitutions": 0,
+            "deletions": 0,
+            "insertions": 0,
+            "hits": 7,
+            "ref_words": 7
+          },
+          "cer_detail": {
+            "substitutions": 15,
+            "deletions": 4,
+            "insertions": 0,
+            "hits": 14,
+            "ref_chars": 33
+          },
+          "formatted_cer_detail": {
+            "substitutions": 0,
+            "deletions": 0,
+            "insertions": 0,
+            "hits": 29,
+            "ref_chars": 29
+          },
+          "api_latency_ms": 329.76,
+          "total_elapsed_ms": 329.77,
+          "retries": 0,
+          "status": "success",
+          "error": null
+        },
+        {
+          "id": "codemix_002",
+          "category": "code_switching",
+          "source": "",
+          "tags": [
+            "code_switch",
+            "hinglish",
+            "banking"
+          ],
+          "language": "hi-IN",
+          "detected_language": "en-IN",
+          "audio_path": "/Users/mac/Documents/Gnani/gnani-speech-eval/data/asr/audio/codemix_002.wav",
+          "audio_duration_sec": 2.56,
+          "reference": "please mera last transaction ka detail bhejo",
+          "reference_formatted": "please mera last transaction ka detail bhejo",
+          "hypothesis": "Please mera last transaction ka detail bhejo.",
+          "wer": 0.0,
+          "cer": 0.0,
+          "formatted_wer": 0.0,
+          "formatted_cer": 0.0,
+          "wer_detail": {
+            "substitutions": 0,
+            "deletions": 0,
+            "insertions": 0,
+            "hits": 7,
+            "ref_words": 7
+          },
+          "formatted_wer_detail": {
+            "substitutions": 0,
+            "deletions": 0,
+            "insertions": 0,
+            "hits": 7,
+            "ref_words": 7
+          },
+          "cer_detail": {
+            "substitutions": 0,
+            "deletions": 0,
+            "insertions": 0,
+            "hits": 38,
+            "ref_chars": 38
+          },
+          "formatted_cer_detail": {
+            "substitutions": 0,
+            "deletions": 0,
+            "insertions": 0,
+            "hits": 38,
+            "ref_chars": 38
+          },
+          "api_latency_ms": 387.52,
+          "total_elapsed_ms": 387.53,
+          "retries": 0,
+          "status": "success",
+          "error": null
+        },
+        {
+          "id": "codemix_003",
+          "category": "code_switching",
+          "source": "",
+          "tags": [
+            "code_switch",
+            "hinglish",
+            "commerce"
+          ],
+          "language": "hi-IN",
+          "detected_language": "hi-IN",
+          "audio_path": "/Users/mac/Documents/Gnani/gnani-speech-eval/data/asr/audio/codemix_003.wav",
+          "audio_duration_sec": 3.36,
+          "reference": "yeh offer kab tak valid hai aur kya terms and conditions hain",
+          "reference_formatted": "यह offer कब तक valid है और क्या terms and conditions हैं",
+          "hypothesis": "यह offer कब तक valid है और क्या terms and conditions हैं।",
+          "wer": 0.5833,
+          "cer": 0.44,
+          "formatted_wer": 0.0,
+          "formatted_cer": 0.0,
+          "wer_detail": {
+            "substitutions": 7,
+            "deletions": 0,
+            "insertions": 0,
+            "hits": 5,
+            "ref_words": 12
+          },
+          "formatted_wer_detail": {
+            "substitutions": 0,
+            "deletions": 0,
+            "insertions": 0,
+            "hits": 12,
+            "ref_words": 12
+          },
+          "cer_detail": {
+            "substitutions": 17,
+            "deletions": 5,
+            "insertions": 0,
+            "hits": 28,
+            "ref_chars": 50
+          },
+          "formatted_cer_detail": {
+            "substitutions": 0,
+            "deletions": 0,
+            "insertions": 0,
+            "hits": 45,
+            "ref_chars": 45
+          },
+          "api_latency_ms": 409.97,
+          "total_elapsed_ms": 409.98,
+          "retries": 0,
+          "status": "success",
+          "error": null
+        },
+        {
+          "id": "accent_south_001",
+          "category": "accented_english",
+          "source": "",
+          "tags": [
+            "accent",
+            "south_indian",
+            "english",
+            "banking"
+          ],
+          "language": "en-IN",
+          "detected_language": "en-IN",
+          "audio_path": "/Users/mac/Documents/Gnani/gnani-speech-eval/data/asr/audio/accent_south_001.wav",
+          "audio_duration_sec": 2.88,
+          "reference": "i am not able to access my internet banking since morning",
+          "reference_formatted": "i am not able to access my internet banking since morning",
+          "hypothesis": "I am not able to access my internet banking since morning.",
+          "wer": 0.0,
+          "cer": 0.0,
+          "formatted_wer": 0.0,
+          "formatted_cer": 0.0,
+          "wer_detail": {
+            "substitutions": 0,
+            "deletions": 0,
+            "insertions": 0,
+            "hits": 11,
+            "ref_words": 11
+          },
+          "formatted_wer_detail": {
+            "substitutions": 0,
+            "deletions": 0,
+            "insertions": 0,
+            "hits": 11,
+            "ref_words": 11
+          },
+          "cer_detail": {
+            "substitutions": 0,
+            "deletions": 0,
+            "insertions": 0,
+            "hits": 47,
+            "ref_chars": 47
+          },
+          "formatted_cer_detail": {
+            "substitutions": 0,
+            "deletions": 0,
+            "insertions": 0,
+            "hits": 47,
+            "ref_chars": 47
+          },
+          "api_latency_ms": 374.91,
+          "total_elapsed_ms": 374.92,
+          "retries": 0,
+          "status": "success",
+          "error": null
+        },
+        {
+          "id": "accent_north_001",
+          "category": "accented_english",
+          "source": "",
+          "tags": [
+            "accent",
+            "north_indian",
+            "english",
+            "banking"
+          ],
+          "language": "en-IN",
+          "detected_language": "en-IN",
+          "audio_path": "/Users/mac/Documents/Gnani/gnani-speech-eval/data/asr/audio/accent_north_001.wav",
+          "audio_duration_sec": 2.24,
+          "reference": "what is the current fixed deposit interest rate",
+          "reference_formatted": "what is the current fixed deposit interest rate",
+          "hypothesis": "What is the current fixed deposit interest rate?",
+          "wer": 0.0,
+          "cer": 0.0,
+          "formatted_wer": 0.0,
+          "formatted_cer": 0.0,
+          "wer_detail": {
+            "substitutions": 0,
+            "deletions": 0,
+            "insertions": 0,
+            "hits": 8,
+            "ref_words": 8
+          },
+          "formatted_wer_detail": {
+            "substitutions": 0,
+            "deletions": 0,
+            "insertions": 0,
+            "hits": 8,
+            "ref_words": 8
+          },
+          "cer_detail": {
+            "substitutions": 0,
+            "deletions": 0,
+            "insertions": 0,
+            "hits": 40,
+            "ref_chars": 40
+          },
+          "formatted_cer_detail": {
+            "substitutions": 0,
+            "deletions": 0,
+            "insertions": 0,
+            "hits": 40,
+            "ref_chars": 40
+          },
+          "api_latency_ms": 277.0,
+          "total_elapsed_ms": 277.0,
+          "retries": 0,
+          "status": "success",
+          "error": null
+        },
+        {
+          "id": "domain_medical_001",
+          "category": "domain_specific",
+          "source": "",
+          "tags": [
+            "domain",
+            "medical",
+            "english",
+            "drug_name"
+          ],
+          "language": "en-IN",
+          "detected_language": "en-IN",
+          "audio_path": "/Users/mac/Documents/Gnani/gnani-speech-eval/data/asr/audio/domain_medical_001.wav",
+          "audio_duration_sec": 4.0,
+          "reference": "the patient was prescribed paracetamol five hundred milligrams twice daily",
+          "reference_formatted": "the patient was prescribed paracetamol 500mg twice daily",
+          "hypothesis": "The patient was prescribed paracetamol 500mg twice daily.",
+          "wer": 0.3,
+          "cer": 0.2923,
+          "formatted_wer": 0.0,
+          "formatted_cer": 0.0,
+          "wer_detail": {
+            "substitutions": 1,
+            "deletions": 2,
+            "insertions": 0,
+            "hits": 7,
+            "ref_words": 10
+          },
+          "formatted_wer_detail": {
+            "substitutions": 0,
+            "deletions": 0,
+            "insertions": 0,
+            "hits": 8,
+            "ref_words": 8
+          },
+          "cer_detail": {
+            "substitutions": 3,
+            "deletions": 16,
+            "insertions": 0,
+            "hits": 46,
+            "ref_chars": 65
+          },
+          "formatted_cer_detail": {
+            "substitutions": 0,
+            "deletions": 0,
+            "insertions": 0,
+            "hits": 49,
+            "ref_chars": 49
+          },
+          "api_latency_ms": 497.3,
+          "total_elapsed_ms": 497.31,
+          "retries": 0,
+          "status": "success",
+          "error": null
+        },
+        {
+          "id": "domain_legal_001",
+          "category": "domain_specific",
+          "source": "",
+          "tags": [
+            "domain",
+            "legal",
+            "english"
+          ],
+          "language": "en-IN",
+          "detected_language": "en-IN",
+          "audio_path": "/Users/mac/Documents/Gnani/gnani-speech-eval/data/asr/audio/domain_legal_001.wav",
+          "audio_duration_sec": 3.2,
+          "reference": "the affidavit must be notarised before submission to the magistrate",
+          "reference_formatted": "the affidavit must be notarized before submission to the magistrate",
+          "hypothesis": "The affidavit must be notarized before submission to the magistrate.",
+          "wer": 0.1,
+          "cer": 0.0172,
+          "formatted_wer": 0.0,
+          "formatted_cer": 0.0,
+          "wer_detail": {
+            "substitutions": 1,
+            "deletions": 0,
+            "insertions": 0,
+            "hits": 9,
+            "ref_words": 10
+          },
+          "formatted_wer_detail": {
+            "substitutions": 0,
+            "deletions": 0,
+            "insertions": 0,
+            "hits": 10,
+            "ref_words": 10
+          },
+          "cer_detail": {
+            "substitutions": 1,
+            "deletions": 0,
+            "insertions": 0,
+            "hits": 57,
+            "ref_chars": 58
+          },
+          "formatted_cer_detail": {
+            "substitutions": 0,
+            "deletions": 0,
+            "insertions": 0,
+            "hits": 58,
+            "ref_chars": 58
+          },
+          "api_latency_ms": 241.25,
+          "total_elapsed_ms": 241.26,
+          "retries": 0,
+          "status": "success",
+          "error": null
+        },
+        {
+          "id": "domain_tech_001",
+          "category": "domain_specific",
+          "source": "",
+          "tags": [
+            "domain",
+            "tech",
+            "english",
+            "abbreviations"
+          ],
+          "language": "en-IN",
+          "detected_language": "en-IN",
+          "audio_path": "/Users/mac/Documents/Gnani/gnani-speech-eval/data/asr/audio/domain_tech_001.wav",
+          "audio_duration_sec": 3.68,
+          "reference": "deploy the kubernetes cluster on the g c p us east one region",
+          "reference_formatted": "deploy the kubernetes cluster on the gcp us east 1 region",
+          "hypothesis": "Deploy the Kubernetes cluster on the GCP US East 1 region.",
+          "wer": 0.3077,
+          "cer": 0.0612,
+          "formatted_wer": 0.0,
+          "formatted_cer": 0.0,
+          "wer_detail": {
+            "substitutions": 2,
+            "deletions": 2,
+            "insertions": 0,
+            "hits": 9,
+            "ref_words": 13
+          },
+          "formatted_wer_detail": {
+            "substitutions": 0,
+            "deletions": 0,
+            "insertions": 0,
+            "hits": 11,
+            "ref_words": 11
+          },
+          "cer_detail": {
+            "substitutions": 1,
+            "deletions": 2,
+            "insertions": 0,
+            "hits": 46,
+            "ref_chars": 49
+          },
+          "formatted_cer_detail": {
+            "substitutions": 0,
+            "deletions": 0,
+            "insertions": 0,
+            "hits": 47,
+            "ref_chars": 47
+          },
+          "api_latency_ms": 377.63,
+          "total_elapsed_ms": 377.65,
+          "retries": 0,
+          "status": "success",
+          "error": null
+        },
+        {
+          "id": "long_en_001",
+          "category": "long_utterance",
+          "source": "",
+          "tags": [
+            "long",
+            "english",
+            "banking",
+            "complex"
+          ],
+          "language": "en-IN",
+          "detected_language": "en-IN",
+          "audio_path": "/Users/mac/Documents/Gnani/gnani-speech-eval/data/asr/audio/long_en_001.wav",
+          "audio_duration_sec": 8.8,
+          "reference": "good afternoon i am calling to enquire about the home loan that i had applied for last month and i wanted to know the current status of my application and when i can expect the disbursement",
+          "reference_formatted": "good afternoon i am calling to inquire about the home loan that i had applied for last month and i wanted to know the current status of my application and when i can expect the disbursement",
+          "hypothesis": "Good afternoon. I am calling to inquire about the home loan that I had applied for last month, and I wanted to know the current status of my application and when I can expect the disbursement.",
+          "wer": 0.0278,
+          "cer": 0.0065,
+          "formatted_wer": 0.0,
+          "formatted_cer": 0.0,
+          "wer_detail": {
+            "substitutions": 1,
+            "deletions": 0,
+            "insertions": 0,
+            "hits": 35,
+            "ref_words": 36
+          },
+          "formatted_wer_detail": {
+            "substitutions": 0,
+            "deletions": 0,
+            "insertions": 0,
+            "hits": 36,
+            "ref_words": 36
+          },
+          "cer_detail": {
+            "substitutions": 1,
+            "deletions": 0,
+            "insertions": 0,
+            "hits": 153,
+            "ref_chars": 154
+          },
+          "formatted_cer_detail": {
+            "substitutions": 0,
+            "deletions": 0,
+            "insertions": 0,
+            "hits": 154,
+            "ref_chars": 154
+          },
+          "api_latency_ms": 546.52,
+          "total_elapsed_ms": 546.53,
+          "retries": 0,
+          "status": "success",
+          "error": null
+        },
+        {
+          "id": "long_hi_001",
+          "category": "long_utterance",
+          "source": "",
+          "tags": [
+            "long",
+            "hindi",
+            "banking",
+            "complex"
+          ],
+          "language": "hi-IN",
+          "detected_language": "hi-IN",
+          "audio_path": "/Users/mac/Documents/Gnani/gnani-speech-eval/data/asr/audio/long_hi_001.wav",
+          "audio_duration_sec": 7.04,
+          "reference": "नमस्ते मैं पिछले महीने जो होम लोन के लिए अप्लाई किया था उसका स्टेटस जानना चाहता हूँ कृपया मुझे बताएं कि कब तक प्रोसेस होगा",
+          "reference_formatted": "नमस्ते मैं पिछले महीने जो home loan के लिए apply किया था उसका status जानना चाहता हूँ कृपया मुझे बताएं कि कब तक process होगा",
+          "hypothesis": "नमस्ते, मैं पिछले महीने जो home loan के लिए apply किया था उसका status जानना चाहता हूँ, कृपया मुझे बताएं कि कब तक process होगा।",
+          "wer": 0.2,
+          "cer": 0.2755,
+          "formatted_wer": 0.0,
+          "formatted_cer": 0.0,
+          "wer_detail": {
+            "substitutions": 5,
+            "deletions": 0,
+            "insertions": 0,
+            "hits": 20,
+            "ref_words": 25
+          },
+          "formatted_wer_detail": {
+            "substitutions": 0,
+            "deletions": 0,
+            "insertions": 0,
+            "hits": 25,
+            "ref_words": 25
+          },
+          "cer_detail": {
+            "substitutions": 24,
+            "deletions": 1,
+            "insertions": 2,
+            "hits": 73,
+            "ref_chars": 98
+          },
+          "formatted_cer_detail": {
+            "substitutions": 0,
+            "deletions": 0,
+            "insertions": 0,
+            "hits": 99,
+            "ref_chars": 99
+          },
+          "api_latency_ms": 417.9,
+          "total_elapsed_ms": 417.91,
+          "retries": 0,
+          "status": "success",
+          "error": null
+        },
+        {
+          "id": "short_en_001",
+          "category": "short_utterance",
+          "source": "",
+          "tags": [
+            "short",
+            "english",
+            "single_word"
+          ],
+          "language": "en-IN",
+          "detected_language": "en-IN",
+          "audio_path": "/Users/mac/Documents/Gnani/gnani-speech-eval/data/asr/audio/short_en_001.wav",
+          "audio_duration_sec": 0.48,
+          "reference": "yes",
+          "reference_formatted": "yes",
+          "hypothesis": "Yes.",
+          "wer": 0.0,
+          "cer": 0.0,
+          "formatted_wer": 0.0,
+          "formatted_cer": 0.0,
+          "wer_detail": {
+            "substitutions": 0,
+            "deletions": 0,
+            "insertions": 0,
+            "hits": 1,
+            "ref_words": 1
+          },
+          "formatted_wer_detail": {
+            "substitutions": 0,
+            "deletions": 0,
+            "insertions": 0,
+            "hits": 1,
+            "ref_words": 1
+          },
+          "cer_detail": {
+            "substitutions": 0,
+            "deletions": 0,
+            "insertions": 0,
+            "hits": 3,
+            "ref_chars": 3
+          },
+          "formatted_cer_detail": {
+            "substitutions": 0,
+            "deletions": 0,
+            "insertions": 0,
+            "hits": 3,
+            "ref_chars": 3
+          },
+          "api_latency_ms": 187.4,
+          "total_elapsed_ms": 187.41,
+          "retries": 0,
+          "status": "success",
+          "error": null
+        },
+        {
+          "id": "short_en_002",
+          "category": "short_utterance",
+          "source": "",
+          "tags": [
+            "short",
+            "english",
+            "command"
+          ],
+          "language": "en-IN",
+          "detected_language": "en-IN",
+          "audio_path": "/Users/mac/Documents/Gnani/gnani-speech-eval/data/asr/audio/short_en_002.wav",
+          "audio_duration_sec": 0.96,
+          "reference": "no cancel it",
+          "reference_formatted": "no cancel it",
+          "hypothesis": "No cancel it",
+          "wer": 0.0,
+          "cer": 0.0,
+          "formatted_wer": 0.0,
+          "formatted_cer": 0.0,
+          "wer_detail": {
+            "substitutions": 0,
+            "deletions": 0,
+            "insertions": 0,
+            "hits": 3,
+            "ref_words": 3
+          },
+          "formatted_wer_detail": {
+            "substitutions": 0,
+            "deletions": 0,
+            "insertions": 0,
+            "hits": 3,
+            "ref_words": 3
+          },
+          "cer_detail": {
+            "substitutions": 0,
+            "deletions": 0,
+            "insertions": 0,
+            "hits": 10,
+            "ref_chars": 10
+          },
+          "formatted_cer_detail": {
+            "substitutions": 0,
+            "deletions": 0,
+            "insertions": 0,
+            "hits": 10,
+            "ref_chars": 10
+          },
+          "api_latency_ms": 184.16,
+          "total_elapsed_ms": 184.17,
+          "retries": 0,
+          "status": "success",
+          "error": null
+        },
+        {
+          "id": "short_hi_001",
+          "category": "short_utterance",
+          "source": "",
+          "tags": [
+            "short",
+            "hindi",
+            "single_word"
+          ],
+          "language": "hi-IN",
+          "detected_language": "hi-IN",
+          "audio_path": "/Users/mac/Documents/Gnani/gnani-speech-eval/data/asr/audio/short_hi_001.wav",
+          "audio_duration_sec": 0.64,
+          "reference": "हाँ",
+          "reference_formatted": "हाँ",
+          "hypothesis": "हाँ",
+          "wer": 0.0,
+          "cer": 0.0,
+          "formatted_wer": 0.0,
+          "formatted_cer": 0.0,
+          "wer_detail": {
+            "substitutions": 0,
+            "deletions": 0,
+            "insertions": 0,
+            "hits": 1,
+            "ref_words": 1
+          },
+          "formatted_wer_detail": {
+            "substitutions": 0,
+            "deletions": 0,
+            "insertions": 0,
+            "hits": 1,
+            "ref_words": 1
+          },
+          "cer_detail": {
+            "substitutions": 0,
+            "deletions": 0,
+            "insertions": 0,
+            "hits": 3,
+            "ref_chars": 3
+          },
+          "formatted_cer_detail": {
+            "substitutions": 0,
+            "deletions": 0,
+            "insertions": 0,
+            "hits": 3,
+            "ref_chars": 3
+          },
+          "api_latency_ms": 243.44,
+          "total_elapsed_ms": 243.5,
+          "retries": 0,
+          "status": "success",
+          "error": null
+        },
+        {
+          "id": "te_001",
+          "category": "regional_languages",
+          "source": "",
+          "tags": [
+            "telugu",
+            "regional",
+            "banking"
+          ],
+          "language": "te-IN",
+          "detected_language": "te-IN",
+          "audio_path": "/Users/mac/Documents/Gnani/gnani-speech-eval/data/asr/audio/te_001.wav",
+          "audio_duration_sec": 3.04,
+          "reference": "నమస్కారం నాకు నా ఖాతా వివరాలు కావాలి",
+          "reference_formatted": "నమస్కారం నాకు నా ఖాతా వివరాలు కావాలి",
+          "hypothesis": "నమస్కారం, నాకు నా ఖాతా వివరాలు కావాలి.",
+          "wer": 0.0,
+          "cer": 0.0,
+          "formatted_wer": 0.0,
+          "formatted_cer": 0.0,
+          "wer_detail": {
+            "substitutions": 0,
+            "deletions": 0,
+            "insertions": 0,
+            "hits": 6,
+            "ref_words": 6
+          },
+          "formatted_wer_detail": {
+            "substitutions": 0,
+            "deletions": 0,
+            "insertions": 0,
+            "hits": 6,
+            "ref_words": 6
+          },
+          "cer_detail": {
+            "substitutions": 0,
+            "deletions": 0,
+            "insertions": 0,
+            "hits": 31,
+            "ref_chars": 31
+          },
+          "formatted_cer_detail": {
+            "substitutions": 0,
+            "deletions": 0,
+            "insertions": 0,
+            "hits": 31,
+            "ref_chars": 31
+          },
+          "api_latency_ms": 420.51,
+          "total_elapsed_ms": 420.52,
+          "retries": 0,
+          "status": "success",
+          "error": null
+        },
+        {
+          "id": "ta_001",
+          "category": "regional_languages",
+          "source": "",
+          "tags": [
+            "tamil",
+            "regional",
+            "banking"
+          ],
+          "language": "ta-IN",
+          "detected_language": "ta-IN",
+          "audio_path": "/Users/mac/Documents/Gnani/gnani-speech-eval/data/asr/audio/ta_001.wav",
+          "audio_duration_sec": 2.56,
+          "reference": "வணக்கம் எனது கணக்கு விவரங்களை அனுப்புங்கள்",
+          "reference_formatted": "வணக்கம் எனது கணக்கு விவரங்களை அனுப்புங்கள்",
+          "hypothesis": "வணக்கம் எனது கணக்கு விவரங்களை அனுப்புங்கள்.",
+          "wer": 0.0,
+          "cer": 0.0,
+          "formatted_wer": 0.0,
+          "formatted_cer": 0.0,
+          "wer_detail": {
+            "substitutions": 0,
+            "deletions": 0,
+            "insertions": 0,
+            "hits": 5,
+            "ref_words": 5
+          },
+          "formatted_wer_detail": {
+            "substitutions": 0,
+            "deletions": 0,
+            "insertions": 0,
+            "hits": 5,
+            "ref_words": 5
+          },
+          "cer_detail": {
+            "substitutions": 0,
+            "deletions": 0,
+            "insertions": 0,
+            "hits": 38,
+            "ref_chars": 38
+          },
+          "formatted_cer_detail": {
+            "substitutions": 0,
+            "deletions": 0,
+            "insertions": 0,
+            "hits": 38,
+            "ref_chars": 38
+          },
+          "api_latency_ms": 349.93,
+          "total_elapsed_ms": 349.94,
+          "retries": 0,
+          "status": "success",
+          "error": null
+        },
+        {
+          "id": "bn_001",
+          "category": "regional_languages",
+          "source": "",
+          "tags": [
+            "bengali",
+            "regional",
+            "banking"
+          ],
+          "language": "bn-IN",
+          "detected_language": "bn-IN",
+          "audio_path": "/Users/mac/Documents/Gnani/gnani-speech-eval/data/asr/audio/bn_001.wav",
+          "audio_duration_sec": 2.56,
+          "reference": "আমার একাউন্ট ব্যালেন্স জানতে চাই",
+          "reference_formatted": "আমার একাউন্ট ব্যালেন্স জানতে চাই",
+          "hypothesis": "আমার একাউন্ট ব্যালেন্স জানতে চাই।",
+          "wer": 0.0,
+          "cer": 0.0,
+          "formatted_wer": 0.0,
+          "formatted_cer": 0.0,
+          "wer_detail": {
+            "substitutions": 0,
+            "deletions": 0,
+            "insertions": 0,
+            "hits": 5,
+            "ref_words": 5
+          },
+          "formatted_wer_detail": {
+            "substitutions": 0,
+            "deletions": 0,
+            "insertions": 0,
+            "hits": 5,
+            "ref_words": 5
+          },
+          "cer_detail": {
+            "substitutions": 0,
+            "deletions": 0,
+            "insertions": 0,
+            "hits": 28,
+            "ref_chars": 28
+          },
+          "formatted_cer_detail": {
+            "substitutions": 0,
+            "deletions": 0,
+            "insertions": 0,
+            "hits": 28,
+            "ref_chars": 28
+          },
+          "api_latency_ms": 375.15,
+          "total_elapsed_ms": 375.16,
+          "retries": 0,
+          "status": "success",
+          "error": null
+        }
+      ]
     }
-  ]
+  }
 }

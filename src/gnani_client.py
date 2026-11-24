@@ -68,9 +68,12 @@ class GnaniClient:
     def _post_with_retry(self, url: str, request_factory) -> tuple:
         """
         Execute a POST request with exponential backoff on transient failures.
-        Latency is measured strictly on the final attempt (excluding backoff sleeps).
+
+        Returns (response, final_attempt_latency_ms, total_elapsed_ms, attempts)
+        so retry overhead is never silently hidden in latency reporting.
         """
         last_exc = None
+        overall_start = time.time()
         for attempt in range(self.max_retries + 1):
             kwargs = request_factory()
             start_time = time.time()
@@ -89,7 +92,8 @@ class GnaniClient:
                 raise
 
             if response.status_code == 200:
-                return response, latency_ms
+                total_elapsed_ms = (time.time() - overall_start) * 1000
+                return response, latency_ms, total_elapsed_ms, attempt + 1
 
             if self._is_retryable_response(response) and attempt < self.max_retries:
                 delay = min(5.0, self.backoff_sec * (2 ** attempt)) * random.uniform(0.8, 1.2)
@@ -107,17 +111,20 @@ class GnaniClient:
         audio_path: str,
         language: str = "indic-auto",
         model: str = ASR_MODEL,
+        output_format: Optional[str] = None,
     ) -> Dict[str, Any]:
         """
         Transcribe an audio file using Prisma ASR.
 
         Args:
-            audio_path: Path to audio file (WAV, MP3, FLAC, OGG, etc.)
-            language:   Language code or 'indic-auto' for auto-detection
-            model:      Model version (default: prisma-v3.0)
+            audio_path:    Path to audio file (WAV, MP3, FLAC, OGG, etc.)
+            language:      Language code or 'indic-auto' for auto-detection
+            model:         Model version (default: prisma-v3.0)
+            output_format: Optional Prisma format ('verbatim', 'transcribe', 'codemix', 'transliterate')
 
         Returns:
-            Dict with keys: transcript, segments, language, latency_ms, etc.
+            Dict with keys: transcript, segments, language, latency_ms,
+            total_elapsed_ms, retries, etc.
         """
         audio_path = Path(audio_path)
         if not audio_path.exists():
@@ -128,8 +135,10 @@ class GnaniClient:
             "model": model,
             "language_code": language,
         }
+        if output_format:
+            data["format"] = output_format
 
-        response, latency_ms = self._post_with_retry(
+        response, latency_ms, total_elapsed_ms, attempts = self._post_with_retry(
             ASR_ENDPOINT,
             lambda: {
                 "files": {"audio_file": (audio_path.name, audio_bytes)},
@@ -146,6 +155,8 @@ class GnaniClient:
             "model": resp_json.get("model", model),
             "status": resp_json.get("status", "SUCCESS" if resp_json.get("success") else "UNKNOWN"),
             "latency_ms": round(latency_ms, 2),
+            "total_elapsed_ms": round(total_elapsed_ms, 2),
+            "retries": attempts - 1,
             "raw_response": resp_json,
         }
 
@@ -187,7 +198,7 @@ class GnaniClient:
             "speed": speed,
         }
 
-        response, latency_ms = self._post_with_retry(
+        response, latency_ms, total_elapsed_ms, attempts = self._post_with_retry(
             TTS_ENDPOINT,
             lambda: {"json": payload},
         )
@@ -204,6 +215,8 @@ class GnaniClient:
             "audio_bytes": audio_bytes,
             "audio_size_bytes": len(audio_bytes),
             "latency_ms": round(latency_ms, 2),
+            "total_elapsed_ms": round(total_elapsed_ms, 2),
+            "retries": attempts - 1,
             "voice": voice,
             "language": language,
             "model": model,
@@ -218,8 +231,6 @@ class GnaniClient:
             result["output_path"] = str(out)
 
         return result
-
-    # ── Health Check ───────────────────────────────────────────────
 
     @staticmethod
     def _wrap_pcm_as_wav(
@@ -251,14 +262,3 @@ class GnaniClient:
             data_size,
         )
         return header + pcm_data
-
-    def check_connection(self) -> bool:
-        """Quick check that the API key is valid and the service is up."""
-        try:
-            resp = self._session.get(
-                "https://api.vachana.ai",
-                timeout=10,
-            )
-            return resp.status_code < 500
-        except requests.RequestException:
-            return False

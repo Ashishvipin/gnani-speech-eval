@@ -1,91 +1,177 @@
 {
   "metadata": {
-    "timestamp": "2026-11-25T01:06:54.523527",
+    "timestamp": "2026-11-25T05:06:18.288049",
     "model": "timbre-v2.5",
-    "total_sentences": 28,
-    "successful": 27,
+    "latency_type": "full_response_http_ms (non-streaming)",
+    "total_sentences": 29,
+    "successful": 28,
     "failed": 1,
-    "roundtrip_asr_enabled": true
+    "repeats_per_sentence": 3,
+    "roundtrip_asr_enabled": true,
+    "independent_asr_status": "disabled"
   },
   "overall": {
-    "avg_quality_score": 88.0,
-    "avg_rtf": 0.3257,
-    "avg_latency_ms": 1501.84,
-    "min_latency_ms": 525.24,
-    "max_latency_ms": 7540.99
+    "num_sentences": 28,
+    "p50_latency_ms": 851.94,
+    "p95_latency_ms": 1321.47,
+    "avg_latency_ms": 907.88,
+    "p95_total_elapsed_ms": 1437.23,
+    "p50_rtf": 0.1713,
+    "p95_rtf": 0.2325,
+    "avg_rtf": 0.1737,
+    "avg_speaking_rate_wpm": 140.9,
+    "avg_silence_ratio": 0.2417,
+    "max_clipping_ratio": 0.0,
+    "avg_roundtrip_verbatim_wer": 0.2571,
+    "avg_roundtrip_formatted_wer": 0.0621,
+    "total_retries": 0,
+    "min_latency_ms": 484.76,
+    "max_latency_ms": 2133.92
   },
   "by_category": {
     "numbers": {
       "num_sentences": 4,
-      "avg_quality_score": 78.8,
-      "avg_rtf": 0.6547,
-      "avg_latency_ms": 2556.54,
-      "avg_speaking_rate_wpm": 90.3,
-      "avg_silence_ratio": 0.3458
+      "p50_latency_ms": 858.92,
+      "p95_latency_ms": 953.52,
+      "avg_latency_ms": 852.66,
+      "p95_total_elapsed_ms": 1139.06,
+      "p50_rtf": 0.1852,
+      "p95_rtf": 0.2165,
+      "avg_rtf": 0.1931,
+      "avg_speaking_rate_wpm": 91.1,
+      "avg_silence_ratio": 0.2358,
+      "max_clipping_ratio": 0.0,
+      "avg_roundtrip_verbatim_wer": 0.175,
+      "avg_roundtrip_formatted_wer": 0.0,
+      "total_retries": 0
     },
     "abbreviations": {
       "num_sentences": 4,
-      "avg_quality_score": 91.8,
-      "avg_rtf": 0.2399,
-      "avg_latency_ms": 1243.58,
+      "p50_latency_ms": 898.63,
+      "p95_latency_ms": 979.97,
+      "avg_latency_ms": 875.1,
+      "p95_total_elapsed_ms": 1065.17,
+      "p50_rtf": 0.1578,
+      "p95_rtf": 0.2253,
+      "avg_rtf": 0.1763,
       "avg_speaking_rate_wpm": 133.4,
-      "avg_silence_ratio": 0.3198
+      "avg_silence_ratio": 0.2186,
+      "max_clipping_ratio": 0.0,
+      "avg_roundtrip_verbatim_wer": 0.2824,
+      "avg_roundtrip_formatted_wer": 0.0,
+      "total_retries": 0
     },
     "code_switching": {
       "num_sentences": 3,
-      "avg_quality_score": 82.7,
-      "avg_rtf": 0.2595,
-      "avg_latency_ms": 1009.97,
-      "avg_speaking_rate_wpm": 179.7,
-      "avg_silence_ratio": 0.3486
+      "p50_latency_ms": 724.93,
+      "p95_latency_ms": 849.08,
+      "avg_latency_ms": 753.25,
+      "p95_total_elapsed_ms": 767.63,
+      "p50_rtf": 0.1618,
+      "p95_rtf": 0.2184,
+      "avg_rtf": 0.1827,
+      "avg_speaking_rate_wpm": 175.8,
+      "avg_silence_ratio": 0.2241,
+      "max_clipping_ratio": 0.0,
+      "avg_roundtrip_verbatim_wer": 0.5278,
+      "avg_roundtrip_formatted_wer": 0.1111,
+      "total_retries": 0
     },
     "long_form": {
       "num_sentences": 2,
-      "avg_quality_score": 96.5,
-      "avg_rtf": 0.1,
-      "avg_latency_ms": 2005.54,
-      "avg_speaking_rate_wpm": 149.1,
-      "avg_silence_ratio": 0.3547
+      "p50_latency_ms": 1691.37,
+      "p95_latency_ms": 1960.72,
+      "avg_latency_ms": 1691.37,
+      "p95_total_elapsed_ms": 2083.32,
+      "p50_rtf": 0.0822,
+      "p95_rtf": 0.0857,
+      "avg_rtf": 0.0822,
+      "avg_speaking_rate_wpm": 147.0,
+      "avg_silence_ratio": 0.2594,
+      "max_clipping_ratio": 0.0,
+      "avg_roundtrip_verbatim_wer": 0.2173,
+      "avg_roundtrip_formatted_wer": 0.0393,
+      "total_retries": 0
     },
     "tricky_pronunciation": {
       "num_sentences": 4,
-      "avg_quality_score": 92.5,
-      "avg_rtf": 0.5231,
-      "avg_latency_ms": 1852.34,
-      "avg_speaking_rate_wpm": 170.4,
-      "avg_silence_ratio": 0.2709
+      "p50_latency_ms": 727.12,
+      "p95_latency_ms": 935.55,
+      "avg_latency_ms": 765.34,
+      "p95_total_elapsed_ms": 944.87,
+      "p50_rtf": 0.1889,
+      "p95_rtf": 0.2134,
+      "avg_rtf": 0.1898,
+      "avg_speaking_rate_wpm": 167.4,
+      "avg_silence_ratio": 0.1965,
+      "max_clipping_ratio": 0.0,
+      "avg_roundtrip_verbatim_wer": 0.1147,
+      "avg_roundtrip_formatted_wer": 0.092,
+      "total_retries": 0
     },
     "punctuation_and_prosody": {
       "num_sentences": 2,
-      "avg_quality_score": 96.0,
-      "avg_rtf": 0.1611,
-      "avg_latency_ms": 876.65,
-      "avg_speaking_rate_wpm": 150.6,
-      "avg_silence_ratio": 0.4429
+      "p50_latency_ms": 945.54,
+      "p95_latency_ms": 1085.8,
+      "avg_latency_ms": 945.54,
+      "p95_total_elapsed_ms": 1208.35,
+      "p50_rtf": 0.1742,
+      "p95_rtf": 0.1761,
+      "avg_rtf": 0.1742,
+      "avg_speaking_rate_wpm": 147.3,
+      "avg_silence_ratio": 0.3857,
+      "max_clipping_ratio": 0.0,
+      "avg_roundtrip_verbatim_wer": 0.0909,
+      "avg_roundtrip_formatted_wer": 0.0,
+      "total_retries": 0
     },
     "special_formats": {
       "num_sentences": 3,
-      "avg_quality_score": 88.7,
-      "avg_rtf": 0.2653,
-      "avg_latency_ms": 1675.51,
-      "avg_speaking_rate_wpm": 110.0,
-      "avg_silence_ratio": 0.3296
+      "p50_latency_ms": 1073.23,
+      "p95_latency_ms": 1178.61,
+      "avg_latency_ms": 1031.82,
+      "p95_total_elapsed_ms": 1515.76,
+      "p50_rtf": 0.1625,
+      "p95_rtf": 0.1992,
+      "avg_rtf": 0.1662,
+      "avg_speaking_rate_wpm": 117.0,
+      "avg_silence_ratio": 0.2282,
+      "max_clipping_ratio": 0.0,
+      "avg_roundtrip_verbatim_wer": 0.3393,
+      "avg_roundtrip_formatted_wer": 0.2917,
+      "total_retries": 0
     },
     "regional_languages": {
-      "num_sentences": 2,
-      "avg_quality_score": 93.0,
-      "avg_rtf": 0.1926,
-      "avg_latency_ms": 737.5,
-      "avg_speaking_rate_wpm": 125.2,
-      "avg_silence_ratio": 0.2907
+      "num_sentences": 3,
+      "p50_latency_ms": 854.11,
+      "p95_latency_ms": 895.57,
+      "avg_latency_ms": 847.51,
+      "p95_total_elapsed_ms": 999.52,
+      "p50_rtf": 0.1705,
+      "p95_rtf": 0.1876,
+      "avg_rtf": 0.1634,
+      "avg_speaking_rate_wpm": 101.5,
+      "avg_silence_ratio": 0.2456,
+      "max_clipping_ratio": 0.0,
+      "avg_roundtrip_verbatim_wer": 0.4667,
+      "avg_roundtrip_formatted_wer": 0.0278,
+      "total_retries": 0
     },
     "edge_cases": {
       "num_sentences": 3,
-      "avg_quality_score": 79.3,
-      "avg_rtf": 0.2134,
-      "avg_latency_ms": 881.35,
-      "avg_speaking_rate_wpm": 206.8,
-      "avg_silence_ratio": 0.3476
+      "p50_latency_ms": 735.75,
+      "p95_latency_ms": 916.47,
+      "avg_latency_ms": 758.87,
+      "p95_total_elapsed_ms": 916.48,
+      "p50_rtf": 0.1888,
+      "p95_rtf": 0.2367,
+      "avg_rtf": 0.1927,
+      "avg_speaking_rate_wpm": 202.4,
+      "avg_silence_ratio": 0.2599,
+      "max_clipping_ratio": 0.0,
+      "avg_roundtrip_verbatim_wer": 0.0976,
+      "avg_roundtrip_formatted_wer": 0.0,
+      "total_retries": 0
     }
   },
   "per_sentence_results": [
@@ -98,33 +184,90 @@
         "indian_format"
       ],
       "text": "Your order total is ₹1,23,456.",
+      "roundtrip_reference": "Your order total is 1,23,456 rupees.",
       "language": "en-IN",
       "voice": "Kaveri",
       "status": "success",
-      "synth_latency_ms": 771.05,
+      "synth_latency_ms": 724.2,
+      "total_elapsed_ms": 1024.41,
+      "retries": 0,
       "audio_analysis": {
-        "audio_duration_sec": 4.0,
+        "audio_duration_sec": 4.16,
         "sample_rate": 48000,
-        "rtf": 0.1928,
-        "speaking_rate_wpm": 75.0,
-        "silence_ratio": 0.3421,
+        "rtf": 0.1811,
+        "rtf_with_retries": 0.2463,
+        "speaking_rate_wpm": 72.1,
+        "silence_ratio": 0.2319,
         "clipping_ratio": 0.0,
         "spectral": {
-          "spectral_centroid_hz": 2050.67,
-          "spectral_bandwidth_hz": 3142.62,
-          "low_band_energy": 0.34,
-          "mid_band_energy": 0.44,
-          "high_band_energy": 0.14
+          "spectral_centroid_hz": 2079.09,
+          "spectral_bandwidth_hz": 3149.66,
+          "low_band_energy": 0.36,
+          "mid_band_energy": 0.41,
+          "high_band_energy": 0.15
         }
       },
       "roundtrip_asr": {
         "asr_transcript": "Your order total is 1,23,456 rupees.",
-        "word_overlap": 1.0,
-        "asr_latency_ms": 409.5
+        "roundtrip_reference": "Your order total is 1,23,456 rupees.",
+        "verbatim_wer": 0.2,
+        "verbatim_cer": 0.2727,
+        "formatted_wer": 0.0,
+        "formatted_cer": 0.0,
+        "asr_latency_ms": 366.02,
+        "asr_retries": 0
       },
-      "quality_score": 80.0,
       "output_path": "/Users/mac/Documents/Gnani/gnani-speech-eval/data/tts/output/num_en_001.wav",
-      "error": null
+      "error": null,
+      "repeats_summary": {
+        "repeats_requested": 3,
+        "repeats_succeeded": 3,
+        "p50_latency_ms": 724.2,
+        "p95_latency_ms": 994.38,
+        "mean_latency_ms": 790.13,
+        "p95_total_elapsed_ms": 994.39,
+        "p50_rtf": 0.1811,
+        "p95_rtf": 0.2398,
+        "total_retries": 0,
+        "mean_roundtrip_formatted_wer": 0.0,
+        "all_roundtrip_transcripts": [
+          "Your order total is 1,23,456 rupees.",
+          "Your order total is 1,23,456 rupees.",
+          "Your order total is 1,23,456 rupees."
+        ]
+      },
+      "trials": [
+        {
+          "run": 1,
+          "status": "success",
+          "synth_latency_ms": 1024.4,
+          "total_elapsed_ms": 1024.41,
+          "retries": 0,
+          "rtf": 0.1811,
+          "roundtrip_asr_transcript": "Your order total is 1,23,456 rupees.",
+          "roundtrip_formatted_wer": 0.0
+        },
+        {
+          "run": 2,
+          "status": "success",
+          "synth_latency_ms": 621.79,
+          "total_elapsed_ms": 621.8,
+          "retries": 0,
+          "rtf": 0.1554,
+          "roundtrip_asr_transcript": "Your order total is 1,23,456 rupees.",
+          "roundtrip_formatted_wer": 0.0
+        },
+        {
+          "run": 3,
+          "status": "success",
+          "synth_latency_ms": 724.2,
+          "total_elapsed_ms": 724.21,
+          "retries": 0,
+          "rtf": 0.1811,
+          "roundtrip_asr_transcript": "Your order total is 1,23,456 rupees.",
+          "roundtrip_formatted_wer": 0.0
+        }
+      ]
     },
     {
       "id": "num_en_002",
@@ -134,33 +277,90 @@
         "phone"
       ],
       "text": "Please call us at 1800-123-4567 for assistance.",
+      "roundtrip_reference": "Please call us at 18001234567 for assistance.",
       "language": "en-IN",
       "voice": "Kaveri",
       "status": "success",
-      "synth_latency_ms": 740.5,
+      "synth_latency_ms": 968.6,
+      "total_elapsed_ms": 718.51,
+      "retries": 0,
       "audio_analysis": {
-        "audio_duration_sec": 5.28,
+        "audio_duration_sec": 5.12,
         "sample_rate": 48000,
-        "rtf": 0.1402,
-        "speaking_rate_wpm": 79.5,
-        "silence_ratio": 0.3516,
+        "rtf": 0.1892,
+        "rtf_with_retries": 0.1403,
+        "speaking_rate_wpm": 82.0,
+        "silence_ratio": 0.2745,
         "clipping_ratio": 0.0,
         "spectral": {
-          "spectral_centroid_hz": 2365.2,
-          "spectral_bandwidth_hz": 3547.73,
-          "low_band_energy": 0.34,
-          "mid_band_energy": 0.42,
+          "spectral_centroid_hz": 2312.75,
+          "spectral_bandwidth_hz": 3482.15,
+          "low_band_energy": 0.32,
+          "mid_band_energy": 0.44,
           "high_band_energy": 0.13
         }
       },
       "roundtrip_asr": {
         "asr_transcript": "Please call us at 18001234567 for assistance.",
-        "word_overlap": 1.0,
-        "asr_latency_ms": 745.68
+        "roundtrip_reference": "Please call us at 18001234567 for assistance.",
+        "verbatim_wer": 0.0,
+        "verbatim_cer": 0.0,
+        "formatted_wer": 0.0,
+        "formatted_cer": 0.0,
+        "asr_latency_ms": 423.71,
+        "asr_retries": 0
       },
-      "quality_score": 80.0,
       "output_path": "/Users/mac/Documents/Gnani/gnani-speech-eval/data/tts/output/num_en_002.wav",
-      "error": null
+      "error": null,
+      "repeats_summary": {
+        "repeats_requested": 3,
+        "repeats_succeeded": 3,
+        "p50_latency_ms": 968.6,
+        "p95_latency_ms": 1300.72,
+        "mean_latency_ms": 1008.24,
+        "p95_total_elapsed_ms": 1300.73,
+        "p50_rtf": 0.1892,
+        "p95_rtf": 0.2469,
+        "total_retries": 0,
+        "mean_roundtrip_formatted_wer": 0.0953,
+        "all_roundtrip_transcripts": [
+          "Please call us at 18001234567 for assistance.",
+          "Call us at 18001234567 for assistance.",
+          "Call us at 18001234567 for assistance."
+        ]
+      },
+      "trials": [
+        {
+          "run": 1,
+          "status": "success",
+          "synth_latency_ms": 718.51,
+          "total_elapsed_ms": 718.51,
+          "retries": 0,
+          "rtf": 0.1892,
+          "roundtrip_asr_transcript": "Please call us at 18001234567 for assistance.",
+          "roundtrip_formatted_wer": 0.0
+        },
+        {
+          "run": 2,
+          "status": "success",
+          "synth_latency_ms": 1337.62,
+          "total_elapsed_ms": 1337.63,
+          "retries": 0,
+          "rtf": 0.2533,
+          "roundtrip_asr_transcript": "Call us at 18001234567 for assistance.",
+          "roundtrip_formatted_wer": 0.1429
+        },
+        {
+          "run": 3,
+          "status": "success",
+          "synth_latency_ms": 968.6,
+          "total_elapsed_ms": 968.61,
+          "retries": 0,
+          "rtf": 0.1892,
+          "roundtrip_asr_transcript": "Call us at 18001234567 for assistance.",
+          "roundtrip_formatted_wer": 0.1429
+        }
+      ]
     },
     {
       "id": "num_en_003",
@@ -171,33 +371,90 @@
         "decimal"
       ],
       "text": "The temperature today is 42.5°C with humidity at 78%.",
+      "roundtrip_reference": "The temperature today is 42.5 degrees Celsius with humidity at 78%.",
       "language": "en-IN",
       "voice": "Kaveri",
       "status": "success",
-      "synth_latency_ms": 1173.63,
+      "synth_latency_ms": 868.07,
+      "total_elapsed_ms": 868.07,
+      "retries": 0,
       "audio_analysis": {
-        "audio_duration_sec": 4.96,
+        "audio_duration_sec": 4.8,
         "sample_rate": 48000,
-        "rtf": 0.2366,
-        "speaking_rate_wpm": 108.9,
-        "silence_ratio": 0.3613,
+        "rtf": 0.1808,
+        "rtf_with_retries": 0.1808,
+        "speaking_rate_wpm": 112.5,
+        "silence_ratio": 0.2155,
         "clipping_ratio": 0.0,
         "spectral": {
-          "spectral_centroid_hz": 2398.18,
-          "spectral_bandwidth_hz": 3499.62,
-          "low_band_energy": 0.38,
+          "spectral_centroid_hz": 2429.42,
+          "spectral_bandwidth_hz": 3447.15,
+          "low_band_energy": 0.37,
           "mid_band_energy": 0.32,
-          "high_band_energy": 0.2
+          "high_band_energy": 0.22
         }
       },
       "roundtrip_asr": {
         "asr_transcript": "The temperature today is 42.5 degrees Celsius with humidity at 78%",
-        "word_overlap": 0.8889,
-        "asr_latency_ms": 313.75
+        "roundtrip_reference": "The temperature today is 42.5 degrees Celsius with humidity at 78%.",
+        "verbatim_wer": 0.3333,
+        "verbatim_cer": 0.3171,
+        "formatted_wer": 0.0,
+        "formatted_cer": 0.0,
+        "asr_latency_ms": 395.09,
+        "asr_retries": 0
       },
-      "quality_score": 87.0,
       "output_path": "/Users/mac/Documents/Gnani/gnani-speech-eval/data/tts/output/num_en_003.wav",
-      "error": null
+      "error": null,
+      "repeats_summary": {
+        "repeats_requested": 3,
+        "repeats_succeeded": 3,
+        "p50_latency_ms": 868.07,
+        "p95_latency_ms": 1149.4,
+        "mean_latency_ms": 888.78,
+        "p95_total_elapsed_ms": 1149.41,
+        "p50_rtf": 0.1808,
+        "p95_rtf": 0.2323,
+        "total_retries": 0,
+        "mean_roundtrip_formatted_wer": 0.0,
+        "all_roundtrip_transcripts": [
+          "The temperature today is 42.5 degrees Celsius with humidity at 78%",
+          "The temperature today is 42.5 degrees Celsius with humidity at 78%",
+          "The temperature today is 42.5 degrees Celsius with humidity at 78%"
+        ]
+      },
+      "trials": [
+        {
+          "run": 1,
+          "status": "success",
+          "synth_latency_ms": 868.07,
+          "total_elapsed_ms": 868.07,
+          "retries": 0,
+          "rtf": 0.1808,
+          "roundtrip_asr_transcript": "The temperature today is 42.5 degrees Celsius with humidity at 78%",
+          "roundtrip_formatted_wer": 0.0
+        },
+        {
+          "run": 2,
+          "status": "success",
+          "synth_latency_ms": 1180.66,
+          "total_elapsed_ms": 1180.67,
+          "retries": 0,
+          "rtf": 0.238,
+          "roundtrip_asr_transcript": "The temperature today is 42.5 degrees Celsius with humidity at 78%",
+          "roundtrip_formatted_wer": 0.0
+        },
+        {
+          "run": 3,
+          "status": "success",
+          "synth_latency_ms": 617.61,
+          "total_elapsed_ms": 617.62,
+          "retries": 0,
+          "rtf": 0.1331,
+          "roundtrip_asr_transcript": "The temperature today is 42.5 degrees Celsius with humidity at 78%",
+          "roundtrip_formatted_wer": 0.0
+        }
+      ]
     },
     {
       "id": "num_hi_001",
@@ -208,33 +465,90 @@
         "hindi"
       ],
       "text": "आपके खाते में ₹5,72,300 शेष है।",
+      "roundtrip_reference": "आपके खाते में 5,72,300 रुपये शेष है।",
       "language": "hi-IN",
       "voice": "Nalini",
       "status": "success",
-      "synth_latency_ms": 7540.99,
+      "synth_latency_ms": 849.77,
+      "total_elapsed_ms": 1159.29,
+      "retries": 0,
       "audio_analysis": {
         "audio_duration_sec": 3.68,
         "sample_rate": 48000,
-        "rtf": 2.0492,
+        "rtf": 0.2213,
+        "rtf_with_retries": 0.315,
         "speaking_rate_wpm": 97.8,
-        "silence_ratio": 0.3282,
+        "silence_ratio": 0.2213,
         "clipping_ratio": 0.0,
         "spectral": {
-          "spectral_centroid_hz": 2194.98,
-          "spectral_bandwidth_hz": 2817.07,
+          "spectral_centroid_hz": 2182.01,
+          "spectral_bandwidth_hz": 2830.28,
           "low_band_energy": 0.35,
           "mid_band_energy": 0.33,
-          "high_band_energy": 0.26
+          "high_band_energy": 0.27
         }
       },
       "roundtrip_asr": {
         "asr_transcript": "आपके खाते में 5,72,300 रुपये शेष है।",
-        "word_overlap": 1.0,
-        "asr_latency_ms": 296.02
+        "roundtrip_reference": "आपके खाते में 5,72,300 रुपये शेष है।",
+        "verbatim_wer": 0.1667,
+        "verbatim_cer": 0.2273,
+        "formatted_wer": 0.0,
+        "formatted_cer": 0.0,
+        "asr_latency_ms": 390.97,
+        "asr_retries": 0
       },
-      "quality_score": 68.0,
       "output_path": "/Users/mac/Documents/Gnani/gnani-speech-eval/data/tts/output/num_hi_001.wav",
-      "error": null
+      "error": null,
+      "repeats_summary": {
+        "repeats_requested": 3,
+        "repeats_succeeded": 3,
+        "p50_latency_ms": 849.77,
+        "p95_latency_ms": 1128.34,
+        "mean_latency_ms": 891.76,
+        "p95_total_elapsed_ms": 1128.34,
+        "p50_rtf": 0.2213,
+        "p95_rtf": 0.3056,
+        "total_retries": 0,
+        "mean_roundtrip_formatted_wer": 0.0,
+        "all_roundtrip_transcripts": [
+          "आपके खाते में 5,72,300 रुपये शेष है।",
+          "आपके खाते में 5,72,300 रुपये शेष है।",
+          "आपके खाते में 5,72,300 रुपये शेष है।"
+        ]
+      },
+      "trials": [
+        {
+          "run": 1,
+          "status": "success",
+          "synth_latency_ms": 1159.29,
+          "total_elapsed_ms": 1159.29,
+          "retries": 0,
+          "rtf": 0.2213,
+          "roundtrip_asr_transcript": "आपके खाते में 5,72,300 रुपये शेष है।",
+          "roundtrip_formatted_wer": 0.0
+        },
+        {
+          "run": 2,
+          "status": "success",
+          "synth_latency_ms": 666.22,
+          "total_elapsed_ms": 666.23,
+          "retries": 0,
+          "rtf": 0.1983,
+          "roundtrip_asr_transcript": "आपके खाते में 5,72,300 रुपये शेष है।",
+          "roundtrip_formatted_wer": 0.0
+        },
+        {
+          "run": 3,
+          "status": "success",
+          "synth_latency_ms": 849.77,
+          "total_elapsed_ms": 849.77,
+          "retries": 0,
+          "rtf": 0.2213,
+          "roundtrip_asr_transcript": "आपके खाते में 5,72,300 रुपये शेष है।",
+          "roundtrip_formatted_wer": 0.0
+        }
+      ]
     },
     {
       "id": "abbr_en_001",
@@ -245,33 +559,90 @@
         "proper_noun"
       ],
       "text": "Dr. R.K. Sharma from AIIMS will see you at 3 PM.",
+      "roundtrip_reference": "Doctor RK Sharma from AIIMS will see you at 3 pm.",
       "language": "en-IN",
       "voice": "Kaveri",
       "status": "success",
-      "synth_latency_ms": 893.59,
+      "synth_latency_ms": 984.64,
+      "total_elapsed_ms": 734.91,
+      "retries": 0,
       "audio_analysis": {
-        "audio_duration_sec": 4.16,
+        "audio_duration_sec": 4.0,
         "sample_rate": 48000,
-        "rtf": 0.2148,
-        "speaking_rate_wpm": 158.7,
-        "silence_ratio": 0.3533,
+        "rtf": 0.2367,
+        "rtf_with_retries": 0.1837,
+        "speaking_rate_wpm": 165.0,
+        "silence_ratio": 0.2186,
         "clipping_ratio": 0.0,
         "spectral": {
-          "spectral_centroid_hz": 2126.4,
-          "spectral_bandwidth_hz": 3073.0,
-          "low_band_energy": 0.26,
-          "mid_band_energy": 0.51,
+          "spectral_centroid_hz": 2225.87,
+          "spectral_bandwidth_hz": 3208.8,
+          "low_band_energy": 0.28,
+          "mid_band_energy": 0.47,
           "high_band_energy": 0.16
         }
       },
       "roundtrip_asr": {
         "asr_transcript": "Doctor RK Sharma from AIIMS will see you at 3 pm.",
-        "word_overlap": 0.9091,
-        "asr_latency_ms": 440.71
+        "roundtrip_reference": "Doctor RK Sharma from AIIMS will see you at 3 pm.",
+        "verbatim_wer": 0.0909,
+        "verbatim_cer": 0.1176,
+        "formatted_wer": 0.0,
+        "formatted_cer": 0.0,
+        "asr_latency_ms": 486.04,
+        "asr_retries": 0
       },
-      "quality_score": 100.0,
       "output_path": "/Users/mac/Documents/Gnani/gnani-speech-eval/data/tts/output/abbr_en_001.wav",
-      "error": null
+      "error": null,
+      "repeats_summary": {
+        "repeats_requested": 3,
+        "repeats_succeeded": 3,
+        "p50_latency_ms": 984.64,
+        "p95_latency_ms": 1057.31,
+        "mean_latency_ms": 928.31,
+        "p95_total_elapsed_ms": 1057.33,
+        "p50_rtf": 0.2367,
+        "p95_rtf": 0.2633,
+        "total_retries": 0,
+        "mean_roundtrip_formatted_wer": 0.0303,
+        "all_roundtrip_transcripts": [
+          "Doctor RK Sharma from AIIMS will see you at 3 pm.",
+          "Doctor RK Sharma from AIIMS will see you at 3 pm.",
+          "Doctor RK Shama from AIIMS will see you at 3 pm."
+        ]
+      },
+      "trials": [
+        {
+          "run": 1,
+          "status": "success",
+          "synth_latency_ms": 734.9,
+          "total_elapsed_ms": 734.91,
+          "retries": 0,
+          "rtf": 0.2367,
+          "roundtrip_asr_transcript": "Doctor RK Sharma from AIIMS will see you at 3 pm.",
+          "roundtrip_formatted_wer": 0.0
+        },
+        {
+          "run": 2,
+          "status": "success",
+          "synth_latency_ms": 984.64,
+          "total_elapsed_ms": 984.65,
+          "retries": 0,
+          "rtf": 0.2367,
+          "roundtrip_asr_transcript": "Doctor RK Sharma from AIIMS will see you at 3 pm.",
+          "roundtrip_formatted_wer": 0.0
+        },
+        {
+          "run": 3,
+          "status": "success",
+          "synth_latency_ms": 1065.38,
+          "total_elapsed_ms": 1065.4,
+          "retries": 0,
+          "rtf": 0.2663,
+          "roundtrip_asr_transcript": "Doctor RK Shama from AIIMS will see you at 3 pm.",
+          "roundtrip_formatted_wer": 0.0909
+        }
+      ]
     },
     {
       "id": "abbr_en_002",
@@ -282,33 +653,90 @@
         "date"
       ],
       "text": "Your EMI of Rs. 15,000 is due on 5th Jan 2026.",
+      "roundtrip_reference": "Your EMI of 15,000 rupees is due on 5 January 2026.",
       "language": "en-IN",
       "voice": "Kaveri",
       "status": "success",
-      "synth_latency_ms": 732.39,
+      "synth_latency_ms": 718.5,
+      "total_elapsed_ms": 1075.98,
+      "retries": 0,
       "audio_analysis": {
         "audio_duration_sec": 4.48,
         "sample_rate": 48000,
-        "rtf": 0.1635,
+        "rtf": 0.1604,
+        "rtf_with_retries": 0.2402,
         "speaking_rate_wpm": 147.3,
-        "silence_ratio": 0.3237,
+        "silence_ratio": 0.2265,
         "clipping_ratio": 0.0,
         "spectral": {
-          "spectral_centroid_hz": 2167.89,
-          "spectral_bandwidth_hz": 3208.09,
-          "low_band_energy": 0.34,
-          "mid_band_energy": 0.39,
+          "spectral_centroid_hz": 2197.95,
+          "spectral_bandwidth_hz": 3270.53,
+          "low_band_energy": 0.38,
+          "mid_band_energy": 0.36,
           "high_band_energy": 0.18
         }
       },
       "roundtrip_asr": {
         "asr_transcript": "Your EMI of 15,000 rupees is due on 5 January 2026.",
-        "word_overlap": 0.7273,
-        "asr_latency_ms": 371.92
+        "roundtrip_reference": "Your EMI of 15,000 rupees is due on 5 January 2026.",
+        "verbatim_wer": 0.3636,
+        "verbatim_cer": 0.4242,
+        "formatted_wer": 0.0,
+        "formatted_cer": 0.0,
+        "asr_latency_ms": 452.79,
+        "asr_retries": 0
       },
-      "quality_score": 93.0,
       "output_path": "/Users/mac/Documents/Gnani/gnani-speech-eval/data/tts/output/abbr_en_002.wav",
-      "error": null
+      "error": null,
+      "repeats_summary": {
+        "repeats_requested": 3,
+        "repeats_succeeded": 3,
+        "p50_latency_ms": 718.5,
+        "p95_latency_ms": 1040.22,
+        "mean_latency_ms": 828.8,
+        "p95_total_elapsed_ms": 1040.23,
+        "p50_rtf": 0.1604,
+        "p95_rtf": 0.2322,
+        "total_retries": 0,
+        "mean_roundtrip_formatted_wer": 0.0,
+        "all_roundtrip_transcripts": [
+          "Your EMI of 15,000 rupees is due on 5 January 2026.",
+          "Your EMI of 15,000 rupees is due on 5 January 2026.",
+          "Your EMI of 15,000 rupees is due on 5 January 2026."
+        ]
+      },
+      "trials": [
+        {
+          "run": 1,
+          "status": "success",
+          "synth_latency_ms": 1075.97,
+          "total_elapsed_ms": 1075.98,
+          "retries": 0,
+          "rtf": 0.1604,
+          "roundtrip_asr_transcript": "Your EMI of 15,000 rupees is due on 5 January 2026.",
+          "roundtrip_formatted_wer": 0.0
+        },
+        {
+          "run": 2,
+          "status": "success",
+          "synth_latency_ms": 718.5,
+          "total_elapsed_ms": 718.5,
+          "retries": 0,
+          "rtf": 0.1604,
+          "roundtrip_asr_transcript": "Your EMI of 15,000 rupees is due on 5 January 2026.",
+          "roundtrip_formatted_wer": 0.0
+        },
+        {
+          "run": 3,
+          "status": "success",
+          "synth_latency_ms": 691.93,
+          "total_elapsed_ms": 691.93,
+          "retries": 0,
+          "rtf": 0.1351,
+          "roundtrip_asr_transcript": "Your EMI of 15,000 rupees is due on 5 January 2026.",
+          "roundtrip_formatted_wer": 0.0
+        }
+      ]
     },
     {
       "id": "abbr_en_003",
@@ -318,33 +746,90 @@
         "legal"
       ],
       "text": "FIR No. 2024/1456 has been registered at the PS.",
+      "roundtrip_reference": "FIR number 2024 by 1456 has been registered at the PS.",
       "language": "en-IN",
       "voice": "Kaveri",
       "status": "success",
-      "synth_latency_ms": 1589.46,
+      "synth_latency_ms": 843.78,
+      "total_elapsed_ms": 843.79,
+      "retries": 0,
       "audio_analysis": {
         "audio_duration_sec": 5.44,
         "sample_rate": 48000,
-        "rtf": 0.2922,
+        "rtf": 0.1551,
+        "rtf_with_retries": 0.1551,
         "speaking_rate_wpm": 99.3,
-        "silence_ratio": 0.2759,
+        "silence_ratio": 0.2066,
         "clipping_ratio": 0.0,
         "spectral": {
-          "spectral_centroid_hz": 2297.68,
-          "spectral_bandwidth_hz": 3401.95,
-          "low_band_energy": 0.32,
+          "spectral_centroid_hz": 2421.62,
+          "spectral_bandwidth_hz": 3544.79,
+          "low_band_energy": 0.31,
           "mid_band_energy": 0.42,
-          "high_band_energy": 0.16
+          "high_band_energy": 0.15
         }
       },
       "roundtrip_asr": {
-        "asr_transcript": "FIR number 2024 by 1456 has been registered at the PS.",
-        "word_overlap": 0.7778,
-        "asr_latency_ms": 446.91
+        "asr_transcript": "FIR number 2024 by 1,456 has been registered at the PS.",
+        "roundtrip_reference": "FIR number 2024 by 1456 has been registered at the PS.",
+        "verbatim_wer": 0.4444,
+        "verbatim_cer": 0.1892,
+        "formatted_wer": 0.0,
+        "formatted_cer": 0.0,
+        "asr_latency_ms": 469.23,
+        "asr_retries": 0
       },
-      "quality_score": 81.0,
       "output_path": "/Users/mac/Documents/Gnani/gnani-speech-eval/data/tts/output/abbr_en_003.wav",
-      "error": null
+      "error": null,
+      "repeats_summary": {
+        "repeats_requested": 3,
+        "repeats_succeeded": 3,
+        "p50_latency_ms": 843.78,
+        "p95_latency_ms": 1336.69,
+        "mean_latency_ms": 973.13,
+        "p95_total_elapsed_ms": 1336.7,
+        "p50_rtf": 0.1551,
+        "p95_rtf": 0.2527,
+        "total_retries": 0,
+        "mean_roundtrip_formatted_wer": 0.0,
+        "all_roundtrip_transcripts": [
+          "FIR number 2024 by 1,456 has been registered at the PS.",
+          "FIR number 2024 by 1456 has been registered at the PS.",
+          "FIR number 2024 by 1,456 has been registered at the PS."
+        ]
+      },
+      "trials": [
+        {
+          "run": 1,
+          "status": "success",
+          "synth_latency_ms": 843.78,
+          "total_elapsed_ms": 843.79,
+          "retries": 0,
+          "rtf": 0.1551,
+          "roundtrip_asr_transcript": "FIR number 2024 by 1,456 has been registered at the PS.",
+          "roundtrip_formatted_wer": 0.0
+        },
+        {
+          "run": 2,
+          "status": "success",
+          "synth_latency_ms": 684.16,
+          "total_elapsed_ms": 684.17,
+          "retries": 0,
+          "rtf": 0.1336,
+          "roundtrip_asr_transcript": "FIR number 2024 by 1456 has been registered at the PS.",
+          "roundtrip_formatted_wer": 0.0
+        },
+        {
+          "run": 3,
+          "status": "success",
+          "synth_latency_ms": 1391.46,
+          "total_elapsed_ms": 1391.47,
+          "retries": 0,
+          "rtf": 0.2635,
+          "roundtrip_asr_transcript": "FIR number 2024 by 1,456 has been registered at the PS.",
+          "roundtrip_formatted_wer": 0.0
+        }
+      ]
     },
     {
       "id": "abbr_en_004",
@@ -355,33 +840,90 @@
         "corporate"
       ],
       "text": "The CEO of HDFC Ltd. announced a 12% YoY growth in Q3 FY26.",
+      "roundtrip_reference": "The CEO of HDFC Limited announced a 12% YoY growth in quarter 3 FY26.",
       "language": "en-IN",
       "voice": "Kaveri",
       "status": "success",
-      "synth_latency_ms": 1758.87,
+      "synth_latency_ms": 953.48,
+      "total_elapsed_ms": 1003.89,
+      "retries": 0,
       "audio_analysis": {
-        "audio_duration_sec": 6.08,
+        "audio_duration_sec": 6.4,
         "sample_rate": 48000,
-        "rtf": 0.2893,
-        "speaking_rate_wpm": 128.3,
-        "silence_ratio": 0.3264,
+        "rtf": 0.1528,
+        "rtf_with_retries": 0.1569,
+        "speaking_rate_wpm": 121.9,
+        "silence_ratio": 0.2226,
         "clipping_ratio": 0.0,
         "spectral": {
-          "spectral_centroid_hz": 2411.66,
-          "spectral_bandwidth_hz": 3533.47,
+          "spectral_centroid_hz": 2482.72,
+          "spectral_bandwidth_hz": 3581.2,
           "low_band_energy": 0.36,
-          "mid_band_energy": 0.36,
+          "mid_band_energy": 0.35,
           "high_band_energy": 0.18
         }
       },
       "roundtrip_asr": {
         "asr_transcript": "The CEO of HDFC Limited announced a 12% YoY growth in quarter 3 FY26.",
-        "word_overlap": 0.8462,
-        "asr_latency_ms": 559.85
+        "roundtrip_reference": "The CEO of HDFC Limited announced a 12% YoY growth in quarter 3 FY26.",
+        "verbatim_wer": 0.2308,
+        "verbatim_cer": 0.2273,
+        "formatted_wer": 0.0,
+        "formatted_cer": 0.0,
+        "asr_latency_ms": 569.07,
+        "asr_retries": 0
       },
-      "quality_score": 93.0,
       "output_path": "/Users/mac/Documents/Gnani/gnani-speech-eval/data/tts/output/abbr_en_004.wav",
-      "error": null
+      "error": null,
+      "repeats_summary": {
+        "repeats_requested": 3,
+        "repeats_succeeded": 3,
+        "p50_latency_ms": 953.48,
+        "p95_latency_ms": 998.85,
+        "mean_latency_ms": 919.25,
+        "p95_total_elapsed_ms": 998.85,
+        "p50_rtf": 0.1528,
+        "p95_rtf": 0.1565,
+        "total_retries": 0,
+        "mean_roundtrip_formatted_wer": 0.0,
+        "all_roundtrip_transcripts": [
+          "The CEO of HDFC Limited announced a 12% YoY growth in quarter 3 FY26.",
+          "The CEO of HDFC Limited announced a 12% YoY growth in quarter 3 FY26.",
+          "The CEO of HDFC Limited announced a 12% YoY growth in quarter 3 FY26."
+        ]
+      },
+      "trials": [
+        {
+          "run": 1,
+          "status": "success",
+          "synth_latency_ms": 1003.89,
+          "total_elapsed_ms": 1003.89,
+          "retries": 0,
+          "rtf": 0.1528,
+          "roundtrip_asr_transcript": "The CEO of HDFC Limited announced a 12% YoY growth in quarter 3 FY26.",
+          "roundtrip_formatted_wer": 0.0
+        },
+        {
+          "run": 2,
+          "status": "success",
+          "synth_latency_ms": 800.37,
+          "total_elapsed_ms": 800.38,
+          "retries": 0,
+          "rtf": 0.1316,
+          "roundtrip_asr_transcript": "The CEO of HDFC Limited announced a 12% YoY growth in quarter 3 FY26.",
+          "roundtrip_formatted_wer": 0.0
+        },
+        {
+          "run": 3,
+          "status": "success",
+          "synth_latency_ms": 953.48,
+          "total_elapsed_ms": 953.49,
+          "retries": 0,
+          "rtf": 0.1528,
+          "roundtrip_asr_transcript": "The CEO of HDFC Limited announced a 12% YoY growth in quarter 3 FY26.",
+          "roundtrip_formatted_wer": 0.0
+        }
+      ]
     },
     {
       "id": "codemix_001",
@@ -392,33 +934,90 @@
         "banking"
       ],
       "text": "Aapka OTP 4523 hai, please isse kisi ke saath share mat kijiye.",
-      "language": "hi-IN",
-      "voice": "Nalini",
+      "roundtrip_reference": "आपका ओटीपी 4523 है प्लीज इसे किसी के साथ शेयर मत कीजिए।",
+      "language": "hi-en",
+      "voice": "Poorvi",
       "status": "success",
-      "synth_latency_ms": 695.67,
+      "synth_latency_ms": 724.93,
+      "total_elapsed_ms": 790.39,
+      "retries": 0,
       "audio_analysis": {
-        "audio_duration_sec": 4.64,
+        "audio_duration_sec": 4.48,
         "sample_rate": 48000,
-        "rtf": 0.1499,
-        "speaking_rate_wpm": 155.2,
-        "silence_ratio": 0.3779,
+        "rtf": 0.1618,
+        "rtf_with_retries": 0.1764,
+        "speaking_rate_wpm": 160.7,
+        "silence_ratio": 0.2152,
         "clipping_ratio": 0.0,
         "spectral": {
-          "spectral_centroid_hz": 2494.11,
-          "spectral_bandwidth_hz": 3291.65,
-          "low_band_energy": 0.37,
-          "mid_band_energy": 0.3,
-          "high_band_energy": 0.24
+          "spectral_centroid_hz": 3070.1,
+          "spectral_bandwidth_hz": 3581.36,
+          "low_band_energy": 0.32,
+          "mid_band_energy": 0.26,
+          "high_band_energy": 0.29
         }
       },
       "roundtrip_asr": {
-        "asr_transcript": "आपका ओटीपी 4523 है प्लीज इसे किसी के साथ शेयर मैट कीजिए।",
-        "word_overlap": 0.0833,
-        "asr_latency_ms": 2011.0
+        "asr_transcript": "आपका ओटीपी 4523 है प्लीज इसे किसी के साथ शेयर मेट कीजिये।",
+        "roundtrip_reference": "आपका ओटीपी 4523 है प्लीज इसे किसी के साथ शेयर मत कीजिए।",
+        "verbatim_wer": 0.9167,
+        "verbatim_cer": 0.94,
+        "formatted_wer": 0.1667,
+        "formatted_cer": 0.093,
+        "asr_latency_ms": 457.42,
+        "asr_retries": 0
       },
-      "quality_score": 75.0,
       "output_path": "/Users/mac/Documents/Gnani/gnani-speech-eval/data/tts/output/codemix_001.wav",
-      "error": null
+      "error": null,
+      "repeats_summary": {
+        "repeats_requested": 3,
+        "repeats_succeeded": 3,
+        "p50_latency_ms": 724.93,
+        "p95_latency_ms": 783.83,
+        "mean_latency_ms": 728.79,
+        "p95_total_elapsed_ms": 783.84,
+        "p50_rtf": 0.1618,
+        "p95_rtf": 0.1749,
+        "total_retries": 0,
+        "mean_roundtrip_formatted_wer": 0.1389,
+        "all_roundtrip_transcripts": [
+          "आपका ओटीपी 4523 है प्लीज इसे किसी के साथ शेयर मेट कीजिये।",
+          "आपका ओटीपी 4523 है प्लीज इसे किसी के साथ शेयर करें।",
+          "आपका ओटीपी 4523 है प्लीज इसे किसी के साथ शेयर मैट कीजिए।"
+        ]
+      },
+      "trials": [
+        {
+          "run": 1,
+          "status": "success",
+          "synth_latency_ms": 790.38,
+          "total_elapsed_ms": 790.39,
+          "retries": 0,
+          "rtf": 0.1618,
+          "roundtrip_asr_transcript": "आपका ओटीपी 4523 है प्लीज इसे किसी के साथ शेयर मेट कीजिये।",
+          "roundtrip_formatted_wer": 0.1667
+        },
+        {
+          "run": 2,
+          "status": "success",
+          "synth_latency_ms": 671.06,
+          "total_elapsed_ms": 671.07,
+          "retries": 0,
+          "rtf": 0.1398,
+          "roundtrip_asr_transcript": "आपका ओटीपी 4523 है प्लीज इसे किसी के साथ शेयर करें।",
+          "roundtrip_formatted_wer": 0.1667
+        },
+        {
+          "run": 3,
+          "status": "success",
+          "synth_latency_ms": 724.93,
+          "total_elapsed_ms": 724.94,
+          "retries": 0,
+          "rtf": 0.1618,
+          "roundtrip_asr_transcript": "आपका ओटीपी 4523 है प्लीज इसे किसी के साथ शेयर मैट कीजिए।",
+          "roundtrip_formatted_wer": 0.0833
+        }
+      ]
     },
     {
       "id": "codemix_002",
@@ -428,33 +1027,90 @@
         "commerce"
       ],
       "text": "Your order has been shipped, delivery expected by kal shaam tak.",
-      "language": "en-IN",
-      "voice": "Kaveri",
+      "roundtrip_reference": "Your order has been shipped delivery expected by kal shaam tak.",
+      "language": "hi-en",
+      "voice": "Poorvi",
       "status": "success",
-      "synth_latency_ms": 560.27,
+      "synth_latency_ms": 862.88,
+      "total_elapsed_ms": 546.5,
+      "retries": 0,
       "audio_analysis": {
-        "audio_duration_sec": 3.36,
+        "audio_duration_sec": 3.68,
         "sample_rate": 48000,
-        "rtf": 0.1667,
-        "speaking_rate_wpm": 196.4,
-        "silence_ratio": 0.3719,
+        "rtf": 0.2247,
+        "rtf_with_retries": 0.1485,
+        "speaking_rate_wpm": 179.3,
+        "silence_ratio": 0.2869,
         "clipping_ratio": 0.0,
         "spectral": {
-          "spectral_centroid_hz": 2098.54,
-          "spectral_bandwidth_hz": 2931.83,
+          "spectral_centroid_hz": 2661.89,
+          "spectral_bandwidth_hz": 3004.9,
           "low_band_energy": 0.31,
-          "mid_band_energy": 0.42,
-          "high_band_energy": 0.2
+          "mid_band_energy": 0.28,
+          "high_band_energy": 0.34
         }
       },
       "roundtrip_asr": {
         "asr_transcript": "Your order has been shipped delivery expected by kal shaam tak.",
-        "word_overlap": 1.0,
-        "asr_latency_ms": 170.71
+        "roundtrip_reference": "Your order has been shipped delivery expected by kal shaam tak.",
+        "verbatim_wer": 0.0,
+        "verbatim_cer": 0.0,
+        "formatted_wer": 0.0,
+        "formatted_cer": 0.0,
+        "asr_latency_ms": 448.87,
+        "asr_retries": 0
       },
-      "quality_score": 94.0,
       "output_path": "/Users/mac/Documents/Gnani/gnani-speech-eval/data/tts/output/codemix_002.wav",
-      "error": null
+      "error": null,
+      "repeats_summary": {
+        "repeats_requested": 3,
+        "repeats_succeeded": 3,
+        "p50_latency_ms": 862.88,
+        "p95_latency_ms": 884.2,
+        "mean_latency_ms": 765.31,
+        "p95_total_elapsed_ms": 884.21,
+        "p50_rtf": 0.2247,
+        "p95_rtf": 0.2303,
+        "total_retries": 0,
+        "mean_roundtrip_formatted_wer": 0.0,
+        "all_roundtrip_transcripts": [
+          "Your order has been shipped delivery expected by kal shaam tak.",
+          "Your order has been shipped delivery expected by kal shaam tak.",
+          "Your order has been shipped delivery expected by kal shaam tak."
+        ]
+      },
+      "trials": [
+        {
+          "run": 1,
+          "status": "success",
+          "synth_latency_ms": 546.49,
+          "total_elapsed_ms": 546.5,
+          "retries": 0,
+          "rtf": 0.2247,
+          "roundtrip_asr_transcript": "Your order has been shipped delivery expected by kal shaam tak.",
+          "roundtrip_formatted_wer": 0.0
+        },
+        {
+          "run": 2,
+          "status": "success",
+          "synth_latency_ms": 886.57,
+          "total_elapsed_ms": 886.58,
+          "retries": 0,
+          "rtf": 0.2309,
+          "roundtrip_asr_transcript": "Your order has been shipped delivery expected by kal shaam tak.",
+          "roundtrip_formatted_wer": 0.0
+        },
+        {
+          "run": 3,
+          "status": "success",
+          "synth_latency_ms": 862.88,
+          "total_elapsed_ms": 862.89,
+          "retries": 0,
+          "rtf": 0.2247,
+          "roundtrip_asr_transcript": "Your order has been shipped delivery expected by kal shaam tak.",
+          "roundtrip_formatted_wer": 0.0
+        }
+      ]
     },
     {
       "id": "codemix_003",
@@ -465,33 +1121,90 @@
         "formal"
       ],
       "text": "Main aapko ek quick update dena chahta tha regarding your application status.",
-      "language": "hi-IN",
-      "voice": "Nalini",
+      "roundtrip_reference": "मैं आपको एक quick update देना चाहता था regarding your application status.",
+      "language": "hi-en",
+      "voice": "Poorvi",
       "status": "success",
-      "synth_latency_ms": 1773.98,
+      "synth_latency_ms": 671.94,
+      "total_elapsed_ms": 562.81,
+      "retries": 0,
       "audio_analysis": {
         "audio_duration_sec": 3.84,
         "sample_rate": 48000,
-        "rtf": 0.462,
+        "rtf": 0.1615,
+        "rtf_with_retries": 0.1466,
         "speaking_rate_wpm": 187.5,
-        "silence_ratio": 0.296,
+        "silence_ratio": 0.1702,
         "clipping_ratio": 0.0,
         "spectral": {
-          "spectral_centroid_hz": 2124.01,
-          "spectral_bandwidth_hz": 2879.74,
-          "low_band_energy": 0.35,
+          "spectral_centroid_hz": 2469.49,
+          "spectral_bandwidth_hz": 2870.14,
+          "low_band_energy": 0.28,
           "mid_band_energy": 0.35,
-          "high_band_energy": 0.23
+          "high_band_energy": 0.31
         }
       },
       "roundtrip_asr": {
-        "asr_transcript": "Mine आपको एक quick update देना चाहता था regarding your application status.",
-        "word_overlap": 0.5,
-        "asr_latency_ms": 349.22
+        "asr_transcript": "मैं आपको एक क्विक अपडेट देना चाहता था regarding your application status.",
+        "roundtrip_reference": "मैं आपको एक quick update देना चाहता था regarding your application status.",
+        "verbatim_wer": 0.6667,
+        "verbatim_cer": 0.5385,
+        "formatted_wer": 0.1667,
+        "formatted_cer": 0.1803,
+        "asr_latency_ms": 302.82,
+        "asr_retries": 0
       },
-      "quality_score": 79.0,
       "output_path": "/Users/mac/Documents/Gnani/gnani-speech-eval/data/tts/output/codemix_003.wav",
-      "error": null
+      "error": null,
+      "repeats_summary": {
+        "repeats_requested": 3,
+        "repeats_succeeded": 3,
+        "p50_latency_ms": 671.94,
+        "p95_latency_ms": 801.95,
+        "mean_latency_ms": 683.72,
+        "p95_total_elapsed_ms": 801.96,
+        "p50_rtf": 0.1615,
+        "p95_rtf": 0.2158,
+        "total_retries": 0,
+        "mean_roundtrip_formatted_wer": 0.1667,
+        "all_roundtrip_transcripts": [
+          "मैं आपको एक क्विक अपडेट देना चाहता था regarding your application status.",
+          "मैं आपको एक क्विक अपडेट देना चाहता था regarding your application status.",
+          "मैं आपको एक क्विक अपडेट देना चाहता था regarding your application status."
+        ]
+      },
+      "trials": [
+        {
+          "run": 1,
+          "status": "success",
+          "synth_latency_ms": 562.81,
+          "total_elapsed_ms": 562.81,
+          "retries": 0,
+          "rtf": 0.1615,
+          "roundtrip_asr_transcript": "मैं आपको एक क्विक अपडेट देना चाहता था regarding your application status.",
+          "roundtrip_formatted_wer": 0.1667
+        },
+        {
+          "run": 2,
+          "status": "success",
+          "synth_latency_ms": 671.94,
+          "total_elapsed_ms": 671.95,
+          "retries": 0,
+          "rtf": 0.1615,
+          "roundtrip_asr_transcript": "मैं आपको एक क्विक अपडेट देना चाहता था regarding your application status.",
+          "roundtrip_formatted_wer": 0.1667
+        },
+        {
+          "run": 3,
+          "status": "success",
+          "synth_latency_ms": 816.4,
+          "total_elapsed_ms": 816.41,
+          "retries": 0,
+          "rtf": 0.2218,
+          "roundtrip_asr_transcript": "मैं आपको एक क्विक अपडेट देना चाहता था regarding your application status.",
+          "roundtrip_formatted_wer": 0.1667
+        }
+      ]
     },
     {
       "id": "long_en_001",
@@ -503,33 +1216,90 @@
         "proper_noun"
       ],
       "text": "Thank you for calling Sunrise Bank. Your current account balance is ₹2,45,678.50 as of today. You have three pending transactions: a debit of ₹5,000 to Flipkart, a credit of ₹25,000 from NEFT transfer, and an auto-debit of ₹3,200 for your electricity bill. Your next EMI of ₹15,500 is scheduled for December 5th. Is there anything else I can help you with?",
+      "roundtrip_reference": "Thank you for calling Sunrise Bank. Your current account balance is 2,45,678 rupees and 50 paise as of today. You have 3 pending transactions, a debit of 5,000 rupees to Flipkart, a credit of 25,000 rupees from NEFT transfer, and an auto debit of 3,200 rupees for your electricity bill. Your next EMI of 15,500 rupees is scheduled for December 5. Is there anything else I can help you with?",
       "language": "en-IN",
       "voice": "Kaveri",
       "status": "success",
-      "synth_latency_ms": 2417.78,
+      "synth_latency_ms": 1990.65,
+      "total_elapsed_ms": 2133.93,
+      "retries": 0,
       "audio_analysis": {
-        "audio_duration_sec": 24.32,
+        "audio_duration_sec": 25.28,
         "sample_rate": 48000,
-        "rtf": 0.0994,
-        "speaking_rate_wpm": 150.5,
-        "silence_ratio": 0.3403,
+        "rtf": 0.0782,
+        "rtf_with_retries": 0.0844,
+        "speaking_rate_wpm": 144.8,
+        "silence_ratio": 0.2755,
         "clipping_ratio": 0.0,
         "spectral": {
-          "spectral_centroid_hz": 2231.36,
-          "spectral_bandwidth_hz": 3294.63,
+          "spectral_centroid_hz": 2242.16,
+          "spectral_bandwidth_hz": 3281.65,
           "low_band_energy": 0.34,
           "mid_band_energy": 0.39,
           "high_band_energy": 0.18
         }
       },
       "roundtrip_asr": {
-        "asr_transcript": "Thank you for calling Sunrise Bank. Your current account balance is 2,45,678 rupees and 50 paise as of today. You have 3 pending transactions. A debit of 5,000 rupees to Flipkart. A credit of 25,000 rupees from NEFT transfer and an auto debit of 3,200 rupees for your electricity bill. Your next EMI of 15,500 rupees is scheduled for 5 December. Is there anything else I can help you with?",
-        "word_overlap": 0.9344,
-        "asr_latency_ms": 747.88
+        "asr_transcript": "Thank you for calling Sunrise Bank. Your current account balance is 2,45,678 rupees and 50 paise as of today. You have 3 pending transactions a debit of 5,000 rupees to Flipkart. A credit of 25,000 rupees from NEFT transfer and an auto debit of 3,200 rupees for your electricity bill. Your next EMI of 15,500 rupees is scheduled for 5 December. Is there anything else I can help you with?",
+        "roundtrip_reference": "Thank you for calling Sunrise Bank. Your current account balance is 2,45,678 rupees and 50 paise as of today. You have 3 pending transactions, a debit of 5,000 rupees to Flipkart, a credit of 25,000 rupees from NEFT transfer, and an auto debit of 3,200 rupees for your electricity bill. Your next EMI of 15,500 rupees is scheduled for December 5. Is there anything else I can help you with?",
+        "verbatim_wer": 0.2295,
+        "verbatim_cer": 0.1709,
+        "formatted_wer": 0.0286,
+        "formatted_cer": 0.0065,
+        "asr_latency_ms": 1087.37,
+        "asr_retries": 0
       },
-      "quality_score": 100.0,
       "output_path": "/Users/mac/Documents/Gnani/gnani-speech-eval/data/tts/output/long_en_001.wav",
-      "error": null
+      "error": null,
+      "repeats_summary": {
+        "repeats_requested": 3,
+        "repeats_succeeded": 3,
+        "p50_latency_ms": 1990.65,
+        "p95_latency_ms": 2119.59,
+        "mean_latency_ms": 1862.0,
+        "p95_total_elapsed_ms": 2119.6,
+        "p50_rtf": 0.0782,
+        "p95_rtf": 0.0838,
+        "total_retries": 0,
+        "mean_roundtrip_formatted_wer": 0.0191,
+        "all_roundtrip_transcripts": [
+          "Thank you for calling Sunrise Bank. Your current account balance is 2,45,678 rupees and 50 paise as of today. You have 3 pending transactions a debit of 5,000 rupees to Flipkart. A credit of 25,000 rupees from NEFT transfer and an auto debit of 3,200 rupees for your electricity bill. Your next EMI of 15,500 rupees is scheduled for 5 December. Is there anything else I can help you with?",
+          "Thank you for calling Sunrise Bank. Your current account balance is 2,45,678 rupees and 50 paise as of today. You have 3 pending transactions. A debit of 5,000 rupees to Flipkart. A credit of 25,000 rupees from NEFT transfer and an auto debit of 3,200 rupees for your electricity bill, your next EMI. A 15,500 rupees is scheduled for December 5 is there anything else I can help you with.",
+          "Thank you for calling Sunrise Bank. Your current account balance is 2,45,678 rupees and 50 paise as of today. You have 3 pending transactions a debit of 5,000 rupees to Flipkart a credit of 25,000 rupees from NEFT transfer. An auto debit of 3,200 rupees for your electricity bill, your next EMI of 15,500 rupees is scheduled for December 5. Is there anything else I can help you with?"
+        ]
+      },
+      "trials": [
+        {
+          "run": 1,
+          "status": "success",
+          "synth_latency_ms": 2133.92,
+          "total_elapsed_ms": 2133.93,
+          "retries": 0,
+          "rtf": 0.0782,
+          "roundtrip_asr_transcript": "Thank you for calling Sunrise Bank. Your current account balance is 2,45,678 rupees and 50 paise as of today. You have 3 pending transactions a debit of 5,000 rupees to Flipkart. A credit of 25,000 rupees from NEFT transfer and an auto debit of 3,200 rupees for your electricity bill. Your next EMI of 15,500 rupees is scheduled for 5 December. Is there anything else I can help you with?",
+          "roundtrip_formatted_wer": 0.0286
+        },
+        {
+          "run": 2,
+          "status": "success",
+          "synth_latency_ms": 1461.44,
+          "total_elapsed_ms": 1461.45,
+          "retries": 0,
+          "rtf": 0.0589,
+          "roundtrip_asr_transcript": "Thank you for calling Sunrise Bank. Your current account balance is 2,45,678 rupees and 50 paise as of today. You have 3 pending transactions. A debit of 5,000 rupees to Flipkart. A credit of 25,000 rupees from NEFT transfer and an auto debit of 3,200 rupees for your electricity bill, your next EMI. A 15,500 rupees is scheduled for December 5 is there anything else I can help you with.",
+          "roundtrip_formatted_wer": 0.0143
+        },
+        {
+          "run": 3,
+          "status": "success",
+          "synth_latency_ms": 1990.65,
+          "total_elapsed_ms": 1990.66,
+          "retries": 0,
+          "rtf": 0.0782,
+          "roundtrip_asr_transcript": "Thank you for calling Sunrise Bank. Your current account balance is 2,45,678 rupees and 50 paise as of today. You have 3 pending transactions a debit of 5,000 rupees to Flipkart a credit of 25,000 rupees from NEFT transfer. An auto debit of 3,200 rupees for your electricity bill, your next EMI of 15,500 rupees is scheduled for December 5. Is there anything else I can help you with?",
+          "roundtrip_formatted_wer": 0.0143
+        }
+      ]
     },
     {
       "id": "long_hi_001",
@@ -540,33 +1310,90 @@
         "banking"
       ],
       "text": "नमस्ते, सनराइज़ बैंक में आपका स्वागत है। आपके खाते में आज की तारीख़ तक ₹2,45,678 शेष है। आपकी तीन लेनदेन लंबित हैं। कृपया अपने नज़दीकी शाखा में जाकर अपना KYC अपडेट कराएँ। और कोई सहायता चाहिए तो कृपया बताएँ।",
+      "roundtrip_reference": "नमस्ते Sunrise Bank में आपका स्वागत है। आपके खाते में आज की तारीख तक 2,45,678 रुपये शेष है। आपकी तीन लेनदेन लंबित हैं कृपया अपने नजदीकी शाखा में जाकर अपना KYC update कराएं और कोई सहायता चाहिए तो कृपया बताएं।",
       "language": "hi-IN",
       "voice": "Nalini",
       "status": "success",
-      "synth_latency_ms": 1593.3,
+      "synth_latency_ms": 1392.09,
+      "total_elapsed_ms": 1121.8,
+      "retries": 0,
       "audio_analysis": {
-        "audio_duration_sec": 15.84,
+        "audio_duration_sec": 15.68,
         "sample_rate": 48000,
-        "rtf": 0.1006,
-        "speaking_rate_wpm": 147.7,
-        "silence_ratio": 0.3691,
+        "rtf": 0.0861,
+        "rtf_with_retries": 0.0715,
+        "speaking_rate_wpm": 149.2,
+        "silence_ratio": 0.2433,
         "clipping_ratio": 0.0,
         "spectral": {
-          "spectral_centroid_hz": 2342.05,
-          "spectral_bandwidth_hz": 3157.19,
+          "spectral_centroid_hz": 2305.7,
+          "spectral_bandwidth_hz": 3140.74,
           "low_band_energy": 0.38,
           "mid_band_energy": 0.3,
-          "high_band_energy": 0.25
+          "high_band_energy": 0.24
         }
       },
       "roundtrip_asr": {
-        "asr_transcript": "नमस्ते Sunrise Bank में आपका स्वागत है। आपके खाते में आज की तारीख तक 2,45,688 रुपये शेष है। आपकी लेन-देन लंबित है, कृपया अपने नजदीकी शाखा में जाकर अपना KYC update कराएं और कोई सहायता चाहिए तो कृपया बताएं।",
-        "word_overlap": 0.7436,
-        "asr_latency_ms": 1443.11
+        "asr_transcript": "नमस्ते Sunrise Bank में आपका स्वागत है। आपके खाते में आज की तारीख तक 2,45,688 रुपये शेष है। आपकी तीन लेनदेन लंबित हैं। कृपया अपने नजदीकी शाखा में जाकर अपना KYC अपडेट कराएं और कोई सहायता चाहिए तो कृपया बताएं।",
+        "roundtrip_reference": "नमस्ते Sunrise Bank में आपका स्वागत है। आपके खाते में आज की तारीख तक 2,45,678 रुपये शेष है। आपकी तीन लेनदेन लंबित हैं कृपया अपने नजदीकी शाखा में जाकर अपना KYC update कराएं और कोई सहायता चाहिए तो कृपया बताएं।",
+        "verbatim_wer": 0.2051,
+        "verbatim_cer": 0.1321,
+        "formatted_wer": 0.05,
+        "formatted_cer": 0.0429,
+        "asr_latency_ms": 578.86,
+        "asr_retries": 0
       },
-      "quality_score": 93.0,
       "output_path": "/Users/mac/Documents/Gnani/gnani-speech-eval/data/tts/output/long_hi_001.wav",
-      "error": null
+      "error": null,
+      "repeats_summary": {
+        "repeats_requested": 3,
+        "repeats_succeeded": 3,
+        "p50_latency_ms": 1392.09,
+        "p95_latency_ms": 1517.24,
+        "mean_latency_ms": 1348.34,
+        "p95_total_elapsed_ms": 1517.25,
+        "p50_rtf": 0.0861,
+        "p95_rtf": 0.0956,
+        "total_retries": 0,
+        "mean_roundtrip_formatted_wer": 0.0417,
+        "all_roundtrip_transcripts": [
+          "नमस्ते Sunrise Bank में आपका स्वागत है। आपके खाते में आज की तारीख तक 2,45,688 रुपये शेष है। आपकी तीन लेनदेन लंबित हैं। कृपया अपने नजदीकी शाखा में जाकर अपना KYC अपडेट कराएं और कोई सहायता चाहिए तो कृपया बताएं।",
+          "नमस्ते Sunrise Bank में आपका स्वागत है आपके खाते में आज की तारीख तक 2,45,678 रुपये शेष है। आपकी 3 लेन-देन लंबित हैं, कृपया अपने नजदीकी शाखा में जाकर अपना KYC update कराएं और कोई सहायता चाहिए तो कृपया बताएं।",
+          "नमस्ते Sunrise Bank में आपका स्वागत है आपके खाते में आज की तारीख तक 2,45,678 रुपये शेष है। आपकी लेन-देन लंबित है, कृपया अपने नजदीकी शाखा में जाकर अपना KYC update कराएं और कोई सहायता चाहिए तो कृपया बताएं।"
+        ]
+      },
+      "trials": [
+        {
+          "run": 1,
+          "status": "success",
+          "synth_latency_ms": 1121.79,
+          "total_elapsed_ms": 1121.8,
+          "retries": 0,
+          "rtf": 0.0861,
+          "roundtrip_asr_transcript": "नमस्ते Sunrise Bank में आपका स्वागत है। आपके खाते में आज की तारीख तक 2,45,688 रुपये शेष है। आपकी तीन लेनदेन लंबित हैं। कृपया अपने नजदीकी शाखा में जाकर अपना KYC अपडेट कराएं और कोई सहायता चाहिए तो कृपया बताएं।",
+          "roundtrip_formatted_wer": 0.05
+        },
+        {
+          "run": 2,
+          "status": "success",
+          "synth_latency_ms": 1392.09,
+          "total_elapsed_ms": 1392.1,
+          "retries": 0,
+          "rtf": 0.0861,
+          "roundtrip_asr_transcript": "नमस्ते Sunrise Bank में आपका स्वागत है आपके खाते में आज की तारीख तक 2,45,678 रुपये शेष है। आपकी 3 लेन-देन लंबित हैं, कृपया अपने नजदीकी शाखा में जाकर अपना KYC update कराएं और कोई सहायता चाहिए तो कृपया बताएं।",
+          "roundtrip_formatted_wer": 0.025
+        },
+        {
+          "run": 3,
+          "status": "success",
+          "synth_latency_ms": 1531.15,
+          "total_elapsed_ms": 1531.16,
+          "retries": 0,
+          "rtf": 0.0967,
+          "roundtrip_asr_transcript": "नमस्ते Sunrise Bank में आपका स्वागत है आपके खाते में आज की तारीख तक 2,45,678 रुपये शेष है। आपकी लेन-देन लंबित है, कृपया अपने नजदीकी शाखा में जाकर अपना KYC update कराएं और कोई सहायता चाहिए तो कृपया बताएं।",
+          "roundtrip_formatted_wer": 0.05
+        }
+      ]
     },
     {
       "id": "pron_en_001",
@@ -577,33 +1404,90 @@
         "foreign_words"
       ],
       "text": "The Worcestershire sauce is kept near the quinoa and açaí bowls.",
+      "roundtrip_reference": "The Worcestershire sauce is kept near the quinoa and acai bowls.",
       "language": "en-IN",
       "voice": "Kaveri",
       "status": "success",
-      "synth_latency_ms": 4699.47,
+      "synth_latency_ms": 663.63,
+      "total_elapsed_ms": 484.77,
+      "retries": 0,
       "audio_analysis": {
         "audio_duration_sec": 3.2,
         "sample_rate": 48000,
-        "rtf": 1.4686,
+        "rtf": 0.2074,
+        "rtf_with_retries": 0.1515,
         "speaking_rate_wpm": 206.2,
-        "silence_ratio": 0.3092,
+        "silence_ratio": 0.2516,
         "clipping_ratio": 0.0,
         "spectral": {
-          "spectral_centroid_hz": 2629.86,
-          "spectral_bandwidth_hz": 3714.62,
-          "low_band_energy": 0.32,
-          "mid_band_energy": 0.37,
-          "high_band_energy": 0.18
+          "spectral_centroid_hz": 2578.99,
+          "spectral_bandwidth_hz": 3621.89,
+          "low_band_energy": 0.34,
+          "mid_band_energy": 0.36,
+          "high_band_energy": 0.19
         }
       },
       "roundtrip_asr": {
-        "asr_transcript": "The Worcestershire sauce is kept near the quinoa and a side bowls.",
-        "word_overlap": 0.9091,
-        "asr_latency_ms": 454.23
+        "asr_transcript": "The Worcestershire sauce is kept near the quinoa and axai bowls.",
+        "roundtrip_reference": "The Worcestershire sauce is kept near the quinoa and acai bowls.",
+        "verbatim_wer": 0.0909,
+        "verbatim_cer": 0.0377,
+        "formatted_wer": 0.0909,
+        "formatted_cer": 0.0189,
+        "asr_latency_ms": 460.38,
+        "asr_retries": 0
       },
-      "quality_score": 76.0,
       "output_path": "/Users/mac/Documents/Gnani/gnani-speech-eval/data/tts/output/pron_en_001.wav",
-      "error": null
+      "error": null,
+      "repeats_summary": {
+        "repeats_requested": 3,
+        "repeats_succeeded": 3,
+        "p50_latency_ms": 663.63,
+        "p95_latency_ms": 904.61,
+        "mean_latency_ms": 693.26,
+        "p95_total_elapsed_ms": 904.61,
+        "p50_rtf": 0.2074,
+        "p95_rtf": 0.2965,
+        "total_retries": 0,
+        "mean_roundtrip_formatted_wer": 0.1212,
+        "all_roundtrip_transcripts": [
+          "The Worcestershire sauce is kept near the quinoa and axai bowls.",
+          "The ustusha sauce is kept near the quinoa and axay bowls.",
+          "The Worcestershire sauce is kept near the quinoa and achate bowls."
+        ]
+      },
+      "trials": [
+        {
+          "run": 1,
+          "status": "success",
+          "synth_latency_ms": 484.76,
+          "total_elapsed_ms": 484.77,
+          "retries": 0,
+          "rtf": 0.2074,
+          "roundtrip_asr_transcript": "The Worcestershire sauce is kept near the quinoa and axai bowls.",
+          "roundtrip_formatted_wer": 0.0909
+        },
+        {
+          "run": 2,
+          "status": "success",
+          "synth_latency_ms": 663.63,
+          "total_elapsed_ms": 663.63,
+          "retries": 0,
+          "rtf": 0.2074,
+          "roundtrip_asr_transcript": "The ustusha sauce is kept near the quinoa and axay bowls.",
+          "roundtrip_formatted_wer": 0.1818
+        },
+        {
+          "run": 3,
+          "status": "success",
+          "synth_latency_ms": 931.38,
+          "total_elapsed_ms": 931.39,
+          "retries": 0,
+          "rtf": 0.3064,
+          "roundtrip_asr_transcript": "The Worcestershire sauce is kept near the quinoa and achate bowls.",
+          "roundtrip_formatted_wer": 0.0909
+        }
+      ]
     },
     {
       "id": "pron_en_002",
@@ -614,33 +1498,90 @@
         "medical"
       ],
       "text": "Mr. Venkatasubramaniam from Thiruvananthapuram has an appointment with the ophthalmologist.",
+      "roundtrip_reference": "Mr. Venkatasubramaniam from Thiruvananthapuram has an appointment with the ophthalmologist.",
       "language": "en-IN",
       "voice": "Kaveri",
       "status": "success",
-      "synth_latency_ms": 1118.17,
+      "synth_latency_ms": 961.13,
+      "total_elapsed_ms": 961.14,
+      "retries": 0,
       "audio_analysis": {
-        "audio_duration_sec": 4.64,
+        "audio_duration_sec": 4.48,
         "sample_rate": 48000,
-        "rtf": 0.241,
-        "speaking_rate_wpm": 129.3,
-        "silence_ratio": 0.2812,
+        "rtf": 0.2145,
+        "rtf_with_retries": 0.2145,
+        "speaking_rate_wpm": 133.9,
+        "silence_ratio": 0.1794,
         "clipping_ratio": 0.0,
         "spectral": {
-          "spectral_centroid_hz": 2394.87,
-          "spectral_bandwidth_hz": 3562.48,
-          "low_band_energy": 0.36,
-          "mid_band_energy": 0.38,
+          "spectral_centroid_hz": 2231.28,
+          "spectral_bandwidth_hz": 3403.27,
+          "low_band_energy": 0.38,
+          "mid_band_energy": 0.37,
           "high_band_energy": 0.15
         }
       },
       "roundtrip_asr": {
-        "asr_transcript": "Mr. Venkatasubramaniam from Thiruvananthapuram has an appointment with the ophthalmologist.",
-        "word_overlap": 1.0,
-        "asr_latency_ms": 957.44
+        "asr_transcript": "Mr. Venkata Subramaniam from Thiruvananthapuram has an appointment with the ophthalmologist.",
+        "roundtrip_reference": "Mr. Venkatasubramaniam from Thiruvananthapuram has an appointment with the ophthalmologist.",
+        "verbatim_wer": 0.2,
+        "verbatim_cer": 0.0,
+        "formatted_wer": 0.2,
+        "formatted_cer": 0.0,
+        "asr_latency_ms": 732.74,
+        "asr_retries": 0
       },
-      "quality_score": 100.0,
       "output_path": "/Users/mac/Documents/Gnani/gnani-speech-eval/data/tts/output/pron_en_002.wav",
-      "error": null
+      "error": null,
+      "repeats_summary": {
+        "repeats_requested": 3,
+        "repeats_succeeded": 3,
+        "p50_latency_ms": 961.13,
+        "p95_latency_ms": 1064.45,
+        "mean_latency_ms": 952.56,
+        "p95_total_elapsed_ms": 1064.46,
+        "p50_rtf": 0.2145,
+        "p95_rtf": 0.2456,
+        "total_retries": 0,
+        "mean_roundtrip_formatted_wer": 0.1333,
+        "all_roundtrip_transcripts": [
+          "Mr. Venkata Subramaniam from Thiruvananthapuram has an appointment with the ophthalmologist.",
+          "Mr. Venkata Subramaniyam from Thiruvananthapuram has an appointment with the ophthalmologist.",
+          "Mr. Venkatasubramaniam from Thiruvananthapuram has an appointment with the ophthalmologist."
+        ]
+      },
+      "trials": [
+        {
+          "run": 1,
+          "status": "success",
+          "synth_latency_ms": 961.13,
+          "total_elapsed_ms": 961.14,
+          "retries": 0,
+          "rtf": 0.2145,
+          "roundtrip_asr_transcript": "Mr. Venkata Subramaniam from Thiruvananthapuram has an appointment with the ophthalmologist.",
+          "roundtrip_formatted_wer": 0.2
+        },
+        {
+          "run": 2,
+          "status": "success",
+          "synth_latency_ms": 1075.93,
+          "total_elapsed_ms": 1075.94,
+          "retries": 0,
+          "rtf": 0.2491,
+          "roundtrip_asr_transcript": "Mr. Venkata Subramaniyam from Thiruvananthapuram has an appointment with the ophthalmologist.",
+          "roundtrip_formatted_wer": 0.2
+        },
+        {
+          "run": 3,
+          "status": "success",
+          "synth_latency_ms": 820.62,
+          "total_elapsed_ms": 820.62,
+          "retries": 0,
+          "rtf": 0.1769,
+          "roundtrip_asr_transcript": "Mr. Venkatasubramaniam from Thiruvananthapuram has an appointment with the ophthalmologist.",
+          "roundtrip_formatted_wer": 0.0
+        }
+      ]
     },
     {
       "id": "pron_en_003",
@@ -651,33 +1592,90 @@
         "proper_noun"
       ],
       "text": "She lives in Ghaziabad near the Vaishali metro station on the Delhi-Meerut expressway.",
+      "roundtrip_reference": "She lives in Ghaziabad near the Vaishali metro station on the Delhi-Meerut expressway.",
       "language": "en-IN",
       "voice": "Kaveri",
       "status": "success",
-      "synth_latency_ms": 836.49,
+      "synth_latency_ms": 645.97,
+      "total_elapsed_ms": 852.68,
+      "retries": 0,
       "audio_analysis": {
         "audio_duration_sec": 4.16,
         "sample_rate": 48000,
-        "rtf": 0.2011,
+        "rtf": 0.167,
+        "rtf_with_retries": 0.205,
         "speaking_rate_wpm": 187.5,
-        "silence_ratio": 0.2253,
+        "silence_ratio": 0.1473,
         "clipping_ratio": 0.0,
         "spectral": {
-          "spectral_centroid_hz": 2236.81,
-          "spectral_bandwidth_hz": 3194.94,
-          "low_band_energy": 0.38,
-          "mid_band_energy": 0.35,
-          "high_band_energy": 0.2
+          "spectral_centroid_hz": 2229.41,
+          "spectral_bandwidth_hz": 3191.45,
+          "low_band_energy": 0.37,
+          "mid_band_energy": 0.36,
+          "high_band_energy": 0.19
         }
       },
       "roundtrip_asr": {
-        "asr_transcript": "She lives in Ghaziabad, near the Vaishali metro station on the Delhi-Meerut Expressway.",
-        "word_overlap": 1.0,
-        "asr_latency_ms": 470.64
+        "asr_transcript": "She lives in Ghaziabad, near the Vaishali metro station on the Delhi-Mehrauli Expressway.",
+        "roundtrip_reference": "She lives in Ghaziabad near the Vaishali metro station on the Delhi-Meerut expressway.",
+        "verbatim_wer": 0.0769,
+        "verbatim_cer": 0.0556,
+        "formatted_wer": 0.0769,
+        "formatted_cer": 0.0556,
+        "asr_latency_ms": 366.77,
+        "asr_retries": 0
       },
-      "quality_score": 94.0,
       "output_path": "/Users/mac/Documents/Gnani/gnani-speech-eval/data/tts/output/pron_en_003.wav",
-      "error": null
+      "error": null,
+      "repeats_summary": {
+        "repeats_requested": 3,
+        "repeats_succeeded": 3,
+        "p50_latency_ms": 645.97,
+        "p95_latency_ms": 832.01,
+        "mean_latency_ms": 713.25,
+        "p95_total_elapsed_ms": 832.01,
+        "p50_rtf": 0.167,
+        "p95_rtf": 0.2012,
+        "total_retries": 0,
+        "mean_roundtrip_formatted_wer": 0.0513,
+        "all_roundtrip_transcripts": [
+          "She lives in Ghaziabad, near the Vaishali metro station on the Delhi-Mehrauli Expressway.",
+          "She lives in Ghaziabad, near the Vaishali metro station on the Delhi-Meerut Expressway.",
+          "She lives in Ghaziabad, near the Vaishali metro station on the Delhi-Mehrauli Expressway."
+        ]
+      },
+      "trials": [
+        {
+          "run": 1,
+          "status": "success",
+          "synth_latency_ms": 852.68,
+          "total_elapsed_ms": 852.68,
+          "retries": 0,
+          "rtf": 0.167,
+          "roundtrip_asr_transcript": "She lives in Ghaziabad, near the Vaishali metro station on the Delhi-Mehrauli Expressway.",
+          "roundtrip_formatted_wer": 0.0769
+        },
+        {
+          "run": 2,
+          "status": "success",
+          "synth_latency_ms": 645.97,
+          "total_elapsed_ms": 645.98,
+          "retries": 0,
+          "rtf": 0.1553,
+          "roundtrip_asr_transcript": "She lives in Ghaziabad, near the Vaishali metro station on the Delhi-Meerut Expressway.",
+          "roundtrip_formatted_wer": 0.0
+        },
+        {
+          "run": 3,
+          "status": "success",
+          "synth_latency_ms": 641.09,
+          "total_elapsed_ms": 641.1,
+          "retries": 0,
+          "rtf": 0.167,
+          "roundtrip_asr_transcript": "She lives in Ghaziabad, near the Vaishali metro station on the Delhi-Mehrauli Expressway.",
+          "roundtrip_formatted_wer": 0.0769
+        }
+      ]
     },
     {
       "id": "pron_hi_001",
@@ -689,33 +1687,90 @@
         "proper_noun"
       ],
       "text": "श्रीमान् विश्वनाथन अय्यर ने तिरुवनंतपुरम में ऋग्वेद पाठशाला की स्थापना की।",
+      "roundtrip_reference": "श्रीमान विश्वनाथन अय्यर ने तिरुवनंतपुरम में ऋग्वेद पाठशाला की स्थापना की।",
       "language": "hi-IN",
       "voice": "Nalini",
       "status": "success",
-      "synth_latency_ms": 755.23,
+      "synth_latency_ms": 790.61,
+      "total_elapsed_ms": 790.62,
+      "retries": 0,
       "audio_analysis": {
-        "audio_duration_sec": 4.16,
+        "audio_duration_sec": 4.64,
         "sample_rate": 48000,
-        "rtf": 0.1815,
-        "speaking_rate_wpm": 158.7,
-        "silence_ratio": 0.2677,
+        "rtf": 0.1704,
+        "rtf_with_retries": 0.1704,
+        "speaking_rate_wpm": 142.2,
+        "silence_ratio": 0.2078,
         "clipping_ratio": 0.0,
         "spectral": {
-          "spectral_centroid_hz": 2023.67,
-          "spectral_bandwidth_hz": 2838.05,
+          "spectral_centroid_hz": 2208.28,
+          "spectral_bandwidth_hz": 3019.94,
           "low_band_energy": 0.44,
-          "mid_band_energy": 0.26,
-          "high_band_energy": 0.24
+          "mid_band_energy": 0.24,
+          "high_band_energy": 0.25
         }
       },
       "roundtrip_asr": {
-        "asr_transcript": "श्री विश्वनाथन अय्यर ने तिरुवनंतपुरम में ऋग्वेद पाठशाला की स्थापना की है।",
-        "word_overlap": 0.9091,
-        "asr_latency_ms": 465.95
+        "asr_transcript": "श्रीमान विश्वनाथन अय्यर ने तिरुवनंतपुरम में ऋग्वेद पाठशाला की स्थापना की।",
+        "roundtrip_reference": "श्रीमान विश्वनाथन अय्यर ने तिरुवनंतपुरम में ऋग्वेद पाठशाला की स्थापना की।",
+        "verbatim_wer": 0.0909,
+        "verbatim_cer": 0.0159,
+        "formatted_wer": 0.0,
+        "formatted_cer": 0.0,
+        "asr_latency_ms": 311.47,
+        "asr_retries": 0
       },
-      "quality_score": 100.0,
       "output_path": "/Users/mac/Documents/Gnani/gnani-speech-eval/data/tts/output/pron_hi_001.wav",
-      "error": null
+      "error": null,
+      "repeats_summary": {
+        "repeats_requested": 3,
+        "repeats_succeeded": 3,
+        "p50_latency_ms": 790.61,
+        "p95_latency_ms": 1117.24,
+        "mean_latency_ms": 870.89,
+        "p95_total_elapsed_ms": 1117.25,
+        "p50_rtf": 0.1704,
+        "p95_rtf": 0.2408,
+        "total_retries": 0,
+        "mean_roundtrip_formatted_wer": 0.0303,
+        "all_roundtrip_transcripts": [
+          "श्रीमान विश्वनाथन अय्यर ने तिरुवनंतपुरम में ऋग्वेद पाठशाला की स्थापना की।",
+          "श्रीमान विश्वनाथन अय्यर ने तिरुवनंतपुरम में ऋग्वेद पाठशाला की स्थापना की।",
+          "श्री विश्वनाथन अय्यर ने तिरुवनंतपुरम में ऋग्वेद पाठशाला की स्थापना की।"
+        ]
+      },
+      "trials": [
+        {
+          "run": 1,
+          "status": "success",
+          "synth_latency_ms": 790.61,
+          "total_elapsed_ms": 790.62,
+          "retries": 0,
+          "rtf": 0.1704,
+          "roundtrip_asr_transcript": "श्रीमान विश्वनाथन अय्यर ने तिरुवनंतपुरम में ऋग्वेद पाठशाला की स्थापना की।",
+          "roundtrip_formatted_wer": 0.0
+        },
+        {
+          "run": 2,
+          "status": "success",
+          "synth_latency_ms": 668.53,
+          "total_elapsed_ms": 668.54,
+          "retries": 0,
+          "rtf": 0.1441,
+          "roundtrip_asr_transcript": "श्रीमान विश्वनाथन अय्यर ने तिरुवनंतपुरम में ऋग्वेद पाठशाला की स्थापना की।",
+          "roundtrip_formatted_wer": 0.0
+        },
+        {
+          "run": 3,
+          "status": "success",
+          "synth_latency_ms": 1153.53,
+          "total_elapsed_ms": 1153.54,
+          "retries": 0,
+          "rtf": 0.2486,
+          "roundtrip_asr_transcript": "श्री विश्वनाथन अय्यर ने तिरुवनंतपुरम में ऋग्वेद पाठशाला की स्थापना की।",
+          "roundtrip_formatted_wer": 0.0909
+        }
+      ]
     },
     {
       "id": "punct_en_001",
@@ -726,33 +1781,90 @@
         "numbers"
       ],
       "text": "Wait — did you say ₹50,000 or ₹5,00,000? That's a big difference!",
+      "roundtrip_reference": "Wait did you say 50,000 rupees or 5,00,000 rupees? That's a big difference",
       "language": "en-IN",
       "voice": "Kaveri",
       "status": "success",
-      "synth_latency_ms": 720.92,
+      "synth_latency_ms": 789.69,
+      "total_elapsed_ms": 1090.34,
+      "retries": 0,
       "audio_analysis": {
         "audio_duration_sec": 4.48,
         "sample_rate": 48000,
-        "rtf": 0.1609,
+        "rtf": 0.1763,
+        "rtf_with_retries": 0.2434,
         "speaking_rate_wpm": 160.7,
-        "silence_ratio": 0.3936,
+        "silence_ratio": 0.3341,
         "clipping_ratio": 0.0,
         "spectral": {
-          "spectral_centroid_hz": 2469.3,
-          "spectral_bandwidth_hz": 3633.54,
-          "low_band_energy": 0.36,
-          "mid_band_energy": 0.36,
+          "spectral_centroid_hz": 2337.06,
+          "spectral_bandwidth_hz": 3486.31,
+          "low_band_energy": 0.35,
+          "mid_band_energy": 0.38,
           "high_band_energy": 0.17
         }
       },
       "roundtrip_asr": {
         "asr_transcript": "Wait, did you say 50,000 rupees or 5,00,000 rupees? That's a big difference",
-        "word_overlap": 1.0,
-        "asr_latency_ms": 360.85
+        "roundtrip_reference": "Wait did you say 50,000 rupees or 5,00,000 rupees? That's a big difference",
+        "verbatim_wer": 0.1818,
+        "verbatim_cer": 0.2667,
+        "formatted_wer": 0.0,
+        "formatted_cer": 0.0,
+        "asr_latency_ms": 332.4,
+        "asr_retries": 0
       },
-      "quality_score": 100.0,
       "output_path": "/Users/mac/Documents/Gnani/gnani-speech-eval/data/tts/output/punct_en_001.wav",
-      "error": null
+      "error": null,
+      "repeats_summary": {
+        "repeats_requested": 3,
+        "repeats_succeeded": 3,
+        "p50_latency_ms": 789.69,
+        "p95_latency_ms": 1060.27,
+        "mean_latency_ms": 857.93,
+        "p95_total_elapsed_ms": 1060.27,
+        "p50_rtf": 0.1763,
+        "p95_rtf": 0.2367,
+        "total_retries": 0,
+        "mean_roundtrip_formatted_wer": 0.0,
+        "all_roundtrip_transcripts": [
+          "Wait, did you say 50,000 rupees or 5,00,000 rupees? That's a big difference",
+          "Wait, did you say 50,000 rupees or 5,00,000 rupees? That's a big difference",
+          "Wait, did you say 50,000 rupees or 5,00,000 rupees? That's a big difference"
+        ]
+      },
+      "trials": [
+        {
+          "run": 1,
+          "status": "success",
+          "synth_latency_ms": 1090.34,
+          "total_elapsed_ms": 1090.34,
+          "retries": 0,
+          "rtf": 0.1763,
+          "roundtrip_asr_transcript": "Wait, did you say 50,000 rupees or 5,00,000 rupees? That's a big difference",
+          "roundtrip_formatted_wer": 0.0
+        },
+        {
+          "run": 2,
+          "status": "success",
+          "synth_latency_ms": 693.77,
+          "total_elapsed_ms": 693.77,
+          "retries": 0,
+          "rtf": 0.1549,
+          "roundtrip_asr_transcript": "Wait, did you say 50,000 rupees or 5,00,000 rupees? That's a big difference",
+          "roundtrip_formatted_wer": 0.0
+        },
+        {
+          "run": 3,
+          "status": "success",
+          "synth_latency_ms": 789.69,
+          "total_elapsed_ms": 789.69,
+          "retries": 0,
+          "rtf": 0.1763,
+          "roundtrip_asr_transcript": "Wait, did you say 50,000 rupees or 5,00,000 rupees? That's a big difference",
+          "roundtrip_formatted_wer": 0.0
+        }
+      ]
     },
     {
       "id": "punct_en_002",
@@ -763,33 +1875,90 @@
         "product_names"
       ],
       "text": "Items in your cart: (1) iPhone 15 Pro, (2) AirPods Max, and (3) MagSafe Charger.",
+      "roundtrip_reference": "Items in your cart: (1) iPhone 15 Pro, (2) AirPods Max, and (3) MagSafe Charger.",
       "language": "en-IN",
       "voice": "Kaveri",
       "status": "success",
-      "synth_latency_ms": 1032.38,
+      "synth_latency_ms": 1101.38,
+      "total_elapsed_ms": 1214.56,
+      "retries": 0,
       "audio_analysis": {
-        "audio_duration_sec": 6.4,
+        "audio_duration_sec": 6.72,
         "sample_rate": 48000,
-        "rtf": 0.1613,
-        "speaking_rate_wpm": 140.6,
-        "silence_ratio": 0.4922,
+        "rtf": 0.1721,
+        "rtf_with_retries": 0.1807,
+        "speaking_rate_wpm": 133.9,
+        "silence_ratio": 0.4373,
         "clipping_ratio": 0.0,
         "spectral": {
-          "spectral_centroid_hz": 2162.87,
-          "spectral_bandwidth_hz": 3146.8,
+          "spectral_centroid_hz": 2003.68,
+          "spectral_bandwidth_hz": 2829.71,
           "low_band_energy": 0.32,
-          "mid_band_energy": 0.43,
-          "high_band_energy": 0.17
+          "mid_band_energy": 0.42,
+          "high_band_energy": 0.19
         }
       },
       "roundtrip_asr": {
-        "asr_transcript": "Items in your cart 1 iPhone 15 Pro 2 AirPods Max and 3 MaxSafe charger.",
-        "word_overlap": 0.9333,
-        "asr_latency_ms": 476.74
+        "asr_transcript": "Items in your cart 1 iPhone 15 Pro 2 AirPods Max and 3 MagSafe charger.",
+        "roundtrip_reference": "Items in your cart: (1) iPhone 15 Pro, (2) AirPods Max, and (3) MagSafe Charger.",
+        "verbatim_wer": 0.0,
+        "verbatim_cer": 0.0,
+        "formatted_wer": 0.0,
+        "formatted_cer": 0.0,
+        "asr_latency_ms": 816.46,
+        "asr_retries": 0
       },
-      "quality_score": 92.0,
       "output_path": "/Users/mac/Documents/Gnani/gnani-speech-eval/data/tts/output/punct_en_002.wav",
-      "error": null
+      "error": null,
+      "repeats_summary": {
+        "repeats_requested": 3,
+        "repeats_succeeded": 3,
+        "p50_latency_ms": 1101.38,
+        "p95_latency_ms": 1203.24,
+        "mean_latency_ms": 1085.44,
+        "p95_total_elapsed_ms": 1203.24,
+        "p50_rtf": 0.1721,
+        "p95_rtf": 0.1798,
+        "total_retries": 0,
+        "mean_roundtrip_formatted_wer": 0.0445,
+        "all_roundtrip_transcripts": [
+          "Items in your cart 1 iPhone 15 Pro 2 AirPods Max and 3 MagSafe charger.",
+          "Items in your cart 1 iPhone 15 Pro 2 AirPods Max and 3 MaxSafe charger.",
+          "Items in your cart 1 iPhone 15 Pro 2 AirPods Max and 3 Maxsafe charger."
+        ]
+      },
+      "trials": [
+        {
+          "run": 1,
+          "status": "success",
+          "synth_latency_ms": 1214.56,
+          "total_elapsed_ms": 1214.56,
+          "retries": 0,
+          "rtf": 0.1721,
+          "roundtrip_asr_transcript": "Items in your cart 1 iPhone 15 Pro 2 AirPods Max and 3 MagSafe charger.",
+          "roundtrip_formatted_wer": 0.0
+        },
+        {
+          "run": 2,
+          "status": "success",
+          "synth_latency_ms": 940.39,
+          "total_elapsed_ms": 940.4,
+          "retries": 0,
+          "rtf": 0.1547,
+          "roundtrip_asr_transcript": "Items in your cart 1 iPhone 15 Pro 2 AirPods Max and 3 MaxSafe charger.",
+          "roundtrip_formatted_wer": 0.0667
+        },
+        {
+          "run": 3,
+          "status": "success",
+          "synth_latency_ms": 1101.38,
+          "total_elapsed_ms": 1101.39,
+          "retries": 0,
+          "rtf": 0.1721,
+          "roundtrip_asr_transcript": "Items in your cart 1 iPhone 15 Pro 2 AirPods Max and 3 Maxsafe charger.",
+          "roundtrip_formatted_wer": 0.0667
+        }
+      ]
     },
     {
       "id": "special_en_001",
@@ -800,33 +1969,90 @@
         "special_chars"
       ],
       "text": "Visit https://www.gnani.ai for more details or email support@gnani.ai.",
+      "roundtrip_reference": "Visit https://www.gnani.ai for more details or email support@gnani.ai.",
       "language": "en-IN",
       "voice": "Kaveri",
       "status": "success",
-      "synth_latency_ms": 1545.18,
+      "synth_latency_ms": 1190.32,
+      "total_elapsed_ms": 1557.13,
+      "retries": 0,
       "audio_analysis": {
-        "audio_duration_sec": 9.28,
+        "audio_duration_sec": 8.8,
         "sample_rate": 48000,
-        "rtf": 0.1665,
-        "speaking_rate_wpm": 51.7,
-        "silence_ratio": 0.298,
+        "rtf": 0.1328,
+        "rtf_with_retries": 0.1769,
+        "speaking_rate_wpm": 54.5,
+        "silence_ratio": 0.2062,
         "clipping_ratio": 0.0,
         "spectral": {
-          "spectral_centroid_hz": 2204.12,
-          "spectral_bandwidth_hz": 3216.97,
-          "low_band_energy": 0.38,
-          "mid_band_energy": 0.35,
+          "spectral_centroid_hz": 2299.45,
+          "spectral_bandwidth_hz": 3335.03,
+          "low_band_energy": 0.39,
+          "mid_band_energy": 0.33,
           "high_band_energy": 0.19
         }
       },
       "roundtrip_asr": {
-        "asr_transcript": "Visit https://www.giani.ai for more details, or email sup. por.ai",
-        "word_overlap": 0.75,
-        "asr_latency_ms": 1040.3
+        "asr_transcript": "Visit https://www.gany.ai for more details, or email sup. PORT at gyanid dot ai.",
+        "roundtrip_reference": "Visit https://www.gnani.ai for more details or email support@gnani.ai.",
+        "verbatim_wer": 0.875,
+        "verbatim_cer": 0.1636,
+        "formatted_wer": 0.875,
+        "formatted_cer": 0.1636,
+        "asr_latency_ms": 396.24,
+        "asr_retries": 0
       },
-      "quality_score": 73.0,
       "output_path": "/Users/mac/Documents/Gnani/gnani-speech-eval/data/tts/output/special_en_001.wav",
-      "error": null
+      "error": null,
+      "repeats_summary": {
+        "repeats_requested": 3,
+        "repeats_succeeded": 3,
+        "p50_latency_ms": 1190.32,
+        "p95_latency_ms": 1520.44,
+        "mean_latency_ms": 1299.34,
+        "p95_total_elapsed_ms": 1520.45,
+        "p50_rtf": 0.1328,
+        "p95_rtf": 0.1725,
+        "total_retries": 0,
+        "mean_roundtrip_formatted_wer": 0.7917,
+        "all_roundtrip_transcripts": [
+          "Visit https://www.gany.ai for more details, or email sup. PORT at gyanid dot ai.",
+          "Visit https://www.giani.ai for more details or email sup. PORT at gyanid.ai.",
+          "Visit https://www.nyani.ai for more details, or email sup. PORT at gyanid dot ai."
+        ]
+      },
+      "trials": [
+        {
+          "run": 1,
+          "status": "success",
+          "synth_latency_ms": 1557.12,
+          "total_elapsed_ms": 1557.13,
+          "retries": 0,
+          "rtf": 0.1328,
+          "roundtrip_asr_transcript": "Visit https://www.gany.ai for more details, or email sup. PORT at gyanid dot ai.",
+          "roundtrip_formatted_wer": 0.875
+        },
+        {
+          "run": 2,
+          "status": "success",
+          "synth_latency_ms": 1150.59,
+          "total_elapsed_ms": 1150.59,
+          "retries": 0,
+          "rtf": 0.1219,
+          "roundtrip_asr_transcript": "Visit https://www.giani.ai for more details or email sup. PORT at gyanid.ai.",
+          "roundtrip_formatted_wer": 0.625
+        },
+        {
+          "run": 3,
+          "status": "success",
+          "synth_latency_ms": 1190.32,
+          "total_elapsed_ms": 1190.33,
+          "retries": 0,
+          "rtf": 0.1328,
+          "roundtrip_asr_transcript": "Visit https://www.nyani.ai for more details, or email sup. PORT at gyanid dot ai.",
+          "roundtrip_formatted_wer": 0.875
+        }
+      ]
     },
     {
       "id": "special_en_002",
@@ -836,33 +2062,90 @@
         "travel"
       ],
       "text": "Your PNR is ABC-1234 and seat number is 23B in coach S5.",
+      "roundtrip_reference": "Your PNR is ABC1234 and seat number is 23B in coach S5.",
       "language": "en-IN",
       "voice": "Kaveri",
       "status": "success",
-      "synth_latency_ms": 2444.22,
+      "synth_latency_ms": 831.92,
+      "total_elapsed_ms": 925.99,
+      "retries": 0,
       "audio_analysis": {
         "audio_duration_sec": 5.44,
         "sample_rate": 48000,
-        "rtf": 0.4493,
+        "rtf": 0.1625,
+        "rtf_with_retries": 0.1702,
         "speaking_rate_wpm": 132.4,
-        "silence_ratio": 0.3406,
+        "silence_ratio": 0.2528,
         "clipping_ratio": 0.0,
         "spectral": {
-          "spectral_centroid_hz": 2159.72,
-          "spectral_bandwidth_hz": 3316.54,
-          "low_band_energy": 0.39,
-          "mid_band_energy": 0.37,
-          "high_band_energy": 0.16
+          "spectral_centroid_hz": 2117.79,
+          "spectral_bandwidth_hz": 3124.2,
+          "low_band_energy": 0.35,
+          "mid_band_energy": 0.4,
+          "high_band_energy": 0.17
         }
       },
       "roundtrip_asr": {
         "asr_transcript": "Your PNR is ABC1234 and seat number is 23B in coach s5.",
-        "word_overlap": 1.0,
-        "asr_latency_ms": 553.39
+        "roundtrip_reference": "Your PNR is ABC1234 and seat number is 23B in coach S5.",
+        "verbatim_wer": 0.0,
+        "verbatim_cer": 0.0,
+        "formatted_wer": 0.0,
+        "formatted_cer": 0.0,
+        "asr_latency_ms": 508.86,
+        "asr_retries": 0
       },
-      "quality_score": 100.0,
       "output_path": "/Users/mac/Documents/Gnani/gnani-speech-eval/data/tts/output/special_en_002.wav",
-      "error": null
+      "error": null,
+      "repeats_summary": {
+        "repeats_requested": 3,
+        "repeats_succeeded": 3,
+        "p50_latency_ms": 831.92,
+        "p95_latency_ms": 916.57,
+        "mean_latency_ms": 854.5,
+        "p95_total_elapsed_ms": 916.58,
+        "p50_rtf": 0.1625,
+        "p95_rtf": 0.1694,
+        "total_retries": 0,
+        "mean_roundtrip_formatted_wer": 0.1111,
+        "all_roundtrip_transcripts": [
+          "Your PNR is ABC1234 and seat number is 23B in coach s5.",
+          "Your PNR is ABC1234 and seat number is 23B in coach s five.",
+          "Your PNR is ABC1234 and seat number is 23B in coach s five."
+        ]
+      },
+      "trials": [
+        {
+          "run": 1,
+          "status": "success",
+          "synth_latency_ms": 925.98,
+          "total_elapsed_ms": 925.99,
+          "retries": 0,
+          "rtf": 0.1625,
+          "roundtrip_asr_transcript": "Your PNR is ABC1234 and seat number is 23B in coach s5.",
+          "roundtrip_formatted_wer": 0.0
+        },
+        {
+          "run": 2,
+          "status": "success",
+          "synth_latency_ms": 805.6,
+          "total_elapsed_ms": 805.61,
+          "retries": 0,
+          "rtf": 0.1481,
+          "roundtrip_asr_transcript": "Your PNR is ABC1234 and seat number is 23B in coach s five.",
+          "roundtrip_formatted_wer": 0.1667
+        },
+        {
+          "run": 3,
+          "status": "success",
+          "synth_latency_ms": 831.92,
+          "total_elapsed_ms": 831.93,
+          "retries": 0,
+          "rtf": 0.1625,
+          "roundtrip_asr_transcript": "Your PNR is ABC1234 and seat number is 23B in coach s five.",
+          "roundtrip_formatted_wer": 0.1667
+        }
+      ]
     },
     {
       "id": "special_en_003",
@@ -873,33 +2156,90 @@
         "recipe"
       ],
       "text": "Mix 2½ cups of flour with ¾ tsp baking soda and 1.5 tbsp butter.",
+      "roundtrip_reference": "Mix 2.5 cups of flour with 3/4 tsp baking soda and 1.5 tbsp butter.",
       "language": "en-IN",
       "voice": "Kaveri",
       "status": "success",
-      "synth_latency_ms": 1037.12,
+      "synth_latency_ms": 1073.23,
+      "total_elapsed_ms": 1143.4,
+      "retries": 0,
       "audio_analysis": {
-        "audio_duration_sec": 5.76,
+        "audio_duration_sec": 5.12,
         "sample_rate": 48000,
-        "rtf": 0.1801,
-        "speaking_rate_wpm": 145.8,
-        "silence_ratio": 0.3501,
+        "rtf": 0.2033,
+        "rtf_with_retries": 0.2233,
+        "speaking_rate_wpm": 164.1,
+        "silence_ratio": 0.2255,
         "clipping_ratio": 0.0,
         "spectral": {
-          "spectral_centroid_hz": 2218.36,
-          "spectral_bandwidth_hz": 3265.55,
-          "low_band_energy": 0.34,
-          "mid_band_energy": 0.42,
-          "high_band_energy": 0.15
+          "spectral_centroid_hz": 2202.94,
+          "spectral_bandwidth_hz": 3241.49,
+          "low_band_energy": 0.31,
+          "mid_band_energy": 0.44,
+          "high_band_energy": 0.16
         }
       },
       "roundtrip_asr": {
         "asr_transcript": "Mix 2.5 cups of flour with 3/4 tsp baking soda and 1.5 tbsp butter.",
-        "word_overlap": 0.8571,
-        "asr_latency_ms": 543.47
+        "roundtrip_reference": "Mix 2.5 cups of flour with 3/4 tsp baking soda and 1.5 tbsp butter.",
+        "verbatim_wer": 0.1429,
+        "verbatim_cer": 0.0612,
+        "formatted_wer": 0.0,
+        "formatted_cer": 0.0,
+        "asr_latency_ms": 628.76,
+        "asr_retries": 0
       },
-      "quality_score": 93.0,
       "output_path": "/Users/mac/Documents/Gnani/gnani-speech-eval/data/tts/output/special_en_003.wav",
-      "error": null
+      "error": null,
+      "repeats_summary": {
+        "repeats_requested": 3,
+        "repeats_succeeded": 3,
+        "p50_latency_ms": 1073.23,
+        "p95_latency_ms": 1136.37,
+        "mean_latency_ms": 980.92,
+        "p95_total_elapsed_ms": 1136.38,
+        "p50_rtf": 0.2033,
+        "p95_rtf": 0.2213,
+        "total_retries": 0,
+        "mean_roundtrip_formatted_wer": 0.0,
+        "all_roundtrip_transcripts": [
+          "Mix 2.5 cups of flour with 3/4 tsp baking soda and 1.5 tbsp butter.",
+          "Mix 2.5 cups of flour with 3/4 tsp baking soda and 1.5 tbsp butter.",
+          "Mix 2.5 cups of flour with 3/4 tsp baking soda and 1.5 tbsp butter."
+        ]
+      },
+      "trials": [
+        {
+          "run": 1,
+          "status": "success",
+          "synth_latency_ms": 1143.39,
+          "total_elapsed_ms": 1143.4,
+          "retries": 0,
+          "rtf": 0.2033,
+          "roundtrip_asr_transcript": "Mix 2.5 cups of flour with 3/4 tsp baking soda and 1.5 tbsp butter.",
+          "roundtrip_formatted_wer": 0.0
+        },
+        {
+          "run": 2,
+          "status": "success",
+          "synth_latency_ms": 1073.23,
+          "total_elapsed_ms": 1073.24,
+          "retries": 0,
+          "rtf": 0.2033,
+          "roundtrip_asr_transcript": "Mix 2.5 cups of flour with 3/4 tsp baking soda and 1.5 tbsp butter.",
+          "roundtrip_formatted_wer": 0.0
+        },
+        {
+          "run": 3,
+          "status": "success",
+          "synth_latency_ms": 726.14,
+          "total_elapsed_ms": 726.15,
+          "retries": 0,
+          "rtf": 0.1418,
+          "roundtrip_asr_transcript": "Mix 2.5 cups of flour with 3/4 tsp baking soda and 1.5 tbsp butter.",
+          "roundtrip_formatted_wer": 0.0
+        }
+      ]
     },
     {
       "id": "te_001",
@@ -909,33 +2249,90 @@
         "banking"
       ],
       "text": "మీ ఖాతాలో ₹1,50,000 బ్యాలెన్స్ ఉంది, ఏమైనా సహాయం కావాలా?",
+      "roundtrip_reference": "మీ ఖాతాలో ఒక లక్ష యాభై వేల రూపాయలు బ్యాలెన్స్ ఉంది ఏమైనా సహాయం కావాలా.",
       "language": "te-IN",
-      "voice": "Kaveri",
+      "voice": "Suhana",
       "status": "success",
-      "synth_latency_ms": 720.31,
+      "synth_latency_ms": 900.18,
+      "total_elapsed_ms": 836.86,
+      "retries": 0,
       "audio_analysis": {
-        "audio_duration_sec": 4.0,
+        "audio_duration_sec": 5.44,
         "sample_rate": 48000,
-        "rtf": 0.1801,
-        "speaking_rate_wpm": 120.0,
-        "silence_ratio": 0.28,
+        "rtf": 0.1705,
+        "rtf_with_retries": 0.1538,
+        "speaking_rate_wpm": 88.2,
+        "silence_ratio": 0.1993,
         "clipping_ratio": 0.0,
         "spectral": {
-          "spectral_centroid_hz": 1828.85,
-          "spectral_bandwidth_hz": 2764.5,
-          "low_band_energy": 0.31,
-          "mid_band_energy": 0.48,
-          "high_band_energy": 0.15
+          "spectral_centroid_hz": 2203.36,
+          "spectral_bandwidth_hz": 3026.4,
+          "low_band_energy": 0.3,
+          "mid_band_energy": 0.42,
+          "high_band_energy": 0.21
         }
       },
       "roundtrip_asr": {
-        "asr_transcript": "మీ ఖాతాలో ఒక లక్ష యాభై వేల రూపాయలు బ్యాలెన్స్ ఉంది ఏమైనా సహాయం కావాలా.",
-        "word_overlap": 0.875,
-        "asr_latency_ms": 389.52
+        "asr_transcript": "మీ ఖాతాలో ఒక లక్షా యాభై వేల రూపాయలు బ్యాలెన్స్ ఉంది ఏమైనా సహాయం కావాలా.",
+        "roundtrip_reference": "మీ ఖాతాలో ఒక లక్ష యాభై వేల రూపాయలు బ్యాలెన్స్ ఉంది ఏమైనా సహాయం కావాలా.",
+        "verbatim_wer": 0.625,
+        "verbatim_cer": 0.4773,
+        "formatted_wer": 0.0833,
+        "formatted_cer": 0.0172,
+        "asr_latency_ms": 464.3,
+        "asr_retries": 0
       },
-      "quality_score": 93.0,
       "output_path": "/Users/mac/Documents/Gnani/gnani-speech-eval/data/tts/output/te_001.wav",
-      "error": null
+      "error": null,
+      "repeats_summary": {
+        "repeats_requested": 3,
+        "repeats_succeeded": 3,
+        "p50_latency_ms": 900.18,
+        "p95_latency_ms": 918.29,
+        "mean_latency_ms": 885.78,
+        "p95_total_elapsed_ms": 918.3,
+        "p50_rtf": 0.1705,
+        "p95_rtf": 0.1739,
+        "total_retries": 0,
+        "mean_roundtrip_formatted_wer": 0.0555,
+        "all_roundtrip_transcripts": [
+          "మీ ఖాతాలో ఒక లక్షా యాభై వేల రూపాయలు బ్యాలెన్స్ ఉంది ఏమైనా సహాయం కావాలా.",
+          "మీ ఖాతాలో ఒక లక్ష యాభై వేల రూపాయలు బ్యాలెన్స్ ఉంది ఏమైనా సహాయం కావాలా.",
+          "మీ ఖాతాలో ఒక లక్షా యాభై వేల రూపాయలు బ్యాలెన్స్ ఉంది ఏమైనా సహాయం కావాలా."
+        ]
+      },
+      "trials": [
+        {
+          "run": 1,
+          "status": "success",
+          "synth_latency_ms": 836.85,
+          "total_elapsed_ms": 836.86,
+          "retries": 0,
+          "rtf": 0.1705,
+          "roundtrip_asr_transcript": "మీ ఖాతాలో ఒక లక్షా యాభై వేల రూపాయలు బ్యాలెన్స్ ఉంది ఏమైనా సహాయం కావాలా.",
+          "roundtrip_formatted_wer": 0.0833
+        },
+        {
+          "run": 2,
+          "status": "success",
+          "synth_latency_ms": 900.18,
+          "total_elapsed_ms": 900.19,
+          "retries": 0,
+          "rtf": 0.1705,
+          "roundtrip_asr_transcript": "మీ ఖాతాలో ఒక లక్ష యాభై వేల రూపాయలు బ్యాలెన్స్ ఉంది ఏమైనా సహాయం కావాలా.",
+          "roundtrip_formatted_wer": 0.0
+        },
+        {
+          "run": 3,
+          "status": "success",
+          "synth_latency_ms": 920.3,
+          "total_elapsed_ms": 920.31,
+          "retries": 0,
+          "rtf": 0.1743,
+          "roundtrip_asr_transcript": "మీ ఖాతాలో ఒక లక్షా యాభై వేల రూపాయలు బ్యాలెన్స్ ఉంది ఏమైనా సహాయం కావాలా.",
+          "roundtrip_formatted_wer": 0.0833
+        }
+      ]
     },
     {
       "id": "ta_001",
@@ -945,33 +2342,183 @@
         "banking"
       ],
       "text": "உங்கள் கணக்கில் ₹2,00,000 உள்ளது, வேறு ஏதாவது உதவி வேண்டுமா?",
+      "roundtrip_reference": "உங்கள் கணக்கில் இரண்டு லட்சம் ரூபாய் உள்ளது வேறு ஏதாவது உதவி வேண்டுமா.",
       "language": "ta-IN",
-      "voice": "Kaveri",
+      "voice": "Asmita",
       "status": "success",
-      "synth_latency_ms": 754.7,
+      "synth_latency_ms": 788.23,
+      "total_elapsed_ms": 1017.59,
+      "retries": 0,
       "audio_analysis": {
-        "audio_duration_sec": 3.68,
+        "audio_duration_sec": 4.0,
         "sample_rate": 48000,
-        "rtf": 0.2051,
-        "speaking_rate_wpm": 130.4,
-        "silence_ratio": 0.3013,
+        "rtf": 0.1895,
+        "rtf_with_retries": 0.2544,
+        "speaking_rate_wpm": 120.0,
+        "silence_ratio": 0.2111,
         "clipping_ratio": 0.0,
         "spectral": {
-          "spectral_centroid_hz": 1592.97,
-          "spectral_bandwidth_hz": 2508.52,
-          "low_band_energy": 0.41,
-          "mid_band_energy": 0.38,
-          "high_band_energy": 0.16
+          "spectral_centroid_hz": 1190.76,
+          "spectral_bandwidth_hz": 1414.71,
+          "low_band_energy": 0.4,
+          "mid_band_energy": 0.41,
+          "high_band_energy": 0.18
         }
       },
       "roundtrip_asr": {
         "asr_transcript": "உங்கள் கணக்கில் இரண்டு லட்சம் ரூபாய் உள்ளது வேறு ஏதாவது உதவி வேண்டுமா.",
-        "word_overlap": 0.875,
-        "asr_latency_ms": 330.54
+        "roundtrip_reference": "உங்கள் கணக்கில் இரண்டு லட்சம் ரூபாய் உள்ளது வேறு ஏதாவது உதவி வேண்டுமா.",
+        "verbatim_wer": 0.375,
+        "verbatim_cer": 0.375,
+        "formatted_wer": 0.0,
+        "formatted_cer": 0.0,
+        "asr_latency_ms": 268.46,
+        "asr_retries": 0
       },
-      "quality_score": 93.0,
       "output_path": "/Users/mac/Documents/Gnani/gnani-speech-eval/data/tts/output/ta_001.wav",
-      "error": null
+      "error": null,
+      "repeats_summary": {
+        "repeats_requested": 3,
+        "repeats_succeeded": 3,
+        "p50_latency_ms": 788.23,
+        "p95_latency_ms": 994.65,
+        "mean_latency_ms": 811.49,
+        "p95_total_elapsed_ms": 994.65,
+        "p50_rtf": 0.1895,
+        "p95_rtf": 0.2479,
+        "total_retries": 0,
+        "mean_roundtrip_formatted_wer": 0.0,
+        "all_roundtrip_transcripts": [
+          "உங்கள் கணக்கில் இரண்டு லட்சம் ரூபாய் உள்ளது வேறு ஏதாவது உதவி வேண்டுமா.",
+          "உங்கள் கணக்கில் இரண்டு லட்சம் ரூபாய் உள்ளது வேறு ஏதாவது உதவி வேண்டுமா.",
+          "உங்கள் கணக்கில் இரண்டு லட்சம் ரூபாய் உள்ளது வேறு ஏதாவது உதவி வேண்டுமா."
+        ]
+      },
+      "trials": [
+        {
+          "run": 1,
+          "status": "success",
+          "synth_latency_ms": 1017.58,
+          "total_elapsed_ms": 1017.59,
+          "retries": 0,
+          "rtf": 0.1895,
+          "roundtrip_asr_transcript": "உங்கள் கணக்கில் இரண்டு லட்சம் ரூபாய் உள்ளது வேறு ஏதாவது உதவி வேண்டுமா.",
+          "roundtrip_formatted_wer": 0.0
+        },
+        {
+          "run": 2,
+          "status": "success",
+          "synth_latency_ms": 788.23,
+          "total_elapsed_ms": 788.24,
+          "retries": 0,
+          "rtf": 0.1895,
+          "roundtrip_asr_transcript": "உங்கள் கணக்கில் இரண்டு லட்சம் ரூபாய் உள்ளது வேறு ஏதாவது உதவி வேண்டுமா.",
+          "roundtrip_formatted_wer": 0.0
+        },
+        {
+          "run": 3,
+          "status": "success",
+          "synth_latency_ms": 628.66,
+          "total_elapsed_ms": 628.67,
+          "retries": 0,
+          "rtf": 0.1511,
+          "roundtrip_asr_transcript": "உங்கள் கணக்கில் இரண்டு லட்சம் ரூபாய் உள்ளது வேறு ஏதாவது உதவி வேண்டுமா.",
+          "roundtrip_formatted_wer": 0.0
+        }
+      ]
+    },
+    {
+      "id": "bn_001",
+      "category": "regional_languages",
+      "tags": [
+        "bengali",
+        "banking"
+      ],
+      "text": "আপনার অ্যাকাউন্ট ব্যালেন্স ₹1,50,000 টাকা, আর কোনো সাহায্য লাগবে কি?",
+      "roundtrip_reference": "আপনার অ্যাকাউন্ট ব্যালেন্স এক লক্ষ পঞ্চাশ হাজার টাকা আর কোনো সাহায্য লাগবে কি",
+      "language": "bn-IN",
+      "voice": "Kirra",
+      "status": "success",
+      "synth_latency_ms": 854.11,
+      "total_elapsed_ms": 781.63,
+      "retries": 0,
+      "audio_analysis": {
+        "audio_duration_sec": 6.24,
+        "sample_rate": 48000,
+        "rtf": 0.1302,
+        "rtf_with_retries": 0.1253,
+        "speaking_rate_wpm": 96.2,
+        "silence_ratio": 0.3264,
+        "clipping_ratio": 0.0,
+        "spectral": {
+          "spectral_centroid_hz": 1944.46,
+          "spectral_bandwidth_hz": 2381.03,
+          "low_band_energy": 0.27,
+          "mid_band_energy": 0.43,
+          "high_band_energy": 0.26
+        }
+      },
+      "roundtrip_asr": {
+        "asr_transcript": "আপনার অ্যাকাউন্ট ব্যালেন্স এক লক্ষ পঞ্চাশ হাজার টাকা, আর কোনো সাহায্য লাগবে কি?",
+        "roundtrip_reference": "আপনার অ্যাকাউন্ট ব্যালেন্স এক লক্ষ পঞ্চাশ হাজার টাকা আর কোনো সাহায্য লাগবে কি",
+        "verbatim_wer": 0.4,
+        "verbatim_cer": 0.3148,
+        "formatted_wer": 0.0,
+        "formatted_cer": 0.0,
+        "asr_latency_ms": 446.49,
+        "asr_retries": 0
+      },
+      "output_path": "/Users/mac/Documents/Gnani/gnani-speech-eval/data/tts/output/bn_001.wav",
+      "error": null,
+      "repeats_summary": {
+        "repeats_requested": 3,
+        "repeats_succeeded": 3,
+        "p50_latency_ms": 854.11,
+        "p95_latency_ms": 957.62,
+        "mean_latency_ms": 868.29,
+        "p95_total_elapsed_ms": 957.63,
+        "p50_rtf": 0.1302,
+        "p95_rtf": 0.1528,
+        "total_retries": 0,
+        "mean_roundtrip_formatted_wer": 0.0,
+        "all_roundtrip_transcripts": [
+          "আপনার অ্যাকাউন্ট ব্যালেন্স এক লক্ষ পঞ্চাশ হাজার টাকা, আর কোনো সাহায্য লাগবে কি?",
+          "আপনার অ্যাকাউন্ট ব্যালেন্স এক লক্ষ পঞ্চাশ হাজার টাকা, আর কোনো সাহায্য লাগবে কি?",
+          "আপনার অ্যাকাউন্ট ব্যালেন্স এক লক্ষ পঞ্চাশ হাজার টাকা। আর কোনো সাহায্য লাগবে কি?"
+        ]
+      },
+      "trials": [
+        {
+          "run": 1,
+          "status": "success",
+          "synth_latency_ms": 781.63,
+          "total_elapsed_ms": 781.63,
+          "retries": 0,
+          "rtf": 0.1302,
+          "roundtrip_asr_transcript": "আপনার অ্যাকাউন্ট ব্যালেন্স এক লক্ষ পঞ্চাশ হাজার টাকা, আর কোনো সাহায্য লাগবে কি?",
+          "roundtrip_formatted_wer": 0.0
+        },
+        {
+          "run": 2,
+          "status": "success",
+          "synth_latency_ms": 854.11,
+          "total_elapsed_ms": 854.12,
+          "retries": 0,
+          "rtf": 0.1302,
+          "roundtrip_asr_transcript": "আপনার অ্যাকাউন্ট ব্যালেন্স এক লক্ষ পঞ্চাশ হাজার টাকা, আর কোনো সাহায্য লাগবে কি?",
+          "roundtrip_formatted_wer": 0.0
+        },
+        {
+          "run": 3,
+          "status": "success",
+          "synth_latency_ms": 969.12,
+          "total_elapsed_ms": 969.13,
+          "retries": 0,
+          "rtf": 0.1553,
+          "roundtrip_asr_transcript": "আপনার অ্যাকাউন্ট ব্যালেন্স এক লক্ষ পঞ্চাশ হাজার টাকা। আর কোনো সাহায্য লাগবে কি?",
+          "roundtrip_formatted_wer": 0.0
+        }
+      ]
     },
     {
       "id": "edge_empty_001",
@@ -979,7 +2526,18 @@
       "text": "...",
       "language": "en-IN",
       "status": "api_error",
-      "error": "[HTTP 500] {\"success\":false,\"message\":\"No audio generated during synthesis\",\"status_code\":500}"
+      "error": "[HTTP 500] {\"success\":false,\"message\":\"No audio generated during synthesis\",\"status_code\":500}",
+      "trials": [
+        {
+          "id": "edge_empty_001",
+          "category": "edge_cases",
+          "text": "...",
+          "language": "en-IN",
+          "status": "api_error",
+          "error": "[HTTP 500] {\"success\":false,\"message\":\"No audio generated during synthesis\",\"status_code\":500}"
+        }
+      ],
+      "repeats_attempted": 1
     },
     {
       "id": "edge_repeat_001",
@@ -989,33 +2547,90 @@
         "repetition"
       ],
       "text": "No no no no no, I said cancel cancel cancel the order!",
+      "roundtrip_reference": "No no no no no, I said cancel cancel cancel the order!",
       "language": "en-IN",
       "voice": "Kaveri",
       "status": "success",
-      "synth_latency_ms": 525.24,
+      "synth_latency_ms": 735.75,
+      "total_elapsed_ms": 735.76,
+      "retries": 0,
       "audio_analysis": {
         "audio_duration_sec": 3.04,
         "sample_rate": 48000,
-        "rtf": 0.1728,
+        "rtf": 0.242,
+        "rtf_with_retries": 0.242,
         "speaking_rate_wpm": 236.8,
-        "silence_ratio": 0.3145,
+        "silence_ratio": 0.2119,
         "clipping_ratio": 0.0,
         "spectral": {
-          "spectral_centroid_hz": 2209.92,
-          "spectral_bandwidth_hz": 3477.23,
+          "spectral_centroid_hz": 1951.41,
+          "spectral_bandwidth_hz": 3241.03,
           "low_band_energy": 0.38,
-          "mid_band_energy": 0.39,
+          "mid_band_energy": 0.41,
           "high_band_energy": 0.13
         }
       },
       "roundtrip_asr": {
         "asr_transcript": "No no no no no I said cancel cancel cancel the order",
-        "word_overlap": 1.0,
-        "asr_latency_ms": 403.88
+        "roundtrip_reference": "No no no no no, I said cancel cancel cancel the order!",
+        "verbatim_wer": 0.0,
+        "verbatim_cer": 0.0,
+        "formatted_wer": 0.0,
+        "formatted_cer": 0.0,
+        "asr_latency_ms": 521.39,
+        "asr_retries": 0
       },
-      "quality_score": 80.0,
       "output_path": "/Users/mac/Documents/Gnani/gnani-speech-eval/data/tts/output/edge_repeat_001.wav",
-      "error": null
+      "error": null,
+      "repeats_summary": {
+        "repeats_requested": 3,
+        "repeats_succeeded": 3,
+        "p50_latency_ms": 735.75,
+        "p95_latency_ms": 749.32,
+        "mean_latency_ms": 711.64,
+        "p95_total_elapsed_ms": 749.33,
+        "p50_rtf": 0.242,
+        "p95_rtf": 0.2465,
+        "total_retries": 0,
+        "mean_roundtrip_formatted_wer": 0.0,
+        "all_roundtrip_transcripts": [
+          "No no no no no I said cancel cancel cancel the order",
+          "No no no no no I said cancel cancel cancel the order",
+          "No no no no no I said cancel cancel cancel the order"
+        ]
+      },
+      "trials": [
+        {
+          "run": 1,
+          "status": "success",
+          "synth_latency_ms": 735.75,
+          "total_elapsed_ms": 735.76,
+          "retries": 0,
+          "rtf": 0.242,
+          "roundtrip_asr_transcript": "No no no no no I said cancel cancel cancel the order",
+          "roundtrip_formatted_wer": 0.0
+        },
+        {
+          "run": 2,
+          "status": "success",
+          "synth_latency_ms": 750.83,
+          "total_elapsed_ms": 750.84,
+          "retries": 0,
+          "rtf": 0.247,
+          "roundtrip_asr_transcript": "No no no no no I said cancel cancel cancel the order",
+          "roundtrip_formatted_wer": 0.0
+        },
+        {
+          "run": 3,
+          "status": "success",
+          "synth_latency_ms": 648.34,
+          "total_elapsed_ms": 648.35,
+          "retries": 0,
+          "rtf": 0.2026,
+          "roundtrip_asr_transcript": "No no no no no I said cancel cancel cancel the order",
+          "roundtrip_formatted_wer": 0.0
+        }
+      ]
     },
     {
       "id": "edge_mixed_script_001",
@@ -1026,33 +2641,90 @@
         "hinglish"
       ],
       "text": "Password reset link: अपना नया password डालें और Submit बटन दबाएँ।",
-      "language": "hi-IN",
-      "voice": "Nalini",
+      "roundtrip_reference": "password reset link अपना नया password डालें और submit button दबाएं।",
+      "language": "hi-en",
+      "voice": "Poorvi",
       "status": "success",
-      "synth_latency_ms": 811.38,
+      "synth_latency_ms": 604.31,
+      "total_elapsed_ms": 604.31,
+      "retries": 0,
       "audio_analysis": {
-        "audio_duration_sec": 4.16,
+        "audio_duration_sec": 4.32,
         "sample_rate": 48000,
-        "rtf": 0.195,
-        "speaking_rate_wpm": 158.7,
-        "silence_ratio": 0.3242,
+        "rtf": 0.1472,
+        "rtf_with_retries": 0.1399,
+        "speaking_rate_wpm": 152.8,
+        "silence_ratio": 0.2581,
         "clipping_ratio": 0.0,
         "spectral": {
-          "spectral_centroid_hz": 2367.63,
-          "spectral_bandwidth_hz": 3223.15,
-          "low_band_energy": 0.32,
-          "mid_band_energy": 0.38,
-          "high_band_energy": 0.22
+          "spectral_centroid_hz": 2816.97,
+          "spectral_bandwidth_hz": 3308.37,
+          "low_band_energy": 0.26,
+          "mid_band_energy": 0.35,
+          "high_band_energy": 0.29
         }
       },
       "roundtrip_asr": {
-        "asr_transcript": "Password reset link अपना नया password डालें और submit button दबाएं।",
-        "word_overlap": 0.8182,
-        "asr_latency_ms": 233.9
+        "asr_transcript": "Password reset link, अपना नया password डालें और submit button दबाएं।",
+        "roundtrip_reference": "password reset link अपना नया password डालें और submit button दबाएं।",
+        "verbatim_wer": 0.1818,
+        "verbatim_cer": 0.1321,
+        "formatted_wer": 0.0,
+        "formatted_cer": 0.0,
+        "asr_latency_ms": 275.21,
+        "asr_retries": 0
       },
-      "quality_score": 93.0,
       "output_path": "/Users/mac/Documents/Gnani/gnani-speech-eval/data/tts/output/edge_mixed_script_001.wav",
-      "error": null
+      "error": null,
+      "repeats_summary": {
+        "repeats_requested": 3,
+        "repeats_succeeded": 3,
+        "p50_latency_ms": 604.31,
+        "p95_latency_ms": 823.84,
+        "mean_latency_ms": 680.47,
+        "p95_total_elapsed_ms": 823.85,
+        "p50_rtf": 0.1472,
+        "p95_rtf": 0.2056,
+        "total_retries": 0,
+        "mean_roundtrip_formatted_wer": 0.1818,
+        "all_roundtrip_transcripts": [
+          "Password reset link, अपना नया password डालें और submit button दबाएं।",
+          "पासवर्ड रीसेट लिंक, अपना नया पासवर्ड डालें और सबमिट बटन दबाएं।",
+          "Password reset link अपना नया password डालें और submit button दबाएं।"
+        ]
+      },
+      "trials": [
+        {
+          "run": 1,
+          "status": "success",
+          "synth_latency_ms": 604.31,
+          "total_elapsed_ms": 604.31,
+          "retries": 0,
+          "rtf": 0.1472,
+          "roundtrip_asr_transcript": "Password reset link, अपना नया password डालें और submit button दबाएं।",
+          "roundtrip_formatted_wer": 0.0
+        },
+        {
+          "run": 2,
+          "status": "success",
+          "synth_latency_ms": 588.88,
+          "total_elapsed_ms": 588.89,
+          "retries": 0,
+          "rtf": 0.1472,
+          "roundtrip_asr_transcript": "पासवर्ड रीसेट लिंक, अपना नया पासवर्ड डालें और सबमिट बटन दबाएं।",
+          "roundtrip_formatted_wer": 0.5455
+        },
+        {
+          "run": 3,
+          "status": "success",
+          "synth_latency_ms": 848.23,
+          "total_elapsed_ms": 848.24,
+          "retries": 0,
+          "rtf": 0.2121,
+          "roundtrip_asr_transcript": "Password reset link अपना नया password डालें और submit button दबाएं।",
+          "roundtrip_formatted_wer": 0.0
+        }
+      ]
     },
     {
       "id": "edge_ssml_001",
@@ -1064,43 +2736,90 @@
         "numbers"
       ],
       "text": "Press 1 for English, 2 for हिंदी, 3 for తెలుగు, or stay on the line for an agent.",
+      "roundtrip_reference": "Press 1 for English, 2 for Hindi, 3 for Telugu, or stay on the line for an agent.",
       "language": "en-IN",
       "voice": "Kaveri",
       "status": "success",
-      "synth_latency_ms": 1307.43,
+      "synth_latency_ms": 936.55,
+      "total_elapsed_ms": 936.56,
+      "retries": 0,
       "audio_analysis": {
-        "audio_duration_sec": 4.8,
+        "audio_duration_sec": 4.96,
         "sample_rate": 48000,
-        "rtf": 0.2724,
-        "speaking_rate_wpm": 225.0,
-        "silence_ratio": 0.4042,
+        "rtf": 0.1888,
+        "rtf_with_retries": 0.1888,
+        "speaking_rate_wpm": 217.7,
+        "silence_ratio": 0.3097,
         "clipping_ratio": 0.0,
         "spectral": {
-          "spectral_centroid_hz": 2749.46,
-          "spectral_bandwidth_hz": 3781.94,
-          "low_band_energy": 0.32,
-          "mid_band_energy": 0.35,
-          "high_band_energy": 0.21
+          "spectral_centroid_hz": 2439.78,
+          "spectral_bandwidth_hz": 3501.04,
+          "low_band_energy": 0.33,
+          "mid_band_energy": 0.37,
+          "high_band_energy": 0.19
         }
       },
       "roundtrip_asr": {
         "asr_transcript": "Press 1 for English, 2 for Hindi, 3 for Telugu, or stay on the line for an agent.",
-        "word_overlap": 0.8889,
-        "asr_latency_ms": 1593.16
+        "roundtrip_reference": "Press 1 for English, 2 for Hindi, 3 for Telugu, or stay on the line for an agent.",
+        "verbatim_wer": 0.1111,
+        "verbatim_cer": 0.1833,
+        "formatted_wer": 0.0,
+        "formatted_cer": 0.0,
+        "asr_latency_ms": 654.8,
+        "asr_retries": 0
       },
-      "quality_score": 65.0,
       "output_path": "/Users/mac/Documents/Gnani/gnani-speech-eval/data/tts/output/edge_ssml_001.wav",
-      "error": null
+      "error": null,
+      "repeats_summary": {
+        "repeats_requested": 3,
+        "repeats_succeeded": 3,
+        "p50_latency_ms": 936.55,
+        "p95_latency_ms": 956.57,
+        "mean_latency_ms": 858.25,
+        "p95_total_elapsed_ms": 956.57,
+        "p50_rtf": 0.1888,
+        "p95_rtf": 0.1986,
+        "total_retries": 0,
+        "mean_roundtrip_formatted_wer": 0.0,
+        "all_roundtrip_transcripts": [
+          "Press 1 for English, 2 for Hindi, 3 for Telugu, or stay on the line for an agent.",
+          "Press 1 for English, 2 for Hindi, 3 for Telugu, or stay on the line for an agent.",
+          "Press 1 for English, 2 for Hindi, 3 for Telugu, or stay on the line for an agent."
+        ]
+      },
+      "trials": [
+        {
+          "run": 1,
+          "status": "success",
+          "synth_latency_ms": 936.55,
+          "total_elapsed_ms": 936.56,
+          "retries": 0,
+          "rtf": 0.1888,
+          "roundtrip_asr_transcript": "Press 1 for English, 2 for Hindi, 3 for Telugu, or stay on the line for an agent.",
+          "roundtrip_formatted_wer": 0.0
+        },
+        {
+          "run": 2,
+          "status": "success",
+          "synth_latency_ms": 679.42,
+          "total_elapsed_ms": 679.43,
+          "retries": 0,
+          "rtf": 0.1517,
+          "roundtrip_asr_transcript": "Press 1 for English, 2 for Hindi, 3 for Telugu, or stay on the line for an agent.",
+          "roundtrip_formatted_wer": 0.0
+        },
+        {
+          "run": 3,
+          "status": "success",
+          "synth_latency_ms": 958.79,
+          "total_elapsed_ms": 958.79,
+          "retries": 0,
+          "rtf": 0.1997,
+          "roundtrip_asr_transcript": "Press 1 for English, 2 for Hindi, 3 for Telugu, or stay on the line for an agent.",
+          "roundtrip_formatted_wer": 0.0
+        }
+      ]
     }
-  ],
-  "quality_rubric": {
-    "description": "Automated quality score (0-100) breakdown",
-    "components": {
-      "rtf_realtime": "20 pts — RTF < 1.0 (faster than real-time)",
-      "speaking_rate": "20 pts — 120-180 WPM (natural pacing)",
-      "silence_ratio": "20 pts — 10-40% silence (natural pauses)",
-      "no_clipping": "15 pts — Clipping ratio < 0.1%",
-      "roundtrip_fidelity": "25 pts — ASR re-transcription overlap > 90%"
-    }
-  }
+  ]
 }
