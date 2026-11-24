@@ -1,0 +1,27 @@
+# Byte-compiled / optimised
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Environment
+.env
+venv/
+.venv/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Audio output (generated during eval — can be large)
+data/tts/output/*.wav
+data/asr/audio/*.aiff
+
+# Results (regenerated on each run)
+# Uncomment the next line if you don't want to track results in git
+# results/

@@ -1,0 +1,98 @@
+#!/usr/bin/env python3
+"""
+Main Evaluation Runner
+
+Runs both ASR (Prisma) and TTS (Timbre) evaluations end-to-end.
+
+Usage:
+    # Run everything
+    python scripts/run_evaluation.py
+
+    # ASR only
+    python scripts/run_evaluation.py --asr-only
+
+    # TTS only
+    python scripts/run_evaluation.py --tts-only
+
+    # Skip round-trip ASR for TTS (faster)
+    python scripts/run_evaluation.py --tts-only --no-roundtrip
+"""
+
+import argparse
+import sys
+from pathlib import Path
+
+# Add project root to path
+sys.path.insert(0, str(Path(__file__).parent.parent))
+
+
+def main():
+    parser = argparse.ArgumentParser(
+        description="Gnani Speech Evaluation — Prisma ASR & Timbre TTS"
+    )
+    parser.add_argument("--asr-only", action="store_true", help="Run ASR evaluation only")
+    parser.add_argument("--tts-only", action="store_true", help="Run TTS evaluation only")
+    parser.add_argument("--no-roundtrip", action="store_true",
+                        help="Skip round-trip ASR check in TTS evaluation")
+    parser.add_argument("--api-key", type=str, default=None,
+                        help="Gnani API key (or set GNANI_API_KEY env var)")
+    args = parser.parse_args()
+
+    project_root = Path(__file__).parent.parent
+    run_asr = not args.tts_only
+    run_tts = not args.asr_only
+
+    print()
+    print("╔══════════════════════════════════════════════════════════╗")
+    print("║          GNANI SPEECH EVALUATION TOOLKIT                ║")
+    print("║          Prisma (ASR) + Timbre (TTS)                    ║")
+    print("╚══════════════════════════════════════════════════════════╝")
+    print()
+
+    # ── ASR Evaluation ─────────────────────────────────────────────
+    if run_asr:
+        from src.asr_evaluator import run_asr_evaluation
+
+        manifest_path = str(project_root / "data" / "asr" / "test_manifest.json")
+        output_path = str(project_root / "results" / "asr_results.json")
+
+        print("▶ Starting ASR (Prisma) evaluation...\n")
+        asr_results = run_asr_evaluation(
+            manifest_path=manifest_path,
+            api_key=args.api_key,
+            output_path=output_path,
+            verbose=True,
+        )
+        print()
+
+    # ── TTS Evaluation ─────────────────────────────────────────────
+    if run_tts:
+        from src.tts_evaluator import run_tts_evaluation
+
+        test_set_path = str(project_root / "data" / "tts" / "test_sentences.json")
+        output_dir = str(project_root / "data" / "tts" / "output")
+
+        print("▶ Starting TTS (Timbre) evaluation...\n")
+        tts_results = run_tts_evaluation(
+            test_set_path=test_set_path,
+            api_key=args.api_key,
+            output_dir=output_dir,
+            run_roundtrip_asr=not args.no_roundtrip,
+            verbose=True,
+        )
+        print()
+
+    print("╔══════════════════════════════════════════════════════════╗")
+    print("║                   EVALUATION COMPLETE                   ║")
+    print("╚══════════════════════════════════════════════════════════╝")
+    print()
+    print(f"  Results saved in: {project_root / 'results'}/")
+    if run_asr:
+        print(f"    - asr_results.json")
+    if run_tts:
+        print(f"    - tts_results.json")
+    print()
+
+
+if __name__ == "__main__":
+    main()

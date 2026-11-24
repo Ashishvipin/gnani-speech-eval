@@ -1,0 +1,242 @@
+[
+    {
+        "id": "clean_en_001",
+        "audio_path": "audio/clean_en_001.wav",
+        "reference": "the quick brown fox jumps over the lazy dog",
+        "language": "en-IN",
+        "category": "clean_english",
+        "tags": ["clean", "short", "english", "pangram"]
+    },
+    {
+        "id": "clean_en_002",
+        "audio_path": "audio/clean_en_002.wav",
+        "reference": "please transfer five thousand rupees to my savings account",
+        "language": "en-IN",
+        "category": "clean_english",
+        "tags": ["clean", "banking", "english", "numbers"]
+    },
+    {
+        "id": "clean_en_003",
+        "audio_path": "audio/clean_en_003.wav",
+        "reference": "i would like to book an appointment with doctor sharma for tomorrow morning",
+        "language": "en-IN",
+        "category": "clean_english",
+        "tags": ["clean", "healthcare", "english", "proper_noun"]
+    },
+    {
+        "id": "clean_hi_001",
+        "audio_path": "audio/clean_hi_001.wav",
+        "reference": "नमस्ते मैं अपना बैलेंस जानना चाहता हूँ",
+        "language": "hi-IN",
+        "category": "clean_hindi",
+        "tags": ["clean", "hindi", "banking"]
+    },
+    {
+        "id": "clean_hi_002",
+        "audio_path": "audio/clean_hi_002.wav",
+        "reference": "कृपया मेरा आधार नंबर से लिंक करें",
+        "language": "hi-IN",
+        "category": "clean_hindi",
+        "tags": ["clean", "hindi", "government"]
+    },
+    {
+        "id": "clean_hi_003",
+        "audio_path": "audio/clean_hi_003.wav",
+        "reference": "मुझे कल सुबह दस बजे की फ्लाइट चाहिए",
+        "language": "hi-IN",
+        "category": "clean_hindi",
+        "tags": ["clean", "hindi", "travel", "numbers"]
+    },
+    {
+        "id": "noisy_en_001",
+        "audio_path": "audio/noisy_en_001.wav",
+        "reference": "my policy number is alpha bravo charlie one two three four five",
+        "language": "en-IN",
+        "category": "noisy_audio",
+        "tags": ["noisy", "english", "alphanumeric", "insurance"]
+    },
+    {
+        "id": "noisy_en_002",
+        "audio_path": "audio/noisy_en_002.wav",
+        "reference": "i am calling from the airport and my flight is delayed",
+        "language": "en-IN",
+        "category": "noisy_audio",
+        "tags": ["noisy", "english", "ambient_noise", "travel"]
+    },
+    {
+        "id": "noisy_hi_001",
+        "audio_path": "audio/noisy_hi_001.wav",
+        "reference": "हाँ मैं सड़क पर हूँ सुनाई नहीं दे रहा",
+        "language": "hi-IN",
+        "category": "noisy_audio",
+        "tags": ["noisy", "hindi", "street_noise"]
+    },
+    {
+        "id": "telephony_en_001",
+        "audio_path": "audio/telephony_en_001.wav",
+        "reference": "can you please repeat your account number",
+        "language": "en-IN",
+        "category": "telephony",
+        "tags": ["telephony", "8khz", "english", "banking"]
+    },
+    {
+        "id": "telephony_hi_001",
+        "audio_path": "audio/telephony_hi_001.wav",
+        "reference": "आपका कॉल हमारे लिए महत्वपूर्ण है कृपया प्रतीक्षा करें",
+        "language": "hi-IN",
+        "category": "telephony",
+        "tags": ["telephony", "8khz", "hindi", "ivr"]
+    },
+    {
+        "id": "numbers_en_001",
+        "audio_path": "audio/numbers_en_001.wav",
+        "reference": "the total amount is one lakh twenty three thousand four hundred and fifty six rupees",
+        "language": "en-IN",
+        "category": "numbers_and_entities",
+        "tags": ["numbers", "currency", "indian_format", "english"]
+    },
+    {
+        "id": "numbers_en_002",
+        "audio_path": "audio/numbers_en_002.wav",
+        "reference": "my mobile number is nine eight seven six five four three two one zero",
+        "language": "en-IN",
+        "category": "numbers_and_entities",
+        "tags": ["numbers", "phone_number", "english"]
+    },
+    {
+        "id": "numbers_hi_001",
+        "audio_path": "audio/numbers_hi_001.wav",
+        "reference": "कुल राशि पाँच लाख बहत्तर हज़ार तीन सौ रुपये है",
+        "language": "hi-IN",
+        "category": "numbers_and_entities",
+        "tags": ["numbers", "currency", "hindi"]
+    },
+    {
+        "id": "codemix_001",
+        "audio_path": "audio/codemix_001.wav",
+        "reference": "मुझे अपना account balance check करना है",
+        "language": "hi-IN",
+        "category": "code_switching",
+        "tags": ["code_switch", "hinglish", "banking"]
+    },
+    {
+        "id": "codemix_002",
+        "audio_path": "audio/codemix_002.wav",
+        "reference": "please mera last transaction ka detail bhejo",
+        "language": "hi-IN",
+        "category": "code_switching",
+        "tags": ["code_switch", "hinglish", "banking"]
+    },
+    {
+        "id": "codemix_003",
+        "audio_path": "audio/codemix_003.wav",
+        "reference": "yeh offer kab tak valid hai aur kya terms and conditions hain",
+        "language": "hi-IN",
+        "category": "code_switching",
+        "tags": ["code_switch", "hinglish", "commerce"]
+    },
+    {
+        "id": "accent_south_001",
+        "audio_path": "audio/accent_south_001.wav",
+        "reference": "i am not able to access my internet banking since morning",
+        "language": "en-IN",
+        "category": "accented_english",
+        "tags": ["accent", "south_indian", "english", "banking"]
+    },
+    {
+        "id": "accent_north_001",
+        "audio_path": "audio/accent_north_001.wav",
+        "reference": "what is the current fixed deposit interest rate",
+        "language": "en-IN",
+        "category": "accented_english",
+        "tags": ["accent", "north_indian", "english", "banking"]
+    },
+    {
+        "id": "domain_medical_001",
+        "audio_path": "audio/domain_medical_001.wav",
+        "reference": "the patient was prescribed paracetamol five hundred milligrams twice daily",
+        "language": "en-IN",
+        "category": "domain_specific",
+        "tags": ["domain", "medical", "english", "drug_name"]
+    },
+    {
+        "id": "domain_legal_001",
+        "audio_path": "audio/domain_legal_001.wav",
+        "reference": "the affidavit must be notarised before submission to the magistrate",
+        "language": "en-IN",
+        "category": "domain_specific",
+        "tags": ["domain", "legal", "english"]
+    },
+    {
+        "id": "domain_tech_001",
+        "audio_path": "audio/domain_tech_001.wav",
+        "reference": "deploy the kubernetes cluster on the g c p us east one region",
+        "language": "en-IN",
+        "category": "domain_specific",
+        "tags": ["domain", "tech", "english", "abbreviations"]
+    },
+    {
+        "id": "long_en_001",
+        "audio_path": "audio/long_en_001.wav",
+        "reference": "good afternoon i am calling to enquire about the home loan that i had applied for last month and i wanted to know the current status of my application and when i can expect the disbursement",
+        "language": "en-IN",
+        "category": "long_utterance",
+        "tags": ["long", "english", "banking", "complex"]
+    },
+    {
+        "id": "long_hi_001",
+        "audio_path": "audio/long_hi_001.wav",
+        "reference": "नमस्ते मैं पिछले महीने जो होम लोन के लिए अप्लाई किया था उसका स्टेटस जानना चाहता हूँ कृपया मुझे बताएं कि कब तक प्रोसेस होगा",
+        "language": "hi-IN",
+        "category": "long_utterance",
+        "tags": ["long", "hindi", "banking", "complex"]
+    },
+    {
+        "id": "short_en_001",
+        "audio_path": "audio/short_en_001.wav",
+        "reference": "yes",
+        "language": "en-IN",
+        "category": "short_utterance",
+        "tags": ["short", "english", "single_word"]
+    },
+    {
+        "id": "short_en_002",
+        "audio_path": "audio/short_en_002.wav",
+        "reference": "no cancel it",
+        "language": "en-IN",
+        "category": "short_utterance",
+        "tags": ["short", "english", "command"]
+    },
+    {
+        "id": "short_hi_001",
+        "audio_path": "audio/short_hi_001.wav",
+        "reference": "हाँ",
+        "language": "hi-IN",
+        "category": "short_utterance",
+        "tags": ["short", "hindi", "single_word"]
+    },
+    {
+        "id": "te_001",
+        "audio_path": "audio/te_001.wav",
+        "reference": "నమస్కారం నాకు నా ఖాతా వివరాలు కావాలి",
+        "language": "te-IN",
+        "category": "regional_languages",
+        "tags": ["telugu", "banking"]
+    },
+    {
+        "id": "ta_001",
+        "audio_path": "audio/ta_001.wav",
+        "reference": "வணக்கம் எனது கணக்கு விவரங்களை அனுப்புங்கள்",
+        "language": "ta-IN",
+        "category": "regional_languages",
+        "tags": ["tamil", "banking"]
+    },
+    {
+        "id": "bn_001",
+        "audio_path": "audio/bn_001.wav",
+        "reference": "আমার একাউন্ট ব্যালেন্স জানতে চাই",
+        "language": "bn-IN",
+        "category": "regional_languages",
+        "tags": ["bengali", "banking"]
+    }
+]
