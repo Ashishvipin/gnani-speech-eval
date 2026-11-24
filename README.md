@@ -7,7 +7,7 @@
 
 A comprehensive, production-grade benchmarking framework evaluating **Gnani Prisma** (ASR) and **Gnani Timbre** (TTS) speech APIs across real-world Indian enterprise conditions: telephony audio, noise, code-switching (Hinglish), domain vocabulary, and regional Indic languages.
 
-Designed and implemented as an AI Solutions Engineer take-home assignment by **Ashish Vipin Korumelli**.
+Designed and implemented as an AI Solutions Engineer take-home assignment by **Ashish Vipin**.
 
 ---
 
@@ -188,4 +188,4 @@ Read the comprehensive technical report covering error analysis, the Inverse Tex
 
 ## License
 
-MIT License. Designed and authored by **Ashish Vipin Korumelli** for the Gnani.ai AI Solutions Engineer evaluation.
+MIT License. Designed and authored by **Ashish Vipin** for the Gnani.ai AI Solutions Engineer evaluation.

@@ -1,6 +1,6 @@
 # Technical Evaluation Report: Gnani Prisma (ASR) & Timbre (TTS) APIs
 
-**Author:** Ashish Vipin Korumelli  
+**Author:** Ashish Vipin  
 **Role:** AI Solutions Engineer Take-Home Benchmark  
 **Date:** November 2026  
 **Target Platform:** Gnani Speech Services (`api.vachana.ai`)  
