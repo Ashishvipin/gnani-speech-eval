@@ -90,11 +90,11 @@ class GnaniClient:
         resp_json = response.json()
 
         return {
-            "transcript": resp_json.get("full_transcript", ""),
+            "transcript": resp_json.get("full_transcript", "") or resp_json.get("transcript", ""),
             "segments": resp_json.get("segments", []),
-            "detected_language": resp_json.get("detected_language_code", language),
+            "detected_language": resp_json.get("detected_language_code", "") or resp_json.get("language_code", language),
             "model": resp_json.get("model", model),
-            "status": resp_json.get("status", "UNKNOWN"),
+            "status": resp_json.get("status", "SUCCESS" if resp_json.get("success") else "UNKNOWN"),
             "latency_ms": round(latency_ms, 2),
             "raw_response": resp_json,
         }
@@ -150,6 +150,12 @@ class GnaniClient:
 
         audio_bytes = response.content
 
+        # Timbre returns raw PCM — wrap in WAV header if needed
+        content_disp = response.headers.get("content-disposition", "")
+        audio_container = response.headers.get("x-audio-container", "")
+        if "audio.raw" in content_disp or audio_container == "raw":
+            audio_bytes = self._wrap_pcm_as_wav(audio_bytes, sample_rate=48000)
+
         result = {
             "audio_bytes": audio_bytes,
             "audio_size_bytes": len(audio_bytes),
@@ -170,6 +176,37 @@ class GnaniClient:
         return result
 
     # ── Health Check ───────────────────────────────────────────────
+
+    @staticmethod
+    def _wrap_pcm_as_wav(
+        pcm_data: bytes,
+        sample_rate: int = 48000,
+        num_channels: int = 1,
+        sample_width: int = 2,
+    ) -> bytes:
+        """Wrap raw PCM bytes in a valid WAV (RIFF) header."""
+        import struct
+        data_size = len(pcm_data)
+        byte_rate = sample_rate * num_channels * sample_width
+        block_align = num_channels * sample_width
+
+        header = struct.pack(
+            '<4sI4s4sIHHIIHH4sI',
+            b'RIFF',
+            36 + data_size,        # file size - 8
+            b'WAVE',
+            b'fmt ',
+            16,                    # fmt chunk size
+            1,                     # PCM format
+            num_channels,
+            sample_rate,
+            byte_rate,
+            block_align,
+            sample_width * 8,      # bits per sample
+            b'data',
+            data_size,
+        )
+        return header + pcm_data
 
     def check_connection(self) -> bool:
         """Quick check that the API key is valid and the service is up."""

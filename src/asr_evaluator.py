@@ -181,9 +181,18 @@ def run_asr_evaluation(
 
     # ── Aggregate metrics ──────────────────────────────────────────
     successful = [r for r in results if r["status"] == "success"]
-    overall_wer = aggregate_wer([r["wer_detail"] | {"ref_length": r["wer_detail"]["ref_words"]}
-                                  for r in successful])
-    overall_cer = aggregate_cer(successful)
+    overall_wer = aggregate_wer([{
+        "substitutions": r["wer_detail"]["substitutions"],
+        "deletions": r["wer_detail"]["deletions"],
+        "insertions": r["wer_detail"]["insertions"],
+        "ref_length": r["wer_detail"]["ref_words"],
+    } for r in successful])
+    overall_cer = aggregate_cer([{
+        "substitutions": r["cer_detail"]["substitutions"],
+        "deletions": r["cer_detail"]["deletions"],
+        "insertions": r["cer_detail"]["insertions"],
+        "ref_length": r["cer_detail"]["ref_chars"],
+    } for r in successful])
 
     # ── Category breakdown ─────────────────────────────────────────
     categories = {}
@@ -204,7 +213,12 @@ def run_asr_evaluation(
                 "ref_length": r["wer_detail"]["ref_words"],
             })
         cat_wer = aggregate_wer(cat_wer_data)
-        cat_cer = aggregate_cer(cat_results)
+        cat_cer = aggregate_cer([{
+            "substitutions": r["cer_detail"]["substitutions"],
+            "deletions": r["cer_detail"]["deletions"],
+            "insertions": r["cer_detail"]["insertions"],
+            "ref_length": r["cer_detail"]["ref_chars"],
+        } for r in cat_results])
         category_summary[cat] = {
             "num_clips": len(cat_results),
             "aggregate_wer": round(cat_wer["aggregate_wer"], 4),

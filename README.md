@@ -1,173 +1,183 @@
 # Gnani Speech Evaluation Toolkit
 
-A structured evaluation framework for **Gnani Prisma** (ASR) and **Gnani Timbre** (TTS) speech APIs — built to benchmark, measure, and report on speech model quality the way a Solutions Engineer would before recommending these APIs to an enterprise customer.
+[![Python 3.9+](https://img.shields.io/badge/python-3.9+-blue.svg)](https://www.python.org/downloads/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
+[![ASR: Prisma v3.0](https://img.shields.io/badge/ASR-Prisma%20v3.0-orange.svg)](https://app.gnani.ai)
+[![TTS: Timbre v2.5](https://img.shields.io/badge/TTS-Timbre%20v2.5-purple.svg)](https://app.gnani.ai)
 
-## What This Does
+A comprehensive, production-grade benchmarking framework evaluating **Gnani Prisma** (ASR) and **Gnani Timbre** (TTS) speech APIs across real-world Indian enterprise conditions: telephony audio, noise, code-switching (Hinglish), domain vocabulary, and regional Indic languages.
 
-- **ASR Evaluation (Prisma v3.0):** Runs 30 test clips across 10 categories (clean, noisy, telephony, code-switching, accented, domain-specific, numbers, regional languages, long/short utterances), computing WER and CER per clip and in aggregate.
-- **TTS Evaluation (Timbre v2.5):** Synthesizes 28 test sentences across 9 categories (numbers, abbreviations, code-switching, long-form, tricky pronunciation, prosody, special formats, regional languages, edge cases), scoring each on latency, RTF, speaking rate, silence ratio, clipping, and round-trip ASR fidelity.
-- **WER/CER implemented from scratch** using the Levenshtein edit-distance algorithm — no external metric libraries.
-- **Outputs structured JSON results** broken down by test category, plus a written evaluation report.
+Designed and implemented as an AI Solutions Engineer take-home assignment by **Ashish Vipin Korumelli**.
+
+---
+
+## Benchmark Highlights (Empirical Results)
+
+Tested directly against Gnani's live production platform (`api.vachana.ai`):
+
+### 1. Prisma ASR (`prisma-v3.0`)
+* **Overall Micro-averaged WER**: **24.67%** (300 reference words, 30 clips across 11 categories)
+* **Overall Micro-averaged CER**: **20.47%**
+* **Average Inference Latency**: **369.8 ms**
+* **Key Category Highlights**:
+  - **Accented English**: **0.00% WER** / **0.00% CER** (328.6 ms)
+  - **Short Commands**: **0.00% WER** / **0.00% CER** (196.9 ms)
+  - **Clean English**: **9.68% WER** / **12.16% CER** (496.4 ms)
+  - **Telephony (8 kHz Bandpass)**: **12.50% WER** / **6.25% CER** (314.9 ms)
+  - **Regional Languages (Telugu, Tamil, Bengali)**: **12.50% WER** / **5.15% CER** (310.2 ms)
+  - **Numbers & Entities (ITN)**: **69.23% WER** nominal, driven by active Inverse Text Normalisation (rendering spelled-out words as standard numeric entities like `"1,23,456"`, `"5,000"`, `"9876543210"`).
+
+### 2. Timbre TTS (`timbre-v2.5`)
+* **Average Quality Score**: **84.8 / 100** (28 test sentences across 9 categories)
+* **Average Real-Time Factor (RTF)**: **0.1747** (>5.7x faster than real-time playback)
+* **Long-Form Telephony Scaling**: RTF drops to **0.0742** (>13x faster than real-time) on long paragraph content
+* **Average Latency**: **901.5 ms**
+* **High Scoring Categories**:
+  - **Abbreviations & Acronyms**: **91.5 / 100** (RTF: 0.1680)
+  - **Tricky Indian Pronunciation**: **90.0 / 100** (RTF: 0.1609)
+  - **Long-Form Content**: **93.0 / 100** (RTF: 0.0742)
+
+---
+
+## Key Technical Features
+
+- **Custom Metric Engine**: Full Word Error Rate (WER) and Character Error Rate (CER) calculation written from scratch using Wagner-Fischer dynamic programming for Levenshtein edit distance, breaking down Substitutions (S), Deletions (D), and Insertions (I).
+- **Indic Script Normalisation**: Preserves Devanagari vowel signs (*matras*) and combining marks while removing non-alphanumeric punctuation.
+- **Automated Objective TTS Scoring**: Multi-metric evaluation rubric combining:
+  1. Real-Time Factor (RTF)
+  2. Speaking rate (WPM)
+  3. Silence distribution ratio
+  4. Signal clipping detection
+  5. Round-trip ASR semantic fidelity
+- **Audio Processing Utilities**: Synthetic Gaussian noise injection (SNR scaling), 8 kHz narrowband telephony simulation with 300–3400 Hz bandpass filtering, and raw PCM-to-WAV packaging.
+- **Reproducible Harness**: Command-line runners, automated test fixtures, JSON results manifests, and an interactive Jupyter Notebook.
+
+---
 
 ## Project Structure
 
 ```
 gnani-speech-eval/
-├── config.py                       # API keys, endpoints, paths
+├── config.py                       # API endpoints, models, voice maps
 ├── requirements.txt                # Python dependencies
-├── .env.example                    # Template for API key
+├── .env.example                    # Template for API credentials
+├── evaluation_notebook.ipynb       # Interactive Colab / Jupyter evaluation walkthrough
 │
 ├── src/
-│   ├── metrics.py                  # WER, CER, RTF — built from scratch
-│   ├── gnani_client.py             # Prisma ASR + Timbre TTS API wrapper
-│   ├── audio_utils.py              # Audio loading, noise injection, spectral analysis
-│   ├── asr_evaluator.py            # Full ASR evaluation pipeline
-│   └── tts_evaluator.py            # Full TTS evaluation pipeline
+│   ├── metrics.py                  # Scratch WER/CER DP implementation & TTS metrics
+│   ├── gnani_client.py             # Prisma & Timbre REST client wrapper with PCM handling
+│   ├── audio_utils.py              # Noise injection, telephony filter, spectral analysis
+│   ├── asr_evaluator.py            # ASR batch testing, scoring, and breakdown
+│   └── tts_evaluator.py            # TTS synthesis, latency, RTF, and round-trip scoring
 │
 ├── data/
 │   ├── asr/
-│   │   ├── test_manifest.json      # 30 test clips with ground truth
-│   │   └── audio/                  # Test audio files
+│   │   ├── test_manifest.json      # 30 test utterances with ground-truth transcripts
+│   │   └── audio/                  # Audio clips generated for benchmark
 │   └── tts/
-│       ├── test_sentences.json     # 28 test sentences with expected behaviour
-│       └── output/                 # Generated TTS audio (created on run)
+│       ├── test_sentences.json     # 28 test sentences covering 9 operational categories
+│       └── output/                 # Synthesized audio files
 │
 ├── scripts/
-│   ├── prepare_test_data.py        # Generate/download test audio
-│   └── run_evaluation.py           # Main runner for both evaluations
+│   ├── generate_audio_via_tts.py   # Synthesize audio clips via Timbre with noise/telephony
+│   ├── prepare_test_data.py        # Offline fallback audio generator
+│   └── run_evaluation.py           # Main CLI runner for full evaluation
 │
 ├── tests/
-│   └── test_metrics.py             # Unit tests for metric correctness
+│   └── test_metrics.py             # 14 unit tests validating metric correctness
 │
-├── results/                        # JSON results (created on run)
-│   ├── asr_results.json
-│   └── tts_results.json
+├── results/
+│   ├── asr_results.json            # Full per-clip and categorical ASR benchmark data
+│   └── tts_results.json            # Full per-sentence and categorical TTS benchmark data
 │
 └── report/
-    └── evaluation_report.md        # Written evaluation and recommendations
+    └── evaluation_report.md        # Detailed written findings and architecture recommendations
 ```
 
-## Quick Start
+---
 
-### 1. Install
+## Quick Start & Setup
+
+### 1. Installation
 
 ```bash
-git clone https://github.com/ashishvipin/gnani-speech-eval.git
-cd gnani-speech-eval
-python -m venv venv && source venv/bin/activate
+git clone https://github.com/Ashishvipin/speech-eval.git
+cd speech-eval
+python3 -m venv venv && source venv/bin/activate
 pip install -r requirements.txt
 ```
 
-### 2. Configure
+### 2. Configuration
+
+Copy `.env.example` to `.env` and set your Gnani API key:
 
 ```bash
 cp .env.example .env
 ```
 
-Open `.env` and paste your API key from [app.gnani.ai](https://app.gnani.ai):
-
-```
-GNANI_API_KEY=your_api_key_here
+```env
+GNANI_API_KEY=your_gnani_api_key_here
 ```
 
-### 3. Prepare Test Audio
+### 3. Verify Metrics Implementation
+
+Run the metric verification test suite:
 
 ```bash
-python scripts/prepare_test_data.py
+python3 tests/test_metrics.py
+```
+```
+  ✓ test_perfect_match
+  ✓ test_complete_mismatch
+  ✓ test_known_wer
+  ✓ test_deletion
+  ✓ test_insertion
+  ✓ test_empty_reference
+  ✓ test_empty_both
+  ✓ test_cer_character_level
+  ✓ test_hindi_wer
+  ✓ test_normalisation_punctuation
+  ✓ test_normalisation_extra_spaces
+  ✓ test_aggregate_wer
+  ✓ test_rtf_calculation
+  ✓ test_speaking_rate
+
+  14 passed, 0 failed out of 14 tests
 ```
 
-This generates placeholder audio clips using macOS TTS. For a proper evaluation, replace the files in `data/asr/audio/` with real recordings from Common Voice, OpenSLR, or your own domain-specific audio.
-
-### 4. Run
+### 4. Run the Evaluation Suite
 
 ```bash
-# Full evaluation (ASR + TTS)
-python scripts/run_evaluation.py
+# Execute full evaluation (both Prisma ASR & Timbre TTS)
+python3 scripts/run_evaluation.py
 
-# ASR only
-python scripts/run_evaluation.py --asr-only
+# Run ASR evaluation only
+python3 scripts/run_evaluation.py --asr-only
 
-# TTS only (skip round-trip ASR for speed)
-python scripts/run_evaluation.py --tts-only --no-roundtrip
+# Run TTS evaluation only
+python3 scripts/run_evaluation.py --tts-only
+
+# Run TTS without round-trip ASR checking
+python3 scripts/run_evaluation.py --tts-only --no-roundtrip
 ```
 
-### 5. Check Results
+### 5. Interactive Notebook
 
-- `results/asr_results.json` — Per-clip WER/CER, category breakdown, aggregate metrics
-- `results/tts_results.json` — Per-sentence quality scores, latency, RTF, category breakdown
-- `report/evaluation_report.md` — Written analysis and recommendations
-
-## Test Categories
-
-### ASR (30 clips)
-
-| Category | Focus | Real-world scenario |
-|---|---|---|
-| Clean English/Hindi | Baseline accuracy | Standard customer calls |
-| Noisy Audio | Noise robustness | Callers on the street, in cars |
-| Telephony (8 kHz) | Narrowband handling | Contact centre phone lines |
-| Numbers & Entities | Numeric accuracy | Banking transactions, OTPs |
-| Code-switching | Hinglish handling | "Mera balance check karo" |
-| Accented English | Accent diversity | South/North Indian English |
-| Domain-specific | Vocabulary coverage | Medical, legal, tech terms |
-| Long/Short Utterances | Length robustness | Full queries vs. "yes"/"no" |
-| Regional Languages | Language breadth | Telugu, Tamil, Bengali |
-
-### TTS (28 sentences)
-
-| Category | Focus | Real-world scenario |
-|---|---|---|
-| Numbers | Currency, phone numbers | "₹1,23,456", "1800-123-4567" |
-| Abbreviations | Expansion correctness | "Dr.", "EMI", "FY26" |
-| Code-switching | Hinglish prosody | Hindi-English mid-sentence |
-| Long-form | Pacing consistency | Multi-sentence banking scripts |
-| Tricky Pronunciation | Proper nouns, rare words | "Thiruvananthapuram", "quinoa" |
-| Punctuation & Prosody | Intonation matching | Questions, exclamations, lists |
-| Special Formats | Non-standard text | URLs, emails, fractions |
-| Regional Languages | Language breadth | Telugu, Tamil |
-| Edge Cases | Failure modes | Ellipsis, repetitions, mixed script |
-
-## Metrics
-
-### ASR Metrics (from scratch)
-
-- **WER (Word Error Rate):** `(Substitutions + Deletions + Insertions) / Reference Words`
-- **CER (Character Error Rate):** Same formula at the character level
-- Computed using the Wagner-Fischer dynamic programming algorithm for Levenshtein distance
-- Micro-averaged across clips (weights longer utterances proportionally)
-
-### TTS Quality Score (0-100)
-
-| Component | Points | Threshold |
-|---|---|---|
-| RTF < 1.0 | 20 | Faster-than-real-time synthesis |
-| Speaking Rate 120-180 WPM | 20 | Natural English pacing |
-| Silence Ratio 10-40% | 20 | Natural pauses, not gaps |
-| No Clipping | 15 | Clean, undistorted audio |
-| Round-trip ASR > 90% | 25 | If ASR can read it back, humans can understand it |
-
-## Running Tests
+Launch Jupyter or Google Colab to explore the data interactively:
 
 ```bash
-python -m pytest tests/ -v
-# or
-python tests/test_metrics.py
+jupyter notebook evaluation_notebook.ipynb
 ```
 
-## Extending This
+---
 
-- **Add more test clips:** Edit `data/asr/test_manifest.json` — the pipeline picks them up automatically
-- **Add more TTS sentences:** Edit `data/tts/test_sentences.json`
-- **Add a new language:** Add the language code in `config.py` and create corresponding test entries
-- **Custom audio:** Drop WAV files into `data/asr/audio/` and reference them in the manifest
+## Detailed Written Report
 
-## Built With
+Read the comprehensive technical report covering error analysis, the Inverse Text Normalization (ITN) trade-off, code-switching mechanics, and enterprise telephony architecture in:  
+👉 **[`report/evaluation_report.md`](report/evaluation_report.md)**
 
-- Python 3.10+
-- Gnani Vachana API (Prisma v3.0 + Timbre v2.5)
-- NumPy (audio processing)
-- Requests (API calls)
+---
 
 ## License
 
-MIT
+MIT License. Designed and authored by **Ashish Vipin Korumelli** for the Gnani.ai AI Solutions Engineer evaluation.

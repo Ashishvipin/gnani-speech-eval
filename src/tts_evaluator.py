@@ -390,7 +390,7 @@ def run_tts_evaluation(
         print(f"{'='*60}\n")
 
     # ── Save results ───────────────────────────────────────────────
-    results_path = str(Path(output_dir).parent.parent / "results" / "tts_results.json")
+    results_path = str(Path(output_dir).parent.parent.parent / "results" / "tts_results.json")
     Path(results_path).parent.mkdir(parents=True, exist_ok=True)
     # Remove audio_bytes from saved results
     save_results = json.loads(json.dumps(evaluation, default=str))
