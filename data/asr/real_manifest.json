@@ -3,15 +3,15 @@
     "id": "real_svarah_en_001",
     "audio_path": "real_audio/real_svarah_en_001.wav",
     "reference": "our district hasana was the land of the great hoysala dynasty who ruled over this region from eleventh to fourteenth century CE",
-    "reference_formatted": "our district hasana was the land of the great hoysala dynasty who ruled over this region from 11th to 14th century CE",
     "language": "en-IN",
     "category": "real_indian_english",
-    "source": "AI4Bharat Svarah (human)",
+    "source": "AI4Bharat Svarah (via saisundaresan01/svarah-eval mirror)",
     "tags": [
       "real_human",
       "indian_english",
       "svarah"
-    ]
+    ],
+    "license": "CC BY 4.0"
   },
   {
     "id": "real_svarah_en_002",
@@ -19,12 +19,13 @@
     "reference": "there is a gradual shift in the mentality",
     "language": "en-IN",
     "category": "real_indian_english",
-    "source": "AI4Bharat Svarah (human)",
+    "source": "AI4Bharat Svarah (via saisundaresan01/svarah-eval mirror)",
     "tags": [
       "real_human",
       "indian_english",
       "svarah"
-    ]
+    ],
+    "license": "CC BY 4.0"
   },
   {
     "id": "real_svarah_en_003",
@@ -32,12 +33,13 @@
     "reference": "how much money is left in my arunachal pradesh rural bank account",
     "language": "en-IN",
     "category": "real_indian_english",
-    "source": "AI4Bharat Svarah (human)",
+    "source": "AI4Bharat Svarah (via saisundaresan01/svarah-eval mirror)",
     "tags": [
       "real_human",
       "indian_english",
       "svarah"
-    ]
+    ],
+    "license": "CC BY 4.0"
   },
   {
     "id": "real_svarah_en_004",
@@ -45,12 +47,13 @@
     "reference": "nipah virus belongs to the",
     "language": "en-IN",
     "category": "real_indian_english",
-    "source": "AI4Bharat Svarah (human)",
+    "source": "AI4Bharat Svarah (via saisundaresan01/svarah-eval mirror)",
     "tags": [
       "real_human",
       "indian_english",
       "svarah"
-    ]
+    ],
+    "license": "CC BY 4.0"
   },
   {
     "id": "real_svarah_en_005",
@@ -58,12 +61,13 @@
     "reference": "wow",
     "language": "en-IN",
     "category": "real_indian_english",
-    "source": "AI4Bharat Svarah (human)",
+    "source": "AI4Bharat Svarah (via saisundaresan01/svarah-eval mirror)",
     "tags": [
       "real_human",
       "indian_english",
       "svarah"
-    ]
+    ],
+    "license": "CC BY 4.0"
   },
   {
     "id": "real_fleurs_hi_001",
@@ -76,7 +80,8 @@
       "real_human",
       "hindi",
       "fleurs"
-    ]
+    ],
+    "license": "CC BY 4.0"
   },
   {
     "id": "real_fleurs_hi_002",
@@ -89,7 +94,8 @@
       "real_human",
       "hindi",
       "fleurs"
-    ]
+    ],
+    "license": "CC BY 4.0"
   },
   {
     "id": "real_fleurs_hi_003",
@@ -102,7 +108,8 @@
       "real_human",
       "hindi",
       "fleurs"
-    ]
+    ],
+    "license": "CC BY 4.0"
   },
   {
     "id": "real_fleurs_hi_004",
@@ -115,7 +122,8 @@
       "real_human",
       "hindi",
       "fleurs"
-    ]
+    ],
+    "license": "CC BY 4.0"
   },
   {
     "id": "real_fleurs_hi_005",
@@ -128,7 +136,8 @@
       "real_human",
       "hindi",
       "fleurs"
-    ]
+    ],
+    "license": "CC BY 4.0"
   },
   {
     "id": "real_openslr_te_f_001",
@@ -141,7 +150,8 @@
       "real_human",
       "te",
       "openslr"
-    ]
+    ],
+    "license": "CC BY-SA 4.0"
   },
   {
     "id": "real_openslr_te_f_002",
@@ -154,7 +164,8 @@
       "real_human",
       "te",
       "openslr"
-    ]
+    ],
+    "license": "CC BY-SA 4.0"
   },
   {
     "id": "real_openslr_te_m_001",
@@ -167,7 +178,8 @@
       "real_human",
       "te",
       "openslr"
-    ]
+    ],
+    "license": "CC BY-SA 4.0"
   },
   {
     "id": "real_openslr_ta_f_001",
@@ -180,7 +192,8 @@
       "real_human",
       "ta",
       "openslr"
-    ]
+    ],
+    "license": "CC BY-SA 4.0"
   },
   {
     "id": "real_openslr_ta_f_002",
@@ -193,7 +206,8 @@
       "real_human",
       "ta",
       "openslr"
-    ]
+    ],
+    "license": "CC BY-SA 4.0"
   },
   {
     "id": "real_openslr_ta_m_001",
@@ -206,7 +220,8 @@
       "real_human",
       "ta",
       "openslr"
-    ]
+    ],
+    "license": "CC BY-SA 4.0"
   },
   {
     "id": "real_openslr_bn_001",
@@ -219,7 +234,8 @@
       "real_human",
       "bn",
       "openslr"
-    ]
+    ],
+    "license": "CC BY-SA 4.0"
   },
   {
     "id": "real_openslr_bn_002",
@@ -232,61 +248,7 @@
       "real_human",
       "bn",
       "openslr"
-    ]
-  },
-  {
-    "id": "real_noisy_en_001",
-    "audio_path": "real_audio/real_noisy_en_001.wav",
-    "reference": "how much money is left in my arunachal pradesh rural bank account",
-    "language": "en-IN",
-    "category": "real_noisy_audio",
-    "source": "real_svarah_en_003 + 10dB babble",
-    "tags": [
-      "real_human",
-      "noisy",
-      "babble"
-    ]
-  },
-  {
-    "id": "real_telephony_en_001",
-    "audio_path": "real_audio/real_telephony_en_001.wav",
-    "reference": "how much money is left in my arunachal pradesh rural bank account",
-    "language": "en-IN",
-    "category": "real_telephony",
-    "source": "real_svarah_en_003 -> 8kHz mu-law",
-    "tags": [
-      "real_human",
-      "telephony",
-      "8khz",
-      "mulaw"
-    ]
-  },
-  {
-    "id": "real_noisy_hi_001",
-    "audio_path": "real_audio/real_noisy_hi_001.wav",
-    "reference": "कुछ अणुओं में अस्थिर केंद्रक होता है, जिसका मतलब यह है कि उनमें थोड़े या बिना किसी झटके से टूटने की प्रवृत्ति होती है,",
-    "language": "hi-IN",
-    "category": "real_noisy_audio",
-    "source": "real_fleurs_hi_001 + 10dB babble",
-    "tags": [
-      "real_human",
-      "noisy",
-      "hindi"
-    ]
-  },
-  {
-    "id": "real_telephony_hi_001",
-    "audio_path": "real_audio/real_telephony_hi_001.wav",
-    "reference": "कुछ अणुओं में अस्थिर केंद्रक होता है, जिसका मतलब यह है कि उनमें थोड़े या बिना किसी झटके से टूटने की प्रवृत्ति होती है,",
-    "language": "hi-IN",
-    "category": "real_telephony",
-    "source": "real_fleurs_hi_001 -> 8kHz mu-law",
-    "tags": [
-      "real_human",
-      "telephony",
-      "8khz",
-      "mulaw",
-      "hindi"
-    ]
+    ],
+    "license": "CC BY-SA 4.0"
   }
 ]

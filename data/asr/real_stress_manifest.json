@@ -1,0 +1,266 @@
+[
+  {
+    "id": "real_svarah_en_001_babble_20db",
+    "parent_clip_id": "real_svarah_en_001",
+    "condition": "babble_20db",
+    "audio_path": "real_audio/real_svarah_en_001_babble_20db.wav",
+    "reference": "our district hasana was the land of the great hoysala dynasty who ruled over this region from eleventh to fourteenth century CE",
+    "language": "en-IN",
+    "category": "paired_babble_20db",
+    "source": "real_svarah_en_001 + 20 dB babble (seed=62)",
+    "license": "CC BY 4.0",
+    "tags": [
+      "paired_stress",
+      "babble_20db",
+      "en"
+    ]
+  },
+  {
+    "id": "real_svarah_en_001_babble_10db",
+    "parent_clip_id": "real_svarah_en_001",
+    "condition": "babble_10db",
+    "audio_path": "real_audio/real_svarah_en_001_babble_10db.wav",
+    "reference": "our district hasana was the land of the great hoysala dynasty who ruled over this region from eleventh to fourteenth century CE",
+    "language": "en-IN",
+    "category": "paired_babble_10db",
+    "source": "real_svarah_en_001 + 10 dB babble (seed=52)",
+    "license": "CC BY 4.0",
+    "tags": [
+      "paired_stress",
+      "babble_10db",
+      "en"
+    ]
+  },
+  {
+    "id": "real_svarah_en_001_babble_5db",
+    "parent_clip_id": "real_svarah_en_001",
+    "condition": "babble_5db",
+    "audio_path": "real_audio/real_svarah_en_001_babble_5db.wav",
+    "reference": "our district hasana was the land of the great hoysala dynasty who ruled over this region from eleventh to fourteenth century CE",
+    "language": "en-IN",
+    "category": "paired_babble_5db",
+    "source": "real_svarah_en_001 + 5 dB babble (seed=47)",
+    "license": "CC BY 4.0",
+    "tags": [
+      "paired_stress",
+      "babble_5db",
+      "en"
+    ]
+  },
+  {
+    "id": "real_svarah_en_001_telephony",
+    "parent_clip_id": "real_svarah_en_001",
+    "condition": "telephony_8khz_mulaw",
+    "audio_path": "real_audio/real_svarah_en_001_telephony.wav",
+    "reference": "our district hasana was the land of the great hoysala dynasty who ruled over this region from eleventh to fourteenth century CE",
+    "language": "en-IN",
+    "category": "paired_telephony_8khz",
+    "source": "real_svarah_en_001 -> 8 kHz bandpass + mu-law (seed=100)",
+    "license": "CC BY 4.0",
+    "tags": [
+      "paired_stress",
+      "telephony",
+      "8khz",
+      "mulaw",
+      "en"
+    ]
+  },
+  {
+    "id": "real_svarah_en_003_babble_20db",
+    "parent_clip_id": "real_svarah_en_003",
+    "condition": "babble_20db",
+    "audio_path": "real_audio/real_svarah_en_003_babble_20db.wav",
+    "reference": "how much money is left in my arunachal pradesh rural bank account",
+    "language": "en-IN",
+    "category": "paired_babble_20db",
+    "source": "real_svarah_en_003 + 20 dB babble (seed=72)",
+    "license": "CC BY 4.0",
+    "tags": [
+      "paired_stress",
+      "babble_20db",
+      "en"
+    ]
+  },
+  {
+    "id": "real_svarah_en_003_babble_10db",
+    "parent_clip_id": "real_svarah_en_003",
+    "condition": "babble_10db",
+    "audio_path": "real_audio/real_svarah_en_003_babble_10db.wav",
+    "reference": "how much money is left in my arunachal pradesh rural bank account",
+    "language": "en-IN",
+    "category": "paired_babble_10db",
+    "source": "real_svarah_en_003 + 10 dB babble (seed=62)",
+    "license": "CC BY 4.0",
+    "tags": [
+      "paired_stress",
+      "babble_10db",
+      "en"
+    ]
+  },
+  {
+    "id": "real_svarah_en_003_babble_5db",
+    "parent_clip_id": "real_svarah_en_003",
+    "condition": "babble_5db",
+    "audio_path": "real_audio/real_svarah_en_003_babble_5db.wav",
+    "reference": "how much money is left in my arunachal pradesh rural bank account",
+    "language": "en-IN",
+    "category": "paired_babble_5db",
+    "source": "real_svarah_en_003 + 5 dB babble (seed=57)",
+    "license": "CC BY 4.0",
+    "tags": [
+      "paired_stress",
+      "babble_5db",
+      "en"
+    ]
+  },
+  {
+    "id": "real_svarah_en_003_telephony",
+    "parent_clip_id": "real_svarah_en_003",
+    "condition": "telephony_8khz_mulaw",
+    "audio_path": "real_audio/real_svarah_en_003_telephony.wav",
+    "reference": "how much money is left in my arunachal pradesh rural bank account",
+    "language": "en-IN",
+    "category": "paired_telephony_8khz",
+    "source": "real_svarah_en_003 -> 8 kHz bandpass + mu-law (seed=101)",
+    "license": "CC BY 4.0",
+    "tags": [
+      "paired_stress",
+      "telephony",
+      "8khz",
+      "mulaw",
+      "en"
+    ]
+  },
+  {
+    "id": "real_fleurs_hi_001_babble_20db",
+    "parent_clip_id": "real_fleurs_hi_001",
+    "condition": "babble_20db",
+    "audio_path": "real_audio/real_fleurs_hi_001_babble_20db.wav",
+    "reference": "कुछ अणुओं में अस्थिर केंद्रक होता है, जिसका मतलब यह है कि उनमें थोड़े या बिना किसी झटके से टूटने की प्रवृत्ति होती है,",
+    "language": "hi-IN",
+    "category": "paired_babble_20db",
+    "source": "real_fleurs_hi_001 + 20 dB babble (seed=82)",
+    "license": "CC BY 4.0",
+    "tags": [
+      "paired_stress",
+      "babble_20db",
+      "hi"
+    ]
+  },
+  {
+    "id": "real_fleurs_hi_001_babble_10db",
+    "parent_clip_id": "real_fleurs_hi_001",
+    "condition": "babble_10db",
+    "audio_path": "real_audio/real_fleurs_hi_001_babble_10db.wav",
+    "reference": "कुछ अणुओं में अस्थिर केंद्रक होता है, जिसका मतलब यह है कि उनमें थोड़े या बिना किसी झटके से टूटने की प्रवृत्ति होती है,",
+    "language": "hi-IN",
+    "category": "paired_babble_10db",
+    "source": "real_fleurs_hi_001 + 10 dB babble (seed=72)",
+    "license": "CC BY 4.0",
+    "tags": [
+      "paired_stress",
+      "babble_10db",
+      "hi"
+    ]
+  },
+  {
+    "id": "real_fleurs_hi_001_babble_5db",
+    "parent_clip_id": "real_fleurs_hi_001",
+    "condition": "babble_5db",
+    "audio_path": "real_audio/real_fleurs_hi_001_babble_5db.wav",
+    "reference": "कुछ अणुओं में अस्थिर केंद्रक होता है, जिसका मतलब यह है कि उनमें थोड़े या बिना किसी झटके से टूटने की प्रवृत्ति होती है,",
+    "language": "hi-IN",
+    "category": "paired_babble_5db",
+    "source": "real_fleurs_hi_001 + 5 dB babble (seed=67)",
+    "license": "CC BY 4.0",
+    "tags": [
+      "paired_stress",
+      "babble_5db",
+      "hi"
+    ]
+  },
+  {
+    "id": "real_fleurs_hi_001_telephony",
+    "parent_clip_id": "real_fleurs_hi_001",
+    "condition": "telephony_8khz_mulaw",
+    "audio_path": "real_audio/real_fleurs_hi_001_telephony.wav",
+    "reference": "कुछ अणुओं में अस्थिर केंद्रक होता है, जिसका मतलब यह है कि उनमें थोड़े या बिना किसी झटके से टूटने की प्रवृत्ति होती है,",
+    "language": "hi-IN",
+    "category": "paired_telephony_8khz",
+    "source": "real_fleurs_hi_001 -> 8 kHz bandpass + mu-law (seed=102)",
+    "license": "CC BY 4.0",
+    "tags": [
+      "paired_stress",
+      "telephony",
+      "8khz",
+      "mulaw",
+      "hi"
+    ]
+  },
+  {
+    "id": "real_fleurs_hi_005_babble_20db",
+    "parent_clip_id": "real_fleurs_hi_005",
+    "condition": "babble_20db",
+    "audio_path": "real_audio/real_fleurs_hi_005_babble_20db.wav",
+    "reference": "इंटरनेट पर यह खोज 'शत्रुतापूर्ण पर्यावरण पाठ्यक्रम' के लिए अक्सर आपको एक स्थानीय कंपनी का पता प्रदान करेगी।",
+    "language": "hi-IN",
+    "category": "paired_babble_20db",
+    "source": "real_fleurs_hi_005 + 20 dB babble (seed=92)",
+    "license": "CC BY 4.0",
+    "tags": [
+      "paired_stress",
+      "babble_20db",
+      "hi"
+    ]
+  },
+  {
+    "id": "real_fleurs_hi_005_babble_10db",
+    "parent_clip_id": "real_fleurs_hi_005",
+    "condition": "babble_10db",
+    "audio_path": "real_audio/real_fleurs_hi_005_babble_10db.wav",
+    "reference": "इंटरनेट पर यह खोज 'शत्रुतापूर्ण पर्यावरण पाठ्यक्रम' के लिए अक्सर आपको एक स्थानीय कंपनी का पता प्रदान करेगी।",
+    "language": "hi-IN",
+    "category": "paired_babble_10db",
+    "source": "real_fleurs_hi_005 + 10 dB babble (seed=82)",
+    "license": "CC BY 4.0",
+    "tags": [
+      "paired_stress",
+      "babble_10db",
+      "hi"
+    ]
+  },
+  {
+    "id": "real_fleurs_hi_005_babble_5db",
+    "parent_clip_id": "real_fleurs_hi_005",
+    "condition": "babble_5db",
+    "audio_path": "real_audio/real_fleurs_hi_005_babble_5db.wav",
+    "reference": "इंटरनेट पर यह खोज 'शत्रुतापूर्ण पर्यावरण पाठ्यक्रम' के लिए अक्सर आपको एक स्थानीय कंपनी का पता प्रदान करेगी।",
+    "language": "hi-IN",
+    "category": "paired_babble_5db",
+    "source": "real_fleurs_hi_005 + 5 dB babble (seed=77)",
+    "license": "CC BY 4.0",
+    "tags": [
+      "paired_stress",
+      "babble_5db",
+      "hi"
+    ]
+  },
+  {
+    "id": "real_fleurs_hi_005_telephony",
+    "parent_clip_id": "real_fleurs_hi_005",
+    "condition": "telephony_8khz_mulaw",
+    "audio_path": "real_audio/real_fleurs_hi_005_telephony.wav",
+    "reference": "इंटरनेट पर यह खोज 'शत्रुतापूर्ण पर्यावरण पाठ्यक्रम' के लिए अक्सर आपको एक स्थानीय कंपनी का पता प्रदान करेगी।",
+    "language": "hi-IN",
+    "category": "paired_telephony_8khz",
+    "source": "real_fleurs_hi_005 -> 8 kHz bandpass + mu-law (seed=103)",
+    "license": "CC BY 4.0",
+    "tags": [
+      "paired_stress",
+      "telephony",
+      "8khz",
+      "mulaw",
+      "hi"
+    ]
+  }
+]

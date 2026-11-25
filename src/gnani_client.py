@@ -5,6 +5,8 @@ Handles authentication, request formatting, response parsing,
 retry logic, and latency measurement.
 """
 
+import base64
+import json
 import random
 import time
 import requests
@@ -15,7 +17,7 @@ import sys
 sys.path.insert(0, str(Path(__file__).parent.parent))
 from config import (
     GNANI_API_KEY, ASR_ENDPOINT, ASR_MODEL,
-    TTS_ENDPOINT, TTS_MODEL, TTS_VOICES,
+    TTS_ENDPOINT, TTS_STREAMING_ENDPOINT, TTS_MODEL, TTS_VOICES,
 )
 
 
@@ -231,6 +233,95 @@ class GnaniClient:
             result["output_path"] = str(out)
 
         return result
+
+    def synthesize_stream(
+        self,
+        text: str,
+        language: str = "en-IN",
+        voice: Optional[str] = None,
+        model: str = TTS_MODEL,
+        speed: float = 1.0,
+        sample_rate: int = 48000,
+    ) -> Dict[str, Any]:
+        """
+        Synthesize speech via Gnani's SSE streaming endpoint (`/api/v1/tts/sse`)
+        and measure true Time-to-First-Byte (start event, first audio chunk, and
+        first non-silent PCM chunk) alongside full stream completion time.
+        """
+        if voice is None:
+            lang_voices = TTS_VOICES.get(language, TTS_VOICES.get("en-IN", {}))
+            voice = lang_voices.get("female", lang_voices.get("male", "Kaveri"))
+
+        payload = {
+            "text": text,
+            "voice": voice,
+            "model": model,
+            "language": language,
+            "speed": speed,
+        }
+
+        t0 = time.time()
+        resp = self._session.post(
+            TTS_STREAMING_ENDPOINT,
+            json=payload,
+            stream=True,
+            timeout=self.timeout,
+        )
+        if resp.status_code != 200:
+            raise GnaniAPIError(resp.status_code, resp.text)
+
+        ttfb_start_event_ms: Optional[float] = None
+        ttfb_first_chunk_ms: Optional[float] = None
+        ttfb_first_nonsilent_ms: Optional[float] = None
+        pcm_parts = []
+        num_chunks = 0
+
+        try:
+            current_event = None
+            for raw_line in resp.iter_lines(decode_unicode=True):
+                if raw_line is None or raw_line == "":
+                    continue
+                if raw_line.startswith("event:"):
+                    current_event = raw_line[6:].strip()
+                    if current_event == "start" and ttfb_start_event_ms is None:
+                        ttfb_start_event_ms = (time.time() - t0) * 1000
+                elif raw_line.startswith("data:"):
+                    data_str = raw_line[5:].strip()
+                    now_ms = (time.time() - t0) * 1000
+                    try:
+                        obj = json.loads(data_str)
+                    except json.JSONDecodeError:
+                        continue
+                    audio_b64 = obj.get("audio", "")
+                    if current_event == "chunk" and audio_b64:
+                        num_chunks += 1
+                        if ttfb_first_chunk_ms is None:
+                            ttfb_first_chunk_ms = now_ms
+                        raw_pcm = base64.b64decode(audio_b64)
+                        pcm_parts.append(raw_pcm)
+                        if ttfb_first_nonsilent_ms is None and any(b != 0 for b in raw_pcm):
+                            ttfb_first_nonsilent_ms = now_ms
+        finally:
+            resp.close()
+
+        total_stream_ms = (time.time() - t0) * 1000
+        raw_audio = b"".join(pcm_parts)
+        audio_bytes = raw_audio if raw_audio.startswith(b"RIFF") else self._wrap_pcm_as_wav(
+            raw_audio, sample_rate=sample_rate
+        )
+        return {
+            "audio_bytes": audio_bytes,
+            "audio_size_bytes": len(audio_bytes),
+            "ttfb_start_event_ms": round(ttfb_start_event_ms, 2) if ttfb_start_event_ms is not None else None,
+            "ttfb_first_chunk_ms": round(ttfb_first_chunk_ms, 2) if ttfb_first_chunk_ms is not None else None,
+            "ttfb_first_nonsilent_ms": round(ttfb_first_nonsilent_ms, 2) if ttfb_first_nonsilent_ms is not None else None,
+            "total_stream_ms": round(total_stream_ms, 2),
+            "num_chunks": num_chunks,
+            "voice": voice,
+            "language": language,
+            "model": model,
+            "text": text,
+        }
 
     @staticmethod
     def _wrap_pcm_as_wav(

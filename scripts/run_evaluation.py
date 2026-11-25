@@ -61,15 +61,17 @@ def main():
 
         suites = {
             "real_human": str(project_root / "data" / "asr" / "real_manifest.json"),
+            "real_paired_stress": str(project_root / "data" / "asr" / "real_stress_manifest.json"),
             "synthetic_smoke": str(project_root / "data" / "asr" / "test_manifest.json"),
         }
         output_path = str(project_root / "results" / "asr_results.json")
 
-        print("▶ Starting ASR (Prisma) evaluation (real human + synthetic smoke)...\n")
+        print("▶ Starting ASR (Prisma) evaluation (real human + paired stress + synthetic smoke)...\n")
         asr_results = run_asr_suites(
             suites=suites,
             api_key=args.api_key,
             output_path=output_path,
+            include_hinglish_ablation=True,
             verbose=True,
         )
         print()

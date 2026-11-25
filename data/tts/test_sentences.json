@@ -2,7 +2,6 @@
     {
         "id": "num_en_001",
         "text": "Your order total is ₹1,23,456.",
-        "roundtrip_reference": "Your order total is 1,23,456 rupees.",
         "language": "en-IN",
         "category": "numbers",
         "expected_behaviour": "Should read the Indian number format correctly with currency symbol",
@@ -11,7 +10,6 @@
     {
         "id": "num_en_002",
         "text": "Please call us at 1800-123-4567 for assistance.",
-        "roundtrip_reference": "Please call us at 18001234567 for assistance.",
         "language": "en-IN",
         "category": "numbers",
         "expected_behaviour": "Should read the toll-free number digit by digit with proper grouping",
@@ -20,7 +18,6 @@
     {
         "id": "num_en_003",
         "text": "The temperature today is 42.5°C with humidity at 78%.",
-        "roundtrip_reference": "The temperature today is 42.5 degrees Celsius with humidity at 78%.",
         "language": "en-IN",
         "category": "numbers",
         "expected_behaviour": "Should read decimals, degree symbol, and percentage correctly",
@@ -29,7 +26,6 @@
     {
         "id": "num_hi_001",
         "text": "आपके खाते में ₹5,72,300 शेष है।",
-        "roundtrip_reference": "आपके खाते में 5,72,300 रुपये शेष है।",
         "language": "hi-IN",
         "category": "numbers",
         "expected_behaviour": "Should read Hindi currency amount in Indian number format",
@@ -38,7 +34,6 @@
     {
         "id": "abbr_en_001",
         "text": "Dr. R.K. Sharma from AIIMS will see you at 3 PM.",
-        "roundtrip_reference": "Doctor RK Sharma from AIIMS will see you at 3 pm.",
         "language": "en-IN",
         "category": "abbreviations",
         "expected_behaviour": "Should expand Dr. to Doctor, read initials, expand AIIMS and PM",
@@ -47,7 +42,6 @@
     {
         "id": "abbr_en_002",
         "text": "Your EMI of Rs. 15,000 is due on 5th Jan 2026.",
-        "roundtrip_reference": "Your EMI of 15,000 rupees is due on 5 January 2026.",
         "language": "en-IN",
         "category": "abbreviations",
         "expected_behaviour": "Should expand EMI, Rs., read date correctly",
@@ -56,7 +50,6 @@
     {
         "id": "abbr_en_003",
         "text": "FIR No. 2024/1456 has been registered at the PS.",
-        "roundtrip_reference": "FIR number 2024 by 1456 has been registered at the PS.",
         "language": "en-IN",
         "category": "abbreviations",
         "expected_behaviour": "Should expand FIR, No., and PS appropriately",
@@ -65,7 +58,6 @@
     {
         "id": "abbr_en_004",
         "text": "The CEO of HDFC Ltd. announced a 12% YoY growth in Q3 FY26.",
-        "roundtrip_reference": "The CEO of HDFC Limited announced a 12% YoY growth in quarter 3 FY26.",
         "language": "en-IN",
         "category": "abbreviations",
         "expected_behaviour": "Should handle CEO, HDFC, Ltd., YoY, Q3, FY26 correctly",
@@ -74,7 +66,6 @@
     {
         "id": "codemix_001",
         "text": "Aapka OTP 4523 hai, please isse kisi ke saath share mat kijiye.",
-        "roundtrip_reference": "आपका ओटीपी 4523 है प्लीज इसे किसी के साथ शेयर मत कीजिए।",
         "language": "hi-en",
         "category": "code_switching",
         "expected_behaviour": "Should handle Hinglish naturally using native Hinglish voice Poorvi",
@@ -83,7 +74,6 @@
     {
         "id": "codemix_002",
         "text": "Your order has been shipped, delivery expected by kal shaam tak.",
-        "roundtrip_reference": "Your order has been shipped delivery expected by kal shaam tak.",
         "language": "hi-en",
         "category": "code_switching",
         "expected_behaviour": "Should switch cleanly between English and Hindi mid-sentence",
@@ -92,7 +82,6 @@
     {
         "id": "codemix_003",
         "text": "Main aapko ek quick update dena chahta tha regarding your application status.",
-        "roundtrip_reference": "मैं आपको एक quick update देना चाहता था regarding your application status.",
         "language": "hi-en",
         "category": "code_switching",
         "expected_behaviour": "Should handle Hinglish with natural prosody at switch points",
@@ -101,7 +90,6 @@
     {
         "id": "long_en_001",
         "text": "Thank you for calling Sunrise Bank. Your current account balance is ₹2,45,678.50 as of today. You have three pending transactions: a debit of ₹5,000 to Flipkart, a credit of ₹25,000 from NEFT transfer, and an auto-debit of ₹3,200 for your electricity bill. Your next EMI of ₹15,500 is scheduled for December 5th. Is there anything else I can help you with?",
-        "roundtrip_reference": "Thank you for calling Sunrise Bank. Your current account balance is 2,45,678 rupees and 50 paise as of today. You have 3 pending transactions, a debit of 5,000 rupees to Flipkart, a credit of 25,000 rupees from NEFT transfer, and an auto debit of 3,200 rupees for your electricity bill. Your next EMI of 15,500 rupees is scheduled for December 5. Is there anything else I can help you with?",
         "language": "en-IN",
         "category": "long_form",
         "expected_behaviour": "Should maintain natural pacing, correct intonation, and handle all numbers and proper nouns throughout",
@@ -110,7 +98,6 @@
     {
         "id": "long_hi_001",
         "text": "नमस्ते, सनराइज़ बैंक में आपका स्वागत है। आपके खाते में आज की तारीख़ तक ₹2,45,678 शेष है। आपकी तीन लेनदेन लंबित हैं। कृपया अपने नज़दीकी शाखा में जाकर अपना KYC अपडेट कराएँ। और कोई सहायता चाहिए तो कृपया बताएँ।",
-        "roundtrip_reference": "नमस्ते Sunrise Bank में आपका स्वागत है। आपके खाते में आज की तारीख तक 2,45,678 रुपये शेष है। आपकी तीन लेनदेन लंबित हैं कृपया अपने नजदीकी शाखा में जाकर अपना KYC update कराएं और कोई सहायता चाहिए तो कृपया बताएं।",
         "language": "hi-IN",
         "category": "long_form",
         "expected_behaviour": "Should preserve exact currency digits ₹2,45,678 and word count without dropping tokens",
@@ -119,7 +106,6 @@
     {
         "id": "pron_en_001",
         "text": "The Worcestershire sauce is kept near the quinoa and açaí bowls.",
-        "roundtrip_reference": "The Worcestershire sauce is kept near the quinoa and acai bowls.",
         "language": "en-IN",
         "category": "tricky_pronunciation",
         "expected_behaviour": "Should handle Worcestershire, quinoa, and açaí — commonly mispronounced words",
@@ -128,7 +114,6 @@
     {
         "id": "pron_en_002",
         "text": "Mr. Venkatasubramaniam from Thiruvananthapuram has an appointment with the ophthalmologist.",
-        "roundtrip_reference": "Mr. Venkatasubramaniam from Thiruvananthapuram has an appointment with the ophthalmologist.",
         "language": "en-IN",
         "category": "tricky_pronunciation",
         "expected_behaviour": "Should handle long Indian names and medical terminology",
@@ -145,7 +130,6 @@
     {
         "id": "pron_hi_001",
         "text": "श्रीमान् विश्वनाथन अय्यर ने तिरुवनंतपुरम में ऋग्वेद पाठशाला की स्थापना की।",
-        "roundtrip_reference": "श्रीमान विश्वनाथन अय्यर ने तिरुवनंतपुरम में ऋग्वेद पाठशाला की स्थापना की।",
         "language": "hi-IN",
         "category": "tricky_pronunciation",
         "expected_behaviour": "Should handle Sanskrit-origin Hindi words and South Indian names correctly",
@@ -154,7 +138,6 @@
     {
         "id": "punct_en_001",
         "text": "Wait — did you say ₹50,000 or ₹5,00,000? That's a big difference!",
-        "roundtrip_reference": "Wait did you say 50,000 rupees or 5,00,000 rupees? That's a big difference",
         "language": "en-IN",
         "category": "punctuation_and_prosody",
         "expected_behaviour": "Should handle em-dash pause, question intonation, and exclamation correctly",
@@ -179,7 +162,6 @@
     {
         "id": "special_en_002",
         "text": "Your PNR is ABC-1234 and seat number is 23B in coach S5.",
-        "roundtrip_reference": "Your PNR is ABC1234 and seat number is 23B in coach S5.",
         "language": "en-IN",
         "category": "special_formats",
         "expected_behaviour": "Should read alphanumeric codes clearly character by character",
@@ -188,7 +170,6 @@
     {
         "id": "special_en_003",
         "text": "Mix 2½ cups of flour with ¾ tsp baking soda and 1.5 tbsp butter.",
-        "roundtrip_reference": "Mix 2.5 cups of flour with 3/4 tsp baking soda and 1.5 tbsp butter.",
         "language": "en-IN",
         "category": "special_formats",
         "expected_behaviour": "Should handle Unicode fractions and measurement abbreviations",
@@ -197,7 +178,6 @@
     {
         "id": "te_001",
         "text": "మీ ఖాతాలో ₹1,50,000 బ్యాలెన్స్ ఉంది, ఏమైనా సహాయం కావాలా?",
-        "roundtrip_reference": "మీ ఖాతాలో ఒక లక్ష యాభై వేల రూపాయలు బ్యాలెన్స్ ఉంది ఏమైనా సహాయం కావాలా.",
         "language": "te-IN",
         "category": "regional_languages",
         "expected_behaviour": "Should speak Telugu naturally using native Telugu voice Suhana",
@@ -206,7 +186,6 @@
     {
         "id": "ta_001",
         "text": "உங்கள் கணக்கில் ₹2,00,000 உள்ளது, வேறு ஏதாவது உதவி வேண்டுமா?",
-        "roundtrip_reference": "உங்கள் கணக்கில் இரண்டு லட்சம் ரூபாய் உள்ளது வேறு ஏதாவது உதவி வேண்டுமா.",
         "language": "ta-IN",
         "category": "regional_languages",
         "expected_behaviour": "Should speak Tamil naturally using native Tamil voice Asmita",
@@ -215,7 +194,6 @@
     {
         "id": "bn_001",
         "text": "আপনার অ্যাকাউন্ট ব্যালেন্স ₹1,50,000 টাকা, আর কোনো সাহায্য লাগবে কি?",
-        "roundtrip_reference": "আপনার অ্যাকাউন্ট ব্যালেন্স এক লক্ষ পঞ্চাশ হাজার টাকা আর কোনো সাহায্য লাগবে কি",
         "language": "bn-IN",
         "category": "regional_languages",
         "expected_behaviour": "Should speak Bengali naturally using native Bengali voice Kirra",
@@ -240,7 +218,6 @@
     {
         "id": "edge_mixed_script_001",
         "text": "Password reset link: अपना नया password डालें और Submit बटन दबाएँ।",
-        "roundtrip_reference": "password reset link अपना नया password डालें और submit button दबाएं।",
         "language": "hi-en",
         "category": "edge_cases",
         "expected_behaviour": "Should handle Devanagari and Latin script in the same sentence",
@@ -249,7 +226,6 @@
     {
         "id": "edge_ssml_001",
         "text": "Press 1 for English, 2 for हिंदी, 3 for తెలుగు, or stay on the line for an agent.",
-        "roundtrip_reference": "Press 1 for English, 2 for Hindi, 3 for Telugu, or stay on the line for an agent.",
         "language": "en-IN",
         "category": "edge_cases",
         "expected_behaviour": "Should handle multi-script text with IVR-style numbered options",

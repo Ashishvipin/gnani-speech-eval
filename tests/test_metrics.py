@@ -216,53 +216,73 @@ def test_gnani_client_retry_behavior():
             assert mock_post.call_count == 1
 
 
-def test_format_insensitive_wer_best_of_reference():
-    """Format-insensitive WER should accept either verbatim or formatted reference."""
-    from unittest.mock import MagicMock
-    from src.asr_evaluator import evaluate_single_clip
-
-    mock_client = MagicMock()
-
-    # Case 1: Model outputs spoken word "दस" while reference_formatted uses "10"
-    mock_client.transcribe.return_value = {
-        "transcript": "मुझे कल सुबह दस बजे की फ्लाइट चाहिए।",
-        "latency_ms": 100.0,
-        "total_elapsed_ms": 100.0,
-        "retries": 0,
-        "detected_language": "hi-IN",
-    }
-    res1 = evaluate_single_clip(
-        mock_client,
-        {
-            "id": "hi_num_word",
-            "audio_path": "nonexistent.wav",
-            "reference": "मुझे कल सुबह दस बजे की फ्लाइट चाहिए",
-            "reference_formatted": "मुझे कल सुबह 10 बजे की फ्लाइट चाहिए",
-            "language": "hi-IN",
-        },
+def test_rule_normaliser_and_bootstrap_ci():
+    """Dataset-agnostic rule normaliser and bootstrap CI should behave deterministically."""
+    from src.metrics import (
+        normalise_for_eval,
+        compute_rule_wer,
+        compute_bootstrap_ci,
+        count_cross_script_substitutions,
     )
-    assert res1["wer"] == 0.0 and res1["formatted_wer"] == 0.0
 
-    # Case 2: Model outputs ITN digits "5,000" while reference uses words "five thousand"
-    mock_client.transcribe.return_value = {
-        "transcript": "Please transfer 5,000 rupees.",
-        "latency_ms": 100.0,
-        "total_elapsed_ms": 100.0,
-        "retries": 0,
-        "detected_language": "en-IN",
-    }
-    res2 = evaluate_single_clip(
-        mock_client,
-        {
-            "id": "en_num_digits",
-            "audio_path": "nonexistent.wav",
-            "reference": "please transfer five thousand rupees",
-            "reference_formatted": "please transfer 5,000 rupees",
-            "language": "en-IN",
-        },
+    assert normalise_for_eval("eleventh to fourteenth century CE") == "11 to 14 century ce"
+    assert normalise_for_eval("11th to 14th century CE") == "11 to 14 century ce"
+    assert normalise_for_eval("₹1,23,456") == "123456 rupees"
+    assert normalise_for_eval("one lakh twenty three thousand four hundred and fifty six rupees") == "123456 rupees"
+    assert normalise_for_eval("nine eight seven six five four three two one zero") == "9876543210"
+    assert normalise_for_eval("कुल राशि पाँच लाख बहत्तर हज़ार तीन सौ रुपये है") == "कुल राशि 572300 rupees है"
+    assert normalise_for_eval("notarised before enquire") == "notarized before inquire"
+    assert normalise_for_eval("paracetamol 500mg") == "paracetamol five hundred mg" or normalise_for_eval("paracetamol 500mg") == "paracetamol 500 mg"
+    assert normalise_for_eval("paracetamol five hundred milligrams") == "paracetamol 500 mg"
+    assert normalise_for_eval("Mix 2½ cups with ¾ tsp") == "mix 2.5 cups with 0.75 tsp"
+
+    # Guard: standalone "no one" must NOT become "no 1"
+    assert normalise_for_eval("no one called") == "no one called"
+
+    rw = compute_rule_wer(
+        "the total amount is one lakh twenty three thousand four hundred and fifty six rupees",
+        "The total amount is 1,23,456 rupees.",
     )
-    assert res2["wer"] > 0.0
-    assert res2["formatted_wer"] == 0.0
+    assert rw["wer"] == 0.0
+
+    # Cross-script diagnostic detects Devanagari <-> Latin script switches cleanly
+    diag = count_cross_script_substitutions("ग्रीनलैंड को बहुत कम", "Greenland को बहुत कम", language="hi")
+    assert diag["cross_script_subs"] == 1 and diag["other_errors"] == 0
+
+    # Bootstrap CI stays bounded and reproducible with fixed seed
+    items = [{"errors": 0, "ref_length": 10}, {"errors": 2, "ref_length": 10}, {"errors": 1, "ref_length": 10}]
+    ci = compute_bootstrap_ci(items, n_resamples=500, seed=42)
+    assert 0.0 <= ci["ci_low"] <= ci["estimate"] <= ci["ci_high"] <= 0.3
+
+
+def test_gnani_client_streaming_sse_parsing():
+    """GnaniClient.synthesize_stream should parse SSE events and measure chunk TTFB."""
+    import base64
+    from unittest.mock import MagicMock, patch
+    from src.gnani_client import GnaniClient
+
+    client = GnaniClient(api_key="test-key")
+    pcm_zero = b"\x00" * 32
+    pcm_tone = b"\x10\x00" * 16
+    sse_lines = [
+        "event: start",
+        'data: {"status":"streaming_started"}',
+        "event: chunk",
+        f'data: {{"chunk_index":1,"audio":"{base64.b64encode(pcm_zero).decode()}"}}',
+        "event: chunk",
+        f'data: {{"chunk_index":2,"audio":"{base64.b64encode(pcm_tone).decode()}"}}',
+        "event: complete",
+        'data: {"chunk_index":3,"audio":"","is_final":true}',
+    ]
+    fake_resp = MagicMock(status_code=200)
+    fake_resp.iter_lines.return_value = iter(sse_lines)
+
+    with patch.object(client._session, "post", return_value=fake_resp):
+        out = client.synthesize_stream("Hello", language="en-IN")
+        assert out["num_chunks"] == 2
+        assert out["audio_bytes"].startswith(b"RIFF")
+        assert out["ttfb_first_chunk_ms"] is not None
+        assert out["ttfb_first_nonsilent_ms"] >= out["ttfb_first_chunk_ms"]
 
 
 if __name__ == "__main__":

@@ -19,3 +19,12 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
+
+---
+Note on Third-Party Audio Assets:
+The MIT License above applies to all source code, scripts, and documentation
+in this repository. Sample audio clips stored under `data/asr/real_audio/`
+remain governed by their respective upstream Creative Commons licenses:
+  - AI4Bharat Svarah excerpts (`real_svarah_en_*`) & derivatives: CC BY 4.0
+  - Google FLEURS hi_in excerpts (`real_fleurs_hi_*`) & derivatives: CC BY 4.0
+  - OpenSLR 37/65/66 excerpts (`real_openslr_*`): CC BY-SA 4.0

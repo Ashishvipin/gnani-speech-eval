@@ -35,6 +35,7 @@ from src.audio_utils import add_noise, load_wav, save_wav, simulate_telephony
 PROJECT_ROOT = Path(__file__).parent.parent
 REAL_AUDIO_DIR = PROJECT_ROOT / "data" / "asr" / "real_audio"
 REAL_MANIFEST_PATH = PROJECT_ROOT / "data" / "asr" / "real_manifest.json"
+REAL_STRESS_MANIFEST_PATH = PROJECT_ROOT / "data" / "asr" / "real_stress_manifest.json"
 
 
 class HTTPRangeFile(io.RawIOBase):
@@ -107,18 +108,28 @@ class HTTPRangeFile(io.RawIOBase):
 
 
 def fetch_svarah_english() -> List[Dict]:
-    """Download 5 real Indian-accented English clips from saisundaresan01/svarah-eval."""
+    """
+    Download 5 real Indian-accented English clips.
+
+    Note on provenance: official `ai4bharat/Svarah` (CC BY 4.0) is gated behind
+    Hugging Face login/terms acceptance; unauthenticated reproducible runs pull
+    the public mirror `saisundaresan01/svarah-eval`. If `HF_TOKEN` is set in
+    the environment, requests pass the Bearer header automatically.
+    """
+    import os
     print("  Fetching AI4Bharat Svarah Indian-English samples...")
+    hf_token = os.getenv("HF_TOKEN", "").strip()
+    headers = {"Authorization": f"Bearer {hf_token}"} if hf_token else {}
     meta_url = "https://huggingface.co/datasets/saisundaresan01/svarah-eval/resolve/main/data/test.jsonl"
     tar_url = "https://huggingface.co/datasets/saisundaresan01/svarah-eval/resolve/main/data/audio.tar.gz"
 
     rows = {}
-    for line in requests.get(meta_url, timeout=30).content.decode("utf-8").splitlines():
+    for line in requests.get(meta_url, headers=headers, timeout=30).content.decode("utf-8").splitlines():
         if line.strip():
             obj = json.loads(line)
             rows[obj["audio_filepath"]] = obj["reference_transcription"]
 
-    tar_bytes = requests.get(tar_url, timeout=60).content
+    tar_bytes = requests.get(tar_url, headers=headers, timeout=60).content
     entries = []
     idx = 0
     with tarfile.open(fileobj=io.BytesIO(tar_bytes), mode="r:gz") as tf:
@@ -138,7 +149,8 @@ def fetch_svarah_english() -> List[Dict]:
                 "reference": rows[fname],
                 "language": "en-IN",
                 "category": "real_indian_english",
-                "source": "AI4Bharat Svarah (human)",
+                "source": "AI4Bharat Svarah (via saisundaresan01/svarah-eval mirror, CC BY 4.0)",
+                "license": "CC BY 4.0",
                 "tags": ["real_human", "indian_english", "svarah"],
             })
             print(f"    + {clip_id}: {rows[fname][:60]}")
@@ -279,136 +291,167 @@ def fetch_openslr_clips(
     return entries
 
 
-def create_real_stress_variants(base_entries: List[Dict]) -> List[Dict]:
-    """Derive seeded 10 dB babble-noise and 8 kHz mu-law telephony clips from real speech."""
-    print("  Generating seeded acoustic stress variants from real speech...")
+def create_real_stress_variants(clean_entries: List[Dict]) -> List[Dict]:
+    """
+    Derive deterministic paired stress variants (20 dB, 10 dB, 5 dB speech-modulated
+    babble noise + 8 kHz G.711 mu-law PSTN telephony) from 4 CC-BY-4.0 real speech
+    utterances (2 Indian English Svarah, 2 Hindi FLEURS) for clean-vs-degraded deltas.
+    """
+    print("  Generating paired multi-SNR & telephony stress variants from real speech...")
     variants = []
 
-    en_bank = next((e for e in base_entries if "bank account" in e["reference"]), base_entries[0])
-    hi_clean = next((e for e in base_entries if e["language"] == "hi-IN"), None)
+    target_ids = [
+        "real_svarah_en_001",
+        "real_svarah_en_003",
+        "real_fleurs_hi_001",
+        "real_fleurs_hi_005",
+    ]
+    by_id = {e["id"]: e for e in clean_entries}
+    base_clips = [by_id[cid] for cid in target_ids if cid in by_id]
 
-    # 1. Real Indian English + 10 dB babble noise
-    samples, sr = load_wav(str(PROJECT_ROOT / "data" / "asr" / en_bank["audio_path"]))
-    noisy_en = add_noise(samples, snr_db=10.0, noise_type="babble", seed=42, sample_rate=sr)
-    noisy_en_id = "real_noisy_en_001"
-    save_wav(noisy_en, sr, str(REAL_AUDIO_DIR / f"{noisy_en_id}.wav"))
-    variants.append({
-        "id": noisy_en_id,
-        "audio_path": f"real_audio/{noisy_en_id}.wav",
-        "reference": en_bank["reference"],
-        "language": "en-IN",
-        "category": "real_noisy_audio",
-        "source": f"{en_bank['id']} + 10dB babble",
-        "tags": ["real_human", "noisy", "babble"],
-    })
+    for idx, base in enumerate(base_clips):
+        base_id = base["id"]
+        samples, sr = load_wav(str(PROJECT_ROOT / "data" / "asr" / base["audio_path"]))
 
-    # 2. Real Indian English -> 8 kHz bandpass + G.711 mu-law PSTN telephony
-    tel_en = simulate_telephony(samples, sr, seed=42, use_mulaw=True)
-    tel_en_id = "real_telephony_en_001"
-    save_wav(tel_en, 8000, str(REAL_AUDIO_DIR / f"{tel_en_id}.wav"))
-    variants.append({
-        "id": tel_en_id,
-        "audio_path": f"real_audio/{tel_en_id}.wav",
-        "reference": en_bank["reference"],
-        "language": "en-IN",
-        "category": "real_telephony",
-        "source": f"{en_bank['id']} -> 8kHz mu-law",
-        "tags": ["real_human", "telephony", "8khz", "mulaw"],
-    })
+        for snr_db in (20, 10, 5):
+            seed = 42 + idx * 10 + snr_db
+            noisy = add_noise(samples, snr_db=float(snr_db), noise_type="babble", seed=seed, sample_rate=sr)
+            cid = f"{base_id}_babble_{snr_db}db"
+            save_wav(noisy, sr, str(REAL_AUDIO_DIR / f"{cid}.wav"))
+            variants.append({
+                "id": cid,
+                "parent_clip_id": base_id,
+                "condition": f"babble_{snr_db}db",
+                "audio_path": f"real_audio/{cid}.wav",
+                "reference": base["reference"],
+                "language": base["language"],
+                "category": f"paired_babble_{snr_db}db",
+                "source": f"{base_id} + {snr_db} dB babble (seed={seed})",
+                "license": base.get("license", "CC BY 4.0"),
+                "tags": ["paired_stress", f"babble_{snr_db}db", base["language"][:2]],
+            })
 
-    if hi_clean:
-        hi_samples, hi_sr = load_wav(str(PROJECT_ROOT / "data" / "asr" / hi_clean["audio_path"]))
-        noisy_hi = add_noise(hi_samples, snr_db=10.0, noise_type="babble", seed=43, sample_rate=hi_sr)
-        noisy_hi_id = "real_noisy_hi_001"
-        save_wav(noisy_hi, hi_sr, str(REAL_AUDIO_DIR / f"{noisy_hi_id}.wav"))
+        tel_seed = 100 + idx
+        tel = simulate_telephony(samples, sr, seed=tel_seed, use_mulaw=True)
+        cid_tel = f"{base_id}_telephony"
+        save_wav(tel, 8000, str(REAL_AUDIO_DIR / f"{cid_tel}.wav"))
         variants.append({
-            "id": noisy_hi_id,
-            "audio_path": f"real_audio/{noisy_hi_id}.wav",
-            "reference": hi_clean["reference"],
-            "language": "hi-IN",
-            "category": "real_noisy_audio",
-            "source": f"{hi_clean['id']} + 10dB babble",
-            "tags": ["real_human", "noisy", "hindi"],
-        })
-
-        tel_hi = simulate_telephony(hi_samples, hi_sr, seed=43, use_mulaw=True)
-        tel_hi_id = "real_telephony_hi_001"
-        save_wav(tel_hi, 8000, str(REAL_AUDIO_DIR / f"{tel_hi_id}.wav"))
-        variants.append({
-            "id": tel_hi_id,
-            "audio_path": f"real_audio/{tel_hi_id}.wav",
-            "reference": hi_clean["reference"],
-            "language": "hi-IN",
-            "category": "real_telephony",
-            "source": f"{hi_clean['id']} -> 8kHz mu-law",
-            "tags": ["real_human", "telephony", "8khz", "mulaw", "hindi"],
+            "id": cid_tel,
+            "parent_clip_id": base_id,
+            "condition": "telephony_8khz_mulaw",
+            "audio_path": f"real_audio/{cid_tel}.wav",
+            "reference": base["reference"],
+            "language": base["language"],
+            "category": "paired_telephony_8khz",
+            "source": f"{base_id} -> 8 kHz bandpass + mu-law (seed={tel_seed})",
+            "license": base.get("license", "CC BY 4.0"),
+            "tags": ["paired_stress", "telephony", "8khz", "mulaw", base["language"][:2]],
         })
 
     return variants
 
 
 def main():
+    import argparse
+    parser = argparse.ArgumentParser(description="Prepare real human ASR & paired stress manifests")
+    parser.add_argument(
+        "--stress-only",
+        action="store_true",
+        help="Reuse already-downloaded clean real clips and rebuild paired stress variants only",
+    )
+    args = parser.parse_args()
+
     print("=" * 60)
     print("  PREPARING REAL HUMAN ASR TEST DATASET")
     print("=" * 60)
     REAL_AUDIO_DIR.mkdir(parents=True, exist_ok=True)
 
-    manifest = []
-    manifest.extend(fetch_svarah_english())
-    manifest.extend(fetch_fleurs_hindi(limit=5))
-    manifest.extend(fetch_openslr_clips(
-        label="OpenSLR 66 Telugu Female",
-        language="te-IN",
-        category="real_regional_indic",
-        zip_url="https://openslr.trmal.net/resources/66/te_in_female.zip",
-        tsv_url="https://openslr.trmal.net/resources/66/line_index_female.tsv",
-        prefix_id="real_openslr_te_f",
-        limit=2,
-    ))
-    manifest.extend(fetch_openslr_clips(
-        label="OpenSLR 66 Telugu Male",
-        language="te-IN",
-        category="real_regional_indic",
-        zip_url="https://openslr.trmal.net/resources/66/te_in_male.zip",
-        tsv_url="https://openslr.trmal.net/resources/66/line_index_male.tsv",
-        prefix_id="real_openslr_te_m",
-        limit=1,
-    ))
-    manifest.extend(fetch_openslr_clips(
-        label="OpenSLR 65 Tamil Female",
-        language="ta-IN",
-        category="real_regional_indic",
-        zip_url="https://openslr.trmal.net/resources/65/ta_in_female.zip",
-        tsv_url="https://openslr.trmal.net/resources/65/line_index_female.tsv",
-        prefix_id="real_openslr_ta_f",
-        limit=2,
-    ))
-    manifest.extend(fetch_openslr_clips(
-        label="OpenSLR 65 Tamil Male",
-        language="ta-IN",
-        category="real_regional_indic",
-        zip_url="https://openslr.trmal.net/resources/65/ta_in_male.zip",
-        tsv_url="https://openslr.trmal.net/resources/65/line_index_male.tsv",
-        prefix_id="real_openslr_ta_m",
-        limit=1,
-    ))
-    manifest.extend(fetch_openslr_clips(
-        label="OpenSLR 37 Bengali",
-        language="bn-IN",
-        category="real_regional_indic",
-        zip_url="https://openslr.trmal.net/resources/37/bn_in.zip",
-        tsv_url="",
-        prefix_id="real_openslr_bn",
-        limit=2,
-        internal_tsv=True,
-    ))
+    # Remove legacy 2-clip stress artifacts if present
+    for old_name in ("real_noisy_en_001.wav", "real_noisy_hi_001.wav", "real_telephony_en_001.wav", "real_telephony_hi_001.wav"):
+        old_path = REAL_AUDIO_DIR / old_name
+        if old_path.exists():
+            old_path.unlink()
 
-    manifest.extend(create_real_stress_variants(manifest))
+    if args.stress_only and REAL_MANIFEST_PATH.exists():
+        with open(REAL_MANIFEST_PATH, "r", encoding="utf-8") as f:
+            manifest = [
+                e for e in json.load(f)
+                if e.get("category") not in ("real_noisy_audio", "real_telephony")
+            ]
+        # Ensure clean provenance/license tags on existing entries
+        for e in manifest:
+            if e["id"].startswith("real_svarah_"):
+                e["source"] = "AI4Bharat Svarah (via saisundaresan01/svarah-eval mirror)"
+                e["license"] = "CC BY 4.0"
+            elif e["id"].startswith("real_fleurs_"):
+                e["license"] = "CC BY 4.0"
+            elif e["id"].startswith("real_openslr_"):
+                e["license"] = "CC BY-SA 4.0"
+    else:
+        manifest = []
+        manifest.extend(fetch_svarah_english())
+        manifest.extend(fetch_fleurs_hindi(limit=5))
+        manifest.extend(fetch_openslr_clips(
+            label="OpenSLR 66 Telugu Female",
+            language="te-IN",
+            category="real_regional_indic",
+            zip_url="https://openslr.trmal.net/resources/66/te_in_female.zip",
+            tsv_url="https://openslr.trmal.net/resources/66/line_index_female.tsv",
+            prefix_id="real_openslr_te_f",
+            limit=2,
+        ))
+        manifest.extend(fetch_openslr_clips(
+            label="OpenSLR 66 Telugu Male",
+            language="te-IN",
+            category="real_regional_indic",
+            zip_url="https://openslr.trmal.net/resources/66/te_in_male.zip",
+            tsv_url="https://openslr.trmal.net/resources/66/line_index_male.tsv",
+            prefix_id="real_openslr_te_m",
+            limit=1,
+        ))
+        manifest.extend(fetch_openslr_clips(
+            label="OpenSLR 65 Tamil Female",
+            language="ta-IN",
+            category="real_regional_indic",
+            zip_url="https://openslr.trmal.net/resources/65/ta_in_female.zip",
+            tsv_url="https://openslr.trmal.net/resources/65/line_index_female.tsv",
+            prefix_id="real_openslr_ta_f",
+            limit=2,
+        ))
+        manifest.extend(fetch_openslr_clips(
+            label="OpenSLR 65 Tamil Male",
+            language="ta-IN",
+            category="real_regional_indic",
+            zip_url="https://openslr.trmal.net/resources/65/ta_in_male.zip",
+            tsv_url="https://openslr.trmal.net/resources/65/line_index_male.tsv",
+            prefix_id="real_openslr_ta_m",
+            limit=1,
+        ))
+        manifest.extend(fetch_openslr_clips(
+            label="OpenSLR 37 Bengali",
+            language="bn-IN",
+            category="real_regional_indic",
+            zip_url="https://openslr.trmal.net/resources/37/bn_in.zip",
+            tsv_url="",
+            prefix_id="real_openslr_bn",
+            limit=2,
+            internal_tsv=True,
+        ))
+        for e in manifest:
+            if e["id"].startswith("real_fleurs_"):
+                e["license"] = "CC BY 4.0"
+            elif e["id"].startswith("real_openslr_"):
+                e["license"] = "CC BY-SA 4.0"
+
+    stress_manifest = create_real_stress_variants(manifest)
 
     with open(REAL_MANIFEST_PATH, "w", encoding="utf-8") as f:
         json.dump(manifest, f, indent=2, ensure_ascii=False)
+    with open(REAL_STRESS_MANIFEST_PATH, "w", encoding="utf-8") as f:
+        json.dump(stress_manifest, f, indent=2, ensure_ascii=False)
 
-    print(f"\n  Prepared {len(manifest)} real-speech clips -> {REAL_MANIFEST_PATH}")
+    print(f"\n  Prepared {len(manifest)} clean human clips -> {REAL_MANIFEST_PATH}")
+    print(f"  Prepared {len(stress_manifest)} paired stress clips -> {REAL_STRESS_MANIFEST_PATH}")
     print("=" * 60)
 
 

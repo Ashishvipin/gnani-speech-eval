@@ -2,17 +2,16 @@
 TTS Evaluation Pipeline for Gnani Timbre.
 
 Evaluation methodology (objective, component-level — no arbitrary composite score):
-    1. Full-response HTTP latency & RTF — non-streaming `/api/v1/tts/inference`
-       response time (NOT time-to-first-byte, which requires `/api/v1/tts/sse`),
-       reported as p50 / p95 / mean across repeated trials, plus retry counts.
-    2. Audio integrity — 25 ms frame-level RMS silence ratio, clipping ratio,
-       and duration sanity.
-    3. Spectral profile — centroid, bandwidth, and low/mid/high band energy ratios.
-    4. Round-trip intelligibility — Prisma ASR transcription scored with proper
-       compute_wer / compute_cer (both verbatim and format-normalised against
-       roundtrip_reference), plus optional independent Whisper cross-check when
-       `faster-whisper` is available.
-    5. Speaking rate — words-per-minute pacing analysis.
+    1. Non-streaming REST HTTP latency (`/api/v1/tts/inference`) & RTF across
+       repeated trials (p50 / p95 / mean + retry counts).
+    2. Streaming SSE Time-to-First-Byte (`/api/v1/tts/sse`) across representative
+       prompts (start event latency, first audio chunk TTFB, first non-silent PCM
+       chunk TTFB, and total stream time).
+    3. Audio integrity — 25 ms frame-level RMS silence ratio, clipping ratio,
+       spectral balance, and speaking rate (WPM).
+    4. Round-trip Prisma ASR intelligibility — scored strictly against the raw TTS
+       input `text` using Verbatim WER/CER and dataset-agnostic `compute_rule_wer` /
+       `compute_rule_cer` (no per-sentence output-tuned `roundtrip_reference`).
 """
 
 import json
@@ -27,9 +26,12 @@ from config import RESULTS_DIR, TTS_MODEL
 from src.audio_utils import compute_spectral_features, get_audio_duration, load_wav
 from src.gnani_client import GnaniAPIError, GnaniClient
 from src.metrics import (
+    compute_bootstrap_ci,
     compute_cer,
     compute_percentile,
     compute_rtf,
+    compute_rule_cer,
+    compute_rule_wer,
     compute_silence_ratio,
     compute_speaking_rate,
     compute_wer,
@@ -61,7 +63,6 @@ def evaluate_single_tts_trial(
 ) -> Dict:
     """Run one TTS synthesis + acoustic analysis + round-trip ASR trial."""
     text = entry["text"]
-    roundtrip_ref = entry.get("roundtrip_reference", text)
     language = entry.get("language", "en-IN")
     voice = entry.get("voice")
     clip_id = entry.get("id", "unknown")
@@ -126,30 +127,31 @@ def evaluate_single_tts_trial(
     except Exception as e:
         audio_analysis = {"error": str(e)}
 
-    # ── Round-trip ASR Check (using compute_wer / compute_cer) ─────
+    # ── Round-trip ASR Check (strictly against raw input text) ─────
     roundtrip_result = None
     if run_roundtrip_asr and status == "success":
         try:
             asr_lang = "hi-IN,en-IN" if language == "hi-en" else language
-            asr_result = client.transcribe(
-                audio_path=output_path,
-                language=asr_lang,
-            )
+            asr_result = client.transcribe(audio_path=output_path, language=asr_lang)
             rt_transcript = asr_result["transcript"]
             lang_hint = "hi" if language == "hi-en" else language[:2]
 
             wer_v = compute_wer(text, rt_transcript, language=lang_hint)
             cer_v = compute_cer(text, rt_transcript, language=lang_hint)
-            wer_f = compute_wer(roundtrip_ref, rt_transcript, language=lang_hint)
-            cer_f = compute_cer(roundtrip_ref, rt_transcript, language=lang_hint)
+            wer_r = compute_rule_wer(text, rt_transcript, language=lang_hint)
+            cer_r = compute_rule_cer(text, rt_transcript, language=lang_hint)
 
             roundtrip_result = {
+                "asr_language_param": asr_lang,
                 "asr_transcript": rt_transcript,
-                "roundtrip_reference": roundtrip_ref,
                 "verbatim_wer": round(wer_v["wer"], 4),
                 "verbatim_cer": round(cer_v["cer"], 4),
-                "formatted_wer": round(wer_f["wer"], 4),
-                "formatted_cer": round(cer_f["cer"], 4),
+                "rule_normalised_wer": round(wer_r["wer"], 4),
+                "rule_normalised_cer": round(cer_r["cer"], 4),
+                "verbatim_errors": wer_v["substitutions"] + wer_v["deletions"] + wer_v["insertions"],
+                "verbatim_ref_words": wer_v["ref_length"],
+                "rule_errors": wer_r["substitutions"] + wer_r["deletions"] + wer_r["insertions"],
+                "rule_ref_words": wer_r["ref_length"],
                 "asr_latency_ms": asr_result["latency_ms"],
                 "asr_retries": asr_result.get("retries", 0),
             }
@@ -157,9 +159,9 @@ def evaluate_single_tts_trial(
             if whisper_model is not None:
                 w_out = _transcribe_independent_whisper(output_path, language, whisper_model)
                 if w_out:
-                    w_wer = compute_wer(roundtrip_ref, w_out["whisper_transcript"], language=lang_hint)
+                    w_wer = compute_rule_wer(text, w_out["whisper_transcript"], language=lang_hint)
                     roundtrip_result["whisper_transcript"] = w_out["whisper_transcript"]
-                    roundtrip_result["whisper_formatted_wer"] = round(w_wer["wer"], 4)
+                    roundtrip_result["whisper_rule_wer"] = round(w_wer["wer"], 4)
         except Exception as e:
             roundtrip_result = {"error": str(e)}
 
@@ -168,7 +170,6 @@ def evaluate_single_tts_trial(
         "category": entry.get("category", ""),
         "tags": entry.get("tags", []),
         "text": text,
-        "roundtrip_reference": roundtrip_ref,
         "language": language,
         "voice": voice_used,
         "status": status,
@@ -193,8 +194,8 @@ def evaluate_single_tts(
     """
     Evaluate a single TTS sentence across `repeats` synthesis trials.
 
-    Saves the primary clip (`<id>.wav`) on trial 1 and aggregates p50/p95
-    latency, RTF, and retry counts across all successful trials.
+    Saves `<id>.wav` on trial 1 (and `<id>_run{2..k}.wav` for repeats) and computes
+    p50/p95 latency, RTF, retries, and round-trip ASR WERs across trials.
     """
     clip_id = entry.get("id", "unknown")
     base_out = str(Path(output_dir) / f"{clip_id}.wav")
@@ -212,10 +213,9 @@ def evaluate_single_tts(
         )
         trials.append(trial)
         if trial["status"] != "success" and rep == 0 and entry.get("text", "").strip(".") == "":
-            # Deterministic non-verbal input error doesn't need 3 repeated HTTP 500s
             break
         if rep < repeats - 1:
-            time.sleep(0.4)
+            time.sleep(0.35)
 
     ok_trials = [t for t in trials if t["status"] == "success"]
     if not ok_trials:
@@ -224,16 +224,19 @@ def evaluate_single_tts(
         failed["repeats_attempted"] = len(trials)
         return failed
 
-    # Use trial 1 (or first success) as representative transcript/audio metrics,
-    # augmented with p50/p95 across repeats
     rep_trial = dict(ok_trials[0])
     lats = [t["synth_latency_ms"] for t in ok_trials]
     elapsed = [t["total_elapsed_ms"] for t in ok_trials]
     rtfs = [t["audio_analysis"]["rtf"] for t in ok_trials if "rtf" in t.get("audio_analysis", {})]
-    rt_wers = [
-        t["roundtrip_asr"]["formatted_wer"]
+    rt_v_wers = [
+        t["roundtrip_asr"]["verbatim_wer"]
         for t in ok_trials
-        if t.get("roundtrip_asr") and "formatted_wer" in t["roundtrip_asr"]
+        if t.get("roundtrip_asr") and "verbatim_wer" in t["roundtrip_asr"]
+    ]
+    rt_r_wers = [
+        t["roundtrip_asr"]["rule_normalised_wer"]
+        for t in ok_trials
+        if t.get("roundtrip_asr") and "rule_normalised_wer" in t["roundtrip_asr"]
     ]
     rt_transcripts = [
         t["roundtrip_asr"]["asr_transcript"]
@@ -251,7 +254,8 @@ def evaluate_single_tts(
         "p50_rtf": round(compute_percentile(rtfs, 50), 4) if rtfs else None,
         "p95_rtf": round(compute_percentile(rtfs, 95), 4) if rtfs else None,
         "total_retries": sum(t.get("retries", 0) for t in ok_trials),
-        "mean_roundtrip_formatted_wer": round(sum(rt_wers) / len(rt_wers), 4) if rt_wers else None,
+        "mean_roundtrip_verbatim_wer": round(sum(rt_v_wers) / len(rt_v_wers), 4) if rt_v_wers else None,
+        "mean_roundtrip_rule_wer": round(sum(rt_r_wers) / len(rt_r_wers), 4) if rt_r_wers else None,
         "all_roundtrip_transcripts": rt_transcripts,
     }
     rep_trial["synth_latency_ms"] = rep_trial["repeats_summary"]["p50_latency_ms"]
@@ -267,15 +271,116 @@ def evaluate_single_tts(
             "retries": t.get("retries", 0),
             "rtf": t.get("audio_analysis", {}).get("rtf"),
             "roundtrip_asr_transcript": (t.get("roundtrip_asr") or {}).get("asr_transcript"),
-            "roundtrip_formatted_wer": (t.get("roundtrip_asr") or {}).get("formatted_wer"),
+            "roundtrip_verbatim_wer": (t.get("roundtrip_asr") or {}).get("verbatim_wer"),
+            "roundtrip_rule_wer": (t.get("roundtrip_asr") or {}).get("rule_normalised_wer"),
         }
         for idx, t in enumerate(trials)
     ]
     return rep_trial
 
 
+def run_tts_streaming_benchmark(
+    client: GnaniClient,
+    test_set: List[Dict],
+    sentence_ids: tuple = ("num_en_001", "abbr_en_002", "codemix_001", "long_en_001", "long_hi_001"),
+    repeats: int = 3,
+    verbose: bool = True,
+) -> Dict:
+    """Measure true streaming Time-to-First-Byte via `/api/v1/tts/sse`."""
+    by_id = {e["id"]: e for e in test_set}
+    selected = [by_id[sid] for sid in sentence_ids if sid in by_id]
+    if not selected:
+        return {}
+
+    if verbose:
+        print(f"{'='*72}")
+        print(f"  TIMBRE STREAMING SSE TTFB BENCHMARK ({len(selected)} sentences × {repeats} repeats)")
+        print(f"{'='*72}\n")
+
+    per_sentence = []
+    all_first_chunk = []
+    all_first_nonsilent = []
+    all_start_events = []
+    all_totals = []
+
+    for entry in selected:
+        trials = []
+        for rep in range(repeats):
+            try:
+                res = client.synthesize_stream(
+                    text=entry["text"],
+                    language=entry.get("language", "en-IN"),
+                    voice=entry.get("voice"),
+                )
+                trials.append({
+                    "run": rep + 1,
+                    "status": "success",
+                    "ttfb_start_event_ms": res["ttfb_start_event_ms"],
+                    "ttfb_first_chunk_ms": res["ttfb_first_chunk_ms"],
+                    "ttfb_first_nonsilent_ms": res["ttfb_first_nonsilent_ms"],
+                    "total_stream_ms": res["total_stream_ms"],
+                    "num_chunks": res["num_chunks"],
+                    "audio_size_bytes": res["audio_size_bytes"],
+                })
+                if res["ttfb_start_event_ms"] is not None:
+                    all_start_events.append(res["ttfb_start_event_ms"])
+                if res["ttfb_first_chunk_ms"] is not None:
+                    all_first_chunk.append(res["ttfb_first_chunk_ms"])
+                if res["ttfb_first_nonsilent_ms"] is not None:
+                    all_first_nonsilent.append(res["ttfb_first_nonsilent_ms"])
+                all_totals.append(res["total_stream_ms"])
+            except Exception as exc:
+                trials.append({"run": rep + 1, "status": "error", "error": str(exc)})
+            if rep < repeats - 1:
+                time.sleep(0.3)
+
+        ok = [t for t in trials if t["status"] == "success"]
+        fc = [t["ttfb_first_chunk_ms"] for t in ok if t["ttfb_first_chunk_ms"] is not None]
+        fn = [t["ttfb_first_nonsilent_ms"] for t in ok if t["ttfb_first_nonsilent_ms"] is not None]
+        tot = [t["total_stream_ms"] for t in ok]
+        per_sentence.append({
+            "id": entry["id"],
+            "language": entry.get("language"),
+            "p50_ttfb_first_chunk_ms": round(compute_percentile(fc, 50), 2) if fc else None,
+            "p95_ttfb_first_chunk_ms": round(compute_percentile(fc, 95), 2) if fc else None,
+            "p50_ttfb_first_nonsilent_ms": round(compute_percentile(fn, 50), 2) if fn else None,
+            "p50_total_stream_ms": round(compute_percentile(tot, 50), 2) if tot else None,
+            "trials": trials,
+        })
+        if verbose and fc:
+            print(
+                f"  {entry['id']:<14s} ({entry['language']:<5s})  "
+                f"TTFB chunk p50={compute_percentile(fc, 50):.0f}ms  "
+                f"non-silent p50={compute_percentile(fn, 50):.0f}ms  "
+                f"total stream p50={compute_percentile(tot, 50):.0f}ms"
+            )
+
+    summary = {
+        "endpoint": "/api/v1/tts/sse",
+        "num_sentences": len(selected),
+        "repeats_per_sentence": repeats,
+        "total_calls_succeeded": len(all_totals),
+        "p50_start_event_ms": round(compute_percentile(all_start_events, 50), 2) if all_start_events else None,
+        "p50_ttfb_first_chunk_ms": round(compute_percentile(all_first_chunk, 50), 2) if all_first_chunk else None,
+        "p95_ttfb_first_chunk_ms": round(compute_percentile(all_first_chunk, 95), 2) if all_first_chunk else None,
+        "p50_ttfb_first_nonsilent_ms": round(compute_percentile(all_first_nonsilent, 50), 2) if all_first_nonsilent else None,
+        "p95_ttfb_first_nonsilent_ms": round(compute_percentile(all_first_nonsilent, 95), 2) if all_first_nonsilent else None,
+        "p50_total_stream_ms": round(compute_percentile(all_totals, 50), 2) if all_totals else None,
+        "p95_total_stream_ms": round(compute_percentile(all_totals, 95), 2) if all_totals else None,
+        "per_sentence": per_sentence,
+    }
+    if verbose and all_first_chunk:
+        print(
+            f"\n  SSE Overall: TTFB chunk p50={summary['p50_ttfb_first_chunk_ms']:.0f}ms "
+            f"(p95={summary['p95_ttfb_first_chunk_ms']:.0f}ms) | "
+            f"non-silent p50={summary['p50_ttfb_first_nonsilent_ms']:.0f}ms | "
+            f"total stream p50={summary['p50_total_stream_ms']:.0f}ms\n"
+        )
+    return summary
+
+
 def _summarise_tts_group(items: List[Dict]) -> Dict:
-    """Compute component-level aggregates (p50/p95 latency, RTF, silence, round-trip WER)."""
+    """Compute component-level aggregates (p50/p95 latency, RTF, silence, round-trip WER + CIs)."""
     analyses = [r["audio_analysis"] for r in items if "error" not in r.get("audio_analysis", {})]
     lats = [r["synth_latency_ms"] for r in items]
     elapsed = [r.get("total_elapsed_ms", r["synth_latency_ms"]) for r in items]
@@ -287,14 +392,18 @@ def _summarise_tts_group(items: List[Dict]) -> Dict:
     rt_items = [
         r["roundtrip_asr"]
         for r in items
-        if r.get("roundtrip_asr") and "formatted_wer" in r["roundtrip_asr"]
+        if r.get("roundtrip_asr") and "rule_normalised_wer" in r["roundtrip_asr"]
     ]
     avg_rt_v_wer = (
         round(sum(x["verbatim_wer"] for x in rt_items) / len(rt_items), 4)
         if rt_items else None
     )
-    avg_rt_f_wer = (
-        round(sum(x["formatted_wer"] for x in rt_items) / len(rt_items), 4)
+    avg_rt_r_wer = (
+        round(sum(x["rule_normalised_wer"] for x in rt_items) / len(rt_items), 4)
+        if rt_items else None
+    )
+    rt_rule_ci = (
+        compute_bootstrap_ci([{"errors": x["rule_errors"], "ref_length": x["rule_ref_words"]} for x in rt_items])
         if rt_items else None
     )
 
@@ -311,7 +420,8 @@ def _summarise_tts_group(items: List[Dict]) -> Dict:
         "avg_silence_ratio": round(sum(sils) / max(len(sils), 1), 4),
         "max_clipping_ratio": round(max(clips) if clips else 0.0, 6),
         "avg_roundtrip_verbatim_wer": avg_rt_v_wer,
-        "avg_roundtrip_formatted_wer": avg_rt_f_wer,
+        "avg_roundtrip_rule_wer": avg_rt_r_wer,
+        "roundtrip_rule_wer_ci_95": [rt_rule_ci["ci_low"], rt_rule_ci["ci_high"]] if rt_rule_ci else None,
         "total_retries": sum(r.get("retries", 0) for r in items),
     }
 
@@ -323,10 +433,12 @@ def run_tts_evaluation(
     output_path: Optional[str] = None,
     run_roundtrip_asr: bool = True,
     repeats: int = 1,
+    run_streaming_benchmark: bool = True,
+    streaming_repeats: int = 3,
     use_independent_asr: bool = False,
     verbose: bool = True,
 ) -> Dict:
-    """Run the full TTS evaluation pipeline across all sentences."""
+    """Run the full TTS evaluation pipeline (REST + optional SSE streaming benchmark)."""
     client = GnaniClient(api_key=api_key)
     test_set = load_tts_test_set(test_set_path)
 
@@ -375,7 +487,7 @@ def run_tts_evaluation(
             if result["status"] == "success":
                 qa = result.get("audio_analysis", {})
                 rt = result.get("roundtrip_asr") or {}
-                rt_str = f"RT-WER={rt['formatted_wer']:.1%}" if "formatted_wer" in rt else ""
+                rt_str = f"RT-RuleWER={rt['rule_normalised_wer']:.1%}" if "rule_normalised_wer" in rt else ""
                 retry_tag = f" [retries={result['retries']}]" if result.get("retries") else ""
                 print(
                     f"voice={result['voice']}  RTF={qa.get('rtf', '?')}  "
@@ -385,7 +497,13 @@ def run_tts_evaluation(
             else:
                 print(f"ERROR: {result.get('error', 'unknown')}")
 
-        time.sleep(0.5)
+        time.sleep(0.35)
+
+    streaming_bench = {}
+    if run_streaming_benchmark:
+        streaming_bench = run_tts_streaming_benchmark(
+            client, test_set, repeats=streaming_repeats, verbose=verbose
+        )
 
     successful = [r for r in results if r["status"] == "success"]
     categories: Dict[str, List[Dict]] = {}
@@ -395,7 +513,6 @@ def run_tts_evaluation(
     category_summary = {cat: _summarise_tts_group(items) for cat, items in categories.items()}
     overall_summary = _summarise_tts_group(successful)
 
-    # Include min/max across all raw trial latencies when repeats > 1
     raw_lats = []
     for r in successful:
         if "trials" in r:
@@ -409,16 +526,18 @@ def run_tts_evaluation(
         "metadata": {
             "timestamp": datetime.now().isoformat(),
             "model": TTS_MODEL,
-            "latency_type": "full_response_http_ms (non-streaming)",
+            "latency_type": "full_response_http_ms (REST inference) + streaming_ttfb_ms (SSE)",
             "total_sentences": len(test_set),
             "successful": len(successful),
             "failed": len(test_set) - len(successful),
             "repeats_per_sentence": repeats,
             "roundtrip_asr_enabled": run_roundtrip_asr,
             "independent_asr_status": independent_asr_status,
+            "roundtrip_normaliser": "rule-based dataset-agnostic normalise_for_eval (against raw text)",
         },
         "overall": overall_summary,
         "by_category": category_summary,
+        "streaming_ttfb_benchmark": streaming_bench,
         "per_sentence_results": results,
     }
 
@@ -428,29 +547,29 @@ def run_tts_evaluation(
         print(f"  RESULTS SUMMARY (Component Metrics)")
         print(f"{'='*72}")
         print(
-            f"  HTTP Latency  : p50={ov['p50_latency_ms']:.0f}ms  "
+            f"  REST HTTP Latency : p50={ov['p50_latency_ms']:.0f}ms  "
             f"p95={ov['p95_latency_ms']:.0f}ms  mean={ov['avg_latency_ms']:.0f}ms"
         )
         print(
-            f"  RTF           : p50={ov['p50_rtf']:.4f}  p95={ov['p95_rtf']:.4f}  "
+            f"  RTF               : p50={ov['p50_rtf']:.4f}  p95={ov['p95_rtf']:.4f}  "
             f"mean={ov['avg_rtf']:.4f}"
         )
         print(
-            f"  Silence Ratio : {ov['avg_silence_ratio']:.3f} (25ms frame RMS)  |  "
+            f"  Silence Ratio     : {ov['avg_silence_ratio']:.3f} (25ms frame RMS)  |  "
             f"Max Clipping: {ov['max_clipping_ratio']:.4f}"
         )
-        if ov["avg_roundtrip_formatted_wer"] is not None:
+        if ov["avg_roundtrip_rule_wer"] is not None:
             print(
-                f"  Round-trip WER: verbatim={ov['avg_roundtrip_verbatim_wer']:.2%}  "
-                f"formatted={ov['avg_roundtrip_formatted_wer']:.2%}"
+                f"  Round-trip WER    : verbatim={ov['avg_roundtrip_verbatim_wer']:.2%}  "
+                f"rule-normalised={ov['avg_roundtrip_rule_wer']:.2%}"
             )
         print(f"\n  By Category:")
         for cat, stats in category_summary.items():
-            rt_f = stats["avg_roundtrip_formatted_wer"]
-            rt_disp = f"{rt_f:.1%}" if rt_f is not None else "n/a"
+            rt_r = stats["avg_roundtrip_rule_wer"]
+            rt_disp = f"{rt_r:.1%}" if rt_r is not None else "n/a"
             print(
                 f"    {cat:25s}  p50={stats['p50_latency_ms']:>5.0f}ms  "
-                f"p50-RTF={stats['p50_rtf']:.3f}  RT-WER={rt_disp:>6s}  (n={stats['num_sentences']})"
+                f"p50-RTF={stats['p50_rtf']:.3f}  RT-RuleWER={rt_disp:>6s}  (n={stats['num_sentences']})"
             )
         print(f"{'='*72}\n")
 

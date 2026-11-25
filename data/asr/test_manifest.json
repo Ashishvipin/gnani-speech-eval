@@ -11,7 +11,6 @@
         "id": "clean_en_002",
         "audio_path": "audio/clean_en_002.wav",
         "reference": "please transfer five thousand rupees to my savings account",
-        "reference_formatted": "please transfer 5,000 rupees to my savings account",
         "language": "en-IN",
         "category": "clean_english",
         "tags": ["clean", "banking", "english", "numbers"]
@@ -28,7 +27,6 @@
         "id": "clean_hi_001",
         "audio_path": "audio/clean_hi_001.wav",
         "reference": "नमस्ते मैं अपना बैलेंस जानना चाहता हूँ",
-        "reference_formatted": "नमस्ते मैं अपना balance जानना चाहता हूँ",
         "language": "hi-IN",
         "category": "clean_hindi",
         "tags": ["clean", "hindi", "banking"]
@@ -45,7 +43,6 @@
         "id": "clean_hi_003",
         "audio_path": "audio/clean_hi_003.wav",
         "reference": "मुझे कल सुबह दस बजे की फ्लाइट चाहिए",
-        "reference_formatted": "मुझे कल सुबह 10 बजे की फ्लाइट चाहिए",
         "language": "hi-IN",
         "category": "clean_hindi",
         "tags": ["clean", "hindi", "travel", "numbers"]
@@ -54,7 +51,6 @@
         "id": "noisy_en_001",
         "audio_path": "audio/noisy_en_001.wav",
         "reference": "my policy number is alpha bravo charlie one two three four five",
-        "reference_formatted": "my policy number is alpha bravo charlie 12345",
         "language": "en-IN",
         "category": "noisy_audio",
         "tags": ["noisy", "english", "alphanumeric", "insurance"]
@@ -87,7 +83,6 @@
         "id": "telephony_hi_001",
         "audio_path": "audio/telephony_hi_001.wav",
         "reference": "आपका कॉल हमारे लिए महत्वपूर्ण है कृपया प्रतीक्षा करें",
-        "reference_formatted": "आपका call हमारे लिए महत्वपूर्ण है कृपया प्रतीक्षा करें",
         "language": "hi-IN",
         "category": "telephony",
         "tags": ["telephony", "8khz", "hindi", "ivr"]
@@ -96,7 +91,6 @@
         "id": "numbers_en_001",
         "audio_path": "audio/numbers_en_001.wav",
         "reference": "the total amount is one lakh twenty three thousand four hundred and fifty six rupees",
-        "reference_formatted": "the total amount is 1,23,456 rupees",
         "language": "en-IN",
         "category": "numbers_and_entities",
         "tags": ["numbers", "currency", "indian_format", "english"]
@@ -105,7 +99,6 @@
         "id": "numbers_en_002",
         "audio_path": "audio/numbers_en_002.wav",
         "reference": "my mobile number is nine eight seven six five four three two one zero",
-        "reference_formatted": "my mobile number is 9876543210",
         "language": "en-IN",
         "category": "numbers_and_entities",
         "tags": ["numbers", "phone_number", "english"]
@@ -114,7 +107,6 @@
         "id": "numbers_hi_001",
         "audio_path": "audio/numbers_hi_001.wav",
         "reference": "कुल राशि पाँच लाख बहत्तर हज़ार तीन सौ रुपये है",
-        "reference_formatted": "कुल राशि 5,72,300 रुपये है",
         "language": "hi-IN",
         "category": "numbers_and_entities",
         "tags": ["numbers", "currency", "hindi"]
@@ -123,7 +115,6 @@
         "id": "codemix_001",
         "audio_path": "audio/codemix_001.wav",
         "reference": "मुझे अपना account balance check करना है",
-        "reference_formatted": "मुझे अपना अकाउंट बैलेंस चेक करना है",
         "language": "hi-IN",
         "category": "code_switching",
         "tags": ["code_switch", "hinglish", "banking"]
@@ -140,7 +131,6 @@
         "id": "codemix_003",
         "audio_path": "audio/codemix_003.wav",
         "reference": "yeh offer kab tak valid hai aur kya terms and conditions hain",
-        "reference_formatted": "यह offer कब तक valid है और क्या terms and conditions हैं",
         "language": "hi-IN",
         "category": "code_switching",
         "tags": ["code_switch", "hinglish", "commerce"]
@@ -165,7 +155,6 @@
         "id": "domain_medical_001",
         "audio_path": "audio/domain_medical_001.wav",
         "reference": "the patient was prescribed paracetamol five hundred milligrams twice daily",
-        "reference_formatted": "the patient was prescribed paracetamol 500mg twice daily",
         "language": "en-IN",
         "category": "domain_specific",
         "tags": ["domain", "medical", "english", "drug_name"]
@@ -174,7 +163,6 @@
         "id": "domain_legal_001",
         "audio_path": "audio/domain_legal_001.wav",
         "reference": "the affidavit must be notarised before submission to the magistrate",
-        "reference_formatted": "the affidavit must be notarized before submission to the magistrate",
         "language": "en-IN",
         "category": "domain_specific",
         "tags": ["domain", "legal", "english"]
@@ -183,7 +171,6 @@
         "id": "domain_tech_001",
         "audio_path": "audio/domain_tech_001.wav",
         "reference": "deploy the kubernetes cluster on the g c p us east one region",
-        "reference_formatted": "deploy the kubernetes cluster on the gcp us east 1 region",
         "language": "en-IN",
         "category": "domain_specific",
         "tags": ["domain", "tech", "english", "abbreviations"]
@@ -192,7 +179,6 @@
         "id": "long_en_001",
         "audio_path": "audio/long_en_001.wav",
         "reference": "good afternoon i am calling to enquire about the home loan that i had applied for last month and i wanted to know the current status of my application and when i can expect the disbursement",
-        "reference_formatted": "good afternoon i am calling to inquire about the home loan that i had applied for last month and i wanted to know the current status of my application and when i can expect the disbursement",
         "language": "en-IN",
         "category": "long_utterance",
         "tags": ["long", "english", "banking", "complex"]
@@ -201,7 +187,6 @@
         "id": "long_hi_001",
         "audio_path": "audio/long_hi_001.wav",
         "reference": "नमस्ते मैं पिछले महीने जो होम लोन के लिए अप्लाई किया था उसका स्टेटस जानना चाहता हूँ कृपया मुझे बताएं कि कब तक प्रोसेस होगा",
-        "reference_formatted": "नमस्ते मैं पिछले महीने जो home loan के लिए apply किया था उसका status जानना चाहता हूँ कृपया मुझे बताएं कि कब तक process होगा",
         "language": "hi-IN",
         "category": "long_utterance",
         "tags": ["long", "hindi", "banking", "complex"]

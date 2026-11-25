@@ -1,65 +1,63 @@
 # Gnani Speech Evaluation Report: Prisma v3.0 (ASR) & Timbre v2.5 (TTS)
 
-**Author:** Ashish Vipin | **Endpoints:** `api.vachana.ai/stt/v3` (`prisma-v3.0`), `api.vachana.ai/api/v1/tts/inference` (`timbre-v2.5`)
+**Author:** Ashish Vipin | **Endpoints:** `api.vachana.ai/stt/v3` (`prisma-v3.0`), `api.vachana.ai/api/v1/tts/inference` & `/api/v1/tts/sse` (`timbre-v2.5`)
 
 ## 1. Methodology
 
-This evaluation benchmarks Gnani's production ASR and TTS APIs from an India residential network path; reported latency includes local transit alongside server inference.
+All measurements ran from an India residential network path, so reported latencies include local transit alongside server inference.
 
-- **Part 1 — Prisma v3.0 ASR (52 clips across two suites):**
-  - *Real-Human Speech (22 clips, 298 words):* Public recordings from AI4Bharat Svarah (5 Indian English), Google FLEURS `hi_in` (5 Hindi), and OpenSLR 66/65/37 (3 Telugu, 3 Tamil, 2 Indian Bengali), plus 4 seeded degradations of real clips (10 dB speech-modulated babble noise `n=2`; 8 kHz 300–3400 Hz G.711 μ-law telephony `n=2`).
-  - *Synthetic Smoke Suite (30 clips, 300 words):* Timbre-synthesized controlled utterances probing numerals, domain terms, code-switching, and regional voices. This suite verifies ITN and API behavior only—it does not test real speaker acoustics.
-  - *Dual Metrics:* Scratch Wagner-Fischer DP (`src/metrics.py`) with Indic `।`/`॥` punctuation stripping computes both **Verbatim WER** (strict raw reference) and **Format-Normalised WER** (accepting either raw reference or `reference_formatted` for ITN digits/script changes).
-- **Part 2 — Timbre v2.5 TTS (29 sentences × 3 repeats):**
-  - Voice mappings in `config.py` explicitly select native Timbre v2.5 voices (`Kaveri` en-IN, `Nalini` hi-IN, `Poorvi` hi-en, `Suhana` te-IN, `Asmita` ta-IN, `Kirra` bn-IN) instead of falling back to English.
-  - TTS is assessed via **component metrics** (no composite score): `p50`/`p95` full-response non-streaming HTTP latency (not streaming TTFB), retry counts, `p50`/`p95` RTF, 25 ms RMS frame silence ratio (10 ms hop, 0.015 threshold), peak clipping, and round-trip Prisma WER.
+- **Part 1 — Prisma v3.0 ASR (64 clips across three separated suites + Hinglish ablation):**
+  - *Clean Real-Human Speech (`n=18`, 226 words):* Public recordings from AI4Bharat Svarah (5 Indian English, `CC BY 4.0` via `saisundaresan01/svarah-eval` mirror), Google FLEURS `hi_in` (5 Hindi, `CC BY 4.0`), and OpenSLR 66/65/37 (3 Telugu, 3 Tamil, 2 Indian Bengali, `CC BY-SA 4.0`).
+  - *Paired Acoustic Stress Set (`n=16`):* Four `CC BY 4.0` human utterances (`svarah_en_001/003`, `fleurs_hi_001/005`) degraded with deterministic 20 dB, 10 dB, and 5 dB speech-modulated babble noise plus 8 kHz G.711 μ-law telephony, scored strictly against paired clean baselines.
+  - *Synthetic Smoke Suite (`n=30`):* Timbre-synthesized utterances verifying API formatting; **not** a measure of human acoustic accuracy.
+  - *Non-Circular Metrics:* Scratch Wagner-Fischer DP (`src/metrics.py`) reports **Verbatim WER** as primary. A single deterministic, dataset-agnostic normalizer (`normalise_for_eval`: US/UK spelling lexicon, numeric comma/ordinal stripping, English/Hindi spoken number parsing, symbol/unit canonicalization—zero per-clip overrides) produces secondary **Rule-Normalised WER**, alongside 1,000-resample 95% clip-level bootstrap confidence intervals.
+
+- **Part 2 — Timbre v2.5 TTS (29 sentences × 3 REST repeats + 5 × 3 SSE streaming checks):**
+  - Native Timbre v2.5 voices (`Kaveri`, `Nalini`, `Poorvi`, `Suhana`, `Asmita`, `Kirra`) are mapped per language in `config.py`.
+  - Component metrics report REST HTTP turnaround, **streaming SSE TTFB** (`/api/v1/tts/sse`), RTF, 25 ms RMS frame silence ratio, clipping, and round-trip Prisma WER scored against raw input `text`.
 
 ## 2. Results
 
-### Prisma v3.0 ASR — Real-Human Suite (`n=22`)
+### Prisma v3.0 ASR — Clean Real-Human Suite (`n=18`) & Controlled Benchmarks
 
-| Category | Clips | Verbatim WER | Formatted WER | CER | p50 / p95 Latency |
+| Suite / Category | Clips | Verbatim WER [95% CI] | Rule-Norm WER [95% CI] | CER | p50 / p95 Latency |
 |---|---:|---:|---:|---:|---:|
-| `real_indian_english` (Svarah) | 5 | 6.25% | 2.08% | 6.85% | 296 / 595 ms |
-| `real_hindi` (FLEURS) | 5 | 14.63% | 14.63% | 20.35% | 516 / 621 ms |
-| `real_regional_indic` (OpenSLR te/ta/bn) | 8 | 14.55% | 14.55% | 3.17% | 406 / 534 ms |
-| `real_noisy_audio` (10 dB babble) | 2 | 2.78% | 2.78% | 1.36% | 305 / 372 ms |
-| `real_telephony` (8 kHz μ-law) | 2 | 8.33% | 8.33% | 4.08% | 316 / 424 ms |
-| **Overall Real-Human Suite** | **22** | **11.07%** | **10.40%** | **9.95%** | **388 / 634 ms** |
+| `real_indian_english` (Svarah) | 5 | 6.25% [0.0%–12.5%] | 2.08% [0.0%–11.1%] | 6.85% | 348 / 545 ms |
+| `real_hindi` (FLEURS) | 5 | 14.63% [8.9%–20.0%] | 14.63% [8.9%–20.0%] | 20.35% | 492 / 724 ms |
+| `real_regional_indic` (OpenSLR te/ta/bn) | 8 | 14.55% [4.4%–27.9%] | 14.55% [4.4%–27.9%] | 3.17% | 399 / 452 ms |
+| **Overall Clean Real-Human** | **18** | **12.83% [7.8%–17.7%]** | **11.95% [6.7%–17.5%]** | **11.86%** | **418 / 720 ms** |
+| **Synthetic Smoke Suite** | **30** | **20.00% [10.3%–30.7%]** | **8.86% [3.3%–15.8%]** | **18.62%** | **372 / 562 ms** |
 
-Zero retries occurred (mean 394 ms; formatted CER 9.02%). In `real_svarah_en_001`, Prisma formatted `"eleventh to fourteenth"` → `"11th to 14th"`, dropping Indian-English WER from 6.25% to 2.08%.
+Zero retries occurred across all ASR suites. On FLEURS Hindi (18 errors in 123 words), **14 of 18 errors (77.8%)** were Devanagari→Latin script switches on loanwords/proper nouns (`Greenland`, `antique`, `television`, `internet`), leaving only 4 residual Devanagari errors (`3.25%`). Synthetic smoke similarly dropped to `8.86%` rule-normalised WER because `17` cross-script Hindi/Hinglish switches (`अकाउंट` vs `account`, `कॉल` vs `call`) and `g c p` vs `gcp` remained unmasked by design.
 
-On the **30-clip Synthetic Smoke Suite**, Verbatim WER was **20.00%** (60/300 words; CER 18.62%), falling to **0.37%** Format-Normalised WER (1/268 words; CER 0.49%; p50 340 ms, p95 490 ms, 0 retries) once expected ITN/script forms (`"1,23,456"`, `"9876543210"`, `"500mg"`, `"अकाउंट बैलेंस"`) were credited. The single remaining formatted error dropped initial `"please"` (`clean_en_002`). Synthetic `accented_english` and `regional_languages` both scored `0.00%` on clean Timbre audio.
+**Paired Clean-vs-Degraded Stress Delta (`n=4` base clips × 4 conditions = 16 clips):**
 
-### Timbre v2.5 TTS — Component Metrics (`28/29` succeeded × 3 repeats = 84 calls)
-
-| Category | Sentences | p50 / p95 HTTP | p50 / p95 RTF | 25 ms Silence | RT Fmt WER |
+| Base Clip (`CC BY 4.0`) | Clean Rule WER | 20 dB Babble | 10 dB Babble | 5 dB Babble | 8 kHz μ-law PSTN |
 |---|---:|---:|---:|---:|---:|
-| `numbers` | 4 | 859 / 954 ms | 0.185 / 0.217 | 0.236 | 0.0% |
-| `abbreviations` | 4 | 899 / 980 ms | 0.158 / 0.225 | 0.219 | 0.0% |
-| `code_switching` (`Poorvi`) | 3 | 725 / 849 ms | 0.162 / 0.218 | 0.224 | 11.1% |
-| `long_form` | 2 | 1,691 / 1,961 ms | 0.082 / 0.086 | 0.259 | 3.9% |
-| `tricky_pronunciation` | 4 | 727 / 936 ms | 0.189 / 0.213 | 0.197 | 9.2% |
-| `punctuation_and_prosody` | 2 | 946 / 1,086 ms | 0.174 / 0.176 | 0.386 | 0.0% |
-| `special_formats` | 3 | 1,073 / 1,179 ms | 0.163 / 0.199 | 0.228 | 29.2% |
-| `regional_languages` (`te/ta/bn`) | 3 | 854 / 896 ms | 0.171 / 0.188 | 0.246 | 2.8% |
-| `edge_cases` (1 HTTP 500) | 3 ok / 4 | 736 / 916 ms | 0.189 / 0.237 | 0.260 | 0.0% |
-| **Overall TTS** | **28 / 29** | **852 / 1,321 ms** | **0.171 / 0.233** | **0.242** | **6.21%** |
+| `real_svarah_en_001` | 0.00% | +0.00 pp | +4.55 pp | +4.55 pp | +0.00 pp |
+| `real_svarah_en_003` | 0.00% | +0.00 pp | +0.00 pp | +0.00 pp | +8.33 pp (`Arunachal→Andhra`) |
+| `real_fleurs_hi_001` | 4.17% | +0.00 pp | +0.00 pp | -4.17 pp | +8.33 pp (`अस्थिर→अर्ध`) |
+| `real_fleurs_hi_005` | 11.11% | +0.00 pp | +5.56 pp | +0.00 pp | +0.00 pp |
 
-All 84 successful synthesis runs had 0 retries, `0.000` clipping, 485–2,134 ms latency range (mean 908 ms), 140.9 mean WPM, and 25.71% verbatim / 6.21% formatted round-trip WER. Native `Suhana`/`Asmita`/`Kirra` voices kept regional RT formatted WER at 0.0–5.6%.
+**Hinglish Language Ablation (`n=3` clips):** `hi-IN` and `hi-IN,en-IN` gave identical transcripts (`38.46%` WER, `10` cross-script errors, `p50=365/368 ms`), whereas `indic-auto` forced full Devanagari transliteration (`84.62%` WER, `22` cross-script errors, `p50=408 ms`).
 
-## 3. Concrete Failure Examples
+### Timbre v2.5 TTS — REST (`28/29` × 3 repeats) & SSE Streaming (`5` × 3 repeats)
 
-1. **Hindi Digit Hallucination & Drop (`long_hi_001`, `Nalini`):** Prompt had `"₹2,45,678 शेष है। आपकी तीन लेनदेन लंबित हैं।"`. Across 3 runs, Run 1 (`data/tts/output/long_hi_001.wav`) synthesized `2,45,688` (digit substitution); Run 2 read `2,45,678` and `3`; Run 3 dropped `तीन` completely (`"आपकी लेन-देन लंबित है"`). Stochastic numerical instability requires verification before banking deployment.
-2. **URL/Email & Loanword TN Breakdown (`special_en_001`, `Kaveri`):** `"https://www.gnani.ai ... support@gnani.ai"` (`special_en_001.wav`) degraded in all 3 repeats (`gany.ai`/`giani.ai`/`nyani.ai`; `"sup. PORT at gyanid dot ai"`, 79.2% RT formatted WER). `pron_en_001.wav` (`Worcestershire`, `açaí`) also drifted (`axai`/`ustusha`/`achate`).
-3. **Punctuation-Only Rejection (`edge_empty_001`):** Input `"..."` deterministically failed with HTTP 500 (`"No audio generated during synthesis"`), exiting cleanly without retries.
-4. **Prisma Script Mixing & Regional Segmentation:** Real Hindi FLEURS (`14.63%` WER) output Latin loanwords (`Greenland`, `television`, `antique`, `agencies`) alongside recognition slips (`"नॉर्स सगास"` → `"North Sagass"`, `"रेड"` → `"Reed"`). OpenSLR Telugu/Tamil/Bengali (`14.55%` WER) showed low **3.17% CER**, mostly minor suffix/spacing differences (`తటస్థీకరణము` → `తటస్థీకరణం`, `জিয়াংসু` → `জিয়াং শু`). Controlled Hinglish (`codemix_002`: `"Please mera last transaction ka detail bhejo."`) transcribed verbatim (`0.00%` WER).
+- **Non-Streaming REST (`/api/v1/tts/inference`):** `p50=838 ms`, `p95=1,254 ms` (mean `882 ms`, range `469–2,091 ms`), `p50 RTF=0.169`, `p95 RTF=0.220`, 25 ms silence ratio `0.240`, max clipping `0.000`, `0` retries. Round-trip WER against raw `text` was **27.39% verbatim / 18.83% rule-normalised** (`95% CI: 11.4%–25.4%`), led cleanly by `numbers` (`3.6%`), `punctuation` (`3.3%`), and `tricky_pronunciation` (`6.8%`), while `code_switching` (`50.2%`) and `regional_languages` (`35.5%`) reflected cross-script/spoken numeral formatting.
+- **SSE Streaming TTFB (`/api/v1/tts/sse`):** First audio chunk arrived at **`p50=221 ms`** (`p95=352 ms`; stream `start` event `p50=34 ms`; stream completion `p50=796 ms`), including `165 ms` p50 TTFB on `long_hi_001` vs `1,107 ms` REST turnaround.
+
+## 3. Concrete Failure & Attribution Findings
+
+1. **Round-Trip Attribution Catch (`long_hi_001`, `Nalini`):** Round-trip Prisma ASR emitted `2,45,688` on Run 2 while emitting `2,45,678` on Runs 1 & 3. Direct listening to [long_hi_001.wav](data/tts/output/long_hi_001.wav) and [long_hi_001_run2.wav](data/tts/output/long_hi_001_run2.wav) confirmed **Timbre pronounced `2,45,678` and `तीन` accurately** in both runs—Prisma misheard the spoken Hindi digit (`678`→`688`). Single-vendor round-trip checking can misattribute ASR slips to TTS unless verified by ear or an independent recognizer.
+2. **Text-Normalisation (TN) Breakdown (`special_en_001`, `Kaveri`):** On `"https://www.gnani.ai ... support@gnani.ai"`, listening to [special_en_001.wav](data/tts/output/special_en_001.wav) confirmed Timbre letter-spelled `support` (`S-U-P P-O-R-T`) and rendered `gnani` inconsistently (`giani`/`gyanid` in round-trip ASR, `38.5%` rule-normalised RT WER). On `pron_en_001.wav`, `açaí` also showed slight pronunciation drift.
+3. **Strict Empty Input Rejection (`edge_empty_001`):** `"..."` deterministically returned HTTP 500 (`"No audio generated during synthesis"`), correctly failing fast with zero retries.
+4. **Prisma Word-Segmentation & Band-Limiting (`real_human` / `real_paired_stress`):** OpenSLR Telugu/Tamil/Bengali had `14.55%` WER alongside just `3.17%` CER (`తటస్థీకరణము→తటస్థీకరణం`, `জিয়াংসু→জিয়াং শু`). On 8 kHz μ-law telephony, narrowband loss caused semantic substitutions (`Arunachal→Andhra`, `अस्थिर केंद्रक→अर्धकेंद्रक`).
 
 ## 4. Limitations & Recommendations
 
-**Limitations:** Small sample sizes (`n=22` real ASR, `n=2` noisy/telephony, `n=29` TTS), simulated babble/μ-law degradations rather than live PSTN recordings, and single-vendor round-trip circularity (`Prisma` can mask `Timbre` artifacts; `src/tts_evaluator.py` includes a `faster-whisper` hook for Python ≥ 3.10 independent checks).
+**Limitations:** Small sample counts (`n=18` clean human, `n=4` paired stress bases) yield wide confidence intervals (`7.8%–17.7%`). Stress variants simulate additive babble and μ-law codec rather than live PSTN calls. Automated local `faster-whisper` cross-checking was unavailable on this Python 3.9 host without Python ≥ 3.10, though agent audio inspection verified key failure WAVs directly.
 
 **Recommendations:**
-- **Banking / Fintech IVR:** Validate/reject punctuation-only TTS inputs client-side, keep Hindi financial digit prompts short or spell-confirmed, and normalize URLs/emails into spoken words (`"gnani dot ai"`) pre-TTS.
-- **Multilingual Voicebots:** Pin native Timbre voices explicitly (`Suhana`, `Asmita`, `Kirra`, `Poorvi`), use Prisma `hi-IN,en-IN` for Hinglish, and expect mixed Devanagari/Latin orthography downstream.
-- **Low-Latency Voice Agents:** Full-response HTTP turnaround (ASR `p95` 634 ms + TTS `p95` 1,321 ms from India) exceeds synchronous barge-in budgets; adopt streaming/WebSocket playback where supported.
+- **Interactive Voice Agents:** Use SSE streaming (`/api/v1/tts/sse`, `p50=221 ms` TTFB) rather than full-response REST (`p50=838 ms`) whenever barge-in/low-latency turn-taking matters.
+- **Banking / Customer Prompts:** Validate non-empty TTS text client-side and pre-expand raw emails/domains (e.g., `"support at gnani dot ai"`) to avoid awkward letter-spelling.
+- **Hinglish & Indic ASR:** Pin native Timbre voices (`Suhana`, `Asmita`, `Kirra`, `Poorvi`) explicitly, pass `hi-IN` (or `hi-IN,en-IN`) rather than `indic-auto` when Latin transliteration fidelity is needed, and expect mixed Devanagari/Latin outputs on Hindi loanwords.

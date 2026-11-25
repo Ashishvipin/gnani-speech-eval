@@ -21,6 +21,7 @@ Thumbs.db
 # Audio output (generated during eval — keep 5 diagnostic clips for reviewer listening)
 data/tts/output/*.wav
 !data/tts/output/long_hi_001.wav
+!data/tts/output/long_hi_001_run2.wav
 !data/tts/output/special_en_001.wav
 !data/tts/output/special_en_002.wav
 !data/tts/output/pron_en_001.wav
