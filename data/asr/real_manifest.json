@@ -2,72 +2,77 @@
   {
     "id": "real_svarah_en_001",
     "audio_path": "real_audio/real_svarah_en_001.wav",
-    "reference": "our district hasana was the land of the great hoysala dynasty who ruled over this region from eleventh to fourteenth century CE",
+    "reference": "Our district Hasana was the land of the great Hoysala dynasty who ruled over this region from 11th to 14th century CE.",
     "language": "en-IN",
     "category": "real_indian_english",
-    "source": "AI4Bharat Svarah (via saisundaresan01/svarah-eval mirror)",
+    "source": "AI4Bharat Svarah (official ai4bharat/Svarah, Female/Kannada/Karnataka)",
+    "license": "CC BY 4.0",
     "tags": [
       "real_human",
       "indian_english",
-      "svarah"
-    ],
-    "license": "CC BY 4.0"
+      "svarah",
+      "official"
+    ]
   },
   {
     "id": "real_svarah_en_002",
     "audio_path": "real_audio/real_svarah_en_002.wav",
-    "reference": "there is a gradual shift in the mentality",
+    "reference": "Govinda has received 12 Filmfare Award nominations and 4 Zee Cine Awards.",
     "language": "en-IN",
     "category": "real_indian_english",
-    "source": "AI4Bharat Svarah (via saisundaresan01/svarah-eval mirror)",
+    "source": "AI4Bharat Svarah (official ai4bharat/Svarah, Female/Bengali/West Bengal)",
+    "license": "CC BY 4.0",
     "tags": [
       "real_human",
       "indian_english",
-      "svarah"
-    ],
-    "license": "CC BY 4.0"
+      "svarah",
+      "official"
+    ]
   },
   {
     "id": "real_svarah_en_003",
     "audio_path": "real_audio/real_svarah_en_003.wav",
-    "reference": "how much money is left in my arunachal pradesh rural bank account",
+    "reference": "How much money is left in my Arunachal Pradesh Rural Bank account?",
     "language": "en-IN",
     "category": "real_indian_english",
-    "source": "AI4Bharat Svarah (via saisundaresan01/svarah-eval mirror)",
+    "source": "AI4Bharat Svarah (official ai4bharat/Svarah, Male/Maithili/Bihar)",
+    "license": "CC BY 4.0",
     "tags": [
       "real_human",
       "indian_english",
-      "svarah"
-    ],
-    "license": "CC BY 4.0"
+      "svarah",
+      "official"
+    ]
   },
   {
     "id": "real_svarah_en_004",
     "audio_path": "real_audio/real_svarah_en_004.wav",
-    "reference": "nipah virus belongs to the",
+    "reference": "Will I be able to pay using UPI apps on Hotstar website?",
     "language": "en-IN",
     "category": "real_indian_english",
-    "source": "AI4Bharat Svarah (via saisundaresan01/svarah-eval mirror)",
+    "source": "AI4Bharat Svarah (official ai4bharat/Svarah, Male/Nepali/West Bengal)",
+    "license": "CC BY 4.0",
     "tags": [
       "real_human",
       "indian_english",
-      "svarah"
-    ],
-    "license": "CC BY 4.0"
+      "svarah",
+      "official"
+    ]
   },
   {
     "id": "real_svarah_en_005",
     "audio_path": "real_audio/real_svarah_en_005.wav",
-    "reference": "wow",
+    "reference": "And also, people speaking English have different accents in different regions.",
     "language": "en-IN",
     "category": "real_indian_english",
-    "source": "AI4Bharat Svarah (via saisundaresan01/svarah-eval mirror)",
+    "source": "AI4Bharat Svarah (official ai4bharat/Svarah, Female/Tamil/Kerala)",
+    "license": "CC BY 4.0",
     "tags": [
       "real_human",
       "indian_english",
-      "svarah"
-    ],
-    "license": "CC BY 4.0"
+      "svarah",
+      "official"
+    ]
   },
   {
     "id": "real_fleurs_hi_001",

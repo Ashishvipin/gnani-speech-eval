@@ -7,7 +7,7 @@
 All measurements ran from an India residential network path, so reported latencies include local transit alongside server inference.
 
 - **Part 1 — Prisma v3.0 ASR (64 clips across three separated suites + Hinglish ablation):**
-  - *Clean Real-Human Speech (`n=18`, 226 words):* Public recordings from AI4Bharat Svarah (5 Indian English, `CC BY 4.0` via `saisundaresan01/svarah-eval` mirror), Google FLEURS `hi_in` (5 Hindi, `CC BY 4.0`), and OpenSLR 66/65/37 (3 Telugu, 3 Tamil, 2 Indian Bengali, `CC BY-SA 4.0`).
+  - *Clean Real-Human Speech (`n=18`, 247 words):* Public recordings from official AI4Bharat Svarah (`ai4bharat/Svarah`, 5 Indian English across 4 states, `CC BY 4.0`), Google FLEURS `hi_in` (5 Hindi, `CC BY 4.0`), and OpenSLR 66/65/37 (3 Telugu, 3 Tamil, 2 Indian Bengali, `CC BY-SA 4.0`).
   - *Paired Acoustic Stress Set (`n=16`):* Four `CC BY 4.0` human utterances (`svarah_en_001/003`, `fleurs_hi_001/005`) degraded with deterministic 20 dB, 10 dB, and 5 dB speech-modulated babble noise plus 8 kHz G.711 μ-law telephony, scored strictly against paired clean baselines.
   - *Synthetic Smoke Suite (`n=30`):* Timbre-synthesized utterances verifying API formatting; **not** a measure of human acoustic accuracy.
   - *Non-Circular Metrics:* Scratch Wagner-Fischer DP (`src/metrics.py`) reports **Verbatim WER** as primary. A single deterministic, dataset-agnostic normalizer (`normalise_for_eval`: US/UK spelling lexicon, numeric comma/ordinal stripping, English/Hindi spoken number parsing, symbol/unit canonicalization—zero per-clip overrides) produces secondary **Rule-Normalised WER**, alongside 1,000-resample 95% clip-level bootstrap confidence intervals.
@@ -22,11 +22,11 @@ All measurements ran from an India residential network path, so reported latenci
 
 | Suite / Category | Clips | Verbatim WER [95% CI] | Rule-Norm WER [95% CI] | CER | p50 / p95 Latency |
 |---|---:|---:|---:|---:|---:|
-| `real_indian_english` (Svarah) | 5 | 6.25% [0.0%–12.5%] | 2.08% [0.0%–11.1%] | 6.85% | 348 / 545 ms |
-| `real_hindi` (FLEURS) | 5 | 14.63% [8.9%–20.0%] | 14.63% [8.9%–20.0%] | 20.35% | 492 / 724 ms |
-| `real_regional_indic` (OpenSLR te/ta/bn) | 8 | 14.55% [4.4%–27.9%] | 14.55% [4.4%–27.9%] | 3.17% | 399 / 452 ms |
-| **Overall Clean Real-Human** | **18** | **12.83% [7.8%–17.7%]** | **11.95% [6.7%–17.5%]** | **11.86%** | **418 / 720 ms** |
-| **Synthetic Smoke Suite** | **30** | **20.00% [10.3%–30.7%]** | **8.86% [3.3%–15.8%]** | **18.62%** | **372 / 562 ms** |
+| `real_indian_english` (Official Svarah) | 5 | 1.45% [0.0%–5.1%] | 1.45% [0.0%–5.1%] | 0.62% | 440 / 690 ms |
+| `real_hindi` (FLEURS) | 5 | 14.63% [8.9%–20.0%] | 14.63% [8.9%–20.0%] | 20.35% | 515 / 623 ms |
+| `real_regional_indic` (OpenSLR te/ta/bn) | 8 | 14.55% [4.4%–27.9%] | 14.55% [4.4%–27.9%] | 3.17% | 360 / 580 ms |
+| **Overall Clean Real-Human** | **18** | **10.93% [5.9%–16.1%]** | **10.93% [5.9%–16.1%]** | **9.79%** | **434 / 656 ms** |
+| **Synthetic Smoke Suite** | **30** | **20.00% [10.3%–30.7%]** | **8.86% [3.3%–15.8%]** | **18.62%** | **367 / 511 ms** |
 
 Zero retries occurred across all ASR suites. On FLEURS Hindi (18 errors in 123 words), **14 of 18 errors (77.8%)** were Devanagari→Latin script switches on loanwords/proper nouns (`Greenland`, `antique`, `television`, `internet`), leaving only 4 residual Devanagari errors (`3.25%`). Synthetic smoke similarly dropped to `8.86%` rule-normalised WER because `17` cross-script Hindi/Hinglish switches (`अकाउंट` vs `account`, `कॉल` vs `call`) and `g c p` vs `gcp` remained unmasked by design.
 
@@ -34,12 +34,12 @@ Zero retries occurred across all ASR suites. On FLEURS Hindi (18 errors in 123 w
 
 | Base Clip (`CC BY 4.0`) | Clean Rule WER | 20 dB Babble | 10 dB Babble | 5 dB Babble | 8 kHz μ-law PSTN |
 |---|---:|---:|---:|---:|---:|
-| `real_svarah_en_001` | 0.00% | +0.00 pp | +4.55 pp | +4.55 pp | +0.00 pp |
+| `real_svarah_en_001` | 0.00% | +0.00 pp | +4.55 pp | +0.00 pp | +0.00 pp |
 | `real_svarah_en_003` | 0.00% | +0.00 pp | +0.00 pp | +0.00 pp | +8.33 pp (`Arunachal→Andhra`) |
 | `real_fleurs_hi_001` | 4.17% | +0.00 pp | +0.00 pp | -4.17 pp | +8.33 pp (`अस्थिर→अर्ध`) |
 | `real_fleurs_hi_005` | 11.11% | +0.00 pp | +5.56 pp | +0.00 pp | +0.00 pp |
 
-**Hinglish Language Ablation (`n=3` clips):** `hi-IN` and `hi-IN,en-IN` gave identical transcripts (`38.46%` WER, `10` cross-script errors, `p50=365/368 ms`), whereas `indic-auto` forced full Devanagari transliteration (`84.62%` WER, `22` cross-script errors, `p50=408 ms`).
+**Hinglish Language Ablation (`n=3` clips):** `hi-IN,en-IN` achieved **38.46% WER** (`10` cross-script errors, `p50=320 ms`) by keeping `codemix_002` in Latin script, outperforming single-language `hi-IN` (**50.00% WER**, `13` errors) and `indic-auto` (**84.62% WER**, `22` errors, full Devanagari transliteration).
 
 ### Timbre v2.5 TTS — REST (`28/29` × 3 repeats) & SSE Streaming (`5` × 3 repeats)
 
@@ -55,9 +55,9 @@ Zero retries occurred across all ASR suites. On FLEURS Hindi (18 errors in 123 w
 
 ## 4. Limitations & Recommendations
 
-**Limitations:** Small sample counts (`n=18` clean human, `n=4` paired stress bases) yield wide confidence intervals (`7.8%–17.7%`). Stress variants simulate additive babble and μ-law codec rather than live PSTN calls. Automated local `faster-whisper` cross-checking was unavailable on this Python 3.9 host without Python ≥ 3.10, though direct human listening verified the key failure WAVs.
+**Limitations:** Small sample counts (`n=18` clean human, `n=4` paired stress bases) yield wide confidence intervals (`5.9%–16.1%`). Stress variants simulate additive babble and μ-law codec rather than live PSTN calls. Automated local `faster-whisper` cross-checking was unavailable on this Python 3.9 host without Python ≥ 3.10, though direct human listening verified the key failure WAVs.
 
 **Recommendations:**
 - **Interactive Voice Agents:** Use SSE streaming (`/api/v1/tts/sse`, `p50=221 ms` TTFB) rather than full-response REST (`p50=838 ms`) whenever barge-in/low-latency turn-taking matters.
 - **Banking / Customer Prompts:** Validate non-empty TTS text client-side and pre-expand raw emails/domains (e.g., `"support at gnani dot ai"`) to avoid awkward letter-spelling.
-- **Hinglish & Indic ASR:** Pin native Timbre voices (`Suhana`, `Asmita`, `Kirra`, `Poorvi`) explicitly, pass `hi-IN` (or `hi-IN,en-IN`) rather than `indic-auto` when Latin transliteration fidelity is needed, and expect mixed Devanagari/Latin outputs on Hindi loanwords.
+- **Hinglish & Indic ASR:** Pin native Timbre voices (`Suhana`, `Asmita`, `Kirra`, `Poorvi`) explicitly, pass `hi-IN,en-IN` rather than `hi-IN` or `indic-auto` when Latin transliteration fidelity is needed on Hinglish, and expect mixed Devanagari/Latin outputs on Hindi loanwords.

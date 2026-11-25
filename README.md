@@ -15,12 +15,12 @@ End-to-end engineering evaluation suite for **Gnani AI Speech APIs** (`api.vacha
 
 | Evaluation Suite | Clips | Verbatim WER [95% CI] | Rule-Norm WER [95% CI] | Verbatim CER | Latency p50 / p95 | Retries |
 |---|---:|---:|---:|---:|---:|---:|
-| **Real-Human Clean Speech** (`real_manifest.json`) | 18 | **12.83%** [7.84%–17.74%] | **11.95%** [6.74%–17.47%] | 11.86% | 418 / 720 ms | 0 |
-| **Paired Real Stress Variants** (`real_stress_manifest.json`) | 16 | 8.22% [5.66%–10.74%] | 5.59% [3.25%–8.28%] | 8.82% | 465 / 654 ms | 0 |
-| **Synthetic Smoke Test** (`test_manifest.json`) | 30 | 20.00% [10.27%–30.69%] | 8.86% [3.31%–15.79%] | 18.62% | 372 / 562 ms | 0 |
+| **Real-Human Clean Speech** (`real_manifest.json`) | 18 | **10.93%** [5.85%–16.09%] | **10.93%** [5.85%–16.09%] | 9.79% | 434 / 656 ms | 0 |
+| **Paired Real Stress Variants** (`real_stress_manifest.json`) | 16 | 5.92% [3.42%–8.60%] | 5.92% [3.42%–8.60%] | 5.30% | 424 / 583 ms | 0 |
+| **Synthetic Smoke Test** (`test_manifest.json`) | 30 | 20.00% [10.27%–30.69%] | 8.86% [3.31%–15.79%] | 18.62% | 367 / 511 ms | 0 |
 
-- **Real-Human Breakdown (`n=18`)**: Svarah Indian English (`n=5`): 6.25% verbatim / 2.08% rule-normalised WER; FLEURS Hindi (`n=5`): 14.63% WER (14 of 18 word errors are Devanagari→Latin script switches like `Greenland`, `antique`, `television`, `internet`); OpenSLR te/ta/bn (`n=8`): 14.55% WER with **3.17% CER**.
-- **Hinglish Ablation (`n=3` clips)**: `hi-IN` and `hi-IN,en-IN` produced identical transcripts (`38.46%` WER, `10` cross-script tokens, `p50=365/368 ms`), whereas `indic-auto` switched Latin words wholly to Devanagari (`84.62%` WER, `22` cross-script tokens).
+- **Real-Human Breakdown (`n=18`)**: Official Svarah Indian English (`n=5` across Karnataka, Bihar, West Bengal, Kerala): **1.45% WER** (`p50=440 ms`); FLEURS Hindi (`n=5`): 14.63% WER (14 of 18 word errors are Devanagari→Latin script switches like `Greenland`, `antique`, `television`, `internet`); OpenSLR te/ta/bn (`n=8`): 14.55% WER with **3.17% CER**.
+- **Hinglish Ablation (`n=3` clips)**: `hi-IN,en-IN` scored **38.46% WER** (`10` cross-script tokens, preserving Latin on `codemix_002`), outperforming `hi-IN` alone (**50.00% WER**, `13` cross-script tokens) and `indic-auto` (**84.62% WER**, converting all Latin words to Devanagari).
 
 ### 2. Timbre v2.5 TTS (`timbre-v2.5`)
 
@@ -39,7 +39,7 @@ Code, scripts, and documentation in this repository are **MIT-licensed** ([LICEN
 
 | Dataset | Clips | License | Source & Notes |
 |---|---:|---|---|
-| **AI4Bharat Svarah** | 5 (`en-IN`) | `CC BY 4.0` | Official repo ([`ai4bharat/Svarah`](https://huggingface.co/datasets/ai4bharat/Svarah)) is gated behind Hugging Face terms/login; unauthenticated pulls use public mirror [`saisundaresan01/svarah-eval`](https://huggingface.co/datasets/saisundaresan01/svarah-eval) (supports `HF_TOKEN` when configured). Paired stress variants (`real_stress_manifest.json`, 16 clips) adapt only `CC BY 4.0` Svarah & FLEURS clips. |
+| **AI4Bharat Svarah** | 5 (`en-IN`) | `CC BY 4.0` | Downloaded directly from the official gated repository ([`ai4bharat/Svarah`](https://huggingface.co/datasets/ai4bharat/Svarah)) using `HF_TOKEN` across 5 distinct native language/state backgrounds (`Kannada/Karnataka`, `Bengali/West Bengal`, `Maithili/Bihar`, `Nepali/West Bengal`, `Tamil/Kerala`). `prepare_test_data.py` falls back to `saisundaresan01/svarah-eval` only if `HF_TOKEN` is unset. Paired stress variants (`real_stress_manifest.json`, 16 clips) adapt only `CC BY 4.0` Svarah & FLEURS clips. |
 | **Google FLEURS (`hi_in`)** | 5 (`hi-IN`) | `CC BY 4.0` | Streamed directly from [`google/fleurs`](https://huggingface.co/datasets/google/fleurs) (`Conneau et al., SLT 2022`). |
 | **OpenSLR 66 / 65 / 37** | 8 (`te`/`ta`/`bn`) | `CC BY-SA 4.0` | Crowdsourced multi-speaker corpora ([SLR66](https://openslr.org/66/), [SLR65](https://openslr.org/65/), [SLR37](https://openslr.org/37/) — `He et al., INTERSPEECH 2020`). Excerpt WAVs remain under `CC BY-SA 4.0`. |
 

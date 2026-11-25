@@ -20,6 +20,7 @@ Usage:
 
 import io
 import json
+import os
 import sys
 import tarfile
 import zipfile
@@ -28,11 +29,13 @@ from pathlib import Path
 from typing import Dict, List
 
 import requests
+from dotenv import load_dotenv
 
 sys.path.insert(0, str(Path(__file__).parent.parent))
 from src.audio_utils import add_noise, load_wav, save_wav, simulate_telephony
 
 PROJECT_ROOT = Path(__file__).parent.parent
+load_dotenv(PROJECT_ROOT / ".env")
 REAL_AUDIO_DIR = PROJECT_ROOT / "data" / "asr" / "real_audio"
 REAL_MANIFEST_PATH = PROJECT_ROOT / "data" / "asr" / "real_manifest.json"
 REAL_STRESS_MANIFEST_PATH = PROJECT_ROOT / "data" / "asr" / "real_stress_manifest.json"
@@ -109,27 +112,75 @@ class HTTPRangeFile(io.RawIOBase):
 
 def fetch_svarah_english() -> List[Dict]:
     """
-    Download 5 real Indian-accented English clips.
+    Download 5 real Indian-accented English clips from AI4Bharat Svarah (`CC BY 4.0`).
 
-    Note on provenance: official `ai4bharat/Svarah` (CC BY 4.0) is gated behind
-    Hugging Face login/terms acceptance; unauthenticated reproducible runs pull
-    the public mirror `saisundaresan01/svarah-eval`. If `HF_TOKEN` is set in
-    the environment, requests pass the Bearer header automatically.
+    When `HF_TOKEN` is configured (after accepting dataset terms at
+    https://huggingface.co/datasets/ai4bharat/Svarah), pulls directly from
+    the official `ai4bharat/Svarah` repository via the Hugging Face Datasets
+    Server API, selecting 5 complete, regionally diverse speaker utterances.
+    Falls back to the public `saisundaresan01/svarah-eval` mirror only if
+    `HF_TOKEN` is unset.
     """
-    import os
     print("  Fetching AI4Bharat Svarah Indian-English samples...")
     hf_token = os.getenv("HF_TOKEN", "").strip()
     headers = {"Authorization": f"Bearer {hf_token}"} if hf_token else {}
+
+    if hf_token:
+        rows_url = (
+            "https://datasets-server.huggingface.co/rows"
+            "?dataset=ai4bharat%2FSvarah&config=default&split=test&offset=0&limit=100"
+        )
+        resp = requests.get(rows_url, headers=headers, timeout=30)
+        resp.raise_for_status()
+        by_idx = {item["row_idx"]: item["row"] for item in resp.json()["rows"]}
+
+        # Diverse native states/languages & genders with complete sentences
+        # (keeping rows 0 & 4 as en_001 & en_003 for paired stress continuity):
+        #   0: Female Kannada (Karnataka), 5: Female Bengali (West Bengal),
+        #   4: Male Maithili (Bihar), 16: Male Nepali (West Bengal),
+        #   29: Female Tamil (Kerala)
+        selected_indices = [0, 5, 4, 16, 29]
+        entries = []
+        for idx, row_idx in enumerate(selected_indices, start=1):
+            row = by_idx[row_idx]
+            audio_info = row["audio_filepath"][0]
+            wav_resp = requests.get(audio_info["src"], headers=headers, timeout=30)
+            wav_resp.raise_for_status()
+
+            clip_id = f"real_svarah_en_{idx:03d}"
+            out_path = REAL_AUDIO_DIR / f"{clip_id}.wav"
+            out_path.write_bytes(wav_resp.content)
+            samples, sr = load_wav(str(out_path))
+            save_wav(samples, sr, str(out_path))
+
+            lang = row.get("primary_language", "")
+            state = row.get("native_place_state", "")
+            gender = row.get("gender", "")
+            ref_text = row["text"].strip()
+            entries.append({
+                "id": clip_id,
+                "audio_path": f"real_audio/{clip_id}.wav",
+                "reference": ref_text,
+                "language": "en-IN",
+                "category": "real_indian_english",
+                "source": f"AI4Bharat Svarah (official ai4bharat/Svarah, {gender}/{lang}/{state})",
+                "license": "CC BY 4.0",
+                "tags": ["real_human", "indian_english", "svarah", "official"],
+            })
+            print(f"    + {clip_id} ({gender}, {lang}/{state}): {ref_text[:60]}")
+        return entries
+
+    print("    HF_TOKEN not set; falling back to public saisundaresan01/svarah-eval mirror...")
     meta_url = "https://huggingface.co/datasets/saisundaresan01/svarah-eval/resolve/main/data/test.jsonl"
     tar_url = "https://huggingface.co/datasets/saisundaresan01/svarah-eval/resolve/main/data/audio.tar.gz"
 
     rows = {}
-    for line in requests.get(meta_url, headers=headers, timeout=30).content.decode("utf-8").splitlines():
+    for line in requests.get(meta_url, timeout=30).content.decode("utf-8").splitlines():
         if line.strip():
             obj = json.loads(line)
             rows[obj["audio_filepath"]] = obj["reference_transcription"]
 
-    tar_bytes = requests.get(tar_url, headers=headers, timeout=60).content
+    tar_bytes = requests.get(tar_url, timeout=60).content
     entries = []
     idx = 0
     with tarfile.open(fileobj=io.BytesIO(tar_bytes), mode="r:gz") as tf:
@@ -359,6 +410,11 @@ def main():
         action="store_true",
         help="Reuse already-downloaded clean real clips and rebuild paired stress variants only",
     )
+    parser.add_argument(
+        "--refresh-svarah",
+        action="store_true",
+        help="Re-fetch the 5 Svarah clips (from official ai4bharat/Svarah when HF_TOKEN is set) and rebuild stress set",
+    )
     args = parser.parse_args()
 
     print("=" * 60)
@@ -372,21 +428,19 @@ def main():
         if old_path.exists():
             old_path.unlink()
 
-    if args.stress_only and REAL_MANIFEST_PATH.exists():
+    if args.refresh_svarah and REAL_MANIFEST_PATH.exists():
+        with open(REAL_MANIFEST_PATH, "r", encoding="utf-8") as f:
+            existing = [
+                e for e in json.load(f)
+                if not e["id"].startswith("real_svarah_")
+            ]
+        manifest = fetch_svarah_english() + existing
+    elif args.stress_only and REAL_MANIFEST_PATH.exists():
         with open(REAL_MANIFEST_PATH, "r", encoding="utf-8") as f:
             manifest = [
                 e for e in json.load(f)
                 if e.get("category") not in ("real_noisy_audio", "real_telephony")
             ]
-        # Ensure clean provenance/license tags on existing entries
-        for e in manifest:
-            if e["id"].startswith("real_svarah_"):
-                e["source"] = "AI4Bharat Svarah (via saisundaresan01/svarah-eval mirror)"
-                e["license"] = "CC BY 4.0"
-            elif e["id"].startswith("real_fleurs_"):
-                e["license"] = "CC BY 4.0"
-            elif e["id"].startswith("real_openslr_"):
-                e["license"] = "CC BY-SA 4.0"
     else:
         manifest = []
         manifest.extend(fetch_svarah_english())

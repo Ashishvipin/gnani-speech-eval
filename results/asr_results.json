@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "timestamp": "2026-11-25T05:46:30.114074",
+    "timestamp": "2026-11-25T06:12:48.930435",
     "model": "prisma-v3.0",
     "primary_suite": "real_human",
     "suites_evaluated": [
@@ -14,52 +14,52 @@
     "normaliser": "rule-based dataset-agnostic normalise_for_eval (verbatim WER is primary)"
   },
   "overall": {
-    "wer": 0.1283,
+    "wer": 0.1093,
     "wer_ci_95": [
-      0.0784,
-      0.1774
+      0.0585,
+      0.1609
     ],
-    "cer": 0.1186,
+    "cer": 0.0979,
     "cer_ci_95": [
-      0.0429,
-      0.187
+      0.0266,
+      0.1651
     ],
-    "rule_normalised_wer": 0.1195,
+    "rule_normalised_wer": 0.1093,
     "rule_wer_ci_95": [
-      0.0674,
-      0.1747
+      0.0585,
+      0.1609
     ],
-    "rule_normalised_cer": 0.1073,
-    "total_ref_words": 226,
-    "total_errors": 29,
-    "rule_ref_words": 226,
+    "rule_normalised_cer": 0.0982,
+    "total_ref_words": 247,
+    "total_errors": 27,
+    "rule_ref_words": 247,
     "rule_errors": 27,
     "cross_script_subs": 14,
-    "p50_latency_ms": 417.95,
-    "p95_latency_ms": 720.32,
-    "avg_latency_ms": 420.69,
-    "p95_total_elapsed_ms": 720.32,
+    "p50_latency_ms": 434.29,
+    "p95_latency_ms": 656.02,
+    "avg_latency_ms": 453.26,
+    "p95_total_elapsed_ms": 656.03,
     "total_retries": 0
   },
   "by_category": {
     "real_indian_english": {
       "num_clips": 5,
-      "aggregate_wer": 0.0625,
+      "aggregate_wer": 0.0145,
       "wer_ci_95": [
         0.0,
-        0.125
+        0.0508
       ],
-      "aggregate_cer": 0.0685,
-      "rule_normalised_wer": 0.0208,
+      "aggregate_cer": 0.0062,
+      "rule_normalised_wer": 0.0145,
       "rule_wer_ci_95": [
         0.0,
-        0.1111
+        0.0508
       ],
-      "rule_normalised_cer": 0.0049,
+      "rule_normalised_cer": 0.0063,
       "cross_script_subs": 0,
-      "p50_latency_ms": 348.32,
-      "p95_latency_ms": 544.8,
-      "avg_latency_ms": 361.39,
+      "p50_latency_ms": 439.64,
+      "p95_latency_ms": 689.87,
+      "avg_latency_ms": 481.16,
       "retries": 0
     },
     "real_hindi": {
@@ -77,9 +77,9 @@
       ],
       "rule_normalised_cer": 0.2039,
       "cross_script_subs": 14,
-      "p50_latency_ms": 491.61,
-      "p95_latency_ms": 723.81,
-      "avg_latency_ms": 547.96,
+      "p50_latency_ms": 514.99,
+      "p95_latency_ms": 622.72,
+      "avg_latency_ms": 504.11,
       "retries": 0
     },
     "real_regional_indic": {
@@ -97,16 +97,16 @@
       ],
       "rule_normalised_cer": 0.0316,
       "cross_script_subs": 0,
-      "p50_latency_ms": 399.25,
-      "p95_latency_ms": 452.24,
-      "avg_latency_ms": 378.21,
+      "p50_latency_ms": 360.25,
+      "p95_latency_ms": 580.34,
+      "avg_latency_ms": 404.04,
       "retries": 0
     }
   },
   "suites": {
     "real_human": {
       "metadata": {
-        "timestamp": "2026-11-25T05:45:52.884572",
+        "timestamp": "2026-11-25T06:12:13.669236",
         "suite": "real_human",
         "model": "prisma-v3.0",
         "total_clips": 18,
@@ -114,52 +114,52 @@
         "failed_clips": 0
       },
       "overall": {
-        "wer": 0.1283,
+        "wer": 0.1093,
         "wer_ci_95": [
-          0.0784,
-          0.1774
+          0.0585,
+          0.1609
         ],
-        "cer": 0.1186,
+        "cer": 0.0979,
         "cer_ci_95": [
-          0.0429,
-          0.187
+          0.0266,
+          0.1651
         ],
-        "rule_normalised_wer": 0.1195,
+        "rule_normalised_wer": 0.1093,
         "rule_wer_ci_95": [
-          0.0674,
-          0.1747
+          0.0585,
+          0.1609
         ],
-        "rule_normalised_cer": 0.1073,
-        "total_ref_words": 226,
-        "total_errors": 29,
-        "rule_ref_words": 226,
+        "rule_normalised_cer": 0.0982,
+        "total_ref_words": 247,
+        "total_errors": 27,
+        "rule_ref_words": 247,
         "rule_errors": 27,
         "cross_script_subs": 14,
-        "p50_latency_ms": 417.95,
-        "p95_latency_ms": 720.32,
-        "avg_latency_ms": 420.69,
-        "p95_total_elapsed_ms": 720.32,
+        "p50_latency_ms": 434.29,
+        "p95_latency_ms": 656.02,
+        "avg_latency_ms": 453.26,
+        "p95_total_elapsed_ms": 656.03,
         "total_retries": 0
       },
       "by_category": {
         "real_indian_english": {
           "num_clips": 5,
-          "aggregate_wer": 0.0625,
+          "aggregate_wer": 0.0145,
           "wer_ci_95": [
             0.0,
-            0.125
+            0.0508
           ],
-          "aggregate_cer": 0.0685,
-          "rule_normalised_wer": 0.0208,
+          "aggregate_cer": 0.0062,
+          "rule_normalised_wer": 0.0145,
           "rule_wer_ci_95": [
             0.0,
-            0.1111
+            0.0508
           ],
-          "rule_normalised_cer": 0.0049,
+          "rule_normalised_cer": 0.0063,
           "cross_script_subs": 0,
-          "p50_latency_ms": 348.32,
-          "p95_latency_ms": 544.8,
-          "avg_latency_ms": 361.39,
+          "p50_latency_ms": 439.64,
+          "p95_latency_ms": 689.87,
+          "avg_latency_ms": 481.16,
           "retries": 0
         },
         "real_hindi": {
@@ -177,9 +177,9 @@
           ],
           "rule_normalised_cer": 0.2039,
           "cross_script_subs": 14,
-          "p50_latency_ms": 491.61,
-          "p95_latency_ms": 723.81,
-          "avg_latency_ms": 547.96,
+          "p50_latency_ms": 514.99,
+          "p95_latency_ms": 622.72,
+          "avg_latency_ms": 504.11,
           "retries": 0
         },
         "real_regional_indic": {
@@ -197,9 +197,9 @@
           ],
           "rule_normalised_cer": 0.0316,
           "cross_script_subs": 0,
-          "p50_latency_ms": 399.25,
-          "p95_latency_ms": 452.24,
-          "avg_latency_ms": 378.21,
+          "p50_latency_ms": 360.25,
+          "p95_latency_ms": 580.34,
+          "avg_latency_ms": 404.04,
           "retries": 0
         }
       },
@@ -209,29 +209,30 @@
           "parent_clip_id": null,
           "condition": null,
           "category": "real_indian_english",
-          "source": "AI4Bharat Svarah (via saisundaresan01/svarah-eval mirror)",
+          "source": "AI4Bharat Svarah (official ai4bharat/Svarah, Female/Kannada/Karnataka)",
           "license": "CC BY 4.0",
           "tags": [
             "real_human",
             "indian_english",
-            "svarah"
+            "svarah",
+            "official"
           ],
           "language": "en-IN",
           "detected_language": "en-IN",
           "audio_path": "/Users/mac/Documents/Gnani/gnani-speech-eval/data/asr/real_audio/real_svarah_en_001.wav",
           "audio_duration_sec": 8.76,
-          "reference": "our district hasana was the land of the great hoysala dynasty who ruled over this region from eleventh to fourteenth century CE",
-          "hypothesis": "Our district Hasana was the land of the great Hoysala dynasty, who ruled over this region from 11th to... 14th century CE.",
-          "wer": 0.0909,
-          "cer": 0.1321,
+          "reference": "Our district Hasana was the land of the great Hoysala dynasty who ruled over this region from 11th to 14th century CE.",
+          "hypothesis": "Our district Hasana was the land of the great Hoysala dynasty, who ruled over this region from 11th to 14th century CE.",
+          "wer": 0.0,
+          "cer": 0.0,
           "rule_normalised_wer": 0.0,
           "rule_normalised_cer": 0.0,
           "cross_script_subs": 0,
           "wer_detail": {
-            "substitutions": 2,
+            "substitutions": 0,
             "deletions": 0,
             "insertions": 0,
-            "hits": 20,
+            "hits": 22,
             "ref_words": 22
           },
           "rule_wer_detail": {
@@ -242,11 +243,11 @@
             "ref_words": 22
           },
           "cer_detail": {
-            "substitutions": 4,
-            "deletions": 10,
+            "substitutions": 0,
+            "deletions": 0,
             "insertions": 0,
-            "hits": 92,
-            "ref_chars": 106
+            "hits": 96,
+            "ref_chars": 96
           },
           "rule_cer_detail": {
             "substitutions": 0,
@@ -255,8 +256,8 @@
             "hits": 92,
             "ref_chars": 92
           },
-          "api_latency_ms": 574.43,
-          "total_elapsed_ms": 574.44,
+          "api_latency_ms": 700.49,
+          "total_elapsed_ms": 700.49,
           "retries": 0,
           "status": "success",
           "error": null
@@ -266,54 +267,55 @@
           "parent_clip_id": null,
           "condition": null,
           "category": "real_indian_english",
-          "source": "AI4Bharat Svarah (via saisundaresan01/svarah-eval mirror)",
+          "source": "AI4Bharat Svarah (official ai4bharat/Svarah, Female/Bengali/West Bengal)",
           "license": "CC BY 4.0",
           "tags": [
             "real_human",
             "indian_english",
-            "svarah"
+            "svarah",
+            "official"
           ],
           "language": "en-IN",
           "detected_language": "en-IN",
           "audio_path": "/Users/mac/Documents/Gnani/gnani-speech-eval/data/asr/real_audio/real_svarah_en_002.wav",
-          "audio_duration_sec": 3.1,
-          "reference": "there is a gradual shift in the mentality",
-          "hypothesis": "There is a gradual shift in the mentality.",
-          "wer": 0.0,
-          "cer": 0.0,
-          "rule_normalised_wer": 0.0,
-          "rule_normalised_cer": 0.0,
+          "audio_duration_sec": 8.51,
+          "reference": "Govinda has received 12 Filmfare Award nominations and 4 Zee Cine Awards.",
+          "hypothesis": "Covenda has received 12 Filmfare award nominations and 4 Zee Cine awards.",
+          "wer": 0.0833,
+          "cer": 0.0328,
+          "rule_normalised_wer": 0.0833,
+          "rule_normalised_cer": 0.0328,
           "cross_script_subs": 0,
           "wer_detail": {
-            "substitutions": 0,
+            "substitutions": 1,
             "deletions": 0,
             "insertions": 0,
-            "hits": 8,
-            "ref_words": 8
+            "hits": 11,
+            "ref_words": 12
           },
           "rule_wer_detail": {
-            "substitutions": 0,
+            "substitutions": 1,
             "deletions": 0,
             "insertions": 0,
-            "hits": 8,
-            "ref_words": 8
+            "hits": 11,
+            "ref_words": 12
           },
           "cer_detail": {
-            "substitutions": 0,
+            "substitutions": 2,
             "deletions": 0,
             "insertions": 0,
-            "hits": 34,
-            "ref_chars": 34
+            "hits": 59,
+            "ref_chars": 61
           },
           "rule_cer_detail": {
-            "substitutions": 0,
+            "substitutions": 2,
             "deletions": 0,
             "insertions": 0,
-            "hits": 34,
-            "ref_chars": 34
+            "hits": 59,
+            "ref_chars": 61
           },
-          "api_latency_ms": 426.27,
-          "total_elapsed_ms": 426.28,
+          "api_latency_ms": 647.37,
+          "total_elapsed_ms": 647.39,
           "retries": 0,
           "status": "success",
           "error": null
@@ -323,18 +325,19 @@
           "parent_clip_id": null,
           "condition": null,
           "category": "real_indian_english",
-          "source": "AI4Bharat Svarah (via saisundaresan01/svarah-eval mirror)",
+          "source": "AI4Bharat Svarah (official ai4bharat/Svarah, Male/Maithili/Bihar)",
           "license": "CC BY 4.0",
           "tags": [
             "real_human",
             "indian_english",
-            "svarah"
+            "svarah",
+            "official"
           ],
           "language": "en-IN",
           "detected_language": "en-IN",
           "audio_path": "/Users/mac/Documents/Gnani/gnani-speech-eval/data/asr/real_audio/real_svarah_en_003.wav",
           "audio_duration_sec": 3.69,
-          "reference": "how much money is left in my arunachal pradesh rural bank account",
+          "reference": "How much money is left in my Arunachal Pradesh Rural Bank account?",
           "hypothesis": "How much money is left in my Arunachal Pradesh Rural Bank account?",
           "wer": 0.0,
           "cer": 0.0,
@@ -369,8 +372,8 @@
             "hits": 54,
             "ref_chars": 54
           },
-          "api_latency_ms": 318.8,
-          "total_elapsed_ms": 318.81,
+          "api_latency_ms": 439.64,
+          "total_elapsed_ms": 439.66,
           "retries": 0,
           "status": "success",
           "error": null
@@ -380,76 +383,20 @@
           "parent_clip_id": null,
           "condition": null,
           "category": "real_indian_english",
-          "source": "AI4Bharat Svarah (via saisundaresan01/svarah-eval mirror)",
+          "source": "AI4Bharat Svarah (official ai4bharat/Svarah, Male/Nepali/West Bengal)",
           "license": "CC BY 4.0",
           "tags": [
             "real_human",
             "indian_english",
-            "svarah"
+            "svarah",
+            "official"
           ],
           "language": "en-IN",
           "detected_language": "en-IN",
           "audio_path": "/Users/mac/Documents/Gnani/gnani-speech-eval/data/asr/real_audio/real_svarah_en_004.wav",
-          "audio_duration_sec": 2.72,
-          "reference": "nipah virus belongs to the",
-          "hypothesis": "Nipa virus belongs to the.",
-          "wer": 0.2,
-          "cer": 0.0455,
-          "rule_normalised_wer": 0.2,
-          "rule_normalised_cer": 0.0455,
-          "cross_script_subs": 0,
-          "wer_detail": {
-            "substitutions": 1,
-            "deletions": 0,
-            "insertions": 0,
-            "hits": 4,
-            "ref_words": 5
-          },
-          "rule_wer_detail": {
-            "substitutions": 1,
-            "deletions": 0,
-            "insertions": 0,
-            "hits": 4,
-            "ref_words": 5
-          },
-          "cer_detail": {
-            "substitutions": 0,
-            "deletions": 1,
-            "insertions": 0,
-            "hits": 21,
-            "ref_chars": 22
-          },
-          "rule_cer_detail": {
-            "substitutions": 0,
-            "deletions": 1,
-            "insertions": 0,
-            "hits": 21,
-            "ref_chars": 22
-          },
-          "api_latency_ms": 348.32,
-          "total_elapsed_ms": 348.33,
-          "retries": 0,
-          "status": "success",
-          "error": null
-        },
-        {
-          "id": "real_svarah_en_005",
-          "parent_clip_id": null,
-          "condition": null,
-          "category": "real_indian_english",
-          "source": "AI4Bharat Svarah (via saisundaresan01/svarah-eval mirror)",
-          "license": "CC BY 4.0",
-          "tags": [
-            "real_human",
-            "indian_english",
-            "svarah"
-          ],
-          "language": "en-IN",
-          "detected_language": "en-IN",
-          "audio_path": "/Users/mac/Documents/Gnani/gnani-speech-eval/data/asr/real_audio/real_svarah_en_005.wav",
-          "audio_duration_sec": 0.45,
-          "reference": "wow",
-          "hypothesis": "Wow!",
+          "audio_duration_sec": 3.84,
+          "reference": "Will I be able to pay using UPI apps on Hotstar website?",
+          "hypothesis": "Will I be able to pay using UPI apps on Hotstar website?",
           "wer": 0.0,
           "cer": 0.0,
           "rule_normalised_wer": 0.0,
@@ -459,32 +406,90 @@
             "substitutions": 0,
             "deletions": 0,
             "insertions": 0,
-            "hits": 1,
-            "ref_words": 1
+            "hits": 12,
+            "ref_words": 12
           },
           "rule_wer_detail": {
             "substitutions": 0,
             "deletions": 0,
             "insertions": 0,
-            "hits": 1,
-            "ref_words": 1
+            "hits": 12,
+            "ref_words": 12
           },
           "cer_detail": {
             "substitutions": 0,
             "deletions": 0,
             "insertions": 0,
-            "hits": 3,
-            "ref_chars": 3
+            "hits": 44,
+            "ref_chars": 44
           },
           "rule_cer_detail": {
             "substitutions": 0,
             "deletions": 0,
             "insertions": 0,
-            "hits": 3,
-            "ref_chars": 3
+            "hits": 44,
+            "ref_chars": 44
           },
-          "api_latency_ms": 139.11,
-          "total_elapsed_ms": 139.11,
+          "api_latency_ms": 264.89,
+          "total_elapsed_ms": 264.91,
+          "retries": 0,
+          "status": "success",
+          "error": null
+        },
+        {
+          "id": "real_svarah_en_005",
+          "parent_clip_id": null,
+          "condition": null,
+          "category": "real_indian_english",
+          "source": "AI4Bharat Svarah (official ai4bharat/Svarah, Female/Tamil/Kerala)",
+          "license": "CC BY 4.0",
+          "tags": [
+            "real_human",
+            "indian_english",
+            "svarah",
+            "official"
+          ],
+          "language": "en-IN",
+          "detected_language": "en-IN",
+          "audio_path": "/Users/mac/Documents/Gnani/gnani-speech-eval/data/asr/real_audio/real_svarah_en_005.wav",
+          "audio_duration_sec": 8.08,
+          "reference": "And also, people speaking English have different accents in different regions.",
+          "hypothesis": "And also people speaking English have different accents in different regions.",
+          "wer": 0.0,
+          "cer": 0.0,
+          "rule_normalised_wer": 0.0,
+          "rule_normalised_cer": 0.0,
+          "cross_script_subs": 0,
+          "wer_detail": {
+            "substitutions": 0,
+            "deletions": 0,
+            "insertions": 0,
+            "hits": 11,
+            "ref_words": 11
+          },
+          "rule_wer_detail": {
+            "substitutions": 0,
+            "deletions": 0,
+            "insertions": 0,
+            "hits": 11,
+            "ref_words": 11
+          },
+          "cer_detail": {
+            "substitutions": 0,
+            "deletions": 0,
+            "insertions": 0,
+            "hits": 66,
+            "ref_chars": 66
+          },
+          "rule_cer_detail": {
+            "substitutions": 0,
+            "deletions": 0,
+            "insertions": 0,
+            "hits": 66,
+            "ref_chars": 66
+          },
+          "api_latency_ms": 353.43,
+          "total_elapsed_ms": 353.44,
           "retries": 0,
           "status": "success",
           "error": null
@@ -540,8 +545,8 @@
             "hits": 91,
             "ref_chars": 93
           },
-          "api_latency_ms": 724.88,
-          "total_elapsed_ms": 724.89,
+          "api_latency_ms": 633.31,
+          "total_elapsed_ms": 633.33,
           "retries": 0,
           "status": "success",
           "error": null
@@ -597,8 +602,8 @@
             "hits": 109,
             "ref_chars": 159
           },
-          "api_latency_ms": 719.51,
-          "total_elapsed_ms": 719.51,
+          "api_latency_ms": 580.36,
+          "total_elapsed_ms": 580.37,
           "retries": 0,
           "status": "success",
           "error": null
@@ -620,7 +625,7 @@
           "audio_path": "/Users/mac/Documents/Gnani/gnani-speech-eval/data/asr/real_audio/real_fleurs_hi_003.wav",
           "audio_duration_sec": 15.0,
           "reference": "ऐसी कोई वैश्विक परिभाषा नहीं है जिसके लिए निर्मित सामान एंटीक होते हैं. कुछ कर एजेंसियाँ 100 साल से पुराने सामान को एंटीक के तौर पर परिभाषित करती हैं.",
-          "hypothesis": "ऐसी कोई वैश्विक परिभाषा नहीं है, जिसके लिए निर्मित समान antique होते हैं। कुछ कर agencies 100 साल से पुराने सामान को antique के तौर पर परिभाषित करती हैं।",
+          "hypothesis": "ऐसी कोई वैश्विक परिभाषा नहीं है जिसके लिए निर्मित समान antique होते हैं। कुछ कर agencies 100 साल से पुराने सामान को antique के तौर पर परिभाषित करती हैं।",
           "wer": 0.1379,
           "cer": 0.2,
           "rule_normalised_wer": 0.1379,
@@ -654,8 +659,8 @@
             "hits": 100,
             "ref_chars": 120
           },
-          "api_latency_ms": 491.61,
-          "total_elapsed_ms": 491.61,
+          "api_latency_ms": 514.99,
+          "total_elapsed_ms": 515.0,
           "retries": 0,
           "status": "success",
           "error": null
@@ -711,8 +716,8 @@
             "hits": 42,
             "ref_chars": 57
           },
-          "api_latency_ms": 380.11,
-          "total_elapsed_ms": 380.12,
+          "api_latency_ms": 332.9,
+          "total_elapsed_ms": 332.91,
           "retries": 0,
           "status": "success",
           "error": null
@@ -768,8 +773,8 @@
             "hits": 78,
             "ref_chars": 86
           },
-          "api_latency_ms": 423.71,
-          "total_elapsed_ms": 423.72,
+          "api_latency_ms": 459.01,
+          "total_elapsed_ms": 459.02,
           "retries": 0,
           "status": "success",
           "error": null
@@ -825,8 +830,8 @@
             "hits": 47,
             "ref_chars": 47
           },
-          "api_latency_ms": 439.92,
-          "total_elapsed_ms": 439.93,
+          "api_latency_ms": 648.17,
+          "total_elapsed_ms": 648.18,
           "retries": 0,
           "status": "success",
           "error": null
@@ -882,8 +887,8 @@
             "hits": 32,
             "ref_chars": 32
           },
-          "api_latency_ms": 412.2,
-          "total_elapsed_ms": 412.21,
+          "api_latency_ms": 428.94,
+          "total_elapsed_ms": 428.95,
           "retries": 0,
           "status": "success",
           "error": null
@@ -939,8 +944,8 @@
             "hits": 21,
             "ref_chars": 23
           },
-          "api_latency_ms": 299.1,
-          "total_elapsed_ms": 299.1,
+          "api_latency_ms": 317.04,
+          "total_elapsed_ms": 317.05,
           "retries": 0,
           "status": "success",
           "error": null
@@ -996,8 +1001,8 @@
             "hits": 77,
             "ref_chars": 82
           },
-          "api_latency_ms": 458.87,
-          "total_elapsed_ms": 458.88,
+          "api_latency_ms": 351.32,
+          "total_elapsed_ms": 351.33,
           "retries": 0,
           "status": "success",
           "error": null
@@ -1053,8 +1058,8 @@
             "hits": 36,
             "ref_chars": 36
           },
-          "api_latency_ms": 290.3,
-          "total_elapsed_ms": 290.31,
+          "api_latency_ms": 329.21,
+          "total_elapsed_ms": 329.22,
           "retries": 0,
           "status": "success",
           "error": null
@@ -1110,8 +1115,8 @@
             "hits": 58,
             "ref_chars": 60
           },
-          "api_latency_ms": 313.5,
-          "total_elapsed_ms": 313.51,
+          "api_latency_ms": 454.37,
+          "total_elapsed_ms": 454.38,
           "retries": 0,
           "status": "success",
           "error": null
@@ -1167,8 +1172,8 @@
             "hits": 54,
             "ref_chars": 54
           },
-          "api_latency_ms": 425.5,
-          "total_elapsed_ms": 425.51,
+          "api_latency_ms": 369.19,
+          "total_elapsed_ms": 369.2,
           "retries": 0,
           "status": "success",
           "error": null
@@ -1224,8 +1229,8 @@
             "hits": 43,
             "ref_chars": 46
           },
-          "api_latency_ms": 386.29,
-          "total_elapsed_ms": 386.3,
+          "api_latency_ms": 334.07,
+          "total_elapsed_ms": 334.09,
           "retries": 0,
           "status": "success",
           "error": null
@@ -1234,7 +1239,7 @@
     },
     "real_paired_stress": {
       "metadata": {
-        "timestamp": "2026-11-25T05:46:04.559948",
+        "timestamp": "2026-11-25T06:12:24.962356",
         "suite": "real_paired_stress",
         "model": "prisma-v3.0",
         "total_clips": 16,
@@ -1242,42 +1247,42 @@
         "failed_clips": 0
       },
       "overall": {
-        "wer": 0.0822,
+        "wer": 0.0592,
         "wer_ci_95": [
-          0.0566,
-          0.1074
+          0.0342,
+          0.086
         ],
-        "cer": 0.0882,
+        "cer": 0.053,
         "cer_ci_95": [
-          0.0593,
-          0.1151
+          0.0292,
+          0.0814
         ],
-        "rule_normalised_wer": 0.0559,
+        "rule_normalised_wer": 0.0592,
         "rule_wer_ci_95": [
-          0.0325,
-          0.0828
+          0.0342,
+          0.086
         ],
-        "rule_normalised_cer": 0.0492,
+        "rule_normalised_cer": 0.0538,
         "total_ref_words": 304,
-        "total_errors": 25,
+        "total_errors": 18,
         "rule_ref_words": 304,
-        "rule_errors": 17,
+        "rule_errors": 18,
         "cross_script_subs": 5,
-        "p50_latency_ms": 464.68,
-        "p95_latency_ms": 653.5,
-        "avg_latency_ms": 455.07,
-        "p95_total_elapsed_ms": 653.51,
+        "p50_latency_ms": 424.02,
+        "p95_latency_ms": 583.06,
+        "avg_latency_ms": 422.19,
+        "p95_total_elapsed_ms": 583.07,
         "total_retries": 0
       },
       "by_category": {
         "paired_babble_20db": {
           "num_clips": 4,
-          "aggregate_wer": 0.0658,
+          "aggregate_wer": 0.0395,
           "wer_ci_95": [
-            0.0278,
-            0.1
+            0.0,
+            0.0897
           ],
-          "aggregate_cer": 0.0735,
+          "aggregate_cer": 0.0333,
           "rule_normalised_wer": 0.0395,
           "rule_wer_ci_95": [
             0.0,
@@ -1285,19 +1290,19 @@
           ],
           "rule_normalised_cer": 0.0338,
           "cross_script_subs": 1,
-          "p50_latency_ms": 451.69,
-          "p95_latency_ms": 679.86,
-          "avg_latency_ms": 478.14,
+          "p50_latency_ms": 486.8,
+          "p95_latency_ms": 581.14,
+          "avg_latency_ms": 489.19,
           "retries": 0
         },
         "paired_babble_10db": {
           "num_clips": 4,
-          "aggregate_wer": 0.0921,
+          "aggregate_wer": 0.0658,
           "wer_ci_95": [
-            0.0278,
-            0.15
+            0.0172,
+            0.1316
           ],
-          "aggregate_cer": 0.1059,
+          "aggregate_cer": 0.0667,
           "rule_normalised_wer": 0.0658,
           "rule_wer_ci_95": [
             0.0172,
@@ -1305,39 +1310,39 @@
           ],
           "rule_normalised_cer": 0.0677,
           "cross_script_subs": 2,
-          "p50_latency_ms": 420.89,
-          "p95_latency_ms": 542.36,
-          "avg_latency_ms": 416.44,
+          "p50_latency_ms": 522.73,
+          "p95_latency_ms": 574.39,
+          "avg_latency_ms": 468.4,
           "retries": 0
         },
         "paired_babble_5db": {
           "num_clips": 4,
-          "aggregate_wer": 0.0658,
+          "aggregate_wer": 0.0526,
           "wer_ci_95": [
             0.0,
-            0.125
+            0.0952
           ],
-          "aggregate_cer": 0.0706,
-          "rule_normalised_wer": 0.0395,
+          "aggregate_cer": 0.0485,
+          "rule_normalised_wer": 0.0526,
           "rule_wer_ci_95": [
             0.0,
-            0.0909
+            0.0952
           ],
-          "rule_normalised_cer": 0.0308,
+          "rule_normalised_cer": 0.0492,
           "cross_script_subs": 1,
-          "p50_latency_ms": 418.77,
-          "p95_latency_ms": 480.42,
-          "avg_latency_ms": 396.73,
+          "p50_latency_ms": 392.0,
+          "p95_latency_ms": 444.36,
+          "avg_latency_ms": 372.52,
           "retries": 0
         },
         "paired_telephony_8khz": {
           "num_clips": 4,
-          "aggregate_wer": 0.1053,
+          "aggregate_wer": 0.0789,
           "wer_ci_95": [
-            0.0882,
+            0.0238,
             0.119
           ],
-          "aggregate_cer": 0.1029,
+          "aggregate_cer": 0.0636,
           "rule_normalised_wer": 0.0789,
           "rule_wer_ci_95": [
             0.0238,
@@ -1345,9 +1350,9 @@
           ],
           "rule_normalised_cer": 0.0646,
           "cross_script_subs": 1,
-          "p50_latency_ms": 572.88,
-          "p95_latency_ms": 624.47,
-          "avg_latency_ms": 528.98,
+          "p50_latency_ms": 335.43,
+          "p95_latency_ms": 486.69,
+          "avg_latency_ms": 358.65,
           "retries": 0
         }
       },
@@ -1368,18 +1373,18 @@
           "detected_language": "en-IN",
           "audio_path": "/Users/mac/Documents/Gnani/gnani-speech-eval/data/asr/real_audio/real_svarah_en_001_babble_20db.wav",
           "audio_duration_sec": 8.76,
-          "reference": "our district hasana was the land of the great hoysala dynasty who ruled over this region from eleventh to fourteenth century CE",
+          "reference": "Our district Hasana was the land of the great Hoysala dynasty who ruled over this region from 11th to 14th century CE.",
           "hypothesis": "Our district Hasana was the land of the great Hoysala dynasty, who ruled over this region from 11th to... 14th century CE.",
-          "wer": 0.0909,
-          "cer": 0.1321,
+          "wer": 0.0,
+          "cer": 0.0,
           "rule_normalised_wer": 0.0,
           "rule_normalised_cer": 0.0,
           "cross_script_subs": 0,
           "wer_detail": {
-            "substitutions": 2,
+            "substitutions": 0,
             "deletions": 0,
             "insertions": 0,
-            "hits": 20,
+            "hits": 22,
             "ref_words": 22
           },
           "rule_wer_detail": {
@@ -1390,11 +1395,11 @@
             "ref_words": 22
           },
           "cer_detail": {
-            "substitutions": 4,
-            "deletions": 10,
+            "substitutions": 0,
+            "deletions": 0,
             "insertions": 0,
-            "hits": 92,
-            "ref_chars": 106
+            "hits": 96,
+            "ref_chars": 96
           },
           "rule_cer_detail": {
             "substitutions": 0,
@@ -1403,8 +1408,8 @@
             "hits": 92,
             "ref_chars": 92
           },
-          "api_latency_ms": 719.99,
-          "total_elapsed_ms": 720.0,
+          "api_latency_ms": 595.14,
+          "total_elapsed_ms": 595.15,
           "retries": 0,
           "status": "success",
           "error": null
@@ -1425,18 +1430,18 @@
           "detected_language": "en-IN",
           "audio_path": "/Users/mac/Documents/Gnani/gnani-speech-eval/data/asr/real_audio/real_svarah_en_001_babble_10db.wav",
           "audio_duration_sec": 8.76,
-          "reference": "our district hasana was the land of the great hoysala dynasty who ruled over this region from eleventh to fourteenth century CE",
+          "reference": "Our district Hasana was the land of the great Hoysala dynasty who ruled over this region from 11th to 14th century CE.",
           "hypothesis": "Our district Hasana was the land of the great Hosala dynasty. Who ruled over this region from 11th to 14th century CE?",
-          "wer": 0.1364,
-          "cer": 0.1415,
+          "wer": 0.0455,
+          "cer": 0.0104,
           "rule_normalised_wer": 0.0455,
           "rule_normalised_cer": 0.0109,
           "cross_script_subs": 0,
           "wer_detail": {
-            "substitutions": 3,
+            "substitutions": 1,
             "deletions": 0,
             "insertions": 0,
-            "hits": 19,
+            "hits": 21,
             "ref_words": 22
           },
           "rule_wer_detail": {
@@ -1447,11 +1452,11 @@
             "ref_words": 22
           },
           "cer_detail": {
-            "substitutions": 4,
-            "deletions": 11,
+            "substitutions": 0,
+            "deletions": 1,
             "insertions": 0,
-            "hits": 91,
-            "ref_chars": 106
+            "hits": 95,
+            "ref_chars": 96
           },
           "rule_cer_detail": {
             "substitutions": 0,
@@ -1460,8 +1465,8 @@
             "hits": 91,
             "ref_chars": 92
           },
-          "api_latency_ms": 333.09,
-          "total_elapsed_ms": 333.11,
+          "api_latency_ms": 548.07,
+          "total_elapsed_ms": 548.08,
           "retries": 0,
           "status": "success",
           "error": null
@@ -1482,43 +1487,43 @@
           "detected_language": "en-IN",
           "audio_path": "/Users/mac/Documents/Gnani/gnani-speech-eval/data/asr/real_audio/real_svarah_en_001_babble_5db.wav",
           "audio_duration_sec": 8.76,
-          "reference": "our district hasana was the land of the great hoysala dynasty who ruled over this region from eleventh to fourteenth century CE",
-          "hypothesis": "Our district Hasana was the land of the great Hosala dynasty. Who ruled over this region from 11th to 14th century CE?",
-          "wer": 0.1364,
-          "cer": 0.1415,
-          "rule_normalised_wer": 0.0455,
-          "rule_normalised_cer": 0.0109,
+          "reference": "Our district Hasana was the land of the great Hoysala dynasty who ruled over this region from 11th to 14th century CE.",
+          "hypothesis": "Our district Hasana was the land of the great Hoysala dynasty. Who ruled over this region from 11th to 14th century CE?",
+          "wer": 0.0,
+          "cer": 0.0,
+          "rule_normalised_wer": 0.0,
+          "rule_normalised_cer": 0.0,
           "cross_script_subs": 0,
           "wer_detail": {
-            "substitutions": 3,
+            "substitutions": 0,
             "deletions": 0,
             "insertions": 0,
-            "hits": 19,
+            "hits": 22,
             "ref_words": 22
           },
           "rule_wer_detail": {
-            "substitutions": 1,
+            "substitutions": 0,
             "deletions": 0,
             "insertions": 0,
-            "hits": 21,
+            "hits": 22,
             "ref_words": 22
           },
           "cer_detail": {
-            "substitutions": 4,
-            "deletions": 11,
+            "substitutions": 0,
+            "deletions": 0,
             "insertions": 0,
-            "hits": 91,
-            "ref_chars": 106
+            "hits": 96,
+            "ref_chars": 96
           },
           "rule_cer_detail": {
             "substitutions": 0,
-            "deletions": 1,
+            "deletions": 0,
             "insertions": 0,
-            "hits": 91,
+            "hits": 92,
             "ref_chars": 92
           },
-          "api_latency_ms": 481.04,
-          "total_elapsed_ms": 481.05,
+          "api_latency_ms": 453.08,
+          "total_elapsed_ms": 453.09,
           "retries": 0,
           "status": "success",
           "error": null
@@ -1541,18 +1546,18 @@
           "detected_language": "en-IN",
           "audio_path": "/Users/mac/Documents/Gnani/gnani-speech-eval/data/asr/real_audio/real_svarah_en_001_telephony.wav",
           "audio_duration_sec": 8.76,
-          "reference": "our district hasana was the land of the great hoysala dynasty who ruled over this region from eleventh to fourteenth century CE",
+          "reference": "Our district Hasana was the land of the great Hoysala dynasty who ruled over this region from 11th to 14th century CE.",
           "hypothesis": "Our district, Hasana, was the land of the great Hoysala dynasty, who ruled over this region from 11th to 14th century CE.",
-          "wer": 0.0909,
-          "cer": 0.1321,
+          "wer": 0.0,
+          "cer": 0.0,
           "rule_normalised_wer": 0.0,
           "rule_normalised_cer": 0.0,
           "cross_script_subs": 0,
           "wer_detail": {
-            "substitutions": 2,
+            "substitutions": 0,
             "deletions": 0,
             "insertions": 0,
-            "hits": 20,
+            "hits": 22,
             "ref_words": 22
           },
           "rule_wer_detail": {
@@ -1563,11 +1568,11 @@
             "ref_words": 22
           },
           "cer_detail": {
-            "substitutions": 4,
-            "deletions": 10,
+            "substitutions": 0,
+            "deletions": 0,
             "insertions": 0,
-            "hits": 92,
-            "ref_chars": 106
+            "hits": 96,
+            "ref_chars": 96
           },
           "rule_cer_detail": {
             "substitutions": 0,
@@ -1576,8 +1581,8 @@
             "hits": 92,
             "ref_chars": 92
           },
-          "api_latency_ms": 631.34,
-          "total_elapsed_ms": 631.35,
+          "api_latency_ms": 335.7,
+          "total_elapsed_ms": 335.7,
           "retries": 0,
           "status": "success",
           "error": null
@@ -1598,7 +1603,7 @@
           "detected_language": "en-IN",
           "audio_path": "/Users/mac/Documents/Gnani/gnani-speech-eval/data/asr/real_audio/real_svarah_en_003_babble_20db.wav",
           "audio_duration_sec": 3.69,
-          "reference": "how much money is left in my arunachal pradesh rural bank account",
+          "reference": "How much money is left in my Arunachal Pradesh Rural Bank account?",
           "hypothesis": "How much money is left in my Arunachal Pradesh Rural Bank account?",
           "wer": 0.0,
           "cer": 0.0,
@@ -1633,8 +1638,8 @@
             "hits": 54,
             "ref_chars": 54
           },
-          "api_latency_ms": 289.19,
-          "total_elapsed_ms": 289.2,
+          "api_latency_ms": 388.0,
+          "total_elapsed_ms": 388.01,
           "retries": 0,
           "status": "success",
           "error": null
@@ -1655,7 +1660,7 @@
           "detected_language": "en-IN",
           "audio_path": "/Users/mac/Documents/Gnani/gnani-speech-eval/data/asr/real_audio/real_svarah_en_003_babble_10db.wav",
           "audio_duration_sec": 3.69,
-          "reference": "how much money is left in my arunachal pradesh rural bank account",
+          "reference": "How much money is left in my Arunachal Pradesh Rural Bank account?",
           "hypothesis": "How much money is left in my Arunachal Pradesh Rural Bank account?",
           "wer": 0.0,
           "cer": 0.0,
@@ -1690,8 +1695,8 @@
             "hits": 54,
             "ref_chars": 54
           },
-          "api_latency_ms": 275.65,
-          "total_elapsed_ms": 275.66,
+          "api_latency_ms": 249.11,
+          "total_elapsed_ms": 249.12,
           "retries": 0,
           "status": "success",
           "error": null
@@ -1712,7 +1717,7 @@
           "detected_language": "en-IN",
           "audio_path": "/Users/mac/Documents/Gnani/gnani-speech-eval/data/asr/real_audio/real_svarah_en_003_babble_5db.wav",
           "audio_duration_sec": 3.69,
-          "reference": "how much money is left in my arunachal pradesh rural bank account",
+          "reference": "How much money is left in my Arunachal Pradesh Rural Bank account?",
           "hypothesis": "How much money is left in my Arunachal Pradesh Rural Bank account?",
           "wer": 0.0,
           "cer": 0.0,
@@ -1747,8 +1752,8 @@
             "hits": 54,
             "ref_chars": 54
           },
-          "api_latency_ms": 268.34,
-          "total_elapsed_ms": 268.34,
+          "api_latency_ms": 253.01,
+          "total_elapsed_ms": 253.15,
           "retries": 0,
           "status": "success",
           "error": null
@@ -1771,7 +1776,7 @@
           "detected_language": "en-IN",
           "audio_path": "/Users/mac/Documents/Gnani/gnani-speech-eval/data/asr/real_audio/real_svarah_en_003_telephony.wav",
           "audio_duration_sec": 3.69,
-          "reference": "how much money is left in my arunachal pradesh rural bank account",
+          "reference": "How much money is left in my Arunachal Pradesh Rural Bank account?",
           "hypothesis": "How much money is left in my Andhra Pradesh Rural Bank account?",
           "wer": 0.0833,
           "cer": 0.1111,
@@ -1806,8 +1811,8 @@
             "hits": 48,
             "ref_chars": 54
           },
-          "api_latency_ms": 585.57,
-          "total_elapsed_ms": 585.58,
+          "api_latency_ms": 250.4,
+          "total_elapsed_ms": 250.41,
           "retries": 0,
           "status": "success",
           "error": null
@@ -1863,8 +1868,8 @@
             "hits": 91,
             "ref_chars": 93
           },
-          "api_latency_ms": 452.48,
-          "total_elapsed_ms": 452.49,
+          "api_latency_ms": 501.81,
+          "total_elapsed_ms": 501.82,
           "retries": 0,
           "status": "success",
           "error": null
@@ -1920,8 +1925,8 @@
             "hits": 89,
             "ref_chars": 93
           },
-          "api_latency_ms": 508.7,
-          "total_elapsed_ms": 508.72,
+          "api_latency_ms": 497.39,
+          "total_elapsed_ms": 497.41,
           "retries": 0,
           "status": "success",
           "error": null
@@ -1943,42 +1948,42 @@
           "audio_path": "/Users/mac/Documents/Gnani/gnani-speech-eval/data/asr/real_audio/real_fleurs_hi_001_babble_5db.wav",
           "audio_duration_sec": 9.12,
           "reference": "कुछ अणुओं में अस्थिर केंद्रक होता है, जिसका मतलब यह है कि उनमें थोड़े या बिना किसी झटके से टूटने की प्रवृत्ति होती है,",
-          "hypothesis": "कुछ अणुओं में अस्थिर केंद्रक होता है, जिसका मतलब यह है कि उनमें थोड़े या बिना किसी झटके से टूटने की प्रवृत्ति होती है।",
-          "wer": 0.0,
-          "cer": 0.0,
-          "rule_normalised_wer": 0.0,
-          "rule_normalised_cer": 0.0,
+          "hypothesis": "कुछ अणुओं में अर्धस्थ केंद्रित होता है, जिसका मतलब यह है कि उनमें थोड़े या बिना किसी झटके से टूटने की प्रवृत्ति होती है।",
+          "wer": 0.0833,
+          "cer": 0.0753,
+          "rule_normalised_wer": 0.0833,
+          "rule_normalised_cer": 0.0753,
           "cross_script_subs": 0,
           "wer_detail": {
-            "substitutions": 0,
+            "substitutions": 2,
             "deletions": 0,
             "insertions": 0,
-            "hits": 24,
+            "hits": 22,
             "ref_words": 24
           },
           "rule_wer_detail": {
-            "substitutions": 0,
+            "substitutions": 2,
             "deletions": 0,
             "insertions": 0,
-            "hits": 24,
+            "hits": 22,
             "ref_words": 24
           },
           "cer_detail": {
-            "substitutions": 0,
+            "substitutions": 5,
             "deletions": 0,
-            "insertions": 0,
-            "hits": 93,
+            "insertions": 2,
+            "hits": 88,
             "ref_chars": 93
           },
           "rule_cer_detail": {
-            "substitutions": 0,
+            "substitutions": 5,
             "deletions": 0,
-            "insertions": 0,
-            "hits": 93,
+            "insertions": 2,
+            "hits": 88,
             "ref_chars": 93
           },
-          "api_latency_ms": 476.88,
-          "total_elapsed_ms": 476.89,
+          "api_latency_ms": 394.96,
+          "total_elapsed_ms": 394.97,
           "retries": 0,
           "status": "success",
           "error": null
@@ -2036,8 +2041,8 @@
             "hits": 87,
             "ref_chars": 93
           },
-          "api_latency_ms": 560.2,
-          "total_elapsed_ms": 560.21,
+          "api_latency_ms": 335.16,
+          "total_elapsed_ms": 335.17,
           "retries": 0,
           "status": "success",
           "error": null
@@ -2093,8 +2098,8 @@
             "hits": 78,
             "ref_chars": 86
           },
-          "api_latency_ms": 450.9,
-          "total_elapsed_ms": 450.91,
+          "api_latency_ms": 471.79,
+          "total_elapsed_ms": 471.79,
           "retries": 0,
           "status": "success",
           "error": null
@@ -2150,8 +2155,8 @@
             "hits": 73,
             "ref_chars": 86
           },
-          "api_latency_ms": 548.3,
-          "total_elapsed_ms": 548.31,
+          "api_latency_ms": 579.04,
+          "total_elapsed_ms": 579.05,
           "retries": 0,
           "status": "success",
           "error": null
@@ -2207,8 +2212,8 @@
             "hits": 78,
             "ref_chars": 86
           },
-          "api_latency_ms": 360.66,
-          "total_elapsed_ms": 360.67,
+          "api_latency_ms": 389.04,
+          "total_elapsed_ms": 389.05,
           "retries": 0,
           "status": "success",
           "error": null
@@ -2266,8 +2271,8 @@
             "hits": 78,
             "ref_chars": 86
           },
-          "api_latency_ms": 338.8,
-          "total_elapsed_ms": 338.81,
+          "api_latency_ms": 513.34,
+          "total_elapsed_ms": 513.35,
           "retries": 0,
           "status": "success",
           "error": null
@@ -2277,39 +2282,39 @@
         {
           "parent_clip_id": "real_svarah_en_001",
           "language": "en-IN",
-          "clean_wer": 0.0909,
+          "clean_wer": 0.0,
           "clean_rule_wer": 0.0,
           "conditions": {
             "babble_20db": {
-              "wer": 0.0909,
+              "wer": 0.0,
               "rule_normalised_wer": 0.0,
               "delta_wer": 0.0,
               "delta_rule_wer": 0.0,
-              "latency_ms": 719.99,
+              "latency_ms": 595.14,
               "hypothesis": "Our district Hasana was the land of the great Hoysala dynasty, who ruled over this region from 11th to... 14th century CE."
             },
             "babble_10db": {
-              "wer": 0.1364,
+              "wer": 0.0455,
               "rule_normalised_wer": 0.0455,
               "delta_wer": 0.0455,
               "delta_rule_wer": 0.0455,
-              "latency_ms": 333.09,
+              "latency_ms": 548.07,
               "hypothesis": "Our district Hasana was the land of the great Hosala dynasty. Who ruled over this region from 11th to 14th century CE?"
             },
             "babble_5db": {
-              "wer": 0.1364,
-              "rule_normalised_wer": 0.0455,
-              "delta_wer": 0.0455,
-              "delta_rule_wer": 0.0455,
-              "latency_ms": 481.04,
-              "hypothesis": "Our district Hasana was the land of the great Hosala dynasty. Who ruled over this region from 11th to 14th century CE?"
-            },
-            "telephony_8khz_mulaw": {
-              "wer": 0.0909,
+              "wer": 0.0,
               "rule_normalised_wer": 0.0,
               "delta_wer": 0.0,
               "delta_rule_wer": 0.0,
-              "latency_ms": 631.34,
+              "latency_ms": 453.08,
+              "hypothesis": "Our district Hasana was the land of the great Hoysala dynasty. Who ruled over this region from 11th to 14th century CE?"
+            },
+            "telephony_8khz_mulaw": {
+              "wer": 0.0,
+              "rule_normalised_wer": 0.0,
+              "delta_wer": 0.0,
+              "delta_rule_wer": 0.0,
+              "latency_ms": 335.7,
               "hypothesis": "Our district, Hasana, was the land of the great Hoysala dynasty, who ruled over this region from 11th to 14th century CE."
             }
           }
@@ -2325,7 +2330,7 @@
               "rule_normalised_wer": 0.0,
               "delta_wer": 0.0,
               "delta_rule_wer": 0.0,
-              "latency_ms": 289.19,
+              "latency_ms": 388.0,
               "hypothesis": "How much money is left in my Arunachal Pradesh Rural Bank account?"
             },
             "babble_10db": {
@@ -2333,7 +2338,7 @@
               "rule_normalised_wer": 0.0,
               "delta_wer": 0.0,
               "delta_rule_wer": 0.0,
-              "latency_ms": 275.65,
+              "latency_ms": 249.11,
               "hypothesis": "How much money is left in my Arunachal Pradesh Rural Bank account?"
             },
             "babble_5db": {
@@ -2341,7 +2346,7 @@
               "rule_normalised_wer": 0.0,
               "delta_wer": 0.0,
               "delta_rule_wer": 0.0,
-              "latency_ms": 268.34,
+              "latency_ms": 253.01,
               "hypothesis": "How much money is left in my Arunachal Pradesh Rural Bank account?"
             },
             "telephony_8khz_mulaw": {
@@ -2349,7 +2354,7 @@
               "rule_normalised_wer": 0.0833,
               "delta_wer": 0.0833,
               "delta_rule_wer": 0.0833,
-              "latency_ms": 585.57,
+              "latency_ms": 250.4,
               "hypothesis": "How much money is left in my Andhra Pradesh Rural Bank account?"
             }
           }
@@ -2365,7 +2370,7 @@
               "rule_normalised_wer": 0.0417,
               "delta_wer": 0.0,
               "delta_rule_wer": 0.0,
-              "latency_ms": 452.48,
+              "latency_ms": 501.81,
               "hypothesis": "कुछ अणुओं में अस्थिर केंद्रक होता है, जिसका मतलब यह कि उनमें थोड़े या बिना किसी झटके से टूटने की प्रवृत्ति होती है।"
             },
             "babble_10db": {
@@ -2373,23 +2378,23 @@
               "rule_normalised_wer": 0.0417,
               "delta_wer": 0.0,
               "delta_rule_wer": 0.0,
-              "latency_ms": 508.7,
+              "latency_ms": 497.39,
               "hypothesis": "कुछ अणुओं में अर्धस्थ केंद्रक होता है, जिसका मतलब यह है कि उनमें थोड़े या बिना किसी झटके से टूटने की प्रवृत्ति होती है।"
             },
             "babble_5db": {
-              "wer": 0.0,
-              "rule_normalised_wer": 0.0,
-              "delta_wer": -0.0417,
-              "delta_rule_wer": -0.0417,
-              "latency_ms": 476.88,
-              "hypothesis": "कुछ अणुओं में अस्थिर केंद्रक होता है, जिसका मतलब यह है कि उनमें थोड़े या बिना किसी झटके से टूटने की प्रवृत्ति होती है।"
+              "wer": 0.0833,
+              "rule_normalised_wer": 0.0833,
+              "delta_wer": 0.0416,
+              "delta_rule_wer": 0.0416,
+              "latency_ms": 394.96,
+              "hypothesis": "कुछ अणुओं में अर्धस्थ केंद्रित होता है, जिसका मतलब यह है कि उनमें थोड़े या बिना किसी झटके से टूटने की प्रवृत्ति होती है।"
             },
             "telephony_8khz_mulaw": {
               "wer": 0.125,
               "rule_normalised_wer": 0.125,
               "delta_wer": 0.0833,
               "delta_rule_wer": 0.0833,
-              "latency_ms": 560.2,
+              "latency_ms": 335.16,
               "hypothesis": "कुछ अणुओं में अर्धकेंद्रक होता है, जिसका मतलब यह कि उनमें थोड़े या बिना किसी झटके से टूटने की प्रवृत्ति होती है।"
             }
           }
@@ -2405,7 +2410,7 @@
               "rule_normalised_wer": 0.1111,
               "delta_wer": 0.0,
               "delta_rule_wer": 0.0,
-              "latency_ms": 450.9,
+              "latency_ms": 471.79,
               "hypothesis": "Internet पर ये खोज शत्रुतापूर्ण पर्यावरण पाठ्यक्रम के लिए अक्सर आपको। एक स्थानीय कंपनी का पता प्रदान करेगी।"
             },
             "babble_10db": {
@@ -2413,7 +2418,7 @@
               "rule_normalised_wer": 0.1667,
               "delta_wer": 0.0556,
               "delta_rule_wer": 0.0556,
-              "latency_ms": 548.3,
+              "latency_ms": 579.04,
               "hypothesis": "Internet पर ये खोज शत्रुतापूर्ण पर्यावरण पाठ्यक्रम के लिए अक्सर आपको। एक स्थानीय company का पता प्रदान करेगी।"
             },
             "babble_5db": {
@@ -2421,7 +2426,7 @@
               "rule_normalised_wer": 0.1111,
               "delta_wer": 0.0,
               "delta_rule_wer": 0.0,
-              "latency_ms": 360.66,
+              "latency_ms": 389.04,
               "hypothesis": "internet पर ये खोज शत्रुतापूर्ण पर्यावरण पाठ्यक्रम के लिए अक्सर आपको। एक स्थानीय कंपनी का पता प्रदान करेगी।"
             },
             "telephony_8khz_mulaw": {
@@ -2429,7 +2434,7 @@
               "rule_normalised_wer": 0.1111,
               "delta_wer": 0.0,
               "delta_rule_wer": 0.0,
-              "latency_ms": 338.8,
+              "latency_ms": 513.34,
               "hypothesis": "internet पर ये खोज शत्रुतापूर्ण पर्यावरण पाठ्यक्रम के लिए अक्सर आपको। एक स्थानीय कंपनी का पता प्रदान करेगी।"
             }
           }
@@ -2438,7 +2443,7 @@
     },
     "synthetic_smoke": {
       "metadata": {
-        "timestamp": "2026-11-25T05:46:24.236353",
+        "timestamp": "2026-11-25T06:12:43.484870",
         "suite": "synthetic_smoke",
         "model": "prisma-v3.0",
         "total_clips": 30,
@@ -2467,10 +2472,10 @@
         "rule_ref_words": 271,
         "rule_errors": 24,
         "cross_script_subs": 17,
-        "p50_latency_ms": 372.24,
-        "p95_latency_ms": 562.32,
-        "avg_latency_ms": 386.11,
-        "p95_total_elapsed_ms": 562.33,
+        "p50_latency_ms": 367.21,
+        "p95_latency_ms": 510.63,
+        "avg_latency_ms": 347.61,
+        "p95_total_elapsed_ms": 510.64,
         "total_retries": 0
       },
       "by_category": {
@@ -2489,9 +2494,9 @@
           ],
           "rule_normalised_cer": 0.0429,
           "cross_script_subs": 0,
-          "p50_latency_ms": 461.09,
-          "p95_latency_ms": 507.03,
-          "avg_latency_ms": 454.26,
+          "p50_latency_ms": 405.6,
+          "p95_latency_ms": 437.68,
+          "avg_latency_ms": 416.65,
           "retries": 0
         },
         "clean_hindi": {
@@ -2509,9 +2514,9 @@
           ],
           "rule_normalised_cer": 0.0805,
           "cross_script_subs": 1,
-          "p50_latency_ms": 346.17,
-          "p95_latency_ms": 502.86,
-          "avg_latency_ms": 343.58,
+          "p50_latency_ms": 205.14,
+          "p95_latency_ms": 400.22,
+          "avg_latency_ms": 264.94,
           "retries": 0
         },
         "noisy_audio": {
@@ -2529,9 +2534,9 @@
           ],
           "rule_normalised_cer": 0.009,
           "cross_script_subs": 0,
-          "p50_latency_ms": 454.57,
-          "p95_latency_ms": 455.45,
-          "avg_latency_ms": 423.33,
+          "p50_latency_ms": 359.1,
+          "p95_latency_ms": 441.37,
+          "avg_latency_ms": 379.42,
           "retries": 0
         },
         "telephony": {
@@ -2549,9 +2554,9 @@
           ],
           "rule_normalised_cer": 0.05,
           "cross_script_subs": 1,
-          "p50_latency_ms": 268.0,
-          "p95_latency_ms": 342.18,
-          "avg_latency_ms": 268.0,
+          "p50_latency_ms": 324.86,
+          "p95_latency_ms": 339.8,
+          "avg_latency_ms": 324.86,
           "retries": 0
         },
         "numbers_and_entities": {
@@ -2569,9 +2574,9 @@
           ],
           "rule_normalised_cer": 0.0133,
           "cross_script_subs": 0,
-          "p50_latency_ms": 350.29,
-          "p95_latency_ms": 368.42,
-          "avg_latency_ms": 350.76,
+          "p50_latency_ms": 389.56,
+          "p95_latency_ms": 425.4,
+          "avg_latency_ms": 393.1,
           "retries": 0
         },
         "code_switching": {
@@ -2589,9 +2594,9 @@
           ],
           "rule_normalised_cer": 0.3388,
           "cross_script_subs": 10,
-          "p50_latency_ms": 406.15,
-          "p95_latency_ms": 447.41,
-          "avg_latency_ms": 400.73,
+          "p50_latency_ms": 301.25,
+          "p95_latency_ms": 366.79,
+          "avg_latency_ms": 293.04,
           "retries": 0
         },
         "accented_english": {
@@ -2609,9 +2614,9 @@
           ],
           "rule_normalised_cer": 0.0,
           "cross_script_subs": 0,
-          "p50_latency_ms": 401.39,
-          "p95_latency_ms": 541.2,
-          "avg_latency_ms": 401.39,
+          "p50_latency_ms": 310.4,
+          "p95_latency_ms": 396.55,
+          "avg_latency_ms": 310.4,
           "retries": 0
         },
         "domain_specific": {
@@ -2629,9 +2634,9 @@
           ],
           "rule_normalised_cer": 0.0192,
           "cross_script_subs": 0,
-          "p50_latency_ms": 263.69,
-          "p95_latency_ms": 536.58,
-          "avg_latency_ms": 349.7,
+          "p50_latency_ms": 420.97,
+          "p95_latency_ms": 461.85,
+          "avg_latency_ms": 400.38,
           "retries": 0
         },
         "long_utterance": {
@@ -2649,9 +2654,9 @@
           ],
           "rule_normalised_cer": 0.1071,
           "cross_script_subs": 5,
-          "p50_latency_ms": 620.29,
-          "p95_latency_ms": 759.12,
-          "avg_latency_ms": 620.29,
+          "p50_latency_ms": 620.43,
+          "p95_latency_ms": 686.68,
+          "avg_latency_ms": 620.43,
           "retries": 0
         },
         "short_utterance": {
@@ -2669,9 +2674,9 @@
           ],
           "rule_normalised_cer": 0.0,
           "cross_script_subs": 0,
-          "p50_latency_ms": 248.45,
-          "p95_latency_ms": 285.7,
-          "avg_latency_ms": 238.89,
+          "p50_latency_ms": 129.6,
+          "p95_latency_ms": 157.98,
+          "avg_latency_ms": 139.41,
           "retries": 0
         },
         "regional_languages": {
@@ -2689,9 +2694,9 @@
           ],
           "rule_normalised_cer": 0.0,
           "cross_script_subs": 0,
-          "p50_latency_ms": 432.49,
-          "p95_latency_ms": 505.52,
-          "avg_latency_ms": 440.06,
+          "p50_latency_ms": 380.51,
+          "p95_latency_ms": 409.95,
+          "avg_latency_ms": 351.99,
           "retries": 0
         }
       },
@@ -2748,8 +2753,8 @@
             "hits": 35,
             "ref_chars": 35
           },
-          "api_latency_ms": 512.14,
-          "total_elapsed_ms": 512.15,
+          "api_latency_ms": 441.24,
+          "total_elapsed_ms": 441.28,
           "retries": 0,
           "status": "success",
           "error": null
@@ -2806,8 +2811,8 @@
             "hits": 36,
             "ref_chars": 42
           },
-          "api_latency_ms": 461.09,
-          "total_elapsed_ms": 461.1,
+          "api_latency_ms": 403.11,
+          "total_elapsed_ms": 403.12,
           "retries": 0,
           "status": "success",
           "error": null
@@ -2864,8 +2869,8 @@
             "hits": 63,
             "ref_chars": 63
           },
-          "api_latency_ms": 389.54,
-          "total_elapsed_ms": 389.55,
+          "api_latency_ms": 405.6,
+          "total_elapsed_ms": 405.62,
           "retries": 0,
           "status": "success",
           "error": null
@@ -2921,8 +2926,8 @@
             "hits": 26,
             "ref_chars": 32
           },
-          "api_latency_ms": 520.27,
-          "total_elapsed_ms": 520.29,
+          "api_latency_ms": 421.9,
+          "total_elapsed_ms": 421.9,
           "retries": 0,
           "status": "success",
           "error": null
@@ -2978,8 +2983,8 @@
             "hits": 27,
             "ref_chars": 27
           },
-          "api_latency_ms": 164.3,
-          "total_elapsed_ms": 164.31,
+          "api_latency_ms": 167.78,
+          "total_elapsed_ms": 167.8,
           "retries": 0,
           "status": "success",
           "error": null
@@ -3036,8 +3041,8 @@
             "hits": 28,
             "ref_chars": 28
           },
-          "api_latency_ms": 346.17,
-          "total_elapsed_ms": 346.18,
+          "api_latency_ms": 205.14,
+          "total_elapsed_ms": 205.15,
           "retries": 0,
           "status": "success",
           "error": null
@@ -3094,8 +3099,8 @@
             "hits": 38,
             "ref_chars": 38
           },
-          "api_latency_ms": 359.88,
-          "total_elapsed_ms": 359.89,
+          "api_latency_ms": 450.51,
+          "total_elapsed_ms": 450.52,
           "retries": 0,
           "status": "success",
           "error": null
@@ -3152,8 +3157,8 @@
             "hits": 44,
             "ref_chars": 44
           },
-          "api_latency_ms": 454.57,
-          "total_elapsed_ms": 454.59,
+          "api_latency_ms": 359.1,
+          "total_elapsed_ms": 359.1,
           "retries": 0,
           "status": "success",
           "error": null
@@ -3209,8 +3214,8 @@
             "hits": 29,
             "ref_chars": 29
           },
-          "api_latency_ms": 455.55,
-          "total_elapsed_ms": 455.56,
+          "api_latency_ms": 328.66,
+          "total_elapsed_ms": 328.67,
           "retries": 0,
           "status": "success",
           "error": null
@@ -3267,8 +3272,8 @@
             "hits": 35,
             "ref_chars": 35
           },
-          "api_latency_ms": 185.59,
-          "total_elapsed_ms": 185.6,
+          "api_latency_ms": 341.46,
+          "total_elapsed_ms": 341.48,
           "retries": 0,
           "status": "success",
           "error": null
@@ -3325,8 +3330,8 @@
             "hits": 42,
             "ref_chars": 45
           },
-          "api_latency_ms": 350.42,
-          "total_elapsed_ms": 350.43,
+          "api_latency_ms": 308.25,
+          "total_elapsed_ms": 308.26,
           "retries": 0,
           "status": "success",
           "error": null
@@ -3383,8 +3388,8 @@
             "hits": 28,
             "ref_chars": 28
           },
-          "api_latency_ms": 331.57,
-          "total_elapsed_ms": 331.58,
+          "api_latency_ms": 360.35,
+          "total_elapsed_ms": 360.36,
           "retries": 0,
           "status": "success",
           "error": null
@@ -3440,8 +3445,8 @@
             "hits": 26,
             "ref_chars": 26
           },
-          "api_latency_ms": 350.29,
-          "total_elapsed_ms": 350.3,
+          "api_latency_ms": 429.38,
+          "total_elapsed_ms": 429.38,
           "retries": 0,
           "status": "success",
           "error": null
@@ -3497,8 +3502,8 @@
             "hits": 21,
             "ref_chars": 21
           },
-          "api_latency_ms": 370.43,
-          "total_elapsed_ms": 370.43,
+          "api_latency_ms": 389.56,
+          "total_elapsed_ms": 389.58,
           "retries": 0,
           "status": "success",
           "error": null
@@ -3554,8 +3559,8 @@
             "hits": 14,
             "ref_chars": 33
           },
-          "api_latency_ms": 452.0,
-          "total_elapsed_ms": 452.01,
+          "api_latency_ms": 203.81,
+          "total_elapsed_ms": 203.82,
           "retries": 0,
           "status": "success",
           "error": null
@@ -3611,8 +3616,8 @@
             "hits": 38,
             "ref_chars": 38
           },
-          "api_latency_ms": 344.04,
-          "total_elapsed_ms": 344.05,
+          "api_latency_ms": 374.07,
+          "total_elapsed_ms": 374.08,
           "retries": 0,
           "status": "success",
           "error": null
@@ -3668,8 +3673,8 @@
             "hits": 28,
             "ref_chars": 50
           },
-          "api_latency_ms": 406.15,
-          "total_elapsed_ms": 406.16,
+          "api_latency_ms": 301.25,
+          "total_elapsed_ms": 301.26,
           "retries": 0,
           "status": "success",
           "error": null
@@ -3726,8 +3731,8 @@
             "hits": 47,
             "ref_chars": 47
           },
-          "api_latency_ms": 556.73,
-          "total_elapsed_ms": 556.74,
+          "api_latency_ms": 406.12,
+          "total_elapsed_ms": 406.13,
           "retries": 0,
           "status": "success",
           "error": null
@@ -3784,8 +3789,8 @@
             "hits": 40,
             "ref_chars": 40
           },
-          "api_latency_ms": 246.06,
-          "total_elapsed_ms": 246.07,
+          "api_latency_ms": 214.69,
+          "total_elapsed_ms": 214.71,
           "retries": 0,
           "status": "success",
           "error": null
@@ -3842,8 +3847,8 @@
             "hits": 49,
             "ref_chars": 49
           },
-          "api_latency_ms": 218.52,
-          "total_elapsed_ms": 218.52,
+          "api_latency_ms": 466.39,
+          "total_elapsed_ms": 466.4,
           "retries": 0,
           "status": "success",
           "error": null
@@ -3899,8 +3904,8 @@
             "hits": 58,
             "ref_chars": 58
           },
-          "api_latency_ms": 263.69,
-          "total_elapsed_ms": 263.7,
+          "api_latency_ms": 313.78,
+          "total_elapsed_ms": 313.79,
           "retries": 0,
           "status": "success",
           "error": null
@@ -3957,8 +3962,8 @@
             "hits": 46,
             "ref_chars": 49
           },
-          "api_latency_ms": 566.9,
-          "total_elapsed_ms": 566.91,
+          "api_latency_ms": 420.97,
+          "total_elapsed_ms": 420.98,
           "retries": 0,
           "status": "success",
           "error": null
@@ -4015,8 +4020,8 @@
             "hits": 154,
             "ref_chars": 154
           },
-          "api_latency_ms": 774.54,
-          "total_elapsed_ms": 774.55,
+          "api_latency_ms": 694.04,
+          "total_elapsed_ms": 694.05,
           "retries": 0,
           "status": "success",
           "error": null
@@ -4073,8 +4078,8 @@
             "hits": 73,
             "ref_chars": 98
           },
-          "api_latency_ms": 466.05,
-          "total_elapsed_ms": 466.06,
+          "api_latency_ms": 546.82,
+          "total_elapsed_ms": 546.84,
           "retries": 0,
           "status": "success",
           "error": null
@@ -4130,8 +4135,8 @@
             "hits": 3,
             "ref_chars": 3
           },
-          "api_latency_ms": 178.38,
-          "total_elapsed_ms": 178.39,
+          "api_latency_ms": 127.49,
+          "total_elapsed_ms": 127.5,
           "retries": 0,
           "status": "success",
           "error": null
@@ -4187,8 +4192,8 @@
             "hits": 10,
             "ref_chars": 10
           },
-          "api_latency_ms": 289.84,
-          "total_elapsed_ms": 289.86,
+          "api_latency_ms": 161.13,
+          "total_elapsed_ms": 161.14,
           "retries": 0,
           "status": "success",
           "error": null
@@ -4244,8 +4249,8 @@
             "hits": 3,
             "ref_chars": 3
           },
-          "api_latency_ms": 248.45,
-          "total_elapsed_ms": 248.46,
+          "api_latency_ms": 129.6,
+          "total_elapsed_ms": 129.62,
           "retries": 0,
           "status": "success",
           "error": null
@@ -4301,8 +4306,8 @@
             "hits": 31,
             "ref_chars": 31
           },
-          "api_latency_ms": 513.64,
-          "total_elapsed_ms": 513.66,
+          "api_latency_ms": 380.51,
+          "total_elapsed_ms": 380.52,
           "retries": 0,
           "status": "success",
           "error": null
@@ -4358,8 +4363,8 @@
             "hits": 38,
             "ref_chars": 38
           },
-          "api_latency_ms": 374.04,
-          "total_elapsed_ms": 374.05,
+          "api_latency_ms": 413.22,
+          "total_elapsed_ms": 413.23,
           "retries": 0,
           "status": "success",
           "error": null
@@ -4415,8 +4420,8 @@
             "hits": 28,
             "ref_chars": 28
           },
-          "api_latency_ms": 432.49,
-          "total_elapsed_ms": 432.5,
+          "api_latency_ms": 262.25,
+          "total_elapsed_ms": 262.25,
           "retries": 0,
           "status": "success",
           "error": null
@@ -4427,10 +4432,10 @@
   "hinglish_ablation": {
     "hi-IN": {
       "num_clips": 3,
-      "verbatim_wer": 0.3846,
-      "rule_normalised_wer": 0.3846,
-      "cross_script_subs": 10,
-      "p50_latency_ms": 365.48,
+      "verbatim_wer": 0.5,
+      "rule_normalised_wer": 0.5,
+      "cross_script_subs": 13,
+      "p50_latency_ms": 250.41,
       "clips": [
         {
           "id": "codemix_001",
@@ -4442,9 +4447,9 @@
         {
           "id": "codemix_002",
           "detected_language": "en-IN",
-          "wer": 0.0,
-          "rule_normalised_wer": 0.0,
-          "hypothesis": "Please mera last transaction ka detail bhejo."
+          "wer": 0.4286,
+          "rule_normalised_wer": 0.4286,
+          "hypothesis": "Please मेरा last transaction का detail भेजो।"
         },
         {
           "id": "codemix_003",
@@ -4460,7 +4465,7 @@
       "verbatim_wer": 0.3846,
       "rule_normalised_wer": 0.3846,
       "cross_script_subs": 10,
-      "p50_latency_ms": 367.63,
+      "p50_latency_ms": 320.43,
       "clips": [
         {
           "id": "codemix_001",
@@ -4490,7 +4495,7 @@
       "verbatim_wer": 0.8462,
       "rule_normalised_wer": 0.8462,
       "cross_script_subs": 22,
-      "p50_latency_ms": 407.65,
+      "p50_latency_ms": 386.38,
       "clips": [
         {
           "id": "codemix_001",
