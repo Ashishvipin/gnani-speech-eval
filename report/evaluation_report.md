@@ -55,7 +55,7 @@ Zero retries occurred across all ASR suites. On FLEURS Hindi (18 errors in 123 w
 
 ## 4. Limitations & Recommendations
 
-**Limitations:** Small sample counts (`n=18` clean human, `n=4` paired stress bases) yield wide confidence intervals (`7.8%–17.7%`). Stress variants simulate additive babble and μ-law codec rather than live PSTN calls. Automated local `faster-whisper` cross-checking was unavailable on this Python 3.9 host without Python ≥ 3.10, though agent audio inspection verified key failure WAVs directly.
+**Limitations:** Small sample counts (`n=18` clean human, `n=4` paired stress bases) yield wide confidence intervals (`7.8%–17.7%`). Stress variants simulate additive babble and μ-law codec rather than live PSTN calls. Automated local `faster-whisper` cross-checking was unavailable on this Python 3.9 host without Python ≥ 3.10, though direct human listening verified the key failure WAVs.
 
 **Recommendations:**
 - **Interactive Voice Agents:** Use SSE streaming (`/api/v1/tts/sse`, `p50=221 ms` TTFB) rather than full-response REST (`p50=838 ms`) whenever barge-in/low-latency turn-taking matters.
